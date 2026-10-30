@@ -12,6 +12,10 @@ The existing module logic, settings, configuration and tests are being retained.
 on the Horizon adapter, state handling and packaging. The repository still includes the pinned
 Horizon source snapshot used to reproduce the verified legacy prototype; attribution is retained below.
 
+Follow the [standard `.hnmod` migration branch](https://github.com/zackmsa777-a11y/meteor-horizon-rust/tree/hnmod-migration/native)
+for the current native bundle. Its first proof connects Zoom; the remaining retained modules
+are still being migrated. This branch preserves the verified legacy checkpoint.
+
 [Legacy prototype package — custom build path only](packages/meteor-client-native-28-module.hmod) ·
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
