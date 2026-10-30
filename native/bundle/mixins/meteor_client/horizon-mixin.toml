@@ -1,6 +1,6 @@
 [mod]
 id = "meteor_client"
-version = "0.1.0-migration.1"
+version = "0.1.0-migration.2"
 priority = 100
 
 [compatibility]
@@ -106,4 +106,14 @@ bindings = [
   { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
   { name = "mod_id", ty = "&str", value = "mod_id" },
   { name = "button", ty = "usize", value = "button" },
+]
+
+# Source Tick.Pre: named tick runs after movement and cannot substitute for this boundary.
+[[injection]]
+id = "movement_pre"
+target = "horizon_client::game::Game<'_>::tick"
+kind = "HEAD"
+helper = "movement_pre.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
 ]

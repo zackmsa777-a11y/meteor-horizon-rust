@@ -10,7 +10,7 @@ import zipfile
 
 NATIVE_MANIFEST = "horizon-native.json"
 MOD_ID = "meteor_client"
-VERSION = "0.1.0-migration.1"
+VERSION = "0.1.0-migration.2"
 HORIZON = "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73"
 MIXINS = "cb1ad23022392d88f006cf94cbf6552a73f5df12"
 MAX_BYTES = 64 * 1024 * 1024

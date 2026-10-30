@@ -1,132 +1,126 @@
 # Standard native Meteor migration proof
 
-This directory develops a normal Horizon `.hnmod` using horizon-mixins. It is a
-**Zoom-only migration proof**, not a working release of the complete Meteor port.
-The retained core contains 30 module policies; the other policies are not connected
-to this native adapter. HUD, custom fonts, the complete GUI and the other host
-integrations remain migration work.
+This normal Horizon `.hnmod` integrates **Zoom + AutoJump** and passed 50 isolated
+runtime checks on the recorded client. It remains a partial prototype, not the
+complete Meteor port. Of 30 retained core module policies, the other 28 are
+inactive. HUD, custom fonts, the complete GUI and other host integrations remain
+migration work.
 
-The bundle uses the existing `horizon-native.json` schema 1, package ID
-`meteor_client`, and version `0.1.0-migration.1`. It pins:
+[Download the source proof package](../packages/meteor-client-autojump-migration-proof.hnmod).
+SHA-256: `b9a4fd4ffa3f0e23b6b1d9d44d88ab8788fae7c6c08bb9dff9a2724519799c40`.
+The standard `horizon-native.json` schema 1 names `meteor_client`, version
+`0.1.0-migration.2`, and pins:
 
 - Horizon: `b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73`.
 - horizon-mixins: `cb1ad23022392d88f006cf94cbf6552a73f5df12` (0.6.0).
 - Meteor reference: `e3a2e77967629d216e127b5ceecf71fb15f9d2e5`.
 
-This follows Horizon's existing native-mod build path: Mixins adds the bundle's
-crate and hooks to an isolated source stage, and Cargo compiles that stage. It
-does not use the legacy `horizon-native-source.json` package or a custom loader.
-Native code requires the normal explicit trust decision. Minecraft resources,
-worlds, accounts, executables and prepared game files are not included.
+## Implementation
 
-## Source and current scope
+Official Mixins stages the bundle's own crate and declared hooks into isolated
+pristine Horizon source, then Cargo compiles that stage. This uses the existing
+native mod format, not the legacy custom `horizon-native-source.json` loader.
+Native code requires the ordinary explicit trust decision.
 
-`bundle/mixins/meteor_client/core/` retains the existing Meteor Rust core, including
-its tests and source notices. Its copied source bytes are unchanged; the sole
-Cargo change replaces inherited edition with explicit edition `2024`. Per-file
-original and copied hashes are recorded in
-[`core-provenance.json`](bundle/mixins/meteor_client/data/core-provenance.json).
+The 70 core files, four provenance/license data files and eight original helpers
+are unchanged from the Zoom proof. All 69 Rust core files retain their bytes;
+the core Cargo manifest's only prior change made edition `2024` explicit.
+[Core provenance](bundle/mixins/meteor_client/data/core-provenance.json) records
+those hashes and the historical initial Zoom migration scope.
 
-The adapter uses eight named hooks: frame, tick, wheel, command, zoom, mods,
-settings and settings-click. A module-local window table keeps proof state out of
-Horizon structs. The command is `/meteor-migration`; its status/help and Options >
-Mods describe the limited proof. Its separate `zoom-migration.json` settings do not
-import or overwrite the legacy prototype's configuration.
+AutoJump adds a raw HEAD hook at `horizon_client::game::Game<'_>::tick` for the
+required Tick.Pre boundary. It calls the retained policy and existing native jump
+path; LowHop writes only Y velocity. No Game or PlayerMotion fields are added,
+and the adapter does not execute on the server's Game.
 
-Horizon's existing Zoom API clamps factors to 10 and turn scaling to 0.05–1. The
-proof does not yet reproduce every Meteor Zoom setting, including cinematic and
-HUD/hand visibility behavior. Keeping the core policy is not evidence that every
-host operation has been ported.
+Use `/meteor-migration` for status and Zoom commands. AutoJump adds `auto-jump
+toggle`, `auto-jump mode Jump|LowHop`, `auto-jump jump-if Always|Walking|Sprinting`
+and `auto-jump velocity-height NUMBER`. Existing schema-1 Zoom settings gain
+disabled AutoJump with source defaults. The separate `zoom-migration.json` does
+not import the legacy prototype's state.
 
-## Verification
+## Verification and limits
 
-[`evidence/verification.json`](evidence/verification.json) records the exact source
-snapshot and scoped checks. Mixins plan and apply succeeded against pristine
-Horizon with eight named hooks, one support module and one bundle crate. The
-retained core test suite and four exact-source window lifecycle tests passed.
-The corrected R2 stage passed a full `horizon-client` binary `cargo check` in
-22.60 seconds. Seven packaging checks passed, and the final proof archive passed
-the stock native parser. The current runtime, all eight helpers, 70 core payloads
-and four data payloads match that R2 stage exactly.
+[Verification](evidence/verification.json) records nine staged HEAD hooks, host
+checking, the linked fast build, two exact-source configuration tests, seven
+packaging tests and stock-parser acceptance of the 86-entry archive. The content
+parser correctly rejects native code.
 
-A linked client from the official Mixins stage and pinned Cargo then passed
-**32 isolated runtime checks**. These include actual mouse sensitivity, Zoom and
-restoration, wheel handling, generated configuration, invalid input handling and
-registration in the real Options > Mods page. The client exited gracefully with
-code 0. Four screenshots were visually reviewed: normal and restored wall framing
-match, the zoomed view is narrower, and the native mod row is visible.
-See the scoped [runtime evidence](evidence/runtime-zoom.json).
+The [50-check run](evidence/runtime-autojump.json) covered Jump and LowHop motion,
+Always/Walking/Sprinting predicates, sneak suppression, restoration, invalid
+settings, generated configuration and a targeted Zoom/mouse-sensitivity regression.
+The frozen client and both harnesses stayed unchanged; shutdown exited with code 0.
 
-The local source proof archive is `meteor-client-zoom-migration-proof.hnmod`,
-SHA-256 `4c8d2f238f8c9c184f96228f6c966d9a3945b07dffe65169fe438cf59fe70de3`.
-It is a verified Zoom migration proof, not a complete Meteor release or a claim
-of full Zoom parity. The tested client SHA-256 is
-`83813315f0fb8ac1fc4f1b5d5dc563aa9f195688feb9c7abaf22cc1f5c71bfab`;
-the control CLI SHA-256 is
+Sampled normal Jump rise was about 1.252203 blocks; LowHop at 0.25 rose about
+0.506239 blocks. Zero-height LowHop stayed at floor height while native ground
+flags alternated and horizontal movement continued. It does not force ground
+state or promise equal baseline speed. See the [zero-height explanation](evidence/lowhop-zero-height.md).
+These samples are not exact mathematical apex values.
+
+Tested client SHA-256:
+`56e9ec8c64f46c06d972d88537e4251a98be7334ebd0fdb078185ee67cc1a42d`.
+Control CLI SHA-256:
 `a32f27d371eb24179c0d2f64b076156e46ab85b881f6204272fc3f16a401e7aa`.
+The [earlier Zoom verification](evidence/verification-zoom.json) and
+[32-check Zoom run](evidence/runtime-zoom.json) remain separate historical evidence.
+`test_standard_zoom.py` expects migration.1's Zoom-only status text; use the
+AutoJump harness for the combined client.
 
-This run built and tested the official Mixins stage with pinned Cargo. It did not
-exercise the stock launcher's complete build/install flow. An earlier attempt
-stopped in the harness while the GUI was paused; the harness wait was corrected,
-and the successful 32-check run used the same game and bundle. The original
-[pre-runtime evidence](evidence/pre-runtime-verification.json) remains separate.
-
-The stock parser source used for validation was compared byte for byte with the
-original pinned Horizon ZIP. Its ordinary content parser rejects this native
-archive. Passing package checks or planning does not prove gameplay behavior.
+Zoom still has the native factor cap of 10 and turn range 0.05..1. Cinematic,
+HUD and hand behavior is incomplete. Configuration was inspected without a client
+restart. No full Zoom, AutoJump or Meteor parity claim is made. The tested build
+used official Mixins plus pinned Cargo; **stock launcher end-to-end build/install
+has not yet been tested**.
 
 ## Reproduce
 
-Use Python 3.11 or later and the pinned Rust/Mixins versions. Obtain your own
-pristine Horizon source export and keep it separate from scratch build outputs.
-Replace `PRISTINE_HORIZON` and `SCRATCH` below with those paths.
+Use Python 3.11 or later and pinned Rust/Mixins. Replace `PRISTINE_HORIZON`,
+`PREPARED_RESOURCES` and `SCRATCH` with your own source, prepared Minecraft
+resources and separate scratch paths. No custom `meteor` or `mods` feature is
+needed for this pinned Horizon.
 
 ```sh
 python native/tools/test_package_standard_hnmod.py
-python native/tools/package_standard_hnmod.py --output dist/meteor-client-zoom-proof.hnmod --report dist/package-report.json
+python native/tools/package_standard_hnmod.py --output dist/meteor-client-autojump-migration-proof.hnmod --report dist/package-report.json
 horizon-mixins plan --workspace PRISTINE_HORIZON --mods native/bundle/mixins --out SCRATCH/plan.json
 horizon-mixins apply --workspace PRISTINE_HORIZON --mods native/bundle/mixins --out SCRATCH/staged-horizon
 cargo test --manifest-path SCRATCH/staged-horizon/Cargo.toml --locked -p meteor-client
 cargo check --manifest-path SCRATCH/staged-horizon/Cargo.toml --locked -p horizon-client --bin horizon-client
+cargo build --manifest-path SCRATCH/staged-horizon/Cargo.toml --locked --profile fast -p horizon-client --bin horizon-client --bin horizon-ctl
+python native/tools/test_standard_autojump.py --client-binary SCRATCH/staged-horizon/target/fast/horizon-client --control-binary SCRATCH/staged-horizon/target/fast/horizon-ctl --resources PREPARED_RESOURCES --scratch-root SCRATCH/runtime
 ```
 
-The package contains Rust/TOML source and license/provenance data. The packager
-does not compile or run it. This pinned Horizon base has no `mods` Cargo feature;
-the migration proof does not require a custom `meteor` feature.
+Append `.exe` on Windows. If `CARGO_TARGET_DIR` is set, use its linked binaries.
+The harness requires explicit scratch paths and fresh generated singleplayer
+worlds; existing worlds, real accounts and multiplayer are excluded. The package
+builder itself never compiles or executes mod source.
 
-To build the small stock-parser validator, supply your own pristine source and a
-separate target directory. The helper creates a temporary Cargo manifest with a
-quoted source path; no manual manifest edits or machine-specific paths are needed.
+The stock-parser validator accepts caller-owned source and target paths:
 
 ```sh
 python native/tools/build_standard_validator.py --horizon-source PRISTINE_HORIZON --target-dir SCRATCH/validator-target
-python native/tools/validate_standard_hnmod.py --package dist/meteor-client-zoom-proof.hnmod --validator SCRATCH/validator-target/debug/meteor-standard-hnmod-validator --pristine PRISTINE_HORIZON --base-zip ORIGINAL_HORIZON_ZIP --report dist/validator-report.json
+python native/tools/validate_standard_hnmod.py --package dist/meteor-client-autojump-migration-proof.hnmod --validator SCRATCH/validator-target/debug/meteor-standard-hnmod-validator --pristine PRISTINE_HORIZON --base-zip ORIGINAL_HORIZON_ZIP --report dist/validator-report.json
 ```
 
-On Windows, append `.exe` to the validator filename. Dependency downloads may be
-needed on the first validator build; `--offline` requires an existing Cargo cache.
-For a pinned toolchain, set absolute `RUSTC`/`RUSTDOC` and pass its Cargo executable
-with `--cargo`; this avoids dependency-local rustup overrides changing compilers.
+First builds may download dependencies; `--offline` requires a cache. Configure
+absolute `RUSTC`/`RUSTDOC` paths and a pinned Cargo executable to avoid rustup
+compiler changes during builds.
 
-The tested runtime harness takes explicit client, control CLI, prepared-resource
-and scratch paths. It creates fresh isolated homes and a generated singleplayer
-fixture; existing worlds, accounts and multiplayer are excluded. Run it only
-after reviewing and building the native source:
+The ordinary launcher documents this optional entry point for a prepared base:
 
 ```sh
-python native/tools/test_standard_zoom.py --client-binary PROOF_CLIENT --control-binary CONTROL_CLI --resources PREPARED_RESOURCES --scratch-root SCRATCH/runtime
+horizon-launcher native-build native/bundle --version PREPARED_BASE --trust-native-code
 ```
 
-The ordinary launcher accepts `native/bundle` as an unpacked native bundle through
-its existing trust flow and the player's own prepared base version. That complete
-launcher flow remains untested here. This repository does not include a ready-to-play
-game executable or prepared Minecraft resources.
+That full launcher build/install flow is not part of the evidence above. This
+source subtree includes no game executable, Minecraft assets, prepared resources,
+worlds or accounts.
 
 ## Licenses
 
-Meteor-derived code is GPL-3.0-only. Preserve the
+Meteor-derived code remains GPL-3.0-only. Preserve the
 [Meteor GPL notice](bundle/mixins/meteor_client/data/licenses/Meteor-GPL-3.0-only.txt),
 [Starscript MIT notice](bundle/mixins/meteor_client/data/licenses/Starscript-MIT.txt)
 and [Horizon MIT notice](bundle/mixins/meteor_client/data/licenses/Horizon-MIT.txt).
-This is an unofficial, AI-assisted port. The legacy prototype remains separate
-from this migration proof.
+This is an unofficial, AI-assisted native port. The legacy prototype remains
+separate from these standard native migration proofs.

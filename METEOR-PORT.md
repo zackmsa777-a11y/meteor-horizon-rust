@@ -4,13 +4,14 @@ This is a native Meteor mod project for Horizon, currently in development.
 The integration target is now a standard `.hnmod` bundle using Horizon Mixins. Existing core
 behavior and tests are retained; the host adapter and packaging are being migrated. Recorded
 28-module runtime evidence belongs to the legacy source-patched prototype and does not certify
-a standard `.hnmod` build. No standard installable Meteor bundle has been released yet.
+a standard `.hnmod` build. The experimental standard proof is scoped separately below.
 The objective remains full native behavior, including modules, GUI/HUD, configuration, commands,
 utilities, integrations and lifecycle. Java JARs are reference artifacts, not executable plugins here.
 
 The [standard native proof](native/README.md) retains 30 module policies and currently connects
-only Zoom through upstream hooks. Its verification evidence is separate from the legacy inventory
-below. Retaining a policy does not count as migrating its host integration or gameplay tests.
+Zoom + AutoJump through upstream hooks. It passes 50 isolated checks, with exact package and client
+hashes in its evidence. The other 28 policies remain inactive in that proof. Its evidence is separate
+from the legacy inventory below; retaining a policy does not count as migrating its host integration.
 
 The authoritative feature inventory is `crates/meteor-client/port-inventory.json`.
 It enumerates registered module classes and every Java source file from the supplied archive.

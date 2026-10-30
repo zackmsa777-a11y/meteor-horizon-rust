@@ -1,15 +1,18 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
-// Native Meteor migration proof. Reuses the existing Meteor-derived Zoom core.
+// Native Meteor migration proof. Reuses the existing Meteor-derived Zoom and AutoJump core.
 
-// This adapter currently integrates Zoom only; other retained core modules are inactive.
+// This candidate integrates Zoom and AutoJump only; other retained core modules are inactive.
 
 use super::{
     Game,
     native_hooks::{NativeMod, NativeZoom},
 };
 
-use meteor_client::modules::zoom::{Zoom, ZoomSettings};
+use meteor_client::modules::{
+    auto_jump,
+    zoom::{Zoom, ZoomSettings},
+};
 
 use std::{
     cell::RefCell,
@@ -27,7 +30,7 @@ const MOD_ID: &str = "meteor_client";
 
 const COMMAND: &str = "meteor-migration";
 
-const HELP: &str = "Zoom-only .hnmod migration proof: /meteor-migration status | zoom toggle | zoom factor NUMBER | zoom smooth true|false | zoom scroll-sensitivity NUMBER. Native API clamps visible zoom to 10. Other retained Meteor modules are not integrated.";
+const HELP: &str = "Zoom+AutoJump .hnmod migration candidate: /meteor-migration status | zoom toggle | zoom factor NUMBER | zoom smooth true|false | zoom scroll-sensitivity NUMBER | auto-jump toggle | auto-jump mode Jump|LowHop | auto-jump jump-if Always|Walking|Sprinting | auto-jump velocity-height NUMBER. Native API caps visible Zoom at 10. Other retained Meteor modules are not integrated.";
 
 #[derive(serde::Serialize, serde::Deserialize)]
 #[serde(default)]
@@ -38,6 +41,8 @@ struct Saved {
     enabled: bool,
 
     zoom: ZoomSettings,
+    auto_jump_enabled: bool,
+    auto_jump: auto_jump::Settings,
 }
 
 impl Default for Saved {
@@ -46,7 +51,20 @@ impl Default for Saved {
             schema: 1,
             enabled: false,
             zoom: ZoomSettings::default(),
+            auto_jump_enabled: false,
+            auto_jump: auto_jump::Settings::default(),
         }
+    }
+}
+
+impl Saved {
+    fn validate(&self) -> Result<(), String> {
+        if self.schema != 1 {
+            return Err("Unsupported Meteor migration proof schema".into());
+        }
+        self.zoom.validate()?;
+        self.auto_jump.validate()?;
+        Ok(())
     }
 }
 
@@ -68,11 +86,7 @@ impl Runtime {
             Ok(text) => serde_json::from_str::<Saved>(&text)
                 .map_err(|e| e.to_string())
                 .and_then(|value| {
-                    if value.schema != 1 {
-                        return Err("Unsupported Zoom migration proof schema".into());
-                    }
-
-                    value.zoom.validate()?;
+                    value.validate()?;
                     Ok(value)
                 }),
 
@@ -86,7 +100,7 @@ impl Runtime {
 
             Err(error) => {
                 log::error!(
-                    "Meteor Zoom migration proof could not read {}: {error}; saving disabled",
+                    "Meteor Zoom+AutoJump migration candidate could not read {}: {error}; saving disabled",
                     path.display()
                 );
                 (Saved::default(), false)
@@ -126,7 +140,7 @@ impl Runtime {
 
     fn status(&self) -> String {
         format!(
-            "Zoom-only .hnmod migration proof: Zoom {}; requested {}, current {:.3} (native API clamps visible factor to 10); smoothing {}; other retained modules are not integrated. Cinematic/hide-HUD/show-hands are not wired in this proof.",
+            "Zoom+AutoJump .hnmod migration candidate: Zoom {}; requested {}, current {:.3} (native API clamps visible factor to 10); smoothing {}; AutoJump {} ({:?}, {:?}, LowHop height {}); other retained modules are not integrated. Zoom cinematic/hide-HUD/show-hands are not wired in this proof.",
             if self.saved.enabled {
                 "enabled"
             } else {
@@ -134,7 +148,15 @@ impl Runtime {
             },
             self.saved.zoom.zoom,
             self.zoom.scaling(),
-            self.saved.zoom.smooth
+            self.saved.zoom.smooth,
+            if self.saved.auto_jump_enabled {
+                "enabled"
+            } else {
+                "disabled"
+            },
+            self.saved.auto_jump.mode,
+            self.saved.auto_jump.jump_if,
+            self.saved.auto_jump.velocity_height
         )
     }
 }
@@ -233,6 +255,71 @@ fn save(runtime: &Rc<RefCell<Runtime>>) -> Result<(), String> {
     fs::write(path, text).map_err(|e| e.to_string())
 }
 
+/// Source Tick.Pre uses previous-tick player facts. Source AutoJump has no
+/// independent GUI-screen filter; the existing host pause/hold rules still apply.
+pub(super) fn on_pre_tick(game: &mut Game<'_>) {
+    if !game.native_window()
+        || !game.native_on(MOD_ID)
+        || game.agent.hold_server
+        || game.title.is_some()
+    {
+        return;
+    }
+    let Some(player) = game.player.as_ref() else {
+        return;
+    };
+    let player = auto_jump::Player {
+        on_ground: player.ground.on_ground,
+        // The pristine PlayerMotion exposes the raw source shift state. Its
+        // legacy is_shift_key_down helper was a fork addition and is not used.
+        sneaking: player.shift_key_down,
+        sprinting: player.sprinting,
+        forward: player.move_vector[1],
+        sideways: player.move_vector[0],
+    };
+    let Some(runtime) = runtime(game) else {
+        return;
+    };
+    let action = {
+        let runtime = runtime.borrow();
+        runtime
+            .saved
+            .auto_jump_enabled
+            .then(|| auto_jump::tick(&player, &runtime.saved.auto_jump))
+            .flatten()
+    };
+    match action {
+        Some(auto_jump::Action::SetVerticalVelocity(y)) => {
+            if let Some(player) = game.player.as_mut() {
+                player.velocity.y = y;
+            }
+        }
+        Some(auto_jump::Action::JumpFromGround) => {
+            // No Runtime or TLS borrow is held when native movement executes.
+            // Native jump emits the engine's ordinary statistics/exhaustion events.
+            if let Err(error) = jump_from_ground(game) {
+                log::error!("Meteor AutoJump migration candidate native jump failed: {error}");
+            }
+        }
+        None => {}
+    }
+}
+fn jump_from_ground(game: &mut Game<'_>) -> horizon_client::Result<()> {
+    let entities = game.player_entity_collisions();
+    if let Some(player) = game.player.as_mut() {
+        horizon_client::motion::MotionWorld {
+            entities: &entities,
+            player,
+            scene: &mut game.world,
+            assets: &game.pack.assets,
+            collision_binding: game.collision,
+            resources: game.motion,
+        }
+        .jump_from_ground()?;
+    }
+    Ok(())
+}
+
 pub(super) fn on_frame(game: &mut Game<'_>, elapsed: Duration) {
     let Some(runtime) = runtime(game) else {
         return;
@@ -323,7 +410,7 @@ pub(super) fn on_command(game: &mut Game<'_>, command: &str, ran: &mut bool) {
     *ran = true;
 
     let Some(runtime) = runtime(game) else {
-        game.native_chat("Zoom-only migration proof: no window runtime is available yet.");
+        game.native_chat("Zoom+AutoJump migration candidate: no window runtime is available yet.");
         return;
     };
 
@@ -363,6 +450,36 @@ pub(super) fn on_command(game: &mut Game<'_>, command: &str, ran: &mut bool) {
                     runtime.saved.zoom = settings;
                 }
 
+                ["auto-jump", "toggle"] => {
+                    runtime.saved.auto_jump_enabled = !runtime.saved.auto_jump_enabled
+                }
+                ["auto-jump", "mode", value] => {
+                    runtime.saved.auto_jump.mode = match *value {
+                        "Jump" => auto_jump::Mode::Jump,
+                        "LowHop" => auto_jump::Mode::LowHop,
+                        _ => return Err("AutoJump mode must be Jump or LowHop".into()),
+                    };
+                }
+                ["auto-jump", "jump-if", value] => {
+                    runtime.saved.auto_jump.jump_if = match *value {
+                        "Always" => auto_jump::JumpWhen::Always,
+                        "Walking" => auto_jump::JumpWhen::Walking,
+                        "Sprinting" => auto_jump::JumpWhen::Sprinting,
+                        _ => {
+                            return Err(
+                                "AutoJump jump-if must be Always, Walking or Sprinting".into()
+                            );
+                        }
+                    };
+                }
+                ["auto-jump", "velocity-height", value] => {
+                    let mut settings = runtime.saved.auto_jump.clone();
+                    settings.velocity_height = value
+                        .parse()
+                        .map_err(|_| "Expected a finite nonnegative LowHop velocity height")?;
+                    settings.validate()?;
+                    runtime.saved.auto_jump = settings;
+                }
                 _ => return Err(HELP.into()),
             }
         }
@@ -376,7 +493,7 @@ pub(super) fn on_command(game: &mut Game<'_>, command: &str, ran: &mut bool) {
 
     match result {
         Ok(message) => game.native_chat(&message),
-        Err(error) => game.native_chat(&format!("Zoom-only migration proof: {error}")),
+        Err(error) => game.native_chat(&format!("Zoom+AutoJump migration candidate: {error}")),
     }
 }
 
@@ -385,7 +502,7 @@ pub(super) fn on_mods(_game: &mut Game<'_>, mods: &mut Vec<NativeMod>) {
         return;
     }
 
-    mods.push(NativeMod {id:MOD_ID.into(),title:"Meteor Rust — Zoom migration proof".into(),description:"Normal .hnmod proof using the existing Meteor Rust core. Only Zoom is integrated; other retained modules are inactive. Native API caps visible Zoom at 10. No custom launcher or source-patch package.".into(),keys:Vec::new()});
+    mods.push(NativeMod {id:MOD_ID.into(),title:"Meteor Rust - Zoom+AutoJump migration candidate".into(),description:"Normal .hnmod candidate using the existing Meteor Rust core. Zoom and AutoJump only; other retained modules are inactive. AutoJump uses the source Tick.Pre policy and real native jump. Native API caps visible Zoom at 10. Runtime validation pending.".into(),keys:Vec::new()});
 }
 
 pub(super) fn on_settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<String>) {
@@ -394,7 +511,7 @@ pub(super) fn on_settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<S
     }
 
     let Some(runtime) = runtime(game) else {
-        buttons.push("Zoom-only migration proof: open the game window first".into());
+        buttons.push("Zoom+AutoJump migration candidate: open the game window first".into());
         return;
     };
 
@@ -402,7 +519,7 @@ pub(super) fn on_settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<S
         let runtime = runtime.borrow();
         vec![
             format!(
-                "Zoom-only proof: {}",
+                "Zoom proof: {}",
                 if runtime.saved.enabled {
                     "enabled"
                 } else {
@@ -414,6 +531,20 @@ pub(super) fn on_settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<S
                 runtime.saved.zoom.zoom
             ),
             format!("Meteor smoothing: {}", runtime.saved.zoom.smooth),
+            format!(
+                "AutoJump: {}",
+                if runtime.saved.auto_jump_enabled {
+                    "enabled"
+                } else {
+                    "disabled"
+                }
+            ),
+            format!("AutoJump mode: {:?}", runtime.saved.auto_jump.mode),
+            format!("AutoJump jump if: {:?}", runtime.saved.auto_jump.jump_if),
+            format!(
+                "AutoJump LowHop velocity: {}",
+                runtime.saved.auto_jump.velocity_height
+            ),
         ]
     };
 
@@ -442,12 +573,33 @@ pub(super) fn on_settings_click(game: &mut Game<'_>, mod_id: &str, button: usize
                     .unwrap_or(2.0);
             }
             2 => runtime.saved.zoom.smooth = !runtime.saved.zoom.smooth,
+            3 => runtime.saved.auto_jump_enabled = !runtime.saved.auto_jump_enabled,
+            4 => {
+                runtime.saved.auto_jump.mode = match runtime.saved.auto_jump.mode {
+                    auto_jump::Mode::Jump => auto_jump::Mode::LowHop,
+                    auto_jump::Mode::LowHop => auto_jump::Mode::Jump,
+                }
+            }
+            5 => {
+                runtime.saved.auto_jump.jump_if = match runtime.saved.auto_jump.jump_if {
+                    auto_jump::JumpWhen::Always => auto_jump::JumpWhen::Walking,
+                    auto_jump::JumpWhen::Walking => auto_jump::JumpWhen::Sprinting,
+                    auto_jump::JumpWhen::Sprinting => auto_jump::JumpWhen::Always,
+                }
+            }
+            6 => {
+                let height = runtime.saved.auto_jump.velocity_height;
+                runtime.saved.auto_jump.velocity_height = [0.0, 0.25, 0.5, 1.0]
+                    .into_iter()
+                    .find(|value| *value > height)
+                    .unwrap_or(0.0);
+            }
             _ => return,
         }
     }
 
     if let Err(error) = save(&runtime) {
-        game.native_chat(&format!("Zoom-only migration proof: {error}"));
+        game.native_chat(&format!("Zoom+AutoJump migration candidate: {error}"));
     }
 }
 
@@ -515,5 +667,31 @@ mod migration_lifecycle_tests {
         };
         assert_eq!(effect, 3);
         assert_eq!(callback(), 3);
+    }
+}
+
+#[cfg(test)]
+mod migration_autojump_config_tests {
+    use super::*;
+    #[test]
+    fn older_zoom_schema_one_config_gains_disabled_source_default_autojump() {
+        let saved: Saved =
+            serde_json::from_str(r#"{"schema":1,"enabled":true,"zoom":{"zoom":4.0}}"#).unwrap();
+        saved.validate().unwrap();
+        assert!(saved.enabled);
+        assert_eq!(saved.zoom.zoom, 4.0);
+        assert!(!saved.auto_jump_enabled);
+        assert!(matches!(saved.auto_jump.mode, auto_jump::Mode::Jump));
+        assert!(matches!(
+            saved.auto_jump.jump_if,
+            auto_jump::JumpWhen::Always
+        ));
+        assert_eq!(saved.auto_jump.velocity_height, 0.25);
+    }
+    #[test]
+    fn combined_config_validation_rejects_negative_autojump_without_changing_zoom() {
+        let saved:Saved=serde_json::from_str(r#"{"schema":1,"enabled":true,"zoom":{"zoom":4.0},"auto_jump":{"velocity_height":-0.1}}"#).unwrap();
+        assert!(saved.validate().is_err());
+        assert_eq!(saved.zoom.zoom, 4.0);
     }
 }

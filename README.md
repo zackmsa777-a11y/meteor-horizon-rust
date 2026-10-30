@@ -1,12 +1,12 @@
-> **Integration migration branch:** [`native/`](native/) contains the first standard
-> `.hnmod` / horizon-mixins proof. Its retained core has 30 module policies, with only
-> Zoom connected so far. Package validation, core tests, host compilation and 32 isolated
-> Zoom runtime checks pass. The legacy checkpoint is preserved on `main`.
+> **Integration migration branch:** [`native/`](native/) contains the standard
+> `.hnmod` / horizon-mixins proof. It retains 30 module policies and connects Zoom + AutoJump.
+> Package validation, core/configuration tests, host compilation and 50 isolated checks pass.
+> The legacy checkpoint is preserved on `main`.
 
 # Meteor mod for Horizon
 
-> **Installation status:** migration to the standard Horizon `.hnmod` / `horizon-mixins`
-> integration is in progress. A standard installable Meteor `.hnmod` is not released yet.
+> **Installation status:** an experimental standard `.hnmod` proof connects Zoom + AutoJump.
+> The remaining modules, GUI and HUD are still being migrated.
 > The existing `.hmod` is a legacy source-patch prototype for a custom build path. It cannot
 > be loaded through Horizon's ordinary content Mods menu; renaming it will not convert it.
 
@@ -17,6 +17,8 @@ The existing module logic, settings, configuration and tests are being retained.
 on the Horizon adapter, state handling and packaging. The repository still includes the pinned
 Horizon source snapshot used to reproduce the verified legacy prototype; attribution is retained below.
 
+[Experimental standard bundle — Zoom + AutoJump only](packages/meteor-client-autojump-migration-proof.hnmod) ·
+[Native setup and verification](native/README.md) ·
 [Legacy prototype package — custom build path only](packages/meteor-client-native-28-module.hmod) ·
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
@@ -27,6 +29,9 @@ The complete Meteor port is not finished. See [METEOR-PORT.md](METEOR-PORT.md) a
 
 ## Verification
 
+- The standard integration passed 50 isolated Zoom/AutoJump checks with clean shutdown;
+  its [exact source, package and client evidence](native/evidence/verification.json) is separate
+  from the legacy checkpoints below. It uses pristine Horizon plus upstream Mixins.
 - 130 core tests passed; seven original module/friends importer fixtures and four macro importer fixtures passed.
 - The exact 28-module development client passed 71 isolated runtime checks for Flight, AutoClicker,
   macro NBT imports, repeated HUD instances and Starscript text. Earlier checkpoints have separate evidence.
@@ -38,10 +43,12 @@ singleplayer worlds and generated data. Game resources and player data are not i
 
 ## Build and use
 
-The instructions below reproduce the **legacy prototype**. The replacement integration will use
-Horizon's [standard native-mod build flow](https://playhorizon.dev/docs/mod-manifest), with a
-`horizon-native.json`, a `horizon-mixin.toml`, pinned revisions and a normal `.hnmod` bundle.
-That flow still compiles a modded game; it should not require a Meteor-specific launcher format.
+For the standard `.hnmod` proof, use [native setup](native/README.md) and Horizon's normal
+native build flow. It compiles a modded game from the pinned upstream source and Mixins bundle.
+The full stock launcher build/install flow remains untested; the proof was built with official
+Mixins and pinned Cargo, then tested in isolated singleplayer.
+
+The instructions below reproduce the **legacy prototype**.
 
 Follow [Horizon build prerequisites and resource preparation](UPSTREAM-HORIZON-README.md).
 Build the optional native port with:
