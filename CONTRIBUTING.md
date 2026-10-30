@@ -15,6 +15,29 @@ change. This project does not use Horizon's Discord claim bot or upstream releas
 Coordinate ongoing port changes with the repository maintainer,
 [@zackmsa777-a11y](https://github.com/zackmsa777-a11y).
 
+## Current native integration coordination
+
+Open standard native integration PRs against **`hnmod-migration`**. The current allocation
+(2026-10-30) is:
+
+- **AutoRespawn and BreakDelay:** reserved for a separate contributor's planned PR.
+- **AirJump and HighJump:** active maintainer-team work.
+
+The separate contributor's GitHub identity is not recorded here; do not assume it from repository
+activity. Check this allocation and existing PRs before starting a module. Update the reservation
+when work is handed off or merged so that parallel contributions remain clear.
+
+Keep module-specific host logic in separate injection helpers or self-contained support payloads
+under `native/bundle/mixins/meteor_client/`, using descriptive module prefixes. Prefer small
+registration changes in shared `runtime.rs` and `horizon-mixin.toml`; preserve existing hooks and
+avoid unrelated formatting or whole-file replacement. Rebase focused changes on the latest
+`hnmod-migration` head before integration to resolve shared dispatch or manifest edits.
+
+Retain the reusable core, its tests and license notices. Generate pristine stages with the pinned
+upstream Mixins tool; do not introduce a custom loader or manually edit generated host source.
+Keep verified migration.2 packages/evidence separate from unverified migration.3 work, and record
+only checks actually run against the new source snapshot.
+
 ## Source layout and setup
 
 Integration migration is underway. Preserve reusable module behavior and tests; move host glue
