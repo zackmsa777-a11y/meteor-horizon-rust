@@ -1,7 +1,7 @@
 # Contributing to the Meteor mod for Horizon
 
 This project ports Meteor Client features to a native Rust mod for Horizon. Contributions
-focus on modules, GUI/HUD, commands, configuration import and the native `.hmod` integration.
+focus on modules, GUI/HUD, commands, configuration import and the standard `.hnmod` / Horizon Mixins integration.
 The port is in development; the feature inventory records implemented behavior and remaining gaps.
 
 ## Where to contribute
@@ -15,6 +15,11 @@ complete runtime checks. Base fixes on `main`; coordinate changes to ongoing por
 `next-source` with the repository maintainer, [@zackmsa777-a11y](https://github.com/zackmsa777-a11y).
 
 ## Source layout and setup
+
+Integration migration is underway. Preserve reusable module behavior and tests; move host glue
+into a standard Horizon Mixins bundle. Prefer named hooks, and pin raw hooks to a tested Horizon
+revision where needed. Do not expand the legacy custom source-patch loader as the distribution path.
+The existing source layout and build commands below describe the legacy prototype during migration.
 
 - `crates/meteor-client/`: mod behavior, settings, persistence and core tests.
 - `crates/horizon-client/src/game/meteor*.rs`: native host integration and GUI/HUD.

@@ -4,6 +4,11 @@ This repository develops a native Rust Meteor Client mod for Horizon. Read `CONT
 `METEOR-PORT.md` and the feature inventory before changing mod behavior. A pinned Horizon host
 source tree is included for native integration and builds.
 
+- Target the standard `.hnmod` / Horizon Mixins integration. Preserve the Meteor core and tests;
+  migrate the adapter and packaging. Do not present legacy `.hmod` source-patch packages as normal
+  content mods or extend their custom launcher protocol as the new distribution architecture.
+- Use GPT-6.1 Sol with high reasoning for delegated agents unless the user changes this preference.
+  Do not switch agents to Astra.
 - Put mod policies in `crates/meteor-client` and host operations in the corresponding
   `meteor*.rs` adapters. Do not register empty modules or claim full parity from partial checks.
 - Preserve applicable Meteor GPL-3.0-only, Horizon MIT, Starscript MIT and third-party notices.

@@ -6,5 +6,7 @@
   "hmod_sha256": "deee7cc3a9f056baa1b4657d0e5d6dcdff7abfe21b2487fd36bb522b22e7d07d",
   "runtime_checks": 71,
   "full_port_complete": false,
-  "branch_status": "next-source work in progress; hashes above identify verified main, not this branch"
+  "branch_status": "next-source work in progress; hashes above identify verified main, not this branch",
+  "integration_target": "standard .hnmod via horizon-mixins; migration in progress",
+  "recorded_checkpoint_format": "legacy native-source-hmod/1 prototype"
 }

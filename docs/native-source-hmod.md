@@ -1,3 +1,7 @@
+> **Legacy prototype format:** this document describes the custom source-patch build path.
+> New integration work targets a standard Horizon `.hnmod` / `horizon-mixins` bundle.
+> This `.hmod` is not compatible with the game's ordinary content Mods menu.
+
 # Native source `.hmod` in the Meteor development fork
 
 This fork additionally supports **native-source-hmod/1**, a source-only ZIP with a
