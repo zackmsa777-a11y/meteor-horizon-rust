@@ -1,9 +1,16 @@
-> **Integration migration branch:** [`native/`](native/) contains the standard
-> `.hnmod` / horizon-mixins proof. It retains 30 module policies and connects Zoom, AutoJump,
-> AirJump and HighJump. Package, unit, compilation and 101 isolated runtime checks pass.
-> The legacy checkpoint is preserved on `main`.
+# Meteor Horizon
 
-# Meteor mod for Horizon
+This branch adopts [Solstice's existing native client](https://github.com/PointOfPressure/solstice-client)
+under the **Meteor Horizon** name. The experimental [foundation source and status](foundation/README.md)
+uses normal `.hnmod` / upstream Mixins integration and exposes 87 catalog entries after contributor
+reservations. This is not 87 verified Meteor ports or a full-parity claim.
+
+The frozen foundation passes the stock native parser, official 24-hook plan/apply and host compile
+check. Regression tests, linked build and isolated runtime validation are in progress.
+The complete existing `native/` tree and its verified four-module migration.3 package are preserved.
+AutoRespawn and BreakDelay remain reserved for the planned contributor PR.
+
+## Preserved Meteor migration checkpoint
 
 > **Installation status:** the experimental standard `.hnmod` connects Zoom, AutoJump, AirJump and HighJump.
 > The remaining modules, GUI and HUD are still being migrated.

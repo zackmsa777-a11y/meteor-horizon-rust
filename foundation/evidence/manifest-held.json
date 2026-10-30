@@ -1,0 +1,14 @@
+{
+  "status": "manifest held pending full production hold",
+  "manifest_sha256": "0158f509536daa7861ebdeb8ffa0e518ad79729f374e77bc5eb50429f2a4ebe8",
+  "native_manifest_sha256": "1ba32cf439c573e9c040e3aad941e1e5e21370e1c6b5dc4e5a4d42e2cada7274",
+  "modules": 10,
+  "injections": 24,
+  "changes": [
+    "keys/input.rs: mutable Game binding",
+    "buttons/buttons.rs: mutable Game binding",
+    "meteor_gui_layers: cancellable Game.hud_layers HEAD, Game+size bindings"
+  ],
+  "production_rust_edited": false,
+  "provenance_frozen": false
+}

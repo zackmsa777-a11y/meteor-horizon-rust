@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "tests": [
+    "test game::solstice::meteor_horizon_adoption_tests::engine_gui_readers_are_lock_free_and_close_latch_survives_same_event ... ok",
+    "test game::solstice::meteor_horizon_adoption_tests::packet_cleanup_removes_every_retained_global_effect ... ok",
+    "test game::solstice::meteor_horizon_adoption_tests::catalog_has_87_unique_real_entries_and_omits_friend_reservations ... ok",
+    "test game::solstice::meteor_horizon_adoption_tests::observed_session_reset_preserves_settings_and_panels_but_clears_actions ... ok",
+    "test game::solstice::meteor_horizon_adoption_tests::narrow_gui_rows_are_inside_viewport_without_overlapping_hits ... ok"
+  ],
+  "passed": 5,
+  "failed": 0,
+  "elapsed_seconds": 203.87325120000605,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--profile",
+    "fast",
+    "-p",
+    "horizon-client",
+    "--bin",
+    "horizon-client",
+    "solstice"
+  ],
+  "source_package_sha256": "85d184a012ec82649fb561130fe8465874e29b3ebe6c48888676a3c78532b98c",
+  "scope": "Actual generated host binary tests: catalog/reservations, transient reset, reentrant GUI gates, packet cleanup and narrow hit boxes; not gameplay parity."
+}

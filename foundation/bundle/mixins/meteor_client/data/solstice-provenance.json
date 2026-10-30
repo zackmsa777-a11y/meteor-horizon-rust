@@ -1,0 +1,948 @@
+{
+  "schema": 1,
+  "kind": "solstice-foundation-initial-candidate",
+  "upstream": {
+    "repository": "https://github.com/PointOfPressure/solstice-client",
+    "commit": "2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1",
+    "git_tree": "9160ad59367c0040b302f052bc42120e9ca6e661",
+    "source_url": "https://github.com/PointOfPressure/solstice-client/tree/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1",
+    "working_checkout_corpus_sha256": "a3e4c2dfb56349afafe1d8b011e289ed8924e16846736886c906364ba0241425",
+    "committed_blob_corpus_sha256": "dfa9db840119a7b85b86dfe4b8b9f0669608605178a9754ed49df965aa254820",
+    "line_endings": "Exact local clone CRLF bytes copied; all40 clone files differ from committed upstream blobs only by CRLF conversion."
+  },
+  "upstream_native_manifest": {
+    "schema": 1,
+    "id": "solstice",
+    "version": "0.7.0",
+    "game": "26.3",
+    "horizon": "ba6344a59cb9e755b730dcf02285fc0d33b97d3c",
+    "mixins": "0d6b103c70633d8fd9443d8d0acd3aadaacedb06"
+  },
+  "candidate_native_manifest": {
+    "schema": 1,
+    "id": "meteor_client",
+    "version": "0.1.0-solstice.1",
+    "game": "26.3",
+    "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+    "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12"
+  },
+  "original_files": [
+    {
+      "path": ".gitignore",
+      "bytes": 7,
+      "sha256": "28de684393c1de2a61971f90fbde79d8efbbf69778261220adf5f9101f6e8494",
+      "git_blob_bytes_sha256": "ed19d3c9c8a5e34d0179e0b1a9c2907d2e657738733e4a432a8cf81c76ce56f1",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/.gitignore"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1093,
+      "sha256": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e",
+      "git_blob_bytes_sha256": "1fa82871ab1de7a306bacc75eaf3b69172fe80cd8e4ce9ee5ccf78d9bf05cdce",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5786,
+      "sha256": "3bf116477783e3906ed6465fdc9f0eae0c5dd0ab62367bde9eb54e6b4eb55f36",
+      "git_blob_bytes_sha256": "53e33fb1cb39e05a12ebdd89610132e90e1820ab567b94a6aff17103c7952d77",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/README.md"
+    },
+    {
+      "path": "horizon-native.json",
+      "bytes": 199,
+      "sha256": "43eaf5d4eafbc356c28e63826f9f15c1adfa39fd731e2aa1550962f4e5861531",
+      "git_blob_bytes_sha256": "6db0ba8470473d1b1dfd85c91ea72573ce6a859f74f841fbaae2bc2815f78854",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/horizon-native.json"
+    },
+    {
+      "path": "install.sh",
+      "bytes": 3530,
+      "sha256": "962888c84b76033f1eb76e362deefefcae9796d852d8b8ac26c1aa1d05a1d9f2",
+      "git_blob_bytes_sha256": "fa3c7f62b93a754d41ca7afd05fba10ad68ba3b17c16b3788a734e100708d1a1",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/install.sh"
+    },
+    {
+      "path": "mixins/solstice/buttons.rs",
+      "bytes": 297,
+      "sha256": "17a972ff00b5235630ace9544e6c447af1f0e823b1edb0f7940e1a7eaac0412f",
+      "git_blob_bytes_sha256": "034547cae647f2f78443b41e099d0c355f73349e50a5a96538867a340de8d551",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/buttons.rs"
+    },
+    {
+      "path": "mixins/solstice/camera.rs",
+      "bytes": 380,
+      "sha256": "82d5861ace6956260ea0f1540e9f3c4230b8541c65bd99ad8f64db2fda70697d",
+      "git_blob_bytes_sha256": "9b6c93687fc519ef2a9e7953c1d51cf0a4c05952f2634df2c625fe53ae264f15",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/camera.rs"
+    },
+    {
+      "path": "mixins/solstice/chat.rs",
+      "bytes": 321,
+      "sha256": "874d38a45034da049d3ba6ff2c5942720782617d7d1c08b3e3e10f6b6ddc4051",
+      "git_blob_bytes_sha256": "4277f6de4b14069464b7b9cfeb651431e79b964c7774cb201862783fac8a4581",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/chat.rs"
+    },
+    {
+      "path": "mixins/solstice/click.rs",
+      "bytes": 225,
+      "sha256": "1567e482222c4d03a169ab3d311a49a8035bc38585b3bcbc6b16a866954c312e",
+      "git_blob_bytes_sha256": "e7cb26267fcd39948ba1efe91ad6efab3fd8793b9ba6b85321f986b7263c93cc",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/click.rs"
+    },
+    {
+      "path": "mixins/solstice/combat.rs",
+      "bytes": 36923,
+      "sha256": "e75f98e5a0c4944ddd66d83c26de7fe8d7b9bcb0c253550413968d287b5d37a5",
+      "git_blob_bytes_sha256": "07f323c648b4ba421f6a7196543c281b4c2a6c29809122d8794bd1f8c39d0cc0",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/combat.rs"
+    },
+    {
+      "path": "mixins/solstice/fishing_hook.rs",
+      "bytes": 404,
+      "sha256": "ed123ea161ec7d4ed3d98a18e02434887f414b0d1f542a12b05fb5fac7cfb1df",
+      "git_blob_bytes_sha256": "6c28580f9b8fcb8a849a6a37761c50f914ef2f2371e01368e2dcfeb7037ed64c",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/fishing_hook.rs"
+    },
+    {
+      "path": "mixins/solstice/frame.rs",
+      "bytes": 153,
+      "sha256": "371fb676b5adcd807adff8aaab341d27544b08f3a7902447996e58114ea71c7e",
+      "git_blob_bytes_sha256": "0a51fdebc79f72066de90070f848dbc1ef91198689d7c1653a0b38dfa1e4f7e1",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/frame.rs"
+    },
+    {
+      "path": "mixins/solstice/horizon-mixin.toml",
+      "bytes": 8314,
+      "sha256": "d6ff29bc4cae69f960801a88544d9bb5b2e1f6d273639a437a93448caca1f5c6",
+      "git_blob_bytes_sha256": "62de5f8d9a7528c8d7932258aa6431c5ef52a10069d1953774ff71baece21d51",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/horizon-mixin.toml"
+    },
+    {
+      "path": "mixins/solstice/hud.rs",
+      "bytes": 332,
+      "sha256": "b1c29cd5e0247a048fe9a120f3faca0fc2909ef83cc3ce5b845635ecce0c3a08",
+      "git_blob_bytes_sha256": "acbf20822d8893598547a0e1e378e2292d0e3c738677436b3f200f81dbd1b18c",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/hud.rs"
+    },
+    {
+      "path": "mixins/solstice/input.rs",
+      "bytes": 273,
+      "sha256": "7606c764b7f9c12607c58da5215e243ce56f0804dbd8adc033a40ad6f29cd450",
+      "git_blob_bytes_sha256": "dbc5e1c932aab724c1c7ec6af24c2348c9dda8819f52fb418efbed160233b263",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/input.rs"
+    },
+    {
+      "path": "mixins/solstice/input_flags.rs",
+      "bytes": 151,
+      "sha256": "ad0b24e5f78c9c4bc7d4d84c8525bcd39c758c0fe9fb66982cfd3f4560692c10",
+      "git_blob_bytes_sha256": "e5fc2d79f58c041fc1f12cccbee864f1ae7f01b2af53c1ea9d3fa06f259f8cf7",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/input_flags.rs"
+    },
+    {
+      "path": "mixins/solstice/key.rs",
+      "bytes": 204,
+      "sha256": "49d4914a9ea739059376b1ea5f6704d06d30a3862b20bc820d11c57a6d0c7fe0",
+      "git_blob_bytes_sha256": "c0b3f921ada6749d3e263e4394e754c7130b2ecfc4aebe309d10705a8036e160",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/key.rs"
+    },
+    {
+      "path": "mixins/solstice/list.rs",
+      "bytes": 178,
+      "sha256": "cac1431d7411aebed78f76effe5af1b9d283c63dd13a8288632df631caf990bc",
+      "git_blob_bytes_sha256": "49a24776a6a4691d2691f84de256e7e033ed2167ea7b3e502d062f0dc444b1a8",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/list.rs"
+    },
+    {
+      "path": "mixins/solstice/noslow.rs",
+      "bytes": 421,
+      "sha256": "6b7e247bc848a7a3de18c6c34eccf29f34bee97d4876401bd342d3d5ae2d9751",
+      "git_blob_bytes_sha256": "dbed19d01d09581758540638d8589cba6d050a88e2d49c71122c5667e95ea47c",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/noslow.rs"
+    },
+    {
+      "path": "mixins/solstice/player.rs",
+      "bytes": 14121,
+      "sha256": "0c41e5f5668acbcd4e27f1368487b7b0502dc7905df9ce971d74df5aba46e8b2",
+      "git_blob_bytes_sha256": "659f7946a8ba45fa2bff360bb73ac85933d663302ffb44e6bda2772d5e345f3b",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/player.rs"
+    },
+    {
+      "path": "mixins/solstice/press.rs",
+      "bytes": 408,
+      "sha256": "61e339f12043c19970641c443287e285e42ad77c6c4d3a008fa72feda0979f10",
+      "git_blob_bytes_sha256": "f31bd7a2325686edda48b401232a9899b00137b444ef18e4e1c75765a0440fc7",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/press.rs"
+    },
+    {
+      "path": "mixins/solstice/pretick.rs",
+      "bytes": 173,
+      "sha256": "b760412175f2ea4e7a0e6d6c38921d29b9e877ccde637a8f702c56d07d3cfd1d",
+      "git_blob_bytes_sha256": "2a2b9991636991f9e4c35f66da1604d64cbcddb9d8750caf018750e09845fc0b",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/pretick.rs"
+    },
+    {
+      "path": "mixins/solstice/reach.rs",
+      "bytes": 351,
+      "sha256": "e38b78fd5a32a54e508321e4ccd93c262ea25e5aa0c47e9adeb0aefc89a6f096",
+      "git_blob_bytes_sha256": "0ac553c608da2c23645d3d68757cef3096af00fc9f4d21e002c853a8af7445d0",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/reach.rs"
+    },
+    {
+      "path": "mixins/solstice/render.rs",
+      "bytes": 19805,
+      "sha256": "3d12309f9fb4b6f0af2a920baaec851dc56f6f092d21656f6157b4c614780747",
+      "git_blob_bytes_sha256": "571da6b5a3064aefc92f4e9f952e08348921fd5a9cc90639dc6df04f6d2f9db5",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/render.rs"
+    },
+    {
+      "path": "mixins/solstice/runtime.rs",
+      "bytes": 139408,
+      "sha256": "6a97b90a144f08614a258279c76d79c2ea0d5522b2810ee39dcd1a6ea2084883",
+      "git_blob_bytes_sha256": "4674dc0e2286de8b81f2634648a5f9d5e68036a2cf8905f14605047abe584fd2",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/runtime.rs"
+    },
+    {
+      "path": "mixins/solstice/send.rs",
+      "bytes": 642,
+      "sha256": "cb8d93bf8f35d3307f3e3dea4686c2cfa05e60454e5576f90fc0886679c0489a",
+      "git_blob_bytes_sha256": "fb0028970f52fba9c4a99058e36d96a8e14a471c4b568bf00755323b4080345f",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/send.rs"
+    },
+    {
+      "path": "mixins/solstice/settings.rs",
+      "bytes": 279,
+      "sha256": "5a41a1ad366af8ae9cfd77344f3e1c221bb840b5893dc55c27c2b0da222d301d",
+      "git_blob_bytes_sha256": "158cc1f8afd1ba9f158000e95420bd72f2e64697eea29de5457f27ccf9f58fad",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/settings.rs"
+    },
+    {
+      "path": "mixins/solstice/tick.rs",
+      "bytes": 142,
+      "sha256": "f8483c46180223f6090ce5c9a0b6b19f7c01c0dec0420cd26d831c1d046ae76e",
+      "git_blob_bytes_sha256": "84114119fbc2cc3f989a56abd9181ed8e8169210a5750e36a009fc949d3454a5",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/tick.rs"
+    },
+    {
+      "path": "mixins/solstice/timer.rs",
+      "bytes": 532,
+      "sha256": "6988423b1920d980bdd3055e10da550c3ccb74aaebaf7473b4a53c23cf19a16a",
+      "git_blob_bytes_sha256": "db480405e03beaa7441c93ea367da9c97818469a7a4d4d6d4844df5bfa6bb63c",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/timer.rs"
+    },
+    {
+      "path": "mixins/solstice/timer_flags.rs",
+      "bytes": 231,
+      "sha256": "b40fbb76f4b21015a444108b7984ad9bd82aeb2c53b07536b4e2c45c2962055f",
+      "git_blob_bytes_sha256": "7688496d2dad2fdaf7ea6bb81917b6a806868a60bb1929fe88315fb8784eb646",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/timer_flags.rs"
+    },
+    {
+      "path": "mixins/solstice/turn.rs",
+      "bytes": 325,
+      "sha256": "4ef8612cd2dfd9af2e26593c1db754d441fd2398d9d275e8e6322c000d07a7fa",
+      "git_blob_bytes_sha256": "4453c49c0cdf26cd3da6ef439f73a81c2748cc2525218453928e6677d8b357e6",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/turn.rs"
+    },
+    {
+      "path": "mixins/solstice/util.rs",
+      "bytes": 14052,
+      "sha256": "db576c53695e5531cbe881286bd116e0315a882279a67d5572502cc68b48ad9a",
+      "git_blob_bytes_sha256": "25eb555ad2fecb972999b0bf195663c386ceea0093abbec457d6fd794c1330aa",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/util.rs"
+    },
+    {
+      "path": "mixins/solstice/wheel.rs",
+      "bytes": 303,
+      "sha256": "4768d798536d110a53db90a1c8a8146dade5b1262558b969e1927b1688beb22e",
+      "git_blob_bytes_sha256": "9d3131aae91205e643a507f75fccb68ce257c2649dfd0d62b19335fe8799f61f",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/wheel.rs"
+    },
+    {
+      "path": "mixins/solstice/world.rs",
+      "bytes": 19408,
+      "sha256": "79b2a8978a3a493c4b317ba0dea3455cdd5dd26c792d955edea8da9ad244ad12",
+      "git_blob_bytes_sha256": "85ed1deee95cdbdb87bdd7b071730557cce99593acdf86516d64ca8215d60367",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/world.rs"
+    },
+    {
+      "path": "mixins/solstice/xray.rs",
+      "bytes": 544,
+      "sha256": "5be6bf23dd2fb591e9f63d1d0cc02d96de60c919984ccc288fdaae1170c1fc11",
+      "git_blob_bytes_sha256": "0063d9ab52ac0c50ebcd8686638e44bbcbe63c25c6db87018059de0f096e0afd",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/xray.rs"
+    },
+    {
+      "path": "mixins/solstice/xray_flags.rs",
+      "bytes": 1290,
+      "sha256": "eba03e7aad7af40a9538a209b86548c6bf3569b951c96e24189f12538eea242b",
+      "git_blob_bytes_sha256": "7c8bfb745b15928eb264e86ef4ce11995ec1c4c4370df6d225f30a19b3952779",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/xray_flags.rs"
+    },
+    {
+      "path": "mixins/solstice/xray_get.rs",
+      "bytes": 141,
+      "sha256": "d149e5f7330846c6f5cf6a9fb3e75073f13f91ce6e8363a1225a666fbd600508",
+      "git_blob_bytes_sha256": "16ed4fd02826080754a8f00024476a83f89ae50755ac63df31facb942e774c38",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/xray_get.rs"
+    },
+    {
+      "path": "mixins/solstice/xray_unpack.rs",
+      "bytes": 184,
+      "sha256": "c24f2530d225688af7612bfc704af1873f8b5e86c116ea0d0bdc0778992d2568",
+      "git_blob_bytes_sha256": "207f257a215e7d4566f4c7492dcdf8b6e098a8fc50acd7e7958504a04772753d",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/xray_unpack.rs"
+    },
+    {
+      "path": "mixins/solstice/zoom.rs",
+      "bytes": 196,
+      "sha256": "b2aa6bd8527b2c56f3e9a3957bcd090b9ad0ea475aadceb9f342f849ecabc69f",
+      "git_blob_bytes_sha256": "37dec01b843e1e32d6ec5b168e958bda66ace7757c37244866f9f2e9be6dce3e",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/zoom.rs"
+    },
+    {
+      "path": "tools/pack.py",
+      "bytes": 784,
+      "sha256": "8940c43c67df51750129928387b918f45b57d1617c724f25d7c1680cc7149294",
+      "git_blob_bytes_sha256": "fa9e7a04097c6bc9cf96ba5263dfdca05576833a211887b4c4c6aa21099aa0b5",
+      "worktree_byte_identical_to_blob": false,
+      "checkout_crlf_only_difference": true,
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/tools/pack.py"
+    }
+  ],
+  "initial_copies": [
+    {
+      "upstream_path": "mixins/solstice/buttons.rs",
+      "destination": "mixins/meteor_client/buttons.rs",
+      "source_sha256": "17a972ff00b5235630ace9544e6c447af1f0e823b1edb0f7940e1a7eaac0412f",
+      "initial_candidate_sha256": "17a972ff00b5235630ace9544e6c447af1f0e823b1edb0f7940e1a7eaac0412f",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/camera.rs",
+      "destination": "mixins/meteor_client/camera.rs",
+      "source_sha256": "82d5861ace6956260ea0f1540e9f3c4230b8541c65bd99ad8f64db2fda70697d",
+      "initial_candidate_sha256": "82d5861ace6956260ea0f1540e9f3c4230b8541c65bd99ad8f64db2fda70697d",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/chat.rs",
+      "destination": "mixins/meteor_client/chat.rs",
+      "source_sha256": "874d38a45034da049d3ba6ff2c5942720782617d7d1c08b3e3e10f6b6ddc4051",
+      "initial_candidate_sha256": "874d38a45034da049d3ba6ff2c5942720782617d7d1c08b3e3e10f6b6ddc4051",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/click.rs",
+      "destination": "mixins/meteor_client/click.rs",
+      "source_sha256": "1567e482222c4d03a169ab3d311a49a8035bc38585b3bcbc6b16a866954c312e",
+      "initial_candidate_sha256": "1567e482222c4d03a169ab3d311a49a8035bc38585b3bcbc6b16a866954c312e",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/combat.rs",
+      "destination": "mixins/meteor_client/combat.rs",
+      "source_sha256": "e75f98e5a0c4944ddd66d83c26de7fe8d7b9bcb0c253550413968d287b5d37a5",
+      "initial_candidate_sha256": "e75f98e5a0c4944ddd66d83c26de7fe8d7b9bcb0c253550413968d287b5d37a5",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/fishing_hook.rs",
+      "destination": "mixins/meteor_client/fishing_hook.rs",
+      "source_sha256": "ed123ea161ec7d4ed3d98a18e02434887f414b0d1f542a12b05fb5fac7cfb1df",
+      "initial_candidate_sha256": "ed123ea161ec7d4ed3d98a18e02434887f414b0d1f542a12b05fb5fac7cfb1df",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/frame.rs",
+      "destination": "mixins/meteor_client/frame.rs",
+      "source_sha256": "371fb676b5adcd807adff8aaab341d27544b08f3a7902447996e58114ea71c7e",
+      "initial_candidate_sha256": "371fb676b5adcd807adff8aaab341d27544b08f3a7902447996e58114ea71c7e",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/hud.rs",
+      "destination": "mixins/meteor_client/hud.rs",
+      "source_sha256": "b1c29cd5e0247a048fe9a120f3faca0fc2909ef83cc3ce5b845635ecce0c3a08",
+      "initial_candidate_sha256": "b1c29cd5e0247a048fe9a120f3faca0fc2909ef83cc3ce5b845635ecce0c3a08",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/input.rs",
+      "destination": "mixins/meteor_client/input.rs",
+      "source_sha256": "7606c764b7f9c12607c58da5215e243ce56f0804dbd8adc033a40ad6f29cd450",
+      "initial_candidate_sha256": "7606c764b7f9c12607c58da5215e243ce56f0804dbd8adc033a40ad6f29cd450",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/input_flags.rs",
+      "destination": "mixins/meteor_client/input_flags.rs",
+      "source_sha256": "ad0b24e5f78c9c4bc7d4d84c8525bcd39c758c0fe9fb66982cfd3f4560692c10",
+      "initial_candidate_sha256": "ad0b24e5f78c9c4bc7d4d84c8525bcd39c758c0fe9fb66982cfd3f4560692c10",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/key.rs",
+      "destination": "mixins/meteor_client/key.rs",
+      "source_sha256": "49d4914a9ea739059376b1ea5f6704d06d30a3862b20bc820d11c57a6d0c7fe0",
+      "initial_candidate_sha256": "49d4914a9ea739059376b1ea5f6704d06d30a3862b20bc820d11c57a6d0c7fe0",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/list.rs",
+      "destination": "mixins/meteor_client/list.rs",
+      "source_sha256": "cac1431d7411aebed78f76effe5af1b9d283c63dd13a8288632df631caf990bc",
+      "initial_candidate_sha256": "cac1431d7411aebed78f76effe5af1b9d283c63dd13a8288632df631caf990bc",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/noslow.rs",
+      "destination": "mixins/meteor_client/noslow.rs",
+      "source_sha256": "6b7e247bc848a7a3de18c6c34eccf29f34bee97d4876401bd342d3d5ae2d9751",
+      "initial_candidate_sha256": "6b7e247bc848a7a3de18c6c34eccf29f34bee97d4876401bd342d3d5ae2d9751",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/player.rs",
+      "destination": "mixins/meteor_client/player.rs",
+      "source_sha256": "0c41e5f5668acbcd4e27f1368487b7b0502dc7905df9ce971d74df5aba46e8b2",
+      "initial_candidate_sha256": "0c41e5f5668acbcd4e27f1368487b7b0502dc7905df9ce971d74df5aba46e8b2",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/press.rs",
+      "destination": "mixins/meteor_client/press.rs",
+      "source_sha256": "61e339f12043c19970641c443287e285e42ad77c6c4d3a008fa72feda0979f10",
+      "initial_candidate_sha256": "61e339f12043c19970641c443287e285e42ad77c6c4d3a008fa72feda0979f10",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/pretick.rs",
+      "destination": "mixins/meteor_client/pretick.rs",
+      "source_sha256": "b760412175f2ea4e7a0e6d6c38921d29b9e877ccde637a8f702c56d07d3cfd1d",
+      "initial_candidate_sha256": "b760412175f2ea4e7a0e6d6c38921d29b9e877ccde637a8f702c56d07d3cfd1d",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/reach.rs",
+      "destination": "mixins/meteor_client/reach.rs",
+      "source_sha256": "e38b78fd5a32a54e508321e4ccd93c262ea25e5aa0c47e9adeb0aefc89a6f096",
+      "initial_candidate_sha256": "e38b78fd5a32a54e508321e4ccd93c262ea25e5aa0c47e9adeb0aefc89a6f096",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/render.rs",
+      "destination": "mixins/meteor_client/render.rs",
+      "source_sha256": "3d12309f9fb4b6f0af2a920baaec851dc56f6f092d21656f6157b4c614780747",
+      "initial_candidate_sha256": "3d12309f9fb4b6f0af2a920baaec851dc56f6f092d21656f6157b4c614780747",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/runtime.rs",
+      "destination": "mixins/meteor_client/runtime.rs",
+      "source_sha256": "6a97b90a144f08614a258279c76d79c2ea0d5522b2810ee39dcd1a6ea2084883",
+      "initial_candidate_sha256": "6a97b90a144f08614a258279c76d79c2ea0d5522b2810ee39dcd1a6ea2084883",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/send.rs",
+      "destination": "mixins/meteor_client/send.rs",
+      "source_sha256": "cb8d93bf8f35d3307f3e3dea4686c2cfa05e60454e5576f90fc0886679c0489a",
+      "initial_candidate_sha256": "cb8d93bf8f35d3307f3e3dea4686c2cfa05e60454e5576f90fc0886679c0489a",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/settings.rs",
+      "destination": "mixins/meteor_client/settings.rs",
+      "source_sha256": "5a41a1ad366af8ae9cfd77344f3e1c221bb840b5893dc55c27c2b0da222d301d",
+      "initial_candidate_sha256": "5a41a1ad366af8ae9cfd77344f3e1c221bb840b5893dc55c27c2b0da222d301d",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/tick.rs",
+      "destination": "mixins/meteor_client/tick.rs",
+      "source_sha256": "f8483c46180223f6090ce5c9a0b6b19f7c01c0dec0420cd26d831c1d046ae76e",
+      "initial_candidate_sha256": "f8483c46180223f6090ce5c9a0b6b19f7c01c0dec0420cd26d831c1d046ae76e",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/timer.rs",
+      "destination": "mixins/meteor_client/timer.rs",
+      "source_sha256": "6988423b1920d980bdd3055e10da550c3ccb74aaebaf7473b4a53c23cf19a16a",
+      "initial_candidate_sha256": "6988423b1920d980bdd3055e10da550c3ccb74aaebaf7473b4a53c23cf19a16a",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/timer_flags.rs",
+      "destination": "mixins/meteor_client/timer_flags.rs",
+      "source_sha256": "b40fbb76f4b21015a444108b7984ad9bd82aeb2c53b07536b4e2c45c2962055f",
+      "initial_candidate_sha256": "b40fbb76f4b21015a444108b7984ad9bd82aeb2c53b07536b4e2c45c2962055f",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/turn.rs",
+      "destination": "mixins/meteor_client/turn.rs",
+      "source_sha256": "4ef8612cd2dfd9af2e26593c1db754d441fd2398d9d275e8e6322c000d07a7fa",
+      "initial_candidate_sha256": "4ef8612cd2dfd9af2e26593c1db754d441fd2398d9d275e8e6322c000d07a7fa",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/util.rs",
+      "destination": "mixins/meteor_client/util.rs",
+      "source_sha256": "db576c53695e5531cbe881286bd116e0315a882279a67d5572502cc68b48ad9a",
+      "initial_candidate_sha256": "db576c53695e5531cbe881286bd116e0315a882279a67d5572502cc68b48ad9a",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/wheel.rs",
+      "destination": "mixins/meteor_client/wheel.rs",
+      "source_sha256": "4768d798536d110a53db90a1c8a8146dade5b1262558b969e1927b1688beb22e",
+      "initial_candidate_sha256": "4768d798536d110a53db90a1c8a8146dade5b1262558b969e1927b1688beb22e",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/world.rs",
+      "destination": "mixins/meteor_client/world.rs",
+      "source_sha256": "79b2a8978a3a493c4b317ba0dea3455cdd5dd26c792d955edea8da9ad244ad12",
+      "initial_candidate_sha256": "79b2a8978a3a493c4b317ba0dea3455cdd5dd26c792d955edea8da9ad244ad12",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/xray.rs",
+      "destination": "mixins/meteor_client/xray.rs",
+      "source_sha256": "5be6bf23dd2fb591e9f63d1d0cc02d96de60c919984ccc288fdaae1170c1fc11",
+      "initial_candidate_sha256": "5be6bf23dd2fb591e9f63d1d0cc02d96de60c919984ccc288fdaae1170c1fc11",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/xray_flags.rs",
+      "destination": "mixins/meteor_client/xray_flags.rs",
+      "source_sha256": "eba03e7aad7af40a9538a209b86548c6bf3569b951c96e24189f12538eea242b",
+      "initial_candidate_sha256": "eba03e7aad7af40a9538a209b86548c6bf3569b951c96e24189f12538eea242b",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/xray_get.rs",
+      "destination": "mixins/meteor_client/xray_get.rs",
+      "source_sha256": "d149e5f7330846c6f5cf6a9fb3e75073f13f91ce6e8363a1225a666fbd600508",
+      "initial_candidate_sha256": "d149e5f7330846c6f5cf6a9fb3e75073f13f91ce6e8363a1225a666fbd600508",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/xray_unpack.rs",
+      "destination": "mixins/meteor_client/xray_unpack.rs",
+      "source_sha256": "c24f2530d225688af7612bfc704af1873f8b5e86c116ea0d0bdc0778992d2568",
+      "initial_candidate_sha256": "c24f2530d225688af7612bfc704af1873f8b5e86c116ea0d0bdc0778992d2568",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/zoom.rs",
+      "destination": "mixins/meteor_client/zoom.rs",
+      "source_sha256": "b2aa6bd8527b2c56f3e9a3957bcd090b9ad0ea475aadceb9f342f849ecabc69f",
+      "initial_candidate_sha256": "b2aa6bd8527b2c56f3e9a3957bcd090b9ad0ea475aadceb9f342f849ecabc69f",
+      "change": "byte-identical initial copy; production adaptation owned by module agent"
+    },
+    {
+      "upstream_path": "mixins/solstice/horizon-mixin.toml",
+      "destination": "mixins/meteor_client/horizon-mixin.toml",
+      "source_sha256": "d6ff29bc4cae69f960801a88544d9bb5b2e1f6d273639a437a93448caca1f5c6",
+      "initial_candidate_sha256": "b673162b6f97cd305fcbf27d02a4509a69cb5892d687f3aba7d51b0d4ab0e92c",
+      "change": "identity/version and Horizon pin changed; upstream raw target/support declarations retained pending compatibility proof"
+    },
+    {
+      "upstream_path": "horizon-native.json",
+      "destination": "horizon-native.json",
+      "source_sha256": "43eaf5d4eafbc356c28e63826f9f15c1adfa39fd731e2aa1550962f4e5861531",
+      "initial_candidate_sha256": "1ba32cf439c573e9c040e3aad941e1e5e21370e1c6b5dc4e5a4d42e2cada7274",
+      "change": "normal schema1 Meteor identity/version and our exact Horizon/Mixins pins; no hooks/post_build metadata"
+    },
+    {
+      "upstream_path": "LICENSE",
+      "destination": "mixins/meteor_client/data/licenses/Solstice-MIT.txt",
+      "source_sha256": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e",
+      "initial_candidate_sha256": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e",
+      "change": "exact clone license bytes preserved"
+    }
+  ],
+  "planned_adaptations": [
+    "Display brand Meteor Horizon; internal solstice support names may remain.",
+    "Adapt raw-hook source and support calls to our pinned Horizon b76 + Mixins0.6; pin change alone is not compatibility proof.",
+    "Reserve AutoRespawn/BreakDelay: exclude Solstice Auto Respawn and overlapping Fast Break from active catalog/dispatch.",
+    "Use a separate Solstice-foundation native setting key; preserve old zoom-migration.json.",
+    "Do not copy/execute install.sh or tools/pack.py."
+  ],
+  "status": "frozen-source-awaiting-validation",
+  "adaptation_notes": [
+    {
+      "path": "horizon-native.json",
+      "description": "Normal schema1 identity meteor_client/version0.1.0-solstice.1 with exact b76 Horizon and cb1ad Mixins0.6; no custom loader/hooks metadata.",
+      "sha256": "1ba32cf439c573e9c040e3aad941e1e5e21370e1c6b5dc4e5a4d42e2cada7274"
+    },
+    {
+      "path": "mixins/meteor_client/buttons.rs",
+      "description": "Use actual mutable Game binding to apply native role/enabled/window-owner GUI blocking with closing latch.",
+      "sha256": "bd221b27cc196dd21a1d310f1df9c5967f3784f9fb5a690d03c2a4ded1b8ddaa"
+    },
+    {
+      "path": "mixins/meteor_client/combat.rs",
+      "description": "Add transient combat reset API for owner/world lifecycle.",
+      "sha256": "41b1c4e4700840fc811c5ea38b36721d90b5fa116851846c63ba14e675bb1457"
+    },
+    {
+      "path": "mixins/meteor_client/gui_layers.rs",
+      "description": "New attributed MIT raw Game.hud_layers compositor helper, separate from F1-sensitive ordinary HUD; distributed notice path corrected.",
+      "sha256": "d452b2de8b6bb0ceee008b1ff0e48ae4bc00f20dea5a14d0ade0bce61a030a26"
+    },
+    {
+      "path": "mixins/meteor_client/horizon-mixin.toml",
+      "description": "Normal meteor_client identity/version and b76 pin; mutable Game bindings for input/buttons; add raw cancellable HUD-layer compositor injection; retain ten support modules and23 prior injections.",
+      "sha256": "0158f509536daa7861ebdeb8ffa0e518ad79729f374e77bc5eb50429f2a4ebe8"
+    },
+    {
+      "path": "mixins/meteor_client/input.rs",
+      "description": "Use actual mutable Game binding to apply native role/enabled/window-owner GUI blocking with closing latch.",
+      "sha256": "1bd16975402e4010093daa095da20b4f057b819aa38db6d6a2fc6360dae3cdae"
+    },
+    {
+      "path": "mixins/meteor_client/input_flags.rs",
+      "description": "Replace cross-thread NoSlow switch with client-thread local switch.",
+      "sha256": "6f942f5ec93cd930a26d6396be72eb48d8221ecebf01d6b4e866ebabf5a1b27b"
+    },
+    {
+      "path": "mixins/meteor_client/noslow.rs",
+      "description": "Read client-thread local NoSlow switch; add one source unit test.",
+      "sha256": "c0cf876bb2e8f753cebd6c91742364a908812e1b4e25f177b826c59cf67dcb17"
+    },
+    {
+      "path": "mixins/meteor_client/player.rs",
+      "description": "Brand default Spam message as Meteor Horizon; reset Reach/AutoGap transient state.",
+      "sha256": "1e966d5756858bf4573c5c734733a9602c546f3f7c512332f89d6bf184673fa2"
+    },
+    {
+      "path": "mixins/meteor_client/press.rs",
+      "description": "Apply native role/enabled/window-owner GUI mouse gate.",
+      "sha256": "68eb8e6365dfab5065c9f9b989123ddf7cdaf59178879fe71e92d0c1564d1340"
+    },
+    {
+      "path": "mixins/meteor_client/reach.rs",
+      "description": "Gate native Reach by role, enabled state and current window owner.",
+      "sha256": "c9fe77b33483986134882cb93f4a1d9c4999218aa69908ef3d9f5429817fa953"
+    },
+    {
+      "path": "mixins/meteor_client/render.rs",
+      "description": "Add native role/owner guards and reset camera/global worker state; use engine TLS switches.",
+      "sha256": "7d571bcce47bcdefe0b6ac2bac69d3e459cb5e32a1d1ed54230605b070176d8a"
+    },
+    {
+      "path": "mixins/meteor_client/runtime.rs",
+      "description": "Meteor Horizon identity/branding and87-entry catalog excluding reserved Auto Respawn/Fast Break; weak-window owner and observed-world lifecycle/reset; reentrant lock-free owner/GUI gates; native GUI compositor merge; five exact lifecycle/UI tests. R2 diagnostic fix: return on non-native-window Game before owner maintenance/closing-latch reset, so server pre_tick cannot clear client GUI closing input ownership.",
+      "sha256": "d8a71c589f2be8f638b508237b6fe7cd20af2311fa9e93787ff67fbd9ba845f5"
+    },
+    {
+      "path": "mixins/meteor_client/timer.rs",
+      "description": "Read client-thread local multiplier and RAII recursion guard; two source unit tests across timer helper/flags.",
+      "sha256": "844f196d4ca7d3c9c54e60883aa523b6852afd96441041797056d52cfd7c2c13"
+    },
+    {
+      "path": "mixins/meteor_client/timer_flags.rs",
+      "description": "Use client-thread local multiplier and RAII recursion guard; source unit test support.",
+      "sha256": "ac216319c06f54f092991c2728b64ee797abdc23738d1d187480d9cc72172ded"
+    },
+    {
+      "path": "mixins/meteor_client/wheel.rs",
+      "description": "Apply native role/enabled/window-owner GUI wheel gate.",
+      "sha256": "38d83d47b5b4bce9fc0a029e20275b017550cfb351e609eed6a25d3edaa30af1"
+    },
+    {
+      "path": "mixins/meteor_client/world.rs",
+      "description": "Add transient world-module reset API for owner/world lifecycle.",
+      "sha256": "f3792122259f97998545e3abf683441fc055d3eeb62533785f0482dba1b85e48"
+    }
+  ],
+  "frozen_payloads": [
+    {
+      "path": "horizon-native.json",
+      "bytes": 207,
+      "sha256": "1ba32cf439c573e9c040e3aad941e1e5e21370e1c6b5dc4e5a4d42e2cada7274"
+    },
+    {
+      "path": "mixins/meteor_client/buttons.rs",
+      "bytes": 368,
+      "sha256": "bd221b27cc196dd21a1d310f1df9c5967f3784f9fb5a690d03c2a4ded1b8ddaa"
+    },
+    {
+      "path": "mixins/meteor_client/camera.rs",
+      "bytes": 380,
+      "sha256": "82d5861ace6956260ea0f1540e9f3c4230b8541c65bd99ad8f64db2fda70697d"
+    },
+    {
+      "path": "mixins/meteor_client/chat.rs",
+      "bytes": 321,
+      "sha256": "874d38a45034da049d3ba6ff2c5942720782617d7d1c08b3e3e10f6b6ddc4051"
+    },
+    {
+      "path": "mixins/meteor_client/click.rs",
+      "bytes": 225,
+      "sha256": "1567e482222c4d03a169ab3d311a49a8035bc38585b3bcbc6b16a866954c312e"
+    },
+    {
+      "path": "mixins/meteor_client/combat.rs",
+      "bytes": 37822,
+      "sha256": "41b1c4e4700840fc811c5ea38b36721d90b5fa116851846c63ba14e675bb1457"
+    },
+    {
+      "path": "mixins/meteor_client/data/component-licenses.json",
+      "bytes": 1218,
+      "sha256": "2221adafd270de1d6f912ecd27a1cfd6e4984b282f086a3c33b035cf9a4472b7"
+    },
+    {
+      "path": "mixins/meteor_client/data/licenses/Solstice-MIT.txt",
+      "bytes": 1093,
+      "sha256": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e"
+    },
+    {
+      "path": "mixins/meteor_client/data/project-notices/Horizon-MIT.txt",
+      "bytes": 1099,
+      "sha256": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
+    },
+    {
+      "path": "mixins/meteor_client/data/project-notices/Meteor-GPL-3.0-only.txt",
+      "bytes": 35154,
+      "sha256": "b1e60bceb8b63b265dfe040691bd5ec7a21da3c31be3db4b2925518e9c0836df"
+    },
+    {
+      "path": "mixins/meteor_client/data/project-notices/Starscript-MIT.txt",
+      "bytes": 1074,
+      "sha256": "0efbee07393749f2e2e96a16466b6b05c8244adba0cf97e6daf453e4fe5e9c3f"
+    },
+    {
+      "path": "mixins/meteor_client/fishing_hook.rs",
+      "bytes": 404,
+      "sha256": "ed123ea161ec7d4ed3d98a18e02434887f414b0d1f542a12b05fb5fac7cfb1df"
+    },
+    {
+      "path": "mixins/meteor_client/frame.rs",
+      "bytes": 153,
+      "sha256": "371fb676b5adcd807adff8aaab341d27544b08f3a7902447996e58114ea71c7e"
+    },
+    {
+      "path": "mixins/meteor_client/gui_layers.rs",
+      "bytes": 501,
+      "sha256": "d452b2de8b6bb0ceee008b1ff0e48ae4bc00f20dea5a14d0ade0bce61a030a26"
+    },
+    {
+      "path": "mixins/meteor_client/horizon-mixin.toml",
+      "bytes": 8937,
+      "sha256": "0158f509536daa7861ebdeb8ffa0e518ad79729f374e77bc5eb50429f2a4ebe8"
+    },
+    {
+      "path": "mixins/meteor_client/hud.rs",
+      "bytes": 332,
+      "sha256": "b1c29cd5e0247a048fe9a120f3faca0fc2909ef83cc3ce5b845635ecce0c3a08"
+    },
+    {
+      "path": "mixins/meteor_client/input.rs",
+      "bytes": 365,
+      "sha256": "1bd16975402e4010093daa095da20b4f057b819aa38db6d6a2fc6360dae3cdae"
+    },
+    {
+      "path": "mixins/meteor_client/input_flags.rs",
+      "bytes": 547,
+      "sha256": "6f942f5ec93cd930a26d6396be72eb48d8221ecebf01d6b4e866ebabf5a1b27b"
+    },
+    {
+      "path": "mixins/meteor_client/key.rs",
+      "bytes": 204,
+      "sha256": "49d4914a9ea739059376b1ea5f6704d06d30a3862b20bc820d11c57a6d0c7fe0"
+    },
+    {
+      "path": "mixins/meteor_client/list.rs",
+      "bytes": 178,
+      "sha256": "cac1431d7411aebed78f76effe5af1b9d283c63dd13a8288632df631caf990bc"
+    },
+    {
+      "path": "mixins/meteor_client/noslow.rs",
+      "bytes": 405,
+      "sha256": "c0cf876bb2e8f753cebd6c91742364a908812e1b4e25f177b826c59cf67dcb17"
+    },
+    {
+      "path": "mixins/meteor_client/player.rs",
+      "bytes": 14506,
+      "sha256": "1e966d5756858bf4573c5c734733a9602c546f3f7c512332f89d6bf184673fa2"
+    },
+    {
+      "path": "mixins/meteor_client/press.rs",
+      "bytes": 535,
+      "sha256": "68eb8e6365dfab5065c9f9b989123ddf7cdaf59178879fe71e92d0c1564d1340"
+    },
+    {
+      "path": "mixins/meteor_client/pretick.rs",
+      "bytes": 173,
+      "sha256": "b760412175f2ea4e7a0e6d6c38921d29b9e877ccde637a8f702c56d07d3cfd1d"
+    },
+    {
+      "path": "mixins/meteor_client/reach.rs",
+      "bytes": 500,
+      "sha256": "c9fe77b33483986134882cb93f4a1d9c4999218aa69908ef3d9f5429817fa953"
+    },
+    {
+      "path": "mixins/meteor_client/render.rs",
+      "bytes": 21398,
+      "sha256": "7d571bcce47bcdefe0b6ac2bac69d3e459cb5e32a1d1ed54230605b070176d8a"
+    },
+    {
+      "path": "mixins/meteor_client/runtime.rs",
+      "bytes": 159480,
+      "sha256": "d8a71c589f2be8f638b508237b6fe7cd20af2311fa9e93787ff67fbd9ba845f5"
+    },
+    {
+      "path": "mixins/meteor_client/send.rs",
+      "bytes": 642,
+      "sha256": "cb8d93bf8f35d3307f3e3dea4686c2cfa05e60454e5576f90fc0886679c0489a"
+    },
+    {
+      "path": "mixins/meteor_client/settings.rs",
+      "bytes": 279,
+      "sha256": "5a41a1ad366af8ae9cfd77344f3e1c221bb840b5893dc55c27c2b0da222d301d"
+    },
+    {
+      "path": "mixins/meteor_client/tick.rs",
+      "bytes": 142,
+      "sha256": "f8483c46180223f6090ce5c9a0b6b19f7c01c0dec0420cd26d831c1d046ae76e"
+    },
+    {
+      "path": "mixins/meteor_client/timer.rs",
+      "bytes": 532,
+      "sha256": "844f196d4ca7d3c9c54e60883aa523b6852afd96441041797056d52cfd7c2c13"
+    },
+    {
+      "path": "mixins/meteor_client/timer_flags.rs",
+      "bytes": 1546,
+      "sha256": "ac216319c06f54f092991c2728b64ee797abdc23738d1d187480d9cc72172ded"
+    },
+    {
+      "path": "mixins/meteor_client/turn.rs",
+      "bytes": 325,
+      "sha256": "4ef8612cd2dfd9af2e26593c1db754d441fd2398d9d275e8e6322c000d07a7fa"
+    },
+    {
+      "path": "mixins/meteor_client/util.rs",
+      "bytes": 14052,
+      "sha256": "db576c53695e5531cbe881286bd116e0315a882279a67d5572502cc68b48ad9a"
+    },
+    {
+      "path": "mixins/meteor_client/wheel.rs",
+      "bytes": 353,
+      "sha256": "38d83d47b5b4bce9fc0a029e20275b017550cfb351e609eed6a25d3edaa30af1"
+    },
+    {
+      "path": "mixins/meteor_client/world.rs",
+      "bytes": 20591,
+      "sha256": "f3792122259f97998545e3abf683441fc055d3eeb62533785f0482dba1b85e48"
+    },
+    {
+      "path": "mixins/meteor_client/xray.rs",
+      "bytes": 544,
+      "sha256": "5be6bf23dd2fb591e9f63d1d0cc02d96de60c919984ccc288fdaae1170c1fc11"
+    },
+    {
+      "path": "mixins/meteor_client/xray_flags.rs",
+      "bytes": 1290,
+      "sha256": "eba03e7aad7af40a9538a209b86548c6bf3569b951c96e24189f12538eea242b"
+    },
+    {
+      "path": "mixins/meteor_client/xray_get.rs",
+      "bytes": 141,
+      "sha256": "d149e5f7330846c6f5cf6a9fb3e75073f13f91ce6e8363a1225a666fbd600508"
+    },
+    {
+      "path": "mixins/meteor_client/xray_unpack.rs",
+      "bytes": 184,
+      "sha256": "c24f2530d225688af7612bfc704af1873f8b5e86c116ea0d0bdc0778992d2568"
+    },
+    {
+      "path": "mixins/meteor_client/zoom.rs",
+      "bytes": 196,
+      "sha256": "b2aa6bd8527b2c56f3e9a3957bcd090b9ad0ea475aadceb9f342f849ecabc69f"
+    }
+  ],
+  "freeze_scope": "Payload bytes frozen; not a parser/plan/apply/compile/runtime result. Provenance self-hash is covered by the external package report."
+}

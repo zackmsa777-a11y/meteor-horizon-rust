@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "active_foundation": {
+    "name": "Solstice-derived production source",
+    "license": "MIT",
+    "copyright": "Copyright (c) 2026 PointOfPressure",
+    "notice": "licenses/Solstice-MIT.txt",
+    "upstream_commit": "2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1"
+  },
+  "project_retained_components": [
+    {
+      "name": "Meteor-derived retained core/prototype",
+      "license": "GPL-3.0-only",
+      "notice": "project-notices/Meteor-GPL-3.0-only.txt",
+      "scope": "preserved separately; no Meteor core source copied into this foundation candidate"
+    },
+    {
+      "name": "Starscript retained project component",
+      "license": "MIT",
+      "notice": "project-notices/Starscript-MIT.txt",
+      "scope": "historical/current project notice; no Starscript source copied into this candidate"
+    },
+    {
+      "name": "Horizon host",
+      "license": "MIT",
+      "notice": "project-notices/Horizon-MIT.txt",
+      "scope": "external pinned host; host source not distributed in this bundle"
+    }
+  ],
+  "rule": "No global relicensing. Retained Meteor-derived source keeps GPL-3.0-only; Solstice substantial source keeps its MIT copyright/permission notice."
+}

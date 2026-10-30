@@ -1,0 +1,33 @@
+{
+  "upstream_commit": "2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1",
+  "upstream_declared_license": "MIT",
+  "project_distribution": "GPL-3.0 with original component notices retained",
+  "independent_rewrite_or_all_code_mit_audit": false,
+  "observed_headers": [
+    {
+      "path": "mixins/solstice/combat.rs",
+      "line": 1,
+      "fact": "Header describes combat modules ported from Meteor source.",
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/combat.rs"
+    },
+    {
+      "path": "mixins/solstice/render.rs",
+      "line": 1,
+      "fact": "Header describes camera/engine modules ported from Meteor source.",
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/render.rs"
+    },
+    {
+      "path": "mixins/solstice/world.rs",
+      "line": 1,
+      "fact": "Header describes world modules ported from Meteor source.",
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/world.rs"
+    },
+    {
+      "path": "mixins/solstice/util.rs",
+      "line": 1,
+      "fact": "Header identifies ports from Meteor BlockUtils, InvUtils, PlayerUtils and TargetUtils.",
+      "source_url": "https://github.com/PointOfPressure/solstice-client/blob/2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1/mixins/solstice/util.rs"
+    }
+  ],
+  "scope": "Observable upstream attribution facts; frozen R1 bundle left unchanged. No global relicense."
+}

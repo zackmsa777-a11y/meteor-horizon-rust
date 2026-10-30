@@ -1,0 +1,31 @@
+{
+  "status": "PASS: standard schema-1 .hnmod accepted by pristine native parser; content parser rejects it",
+  "package": "meteor-horizon-solstice-foundation-r2.hnmod",
+  "package_sha256": "85d184a012ec82649fb561130fe8465874e29b3ebe6c48888676a3c78532b98c",
+  "manifest": {
+    "schema": 1,
+    "id": "meteor_client",
+    "version": "0.1.0-solstice.1",
+    "game": "26.3",
+    "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+    "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12"
+  },
+  "base_archive_sha256": "1792767d8c5b024e09c24f02ac24b0c4f04ef8f5078471c7c448f6c530363ccb",
+  "validator": "meteor-standard-hnmod-validator.exe",
+  "validator_sha256": "58a4ccf8407b888ea80f7cce34bf17afed166b6de3a5198fb59194ef44129dc0",
+  "parser_source": "crates/horizon-mods/src/index/native.rs",
+  "parser_source_sha256": "0f2692a663fbfdd3aa56a8f7ada9fc566bc6dcd184b11e7e71ceadda876837cb",
+  "parser_byte_identical_to_original_archive": true,
+  "native": {
+    "content_loader_rejected": true,
+    "entries": 42,
+    "hooks": null,
+    "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+    "id": "meteor_client",
+    "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12",
+    "ok": true,
+    "parser": "pristine horizon_mods::index::native::Bundle::read",
+    "version": "0.1.0-solstice.1"
+  },
+  "limits": "Package validation only; this does not compile or execute mod source or establish gameplay parity."
+}

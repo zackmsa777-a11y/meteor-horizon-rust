@@ -17,25 +17,31 @@ Coordinate ongoing port changes with the repository maintainer,
 
 ## Current native integration coordination
 
-Open standard native integration PRs against **`hnmod-migration`**. The current allocation
-(2026-10-30) is:
+New Solstice foundation PRs target **`solstice-integration`**. Meteor Horizon is adapting
+Solstice's existing MIT native foundation using the project's pinned Horizon/Mixins pair.
+The current allocation (2026-10-30) is:
 
-- **AutoRespawn and BreakDelay:** reserved for a separate contributor's planned PR.
-- **AirJump and HighJump:** integrated by this team in verified migration.3.
-- **RightShift GUI and basic FPS/coordinates HUD:** active work by this team for the four
-  integrated modules (Zoom, AutoJump, AirJump and HighJump). AutoRespawn/BreakDelay host
-  integration remains reserved; coordinate shared runtime/manifest edits before rebasing.
+- **AutoRespawn and BreakDelay:** reserved for a separate contributor's planned PR against
+  `hnmod-migration` until an explicit handoff. The foundation must exclude upstream Auto Respawn
+  and overlapping Fast Break registration/dispatch; do not silently replace the reserved work.
+- **Foundation adaptation, GUI/HUD and validation:** active work by this team.
+- **Previous snapshots:** migration.3 retains verified Zoom/AutoJump/AirJump/HighJump evidence;
+  the separate four-module GUI migration.4 remains held unfinished.
 
-Check this allocation and existing PRs before starting a module. Update the reservation
-when work is handed off or merged so that parallel contributions remain clear.
+Check assignments and existing PRs before changes. Keep the friend's source, tests and
+attribution intact, and coordinate a foundation port when that work arrives. Update the
+reservation when handed off or merged; do not infer a contributor identity or retarget an
+existing PR without coordination.
 
 Keep module-specific host logic in separate injection helpers or self-contained support payloads
-under `native/bundle/mixins/meteor_client/`, using descriptive module prefixes. Prefer small
+under `foundation/bundle/mixins/meteor_client/` for the new foundation, using descriptive module
+prefixes. Keep the entire existing `native/` tree and versioned archives unchanged. Prefer small
 registration changes in shared `runtime.rs` and `horizon-mixin.toml`; preserve existing hooks and
 avoid unrelated formatting or whole-file replacement. Rebase focused changes on the latest
-`hnmod-migration` head before integration to resolve shared dispatch or manifest edits.
+appropriate target-branch head before integration to resolve shared dispatch or manifest edits.
 
-Retain the reusable core, its tests and license notices. Generate pristine stages with the pinned
+Retain the reusable Meteor core/tests and explicit Solstice MIT / Meteor GPL component notices.
+Do not globally relicense the retained Meteor-derived source. Generate pristine stages with the pinned
 upstream Mixins tool; do not introduce a custom loader or manually edit generated host source.
 Preserve versioned verified packages and their evidence while developing the next integration,
 and record only checks actually run against the new source snapshot.

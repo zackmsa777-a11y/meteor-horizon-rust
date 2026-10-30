@@ -1,0 +1,15 @@
+{
+  "command": [
+    "cargo",
+    "check",
+    "--locked",
+    "-p",
+    "horizon-client",
+    "--bin",
+    "horizon-client"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 13.92466720000084,
+  "log": "solstice-final-r2.log",
+  "warnings": "8 unused-code warnings; retained code and excluded contributor feature state."
+}
