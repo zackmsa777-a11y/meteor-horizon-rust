@@ -1,12 +1,18 @@
 # Meteor mod for Horizon
 
-A native Rust Meteor Client mod for Horizon / Minecraft Java 26.3, packaged as a source-based `.hmod`.
+> **Installation status:** migration to the standard Horizon `.hnmod` / `horizon-mixins`
+> integration is in progress. A standard installable Meteor `.hnmod` is not released yet.
+> The existing `.hmod` is a legacy source-patch prototype for a custom build path. It cannot
+> be loaded through Horizon's ordinary content Mods menu; renaming it will not convert it.
+
+A native Rust Meteor Client mod for Horizon / Minecraft Java 26.3, targeting the standard `.hnmod` format through Horizon Mixins.
 The port is unofficial and still in development.
 
-This repository contains the mod and the host integration needed to build and run it. A pinned
-Horizon source snapshot is included for that integration; its provenance and license are retained below.
+The existing module logic, settings, configuration and tests are being retained. Migration focuses
+on the Horizon adapter, state handling and packaging. The repository still includes the pinned
+Horizon source snapshot used to reproduce the verified legacy prototype; attribution is retained below.
 
-[Download the mod package](packages/meteor-client-native-28-module.hmod) ·
+[Legacy prototype package — custom build path only](packages/meteor-client-native-28-module.hmod) ·
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
 The verified checkpoint on `main` implements 28 of the reference client's 169 registered modules.
@@ -27,6 +33,11 @@ singleplayer worlds and generated data. Game resources and player data are not i
 
 ## Build and use
 
+The instructions below reproduce the **legacy prototype**. The replacement integration will use
+Horizon's [standard native-mod build flow](https://playhorizon.dev/docs/mod-manifest), with a
+`horizon-native.json`, a `horizon-mixin.toml`, pinned revisions and a normal `.hnmod` bundle.
+That flow still compiles a modded game; it should not require a Meteor-specific launcher format.
+
 Follow [Horizon build prerequisites and resource preparation](UPSTREAM-HORIZON-README.md).
 Build the optional native port with:
 
@@ -37,9 +48,9 @@ cargo build --profile fast -p horizon-client --features meteor
 Launch using your own prepared Minecraft 26.3 resources. In a world, press **Right Shift**
 to open the Meteor GUI. Modules start disabled. The HUD toolbar opens the HUD editor.
 
-The source-based `.hmod` needs this fork's modified native-source-aware launcher; stock
+The legacy source-patch `.hmod` needs the prototype's modified launcher; stock
 content-only `.hmod` loaders cannot load it. See [native package documentation](docs/native-source-hmod.md).
-The verified [28-module source package](packages/meteor-client-native-28-module.hmod) is included.
+The legacy, prototype-tested [28-module source package](packages/meteor-client-native-28-module.hmod) is included.
 The original Java Meteor JAR cannot execute as a native Rust plugin.
 
 ## Source and licenses

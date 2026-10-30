@@ -1,6 +1,7 @@
 # Security policy — Meteor mod for Horizon
 
-This policy covers this repository's native Meteor mod, `.hmod` packaging and the host/launcher
+This policy covers this repository's native Meteor mod, standard `.hnmod` migration,
+legacy source-patch `.hmod` prototype packaging, and the host/launcher
 integration included to run it. Reports are handled by this repository's maintainer,
 [@zackmsa777-a11y](https://github.com/zackmsa777-a11y).
 
@@ -23,7 +24,9 @@ Ordinary crashes, missing modules and feature requests belong in this repository
 There is no published support lifetime or response-time guarantee. A runtime check applies
 only to the exact binary and scope recorded in its evidence.
 
-Native `.hmod` packages contain source that the modified launcher compiles into native code.
+The legacy source-patch `.hmod` is not a content mod; it requires the prototype's custom build path.
+The intended `.hnmod` distribution uses Horizon's native-mod tooling and is still being migrated.
+Both native build paths compile Rust source into code running in the host process.
 That code runs with the host process's access to the computer. The installer requires explicit
 native-code trust and checks the pinned base and source hashes; these checks establish package
 integrity, not a sandbox or a security audit. Review source before trusting a package.
