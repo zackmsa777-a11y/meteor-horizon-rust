@@ -1,4 +1,10 @@
-# Meteor mod for Horizon
+# Meteor Horizon
+
+> **Latest development:** the [Solstice foundation branch](https://github.com/zackmsa777-a11y/meteor-horizon-rust/tree/solstice-integration/foundation)
+> adapts the existing native client as Meteor Horizon. See its [status and limits](https://github.com/zackmsa777-a11y/meteor-horizon-rust/blob/solstice-integration/foundation/README.md).
+> Its 87 catalog entries are **not 87 verified Meteor ports**; foundation runtime validation is pending.
+> The [preserved four-module native proof](https://github.com/zackmsa777-a11y/meteor-horizon-rust/tree/hnmod-migration/native)
+> retains its separate 101-check result. The checkpoint notes below remain historical.
 
 > **Installation status:** migration to the standard Horizon `.hnmod` / `horizon-mixins`
 > integration is in progress. The [experimental standard proof](https://github.com/zackmsa777-a11y/meteor-horizon-rust/tree/hnmod-migration/native)
