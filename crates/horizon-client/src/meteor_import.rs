@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
-// Modules/Module/Settings/Keybind/Friends/Macros NBT import. Copyright (c) Meteor Development.
+// Modules/Module/Settings/Keybind/Friends/Macros/Hud NBT import. Copyright (c) Meteor Development.
 //! Pure, bounded import: returns a candidate, never mutates a live client or reads files.
-//! Include only with feature `meteor`. HUD, GUI expansion and unported settings are not imported.
+//! Include only with feature `meteor`. HUD supports explicit vanilla-font Text only.
 use horizon_world::{
     compression::Compression,
     nbt::{self, Limits, Tag},
@@ -16,6 +16,8 @@ use std::collections::BTreeSet;
 
 pub const MAX_BYTES: usize = 4 * 1024 * 1024;
 #[cfg(test)]
+mod hud_tests;
+#[cfg(test)]
 mod macros_tests;
 #[derive(Default, Debug, Serialize)]
 pub struct Report {
@@ -23,6 +25,7 @@ pub struct Report {
     pub settings: usize,
     pub friends: usize,
     pub macros: usize,
+    pub hud_elements: usize,
     pub skipped: Vec<String>,
     pub notes: Vec<String>,
 }
@@ -499,5 +502,176 @@ pub fn macros(bytes: &[u8], base: &Config) -> Result<Import, String> {
     let candidate = Config::from_json(&candidate.to_json().map_err(|e| e.to_string())?)?;
     report.macros = candidate.macros.macros.len();
     report.notes.push("Imported macro definitions in source order, including duplicate names. Unsupported keybinds are left unset; review skips. No imported message was executed.".into());
+    Ok(Import { candidate, report })
+}
+
+fn hud_color(tag: &Tag) -> Result<serde_json::Value, String> {
+    compound(tag)?;
+    serde_json::to_value(meteor_client::colors::SettingColor {
+        r: integer(tag, "r", 0)?.clamp(0, 255) as u8,
+        g: integer(tag, "g", 0)?.clamp(0, 255) as u8,
+        b: integer(tag, "b", 0)?.clamp(0, 255) as u8,
+        a: integer(tag, "a", 0)?.clamp(0, 255) as u8,
+        rainbow: boolean(tag, "rainbow", false)?,
+    })
+    .map_err(|e| e.to_string())
+}
+
+fn hud_settings(
+    owner: &Tag,
+    target: &mut serde_json::Value,
+    element: bool,
+    report: &mut Report,
+) -> Result<(), String> {
+    let Some(settings) = owner.get("settings") else {
+        return Ok(());
+    };
+    compound(settings)?;
+    for group in list(settings, "groups", false)? {
+        compound(group)?;
+        let group_name = text(group, "name")?;
+        for setting in list(group, "settings", false)? {
+            compound(setting)?;
+            let name = text(setting, "name")?;
+            let accepted = if element {
+                matches!(
+                    (group_name.as_str(), name.as_str()),
+                    ("General", "text" | "update-delay" | "shadow" | "border")
+                        | ("Shown", "shown" | "condition")
+                        | ("Scale", "custom-scale" | "scale")
+                        | ("Background", "background" | "background-color")
+                )
+            } else {
+                matches!(
+                    (group_name.as_str(), name.as_str()),
+                    (
+                        "General",
+                        "custom-font" | "hide-in-menus" | "text-scale" | "text-colors"
+                    ) | ("Editor", "border" | "snapping-range")
+                )
+            };
+            if !accepted {
+                report
+                    .skipped
+                    .push(format!("hud/{group_name}/{name}: unsupported setting"));
+                continue;
+            }
+            let field = name.replace('-', "_");
+            let expected = target
+                .get(&field)
+                .ok_or_else(|| format!("Missing native HUD field {field}"))?;
+            // Strict malformed-value rejection is intentional, rather than Java getter coercion.
+            let value = setting
+                .get("value")
+                .ok_or_else(|| format!("Missing hud/{name}/value"))?;
+            let converted = match (expected, value) {
+                (serde_json::Value::Bool(_), Tag::Byte(v)) => serde_json::json!(*v != 0),
+                (serde_json::Value::String(_), Tag::String(_)) => serde_json::json!(string(value)?),
+                (serde_json::Value::Number(n), Tag::Int(v)) if n.is_i64() => serde_json::json!(*v),
+                (serde_json::Value::Number(n), Tag::Double(v))
+                    if n.is_f64() && f64::from_bits(*v).is_finite() =>
+                {
+                    serde_json::json!(f64::from_bits(*v))
+                }
+                (serde_json::Value::Object(_), Tag::Compound(_)) if name == "background-color" => {
+                    hud_color(value)?
+                }
+                (serde_json::Value::Array(_), Tag::List(colors)) if name == "text-colors" => {
+                    serde_json::Value::Array(
+                        colors.iter().map(hud_color).collect::<Result<_, _>>()?,
+                    )
+                }
+                _ => return Err(format!("Wrong NBT type for hud/{group_name}/{name}")),
+            };
+            target[&field] = converted;
+            report.settings += 1;
+        }
+    }
+    Ok(())
+}
+
+/// Original Hud v1 import, currently supporting vanilla-font Text elements only.
+/// Repeated kinds preserve order and receive unique local instance identifiers.
+pub fn hud(bytes: &[u8], base: &Config) -> Result<Import, String> {
+    use meteor_client::{hud, hud_box::HudBox, hud_text::TextSettings};
+    let root = decode(bytes)?;
+    if integer(&root, "__version__", -1)? != 1 {
+        return Err(
+            "Only original Meteor HUD version1 is supported; legacy preset reset is not imported"
+                .into(),
+        );
+    }
+    let mut report = Report::default();
+    let mut native = hud::Config::default();
+    native.version = 2;
+    native.active = boolean(&root, "active", base.hud.active)?;
+    // Original default is TRUE, including changed-only files omitting this setting.
+    // It must never silently become the native vanilla-font default FALSE.
+    native.custom_font = true;
+    native.elements.clear();
+    let mut settings = serde_json::to_value(&native).map_err(|e| e.to_string())?;
+    hud_settings(&root, &mut settings, false, &mut report)?;
+    native = serde_json::from_value(settings).map_err(|e| format!("Invalid HUD settings: {e}"))?;
+    if native.custom_font {
+        return Err("HUD import requires explicit custom-font=false; original custom fonts are not implemented".into());
+    }
+    let entries = list(&root, "elements", false)?;
+    if entries.len() > 1024 {
+        return Err("HUD element limit is1024".into());
+    }
+    for (index, element) in entries.iter().enumerate() {
+        compound(element)?;
+        let Some(name) = element.get("name") else {
+            report
+                .skipped
+                .push(format!("hud element[{index}]: missing kind"));
+            continue;
+        };
+        let kind = string(name)?;
+        if kind != "text" {
+            report.skipped.push(format!(
+                "hud element[{index}]/{kind}: unsupported element kind"
+            ));
+            continue;
+        }
+        let mut text_settings =
+            serde_json::to_value(TextSettings::default()).map_err(|e| e.to_string())?;
+        hud_settings(element, &mut text_settings, true, &mut report)?;
+        let text_settings: TextSettings = serde_json::from_value(text_settings)
+            .map_err(|e| format!("Invalid Text HUD settings: {e}"))?;
+        text_settings.validate()?;
+        let mut box_settings =
+            serde_json::to_value(HudBox::default()).map_err(|e| e.to_string())?;
+        if let Some(source_box) = element.get("box") {
+            compound(source_box)?;
+            for (source, native) in [("x-anchor", "x_anchor"), ("y-anchor", "y_anchor")] {
+                if let Some(value) = source_box.get(source) {
+                    box_settings[native] = serde_json::json!(string(value)?);
+                }
+            }
+            box_settings["x"] = serde_json::json!(integer(source_box, "x", 0)?);
+            box_settings["y"] = serde_json::json!(integer(source_box, "y", 0)?);
+        }
+        let source_box =
+            serde_json::from_value(box_settings).map_err(|e| format!("Invalid HUD box: {e}"))?;
+        native.elements.push(hud::Element {
+            id: format!("imported-text-{index}"),
+            kind,
+            source_box: Some(source_box),
+            auto_anchors: boolean(element, "autoAnchors", true)?,
+            text: Some(text_settings),
+            enabled: boolean(element, "active", true)?,
+            anchor: [0., 0.],
+            offset: [0., 0.],
+        });
+    }
+    native.validate()?;
+    report.hud_elements = native.elements.len();
+    report.notes.push(format!("Imported {} vanilla-font Text HUD instances; unsupported kinds/settings are listed separately", native.elements.len()));
+    report.notes.push("HUD keybind and editor multi-selection are not implemented; no imported text is executed as a command".into());
+    let mut candidate = base.clone();
+    candidate.hud = native;
+    candidate = Config::from_json(&candidate.to_json().map_err(|e| e.to_string())?)
+        .map_err(|e| e.to_string())?;
     Ok(Import { candidate, report })
 }

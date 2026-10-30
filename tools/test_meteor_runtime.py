@@ -31,6 +31,7 @@ parser.add_argument('--profiles', action='store_true', help='Generated native pr
 parser.add_argument('--macros', action='store_true', help='Generated Starscript macros dispatched only in the isolated world')
 parser.add_argument('--system-guis', action='store_true', help='Native Macros/Profiles editor interaction checks')
 parser.add_argument('--reach-multitask', action='store_true', help='Real chest reach and simultaneous-use/mining/attack checks')
+parser.add_argument('--post-order', action='store_true', help='Competing activation-ordered Flight/Spider Post callbacks')
 parser.add_argument('--flight', action='store_true', help='Actual Flight modes, movement, abilities and outgoing packets')
 parser.add_argument('--picking', action='store_true', help='Real AirPlace, LiquidInteract, NoMiningTrace placement/render/mining checks')
 parser.add_argument('--host-gui', action='store_true', help='Real Starscript host bindings and RGBA/rainbow GUI controls')
@@ -82,6 +83,7 @@ if args.system_guis: report['modules'] += ['MacrosGUI', 'ProfilesGUI']
 if args.reach_multitask: report['modules'] += ['Reach', 'Multitask']
 if args.auto_clicker: report['modules'] += ['AutoClicker']
 if args.macros_import: report['modules'] += ['MacrosNBTImport']
+if args.post_order: report['modules'] += ['PostDispatch']
 if args.flight: report['modules'] += ['Flight']
 if args.picking: report['modules'] += ['AirPlace', 'LiquidInteract', 'NoMiningTrace']
 if args.host_gui: report['modules'] += ['StarscriptHost', 'ColorGUI']
@@ -137,6 +139,8 @@ try:
             print('Waiting for the isolated world to load...', flush=True)
             last_progress = time.monotonic()
         time.sleep(1)
+    # All fixtures use generated worlds: remove unrelated hostile interference.
+    ctl('command', 'difficulty peaceful')
     ctl('wait', 40)
     baseline = state('baseline')
     check('Meteor adapter is present', isinstance(baseline.get('meteor'), dict))
@@ -1182,6 +1186,9 @@ try:
     if args.auto_clicker:
         from meteor_auto_clicker_fixture import run_auto_clicker
         run_auto_clicker(ctl, check, state, scratch, report, x, y, z)
+    if args.post_order:
+        from meteor_post_order_fixture import run_post_order
+        run_post_order(ctl,check,state,x,y,z)
     if args.flight:
         from meteor_flight_fixture import run_flight
         run_flight(ctl, check, state, scratch, x, y, z)

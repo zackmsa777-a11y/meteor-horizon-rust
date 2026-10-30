@@ -5,5 +5,6 @@
   "client_sha256": "d522e1d46456843b59c86f8f1e12e5371fdfa9723e8bfa54953d59ba7cbc8c78",
   "hmod_sha256": "deee7cc3a9f056baa1b4657d0e5d6dcdff7abfe21b2487fd36bb522b22e7d07d",
   "runtime_checks": 71,
-  "full_port_complete": false
+  "full_port_complete": false,
+  "branch_status": "next-source work in progress; hashes above identify verified main, not this branch"
 }

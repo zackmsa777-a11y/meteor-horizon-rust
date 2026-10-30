@@ -19,6 +19,40 @@ use meteor_client::profiles;
 use profiles::{Profiles, SaveSections};
 
 #[test]
+fn hud_runtime_reloads_only_when_selected_snapshot_exists() {
+    let config = Config::default();
+    let mut profiles = Profiles::default();
+    profiles
+        .create(
+            "Hud lifecycle".into(),
+            SaveSections {
+                hud: true,
+                ..Default::default()
+            },
+            vec![],
+            &config,
+        )
+        .unwrap();
+    assert!(profiles.load("Hud lifecycle", &config).unwrap().reload_hud);
+    profiles
+        .configure("Hud lifecycle", SaveSections::default(), vec![])
+        .unwrap();
+    assert!(!profiles.load("Hud lifecycle", &config).unwrap().reload_hud);
+    profiles
+        .configure(
+            "Hud lifecycle",
+            SaveSections {
+                hud: true,
+                ..Default::default()
+            },
+            vec![],
+        )
+        .unwrap();
+    profiles.entries[0].snapshot.hud = None;
+    assert!(!profiles.load("Hud lifecycle", &config).unwrap().reload_hud);
+}
+
+#[test]
 fn macros_profile_restores_messages_and_bindings_without_restarting_modules() {
     let mut saved = zoom(3.0);
     saved.macros.macros.push(meteor_client::macros::Macro {
@@ -45,6 +79,7 @@ fn macros_profile_restores_messages_and_bindings_without_restarting_modules() {
     current.friends.command(&["add", "KeepMe"]).unwrap();
     let plan = profiles.load("Macros", &current).unwrap();
     assert!(plan.reload_macros);
+    assert!(!plan.reload_hud);
     assert!(!plan.reload_modules);
     assert!(plan.deactivate.is_empty());
     assert_eq!(plan.candidate.zoom.zoom, 8.0);

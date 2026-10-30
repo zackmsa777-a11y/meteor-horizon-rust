@@ -395,8 +395,8 @@ mod enabled {
             self.meteor.step.reset();
         }
         pub(in crate::game) fn meteor_post_tick(&mut self) {
-            self.meteor_flight_post();
-            self.meteor_auto_clicker_post();
+            self.meteor_flight_sync();
+            self.meteor_auto_clicker_sync();
             self.meteor_macros_post();
             self.meteor_hud_update_text(true);
             self.meteor
@@ -429,8 +429,56 @@ mod enabled {
                 && self.native_on("meteor-client")
                 && self.player.is_some()
                 && self.title.is_none();
-            let settings = (enabled && self.meteor.client.active("step"))
-                .then(|| self.meteor.client.config.step.clone());
+            // Lifecycle restoration is independent of event subscription. Disabled
+            // Step must restore its original attribute without receiving Tick.Post.
+            if !enabled || !self.meteor.client.active("step") {
+                self.meteor_step_dispatch(None);
+            }
+            if !enabled {
+                return;
+            }
+            use meteor_client::subscriptions::{PostTick, ordered_post_tick};
+            let listeners = ordered_post_tick(self.meteor.client.subscriptions());
+            for listener in listeners {
+                match listener {
+                    PostTick::Step => {
+                        self.meteor_step_dispatch(Some(self.meteor.client.config.step.clone()))
+                    }
+                    PostTick::ReverseStep => {
+                        let settings = self.meteor.client.config.reverse_step.clone();
+                        if let Err(error) = self.meteor_reverse_step_post(&settings) {
+                            self.meteor_disable_error("reverse-step", error);
+                        }
+                    }
+                    PostTick::FastClimb => {
+                        let settings = self.meteor.client.config.fast_climb.clone();
+                        if let Err(error) = self.meteor_fast_climb_post(&settings) {
+                            self.meteor_disable_error("fast-climb", error);
+                        }
+                    }
+                    PostTick::Spider => {
+                        let settings = self.meteor.client.config.spider.clone();
+                        self.meteor_spider_post(&settings);
+                    }
+                    PostTick::Parkour => {
+                        let settings = self.meteor.client.config.parkour.clone();
+                        if let Err(error) = self.meteor_parkour_post(&settings) {
+                            self.meteor_disable_error("parkour", error);
+                        }
+                    }
+                    PostTick::Flight => self.meteor_flight_post(),
+                    PostTick::AutoClicker => self.meteor_auto_clicker_post(),
+                    PostTick::Fullbright => {
+                        let settings = self.meteor.client.config.fullbright.clone();
+                        self.meteor_fullbright_potion_post(&settings);
+                    }
+                }
+            }
+        }
+        fn meteor_step_dispatch(
+            &mut self,
+            settings: Option<meteor_client::modules::step::Settings>,
+        ) {
             let mut state = std::mem::take(&mut self.meteor.step);
             let result = self.meteor_step_post(&mut state, settings.as_ref());
             self.meteor.step = state;
@@ -441,34 +489,6 @@ mod enabled {
                     self.meteor_save();
                 }
                 self.native_chat(&format!("[Meteor] Step disabled: {error}"));
-            }
-            if enabled && self.meteor.client.active("reverse-step") {
-                let settings = self.meteor.client.config.reverse_step.clone();
-                if let Err(error) = self.meteor_reverse_step_post(&settings) {
-                    let _ = self.meteor.client.toggle("reverse-step");
-                    self.meteor_save();
-                    self.native_chat(&format!("[Meteor] Reverse Step disabled: {error}"));
-                }
-            }
-            if enabled && self.meteor.client.active("fast-climb") {
-                let settings = self.meteor.client.config.fast_climb.clone();
-                if let Err(error) = self.meteor_fast_climb_post(&settings) {
-                    self.meteor_disable_error("fast-climb", error);
-                }
-            }
-            if enabled && self.meteor.client.active("spider") {
-                let settings = self.meteor.client.config.spider.clone();
-                self.meteor_spider_post(&settings);
-            }
-            if enabled && self.meteor.client.active("parkour") {
-                let settings = self.meteor.client.config.parkour.clone();
-                if let Err(error) = self.meteor_parkour_post(&settings) {
-                    self.meteor_disable_error("parkour", error);
-                }
-            }
-            if enabled && self.meteor.client.active("fullbright") {
-                let settings = self.meteor.client.config.fullbright.clone();
-                self.meteor_fullbright_potion_post(&settings);
             }
         }
         pub(in crate::game) fn meteor_safe_walk_render(
@@ -1237,9 +1257,9 @@ mod enabled {
             let (kind, path) = text
                 .trim()
                 .split_once(char::is_whitespace)
-                .ok_or("Usage: /meteor import modules|friends|macros PATH_TO_NBT")?;
-            if !matches!(kind, "modules" | "friends" | "macros") {
-                return Err("Import kind must be modules, friends or macros.".into());
+                .ok_or("Usage: /meteor import modules|friends|macros|hud PATH_TO_NBT")?;
+            if !matches!(kind, "modules" | "friends" | "macros" | "hud") {
+                return Err("Import kind must be modules, friends, macros or hud.".into());
             }
             let path = path.trim();
             let path = if (path.starts_with('"') && path.ends_with('"'))
@@ -1264,6 +1284,7 @@ mod enabled {
                 "macros" => {
                     horizon_client::meteor_import::macros(&bytes, &self.meteor.client.config)
                 }
+                "hud" => horizon_client::meteor_import::hud(&bytes, &self.meteor.client.config),
                 _ => horizon_client::meteor_import::friends(&bytes, &self.meteor.client.config),
             }?;
             if kind == "modules" {
@@ -1272,10 +1293,13 @@ mod enabled {
                 self.meteor_fast_use_validate(&imported.candidate.fast_use)
                     .map_err(|e| e.to_string())?;
             }
-            // Parsing and validation finish before any live state changes. Friends/macros
+            // Parsing and validation finish before any live state changes. Friends/macros/HUD
             // preserve running module state. Module import follows disableAll/reactivation.
             if kind == "friends" {
                 self.meteor.client.config.friends = imported.candidate.friends;
+            } else if kind == "hud" {
+                self.meteor.client.config.hud = imported.candidate.hud;
+                self.meteor_hud_reload_from_config();
             } else if kind == "macros" {
                 self.meteor.client.config.macros = imported.candidate.macros;
                 // Macros.fromTag replaces subscribed objects. MacroCommand's queued old
@@ -1291,11 +1315,12 @@ mod enabled {
                 self.native_chat(&format!("[Meteor import] {note}"));
             }
             Ok(format!(
-                "Imported {} modules, {} settings, {} friends, {} macros; {} unsupported entries skipped.",
+                "Imported {} modules, {} settings, {} friends, {} macros, {} HUD elements; {} unsupported entries skipped.",
                 imported.report.modules.len(),
                 imported.report.settings,
                 imported.report.friends,
                 imported.report.macros,
+                imported.report.hud_elements,
                 imported.report.skipped.len()
             ))
         }

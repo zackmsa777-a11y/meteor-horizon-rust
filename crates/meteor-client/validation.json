@@ -106,6 +106,12 @@
       "exit_code": 0,
       "checks_passed": 25,
       "evidence": "runtime-native-hmod-26-step.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --flight --auto-clicker --macros-import --hud-instances --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 71,
+      "evidence": "runtime-28-flight-clicker-hud.json"
     }
   ],
   "game_launched": true,
@@ -392,6 +398,7 @@
     "runtime-macros-gui-reach.json",
     "runtime-picking-host-colors.json",
     "runtime-26-regression.json",
-    "runtime-native-hmod-26-step.json"
+    "runtime-native-hmod-26-step.json",
+    "runtime-28-flight-clicker-hud.json"
   ]
 }

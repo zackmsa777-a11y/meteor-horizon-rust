@@ -21,12 +21,23 @@ pub(super) struct State {
     snapper: meteor_client::hud_snapper::Snapper,
     scale: f32,
     viewport: [i32; 2],
+    layout_viewport: [i32; 2],
     error: Option<String>,
 }
 fn inside(r: [f32; 4], p: (f32, f32)) -> bool {
     p.0 >= r[0] && p.0 < r[0] + r[2] && p.1 >= r[1] && p.1 < r[1] + r[3]
 }
 impl Game<'_> {
+    #[cfg(feature = "meteor")]
+    pub(in crate::game) fn meteor_hud_reload_from_config(&mut self) {
+        self.meteor_hud.text_cache.clear();
+        self.meteor_hud.config =
+            serde_json::to_value(&self.meteor.client.config.hud).unwrap_or(Value::Null);
+        self.meteor_hud.drag = None;
+        self.meteor_hud.source_drag = None;
+        self.meteor_hud.controls = Default::default();
+        self.meteor_hud.editor = false;
+    }
     pub(super) fn meteor_hud_editor_open(&mut self) {
         self.meteor_hud.config = self.meteor_status()["config"]["hud"].clone();
         self.meteor_hud.editor = true;
@@ -135,12 +146,28 @@ impl Game<'_> {
         } else {
             status["config"]["hud"].clone()
         };
-        #[cfg(feature="meteor")]
+        #[cfg(feature = "meteor")]
         if editor {
-            let rgb=self.meteor.rainbow.rgb;
-            let update=|color:&mut Value|{if color["rainbow"].as_bool().unwrap_or(false){for (key,value) in ["r","g","b"].into_iter().zip(rgb){color[key]=json!(value);}}};
-            if let Some(colors)=config["text_colors"].as_array_mut(){for color in colors{update(color)}}
-            if let Some(elements)=config["elements"].as_array_mut(){for element in elements{if element["text"].is_object(){update(&mut element["text"]["background_color"]);}}}
+            let rgb = self.meteor.rainbow.rgb;
+            let update = |color: &mut Value| {
+                if color["rainbow"].as_bool().unwrap_or(false) {
+                    for (key, value) in ["r", "g", "b"].into_iter().zip(rgb) {
+                        color[key] = json!(value);
+                    }
+                }
+            };
+            if let Some(colors) = config["text_colors"].as_array_mut() {
+                for color in colors {
+                    update(color)
+                }
+            }
+            if let Some(elements) = config["elements"].as_array_mut() {
+                for element in elements {
+                    if element["text"].is_object() {
+                        update(&mut element["text"]["background_color"]);
+                    }
+                }
+            }
         }
         let Some(elements) = config["elements"].as_array() else {
             return;
@@ -157,6 +184,11 @@ impl Game<'_> {
             ],
             |r| [r.config.width as i32, r.config.height as i32],
         );
+        self.meteor_hud.layout_viewport = self.meteor_hud.viewport;
+        if editor {
+            self.meteor_hud.layout_viewport[1] =
+                (self.meteor_hud.viewport[1] - (49. * batch.scale) as i32).max(0);
+        }
         let w = batch.width as f32;
         let h = batch.height as f32;
         self.meteor_hud.bounds.clear();
@@ -184,7 +216,7 @@ impl Game<'_> {
                         runtime,
                         editor,
                         enabled,
-                        self.meteor_hud.viewport,
+                        self.meteor_hud.layout_viewport,
                     ) {
                         if editor {
                             self.meteor_hud.bounds.push((index, rect));
@@ -360,7 +392,7 @@ impl Game<'_> {
                         ((self.cursor.0 - start.0) * self.meteor_hud.scale).round() as i32,
                         ((self.cursor.1 - start.1) * self.meteor_hud.scale).round() as i32,
                     ],
-                    self.meteor_hud.viewport,
+                    self.meteor_hud.layout_viewport,
                     self.meteor_hud.config["elements"][i]["auto_anchors"]
                         .as_bool()
                         .unwrap_or(true),

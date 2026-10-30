@@ -1,3 +1,7 @@
+> **Working branch:** this branch includes newer HUD NBT imports, HUD cache/editor fixes,
+> and activation-ordered module Post callbacks. It has focused checks but has not yet passed
+> a full rebuilt-client runtime suite. Use `main` for the verified 28-module checkpoint.
+
 # Meteor Client for Horizon (native Rust port)
 
 Unofficial work in progress: a native Rust port of Meteor Client for Horizon / Minecraft Java 26.3.

@@ -99,6 +99,8 @@ pub struct LoadPlan {
     pub reload_modules: bool,
     /// Replace live macro objects, while existing delayed command references remain alive.
     pub reload_macros: bool,
+    /// Recreate HUD element runtime only when a selected snapshot is present.
+    pub reload_hud: bool,
     pub deactivate: Vec<String>,
     pub activate: Vec<String>,
 }
@@ -218,6 +220,7 @@ impl Profile {
                 object.insert(name.clone(), value.clone());
             }
         }
+        let reload_hud = self.save.hud && self.snapshot.hud.is_some();
         if let Some(saved) = self.snapshot.hud.as_ref().filter(|_| self.save.hud) {
             object.insert("hud".into(), saved.clone());
         }
@@ -241,6 +244,7 @@ impl Profile {
             candidate,
             reload_modules,
             reload_macros,
+            reload_hud,
         })
     }
 }

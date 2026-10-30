@@ -55,6 +55,9 @@ impl Game<'_> {
         if plan.reload_macros {
             self.meteor_macros_reload_from_config();
         }
+        if plan.reload_hud {
+            self.meteor_hud_reload_from_config();
+        }
         self.meteor_save();
         Ok(())
     }

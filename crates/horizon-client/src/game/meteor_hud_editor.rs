@@ -20,7 +20,7 @@ impl Game<'_> {
         let output=self.meteor_hud.text_cache.iter().map(|(id,r)|(id.clone(),json!({"text":r.output.iter().map(|s|s.text.as_str()).collect::<String>(),"visible":r.visible}))).collect::<serde_json::Map<_,_>>();
         #[cfg(not(feature = "meteor"))]
         let output = serde_json::Map::<String, Value>::new();
-        json!({"viewport":self.meteor_hud.viewport,"scale":self.meteor_hud.scale,"outputs":output,"selected":self.meteor_hud.controls.selected,"panel":self.meteor_hud.controls.panel,"editing":self.meteor_hud.controls.edit.as_ref().map(|(p,t,_)|json!({"path":p,"text":t})),"error":self.meteor_hud.error,"targets":self.meteor_hud.controls.hits.iter().map(|(key,rect,_)|(key.clone(),json!(rect))).collect::<serde_json::Map<_,_>>(),"elements":self.meteor_hud.bounds.iter().map(|(i,r)|json!({"index":i,"rect":r})).collect::<Vec<_>>()})
+        json!({"viewport":self.meteor_hud.viewport,"layout_viewport":self.meteor_hud.layout_viewport,"scale":self.meteor_hud.scale,"outputs":output,"selected":self.meteor_hud.controls.selected,"panel":self.meteor_hud.controls.panel,"editing":self.meteor_hud.controls.edit.as_ref().map(|(p,t,_)|json!({"path":p,"text":t})),"error":self.meteor_hud.error,"targets":self.meteor_hud.controls.hits.iter().map(|(key,rect,_)|(key.clone(),json!(rect))).collect::<serde_json::Map<_,_>>(),"elements":self.meteor_hud.bounds.iter().map(|(i,r)|json!({"index":i,"rect":r})).collect::<Vec<_>>()})
     }
     fn meteor_hud_edit_value(&mut self, path: &str, value: Value) {
         let mut candidate = self.meteor_hud.config.clone();
@@ -239,13 +239,13 @@ impl Game<'_> {
                             if key.ends_with("/x_anchor") {
                                 box_.set_x_anchor(
                                     serde_json::from_value(json!(options[(_i + 1) % 3])).unwrap(),
-                                    self.meteor_hud.viewport,
+                                    self.meteor_hud.layout_viewport,
                                     size,
                                 )
                             } else {
                                 box_.set_y_anchor(
                                     serde_json::from_value(json!(options[(_i + 1) % 3])).unwrap(),
-                                    self.meteor_hud.viewport,
+                                    self.meteor_hud.layout_viewport,
                                     size,
                                 )
                             }
