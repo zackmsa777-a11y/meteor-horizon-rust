@@ -1,0 +1,348 @@
+{
+  "schema": 1,
+  "kind": "standard-hnmod-zoom-autojump-runtime",
+  "status": "pass",
+  "checks_passed": 50,
+  "checks_failed": 0,
+  "started_utc": "2026-10-30T13:28:30.196471+00:00",
+  "finished_utc": "2026-10-30T13:30:47.256998+00:00",
+  "package": {
+    "filename": "meteor-client-autojump-migration-proof.hnmod",
+    "id": "meteor_client",
+    "version": "0.1.0-migration.2",
+    "sha256": "b9a4fd4ffa3f0e23b6b1d9d44d88ab8788fae7c6c08bb9dff9a2724519799c40"
+  },
+  "client_sha256": "56e9ec8c64f46c06d972d88537e4251a98be7334ebd0fdb078185ee67cc1a42d",
+  "control_sha256": "a32f27d371eb24179c0d2f64b076156e46ab85b881f6204272fc3f16a401e7aa",
+  "harnesses": {
+    "autojump": {
+      "path": "tools/test_standard_autojump.py",
+      "sha256": "e88a2cddb9174189836cd56ba232fd6dd153964141b76897e53bee9c57486385"
+    },
+    "zoom_base": {
+      "path": "tools/test_standard_zoom.py",
+      "sha256": "d03b8835075cdc3f25b8b655a91ec860851579a68a5061cdacb55ad74a543c8a"
+    },
+    "unchanged_during_run": true,
+    "required_scratch_root": true
+  },
+  "raw_report_sha256": "2d89a7dbc87d7d77ea817a710604e7e7d0d15b28f9daa8eaed7dd83bad103eb5",
+  "checks": [
+    {
+      "name": "Generated test world is creative",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture fill succeeds: minecraft:stone",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture fill succeeds: minecraft:air",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "AutoJump source defaults are disabled Jump Always height0.25",
+      "passed": true
+    },
+    {
+      "name": "Disabled AutoJump leaves stationary player grounded",
+      "passed": true
+    },
+    {
+      "name": "zoom_regression_baseline mouse motion produces finite yaw",
+      "passed": true
+    },
+    {
+      "name": "Combined candidate preserves factor6 Zoom",
+      "passed": true
+    },
+    {
+      "name": "zoom_regression_enabled mouse motion produces finite yaw",
+      "passed": true
+    },
+    {
+      "name": "Combined candidate preserves actual Zoom yaw ratio1/3",
+      "passed": true
+    },
+    {
+      "name": "Combined candidate disables Zoom back to factor1",
+      "passed": true
+    },
+    {
+      "name": "zoom_regression_restored mouse motion produces finite yaw",
+      "passed": true
+    },
+    {
+      "name": "Combined candidate restores real mouse sensitivity",
+      "passed": true
+    },
+    {
+      "name": "Generated config persists source AutoJump defaults alongside Zoom",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Always Jump causes real airborne elevation above1block",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Walking predicate ignores a stationary player",
+      "passed": true
+    },
+    {
+      "name": "Walking predicate jumps while moving",
+      "passed": true
+    },
+    {
+      "name": "Walking fixture actually travels horizontally",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Sprinting predicate ignores stationary player",
+      "passed": true
+    },
+    {
+      "name": "Sprinting predicate ignores ordinary walking",
+      "passed": true
+    },
+    {
+      "name": "Ordinary-walking control did not sprint",
+      "passed": true
+    },
+    {
+      "name": "Sprinting fixture enters actual native sprint state",
+      "passed": true
+    },
+    {
+      "name": "Sprinting predicate jumps during actual sprint",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Sneak suppresses Always AutoJump after landing",
+      "passed": true
+    },
+    {
+      "name": "Sneak suppression uses actual held sneak input",
+      "passed": true
+    },
+    {
+      "name": "Releasing sneak permits Always jumps again",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "LowHop0.25 produces smaller real airborne rise",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Horizontal control remains on flat ground",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "LowHop0 causes no stationary elevation",
+      "passed": true
+    },
+    {
+      "name": "LowHop0 keeps walking height level",
+      "passed": true
+    },
+    {
+      "name": "LowHop0 permits continuing horizontal walking",
+      "passed": true
+    },
+    {
+      "name": "Invalid AutoJump setting is atomic: auto-jump velocity-height -1",
+      "passed": true
+    },
+    {
+      "name": "Invalid AutoJump setting is atomic: auto-jump velocity-height NaN",
+      "passed": true
+    },
+    {
+      "name": "Invalid AutoJump setting is atomic: auto-jump velocity-height inf",
+      "passed": true
+    },
+    {
+      "name": "Invalid AutoJump setting is atomic: auto-jump mode Nope",
+      "passed": true
+    },
+    {
+      "name": "Invalid AutoJump setting is atomic: auto-jump jump-if Nope",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Normal Jump still works after LowHop changes",
+      "passed": true
+    },
+    {
+      "name": "Disabling AutoJump restores stationary ground rest",
+      "passed": true
+    },
+    {
+      "name": "Final generated config restores disabled source AutoJump defaults",
+      "passed": true
+    },
+    {
+      "name": "Graceful own-client shutdown exits0",
+      "passed": true
+    },
+    {
+      "name": "Exact frozen binaries remained unchanged",
+      "passed": true
+    },
+    {
+      "name": "Exact runtime harnesses remained unchanged",
+      "passed": true
+    }
+  ],
+  "measurements": {
+    "always_jump": {
+      "rise": 1.252203340253729,
+      "lowest": 0.0,
+      "native_ground_flag_false_samples": 31,
+      "sprinting": 0,
+      "sneaking": 0,
+      "max_vy": 0.33319999363422365,
+      "horizontal_distance": 0.0,
+      "steady_horizontal_speed": 0.0,
+      "max_horizontal_speed": 0.0,
+      "count": 34
+    },
+    "lowhop_025": {
+      "rise": 0.5062386528975651,
+      "lowest": 0.0,
+      "native_ground_flag_false_samples": 32,
+      "sprinting": 0,
+      "sneaking": 0,
+      "max_vy": 0.16660000324249266,
+      "horizontal_distance": 0.0,
+      "steady_horizontal_speed": 0.0,
+      "max_horizontal_speed": 0.0,
+      "count": 34
+    },
+    "horizontal_disabled": {
+      "rise": 0.0,
+      "lowest": 0.0,
+      "native_ground_flag_false_samples": 0,
+      "sprinting": 0,
+      "sneaking": 0,
+      "max_vy": -0.0784000015258789,
+      "horizontal_distance": 19.835962679823776,
+      "steady_horizontal_speed": 0.11785906504049291,
+      "max_horizontal_speed": 0.11785906504049291,
+      "count": 26
+    },
+    "lowhop_zero_stationary": {
+      "rise": 0.0,
+      "lowest": 0.0,
+      "native_ground_flag_false_samples": 8,
+      "sprinting": 0,
+      "sneaking": 0,
+      "max_vy": -0.0784000015258789,
+      "horizontal_distance": 0.0,
+      "steady_horizontal_speed": 0.0,
+      "max_horizontal_speed": 0.0,
+      "count": 18
+    },
+    "lowhop_zero_walking": {
+      "rise": 0.0,
+      "lowest": 0.0,
+      "native_ground_flag_false_samples": 15,
+      "sprinting": 0,
+      "sneaking": 0,
+      "max_vy": -0.0784000015258789,
+      "horizontal_distance": 17.138196185680606,
+      "steady_horizontal_speed": 0.13222621679458346,
+      "max_horizontal_speed": 0.1322262167968909,
+      "count": 26
+    },
+    "lowhop_zero_walking_speed_ratio_to_disabled": 1.1219011176539915
+  },
+  "shutdown": {
+    "graceful_quit_requested": true,
+    "forced_shutdown": false,
+    "exit_code": 0,
+    "frozen_binaries_unchanged": true
+  },
+  "isolation": {
+    "fresh_generated_singleplayer_world": true,
+    "fresh_uuid_scratch_home": true,
+    "existing_worlds": false,
+    "real_accounts": false,
+    "multiplayer": false,
+    "isolated_home_variables": [
+      "HORIZON_HOME",
+      "HORIZON_LAUNCHER_HOME",
+      "XDG_DATA_HOME",
+      "XDG_CONFIG_HOME",
+      "HORIZON_LAUNCHER_TRASH",
+      "HORIZON_LAUNCHER_CLIPBOARD",
+      "HORIZON_LAUNCHER_DESKTOP",
+      "TEMP",
+      "TMP"
+    ],
+    "self_update_disabled": true,
+    "audio_disabled": true
+  },
+  "scope": [
+    "Jump and LowHop movement, Always/Walking/Sprinting conditions, sneak suppression and restoration, and invalid-setting atomicity.",
+    "The combined client also passed a targeted real Zoom and mouse-sensitivity regression.",
+    "Previously verified Zoom migration.1 remains separate evidence; this is not a repeated full 32-check Zoom suite.",
+    "The ordinary stock launcher complete build/install flow was not exercised."
+  ],
+  "limitations": [
+    "Zoom and AutoJump candidate only; other retained modules are not integrated.",
+    "Heights are sampled observations, not exact mathematical apex values.",
+    "LowHop0 walking is observed without assuming unchanged steady speed: zero Y changes ground-state friction.",
+    "No independent GUI-screen filter is assumed for source AutoJump.",
+    "Generated local JSON persistence is checked without restarting the client.",
+    "Only Zoom and AutoJump are integrated in this standard native proof; the other 28 retained policies are inactive.",
+    "LowHop height zero does not force ground state or guarantee equal horizontal speed.",
+    "This is not full Zoom, AutoJump or Meteor parity certification."
+  ],
+  "review": {
+    "source_audit": "evidence/lowhop-zero-height.md",
+    "reviewer": "migration coordinator",
+    "raw_samples_and_source_reviewed": true,
+    "key_observation": "Zero-height LowHop kept rise and lowest offset at zero while native ground flags alternated and horizontal motion continued."
+  },
+  "verification_history": {
+    "earlier_attempts": "Terrain loading feedback and zero-height ground/speed assertions required harness corrections.",
+    "mod_or_client_changes_for_harness_corrections": false,
+    "accepted_result": "Only this successful frozen 50-check run is reported as passing."
+  }
+}

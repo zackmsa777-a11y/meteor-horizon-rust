@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "status": "pass",
+  "scope": "Exact Saved/Runtime/WindowTable and existing cfg tests, imports added; excludes Game/Winit/motion adapters.",
+  "runtime_path": "bundle/mixins/meteor_client/runtime.rs",
+  "runtime_sha256": "b8d89dc8ea0c3b6d71659c87689c5d52a3e88cc0e0ef382d4ad9e6bd05b94613",
+  "exact_state_sha256": "1a18886d24d8a28fbaa8cfe05d02b924646fa9375b61a08dd1f70e6e0826e829",
+  "exact_tests_sha256": "ec2aa5a612fa8570403040e9245bbe9575a78fb85b0f8e35f20c3799e060df10",
+  "driver_sha256": "0ed3f45a89e93abe4c4e72c68fde01ad42e2bd3ab180c8eba596411b970948da",
+  "manifest_sha256": "b534ee08091168b2fea473a3e89cdfeff467722b04e5a17d1762699131da04ae",
+  "lockfile_sha256": "52dc10c1ab3ea8ed3a12109d9c685fc9cbb2b08560edbb988aba2dd3a743b31e",
+  "passed": 13,
+  "failed": 0,
+  "doc_tests": 0,
+  "test_groups": {
+    "window_lifecycle": 4,
+    "autojump_configuration": 2,
+    "airjump_state": 5,
+    "highjump_configuration": 2
+  },
+  "compile_elapsed_seconds": 9.95,
+  "limitations": [
+    "Exact Saved/Runtime/WindowTable state and its existing tests only.",
+    "Game/Winit/motion adapters, combined host checking and gameplay remain separate scopes.",
+    "The final .3 package and runtime results must retain their own snapshot identifiers."
+  ]
+}

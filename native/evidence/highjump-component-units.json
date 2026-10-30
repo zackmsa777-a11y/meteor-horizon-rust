@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "status": "pass",
+  "source_path": "bundle/mixins/meteor_client/motion_highjump.rs",
+  "source_sha256": "036f42c629e199284f6c5f5ed2a43fdb76c0b83c668d2bd3565b291c6a98ec84",
+  "byte_identical_to_tested_HighJump_R4_component": true,
+  "host_check": {
+    "status": "pass",
+    "exit_code": 0,
+    "elapsed_seconds": 34.51,
+    "scope": "Official staged concrete HighJump spike host typecheck"
+  },
+  "native_library_tests": {
+    "status": "pass",
+    "exit_code": 0,
+    "passed": 2,
+    "failed": 0,
+    "ignored": 0,
+    "filtered_out": 747,
+    "compile_elapsed_seconds": 189,
+    "test_elapsed_seconds": 0.0,
+    "test_names": [
+      "motion::meteor_highjump::identity_tests::real_native_owner_excludes_same_index_and_survives_owner_move",
+      "motion::meteor_highjump::identity_tests::policy_is_thread_local_and_invalid_publication_clears_old_snapshot"
+    ],
+    "scope": "Actual native attributes/Handle ownership, owner moves, thread locality and invalid-publication clearing"
+  },
+  "compiler": {
+    "version": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+    "host": "x86_64-pc-windows-msvc",
+    "sha256": "ba03e3ba03a73d9fef19ab3659140f94b43615ec1d587fe9befc9aed3bd5aa72"
+  },
+  "limitations": [
+    "Reusable component evidence only because the merged motion_highjump.rs is byte-identical.",
+    "This does not establish final combined Game publisher ordering, commands, persisted settings or gameplay behavior.",
+    "The complete four-module migration.3 plan/apply, host/build checks and fresh-world runtime results must identify their own final snapshot."
+  ]
+}

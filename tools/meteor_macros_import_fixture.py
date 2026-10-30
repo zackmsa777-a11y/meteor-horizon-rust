@@ -95,8 +95,8 @@ def run_macros_import(ctl, check, state, scratch):
         check('NBT macro import maps modern modifier chord',
               definitions[0]['keybind'] == {'key': 'key.keyboard.k', 'modifiers': 3})
         check('NBT unsupported macro bind becomes unset', definitions[3]['keybind']['key'] is None)
-        warning = json.dumps(ctl('chat-log', 30)).lower()
-        check('NBT unsupported bind is reported', 'caps_lock' in warning and 'skipped' in warning)
+        warning = json.dumps(ctl('messages', 30)['styled']).lower()
+        check('NBT unsupported bind is reported', 'caps_lock' in warning and 'skipped' in warning, warning)
         expected = copy.deepcopy(before['config'])
         expected['macros'] = after['config']['macros']
         check('NBT macro import preserves all other settings', after['config'] == expected)

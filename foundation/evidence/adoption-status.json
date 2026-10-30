@@ -1,0 +1,69 @@
+{
+  "kind": "solstice-foundation-adoption-status",
+  "status": "frozen source and integration compiled; scoped runtime pending",
+  "upstream_repository": "https://github.com/PointOfPressure/solstice-client",
+  "upstream_commit": "2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1",
+  "native_id": "meteor_client",
+  "version": "0.1.0-solstice.2",
+  "display_name": "Meteor Horizon",
+  "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+  "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12",
+  "catalog_entries_expected": 87,
+  "catalog_count_is_tested_port_count": false,
+  "compatibility_probe": {
+    "scope": "separate probe; not later production candidate",
+    "official_plan": {
+      "status": "PASS",
+      "hooks": 23,
+      "seconds": 31.02
+    },
+    "official_apply": {
+      "status": "PASS",
+      "seconds": 44.84
+    },
+    "host_check": {
+      "status": "PASS",
+      "seconds": 47.28,
+      "unused_upstream_warnings": 7
+    },
+    "reported_by": "root-owned execution"
+  },
+  "production_candidate_runtime": "not tested",
+  "stock_launcher_end_to_end": "unverified",
+  "preserved_snapshots": {
+    "migration.3": "verified original movement source/artifact/evidence; 101 runtime checks scoped to its own hashes",
+    "migration.4": "held unfinished GUI/HUD source; no UI runtime claim"
+  },
+  "reserved_features": [
+    "AutoRespawn",
+    "BreakDelay"
+  ],
+  "foundation_exclusions": [
+    "Auto Respawn",
+    "Fast Break"
+  ],
+  "new_pr_base": "solstice-integration",
+  "reserved_planned_pr_base": "hnmod-migration until coordinated handoff",
+  "license_scope": "Upstream Solstice declares MIT; combat/render/world and utility headers identify Meteor ports. Project GPL3 distribution and Meteor notices retained alongside MIT component notices; no independent-rewrite or all-code-MIT claim.",
+  "public_source_path": "foundation/",
+  "preserved_source_path": "native/",
+  "planned_package": "packages/meteor-horizon-solstice-foundation.hnmod",
+  "publication_bundle_copied": true,
+  "production_source_note": "Frozen R3/.2 contains packet re-enable regression fix; linked build/runtime pending.",
+  "source_package_sha256": "215c62cbcc28bb7344467590873057e7dc7f2f53b916eaa7fdabd05059dc4558",
+  "runtime_source_sha256": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9",
+  "provenance_sha256": "452f9e9a874dd3cd857d1f194c8d00c9b0ab385fa4dfb0b3c643314a15146158",
+  "package_tests": {
+    "tests": 7,
+    "status": "PASS on unchanged tooling/R1 source fixture; no repeat after Runtime-only R2 fix"
+  },
+  "production_official_plan": "PASS:24 hooks",
+  "production_official_apply": "PASS",
+  "production_host_check": "PASS",
+  "production_state_tests": {
+    "passed": 6,
+    "failed": 0
+  },
+  "catalog_entries": 87,
+  "component_unit_checks": 9
+}

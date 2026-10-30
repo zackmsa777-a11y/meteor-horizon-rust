@@ -9,9 +9,27 @@ source tree is included for native integration and builds.
   content mods or extend their custom launcher protocol as the new distribution architecture.
 - Use GPT-6.1 Sol with high reasoning for delegated agents unless the user changes this preference.
   Do not switch agents to Astra.
-- Put mod policies in `crates/meteor-client` and host operations in the corresponding
-  `meteor*.rs` adapters. Do not register empty modules or claim full parity from partial checks.
-- Preserve applicable Meteor GPL-3.0-only, Horizon MIT, Starscript MIT and third-party notices.
+- Develop the native foundation under `foundation/bundle/mixins/meteor_client/` using upstream
+  Mixins. The active `main` work adapts the existing native foundation as Meteor
+  Horizon; keep its source provenance and notices. Preserve the existing Meteor core/tests,
+  entire existing `native/` migration.3 source/artifacts/evidence and held unfinished migration.4
+  snapshot separately. Do not replace `native/` when promoting `foundation/`.
+  Do not edit pristine/generated host source, register empty modules, or infer full parity.
+- New foundation PRs target `main`. Current allocation (2026-10-30):
+  AutoRespawn and BreakDelay remain reserved for a separate contributor's planned PR against
+  `hnmod-migration` until an explicit handoff. Exclude upstream Auto Respawn and the
+  overlapping Fast Break from active registration/dispatch. Do not silently replace that work.
+  This team owns foundation adaptation, GUI/HUD and validation. The earlier four-module GUI
+  migration.4 is held unfinished; migration.3 retains its own verified movement scope.
+  Recheck open PRs and assignments before changes; update reservations on handoff or merge.
+- Prefer separate module-specific injection helpers and self-contained support payload files.
+  Keep shared `runtime.rs` dispatch/configuration and `horizon-mixin.toml` registration changes
+  small, preserve other modules' wiring, and avoid unrelated formatting or whole-file rewrites.
+  Retain the reusable core and tests; use upstream Mixins, not a new custom loader.
+- Preserve versioned verified packages and their evidence when developing the next integration.
+  A new adapter or passing plan is not a runtime result for an earlier artifact.
+- Preserve upstream MIT, Meteor GPL-3.0-only, Horizon MIT, Starscript MIT and third-party notices.
+  Keep component licenses explicit; do not globally relicense the retained Meteor-derived source.
 - Never commit Minecraft JARs/assets, decompiled game sources, prepared resources, credentials,
   accounts or player worlds. Run `python tools/check_public_tree.py --history` before pushing.
 - Run games and launchers only with fresh isolated data homes. Agent runs set `HORIZON_HOME`,
@@ -20,7 +38,7 @@ source tree is included for native integration and builds.
   desktop paths must also point into scratch data. Use generated fixtures, not existing worlds,
   real accounts or multiplayer, for automated tests.
 - Run focused checks appropriate to changes; record actual results and exact tested snapshots.
-  Keep verified `main` evidence separate from unverified `next-source` changes.
+  Keep checkpoint evidence scoped to its tested hashes; current main development does not extend earlier runtime claims.
 - Do not create issues, send messages, request reviews or publish releases unless authorized.
   Keep AI attribution clear in authorized contributions and include commit co-author attribution.
 - Repository ownership and security reporting are defined here and in `SECURITY.md`.

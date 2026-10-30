@@ -1,0 +1,275 @@
+{
+  "method": "Custom Rust lexical token comparison ignoring whitespace/comments, preserving literal spelling; before identifiers normalized solstice->meteor_horizon and only four explicit brand/version/namespace literal mappings. Not compiler AST/type equivalence; root owns compilation.",
+  "files": [
+    {
+      "file": "buttons.rs",
+      "tokens": 81,
+      "normalized_token_sha256": "9a6879fbf33d2c027f8d6ec55ba351389b885adacfb59d79ffbd3ac4e4acceed",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "camera.rs",
+      "tokens": 87,
+      "normalized_token_sha256": "103ae11d3ee5d55fa4966153309fa7ae6604f85d2b5384b70e60ac834342d918",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "chat.rs",
+      "tokens": 73,
+      "normalized_token_sha256": "38b1a5a897d6b643dfbd07d4e24db8e8bc54561bd36576ed67dafd8b3937faf8",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "click.rs",
+      "tokens": 53,
+      "normalized_token_sha256": "345347a77987050522091ee690ab29ce159e66a764fa0c4e64082efc9be09aad",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "combat.rs",
+      "tokens": 9737,
+      "normalized_token_sha256": "25bc554957a1482bf2f31de6f9eded5d32a5266424772e595dcf40952aef842d",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "fishing_hook.rs",
+      "tokens": 92,
+      "normalized_token_sha256": "38c77052efec1a2e6d02fb70b57c101bb63b16d9c1945ef68d5d302e5fad095a",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "frame.rs",
+      "tokens": 30,
+      "normalized_token_sha256": "78cea0da9923d57ab2f037e059c0cc830fab48c015a4a420c9285e5974c3ac23",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "gui_layers.rs",
+      "tokens": 83,
+      "normalized_token_sha256": "594e7348703c3fe0b3ae12c1683a71b1c318594cb0a9beebff4e8a6a1426264e",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "hud.rs",
+      "tokens": 55,
+      "normalized_token_sha256": "fd58c51149c72cfae1563bb1fba868df4cf8a4e0b3b0c2661f1806d42c2c8c0e",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "input.rs",
+      "tokens": 81,
+      "normalized_token_sha256": "bc86d5743500ae07e2fb9a297a2a282b2a1371c23a4928fa03ccdc75ac4db824",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "input_flags.rs",
+      "tokens": 138,
+      "normalized_token_sha256": "157d66c41137f35692932c431132aa8c42915cd701726070f764ddfa61c0b7a9",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "key.rs",
+      "tokens": 43,
+      "normalized_token_sha256": "68263853a4b1954a548958d4dae9a128bc2f6c49f06ed9948925b695f379f5fc",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "list.rs",
+      "tokens": 31,
+      "normalized_token_sha256": "622cdcaaac5a8fcfd90d08f18d6e080af4ab7011aa2c7b1ddd477d625a407cb6",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "noslow.rs",
+      "tokens": 85,
+      "normalized_token_sha256": "75db13761e7e09fda7b49bbf51e2cc4f8ec60267a992d7637bed983bd78b846a",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "player.rs",
+      "tokens": 3448,
+      "normalized_token_sha256": "f20d0e7ef653e5d038fdeeb7adc5588af522ca31d2c1a5c138f553529d8f332e",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "press.rs",
+      "tokens": 108,
+      "normalized_token_sha256": "2bc2bf22e25d862103442d2830182a848bbb069e33438a04a36165d7aec1decd",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "pretick.rs",
+      "tokens": 30,
+      "normalized_token_sha256": "ee36adffc16a01eccdfb3481b040a337f03e3145aab28d8ac865b6f87831cb4e",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "reach.rs",
+      "tokens": 124,
+      "normalized_token_sha256": "23ad210a17da23754b5841ab6c4ae32e707c3ac00535eee2e939f9e75f77b1d7",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "render.rs",
+      "tokens": 5334,
+      "normalized_token_sha256": "5fcf7d387e38578cd635a37f7de4e64fe0ffcdd1826f6fff0ca10596fb5677f2",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "runtime.rs",
+      "tokens": 37464,
+      "normalized_token_sha256": "dc57b2f6d5aa05227d911c30b5882f14bbfc69856a8ed14cc2fd37e55cca8631",
+      "equal": true,
+      "literal_changes": [
+        [
+          "\"0.1.0-solstice.2\"",
+          "\"0.1.0-native.1\""
+        ],
+        [
+          "\"solstice:step\"",
+          "\"meteor_horizon:step\""
+        ],
+        [
+          "\"[Solstice] \"",
+          "\"[Meteor Horizon] \""
+        ],
+        [
+          "\"Open Solstice menu\"",
+          "\"Open Meteor Horizon menu\""
+        ],
+        [
+          "\"solstice:step\"",
+          "\"meteor_horizon:step\""
+        ],
+        [
+          "\"solstice:step\"",
+          "\"meteor_horizon:step\""
+        ]
+      ]
+    },
+    {
+      "file": "send.rs",
+      "tokens": 138,
+      "normalized_token_sha256": "88dc7114d9eb7031f429817a8fa118f2eabe5b75603785d3421310ee00f5fd41",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "settings.rs",
+      "tokens": 58,
+      "normalized_token_sha256": "03796134b12209b1c9a2fe048d214bf043317469aba1b9c5c00eeb1758abfd78",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "tick.rs",
+      "tokens": 30,
+      "normalized_token_sha256": "9037f37a7458df4f0fb45d896da553fd5c2d8cd52200a20cd7f587fdf43a56b9",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "timer.rs",
+      "tokens": 110,
+      "normalized_token_sha256": "5e04c6b6fa38e40d80183070b9e048cbb4adfaff0b8f795b24d0b60da32ba1b6",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "timer_flags.rs",
+      "tokens": 350,
+      "normalized_token_sha256": "fa92ac2f94082afc85df50d5e895150a1204fe5536ede22cff58a3dd3cb52092",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "turn.rs",
+      "tokens": 78,
+      "normalized_token_sha256": "a9cdcaa67214ffb83891b84a0e69206f114fc496f9a78f630cd2877e276b3e5f",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "util.rs",
+      "tokens": 4165,
+      "normalized_token_sha256": "5c42efec82d5ff406fc0df840bd04c25fe056c9d1bfb9367784ca568049db7a3",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "wheel.rs",
+      "tokens": 69,
+      "normalized_token_sha256": "6918a23e410839ef3c5b1e88d594d3e2bd0b922f27ea1326f67d6ca0b789f5d7",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "world.rs",
+      "tokens": 5183,
+      "normalized_token_sha256": "1357f84021b5a8838aaae9d00337f42bb2c2cb821ddeb32daae54ce5951b8159",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "xray.rs",
+      "tokens": 123,
+      "normalized_token_sha256": "9a3a770a856c32586ebaa83865475684eab6fe083901cc5327fc1880b905f148",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "xray_flags.rs",
+      "tokens": 290,
+      "normalized_token_sha256": "f12adf1aed130577474e24267080a75acd97d2d0b01b262b83b35c930daf3d37",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "xray_get.rs",
+      "tokens": 21,
+      "normalized_token_sha256": "5dc5518bc3a05844ae37483e6c3f7865c5f83208bb759758f222300b161bac65",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "xray_unpack.rs",
+      "tokens": 32,
+      "normalized_token_sha256": "4bdb721e2b4d4b2aba72bf67616da9590f93415fe9ad5d5b6b570ef17a04f9df",
+      "equal": true,
+      "literal_changes": []
+    },
+    {
+      "file": "zoom.rs",
+      "tokens": 46,
+      "normalized_token_sha256": "cadcb6c707e893e482deca41dddde6be87f3d5663ed91c733c5509548e648cd1",
+      "equal": true,
+      "literal_changes": []
+    }
+  ],
+  "all34_equal_after_allowed_normalization": true,
+  "allowed_literal_mappings": {
+    "\"0.1.0-solstice.2\"": "\"0.1.0-native.1\"",
+    "\"[Solstice] \"": "\"[Meteor Horizon] \"",
+    "\"Open Solstice menu\"": "\"Open Meteor Horizon menu\"",
+    "\"solstice:step\"": "\"meteor_horizon:step\""
+  }
+}

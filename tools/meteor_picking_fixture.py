@@ -179,6 +179,7 @@ def run_picking(ctl, check, state, scratch, report, x, y, z):
     ctl('command', f'setblock {x+1} {y+2} {z+2} minecraft:water[level=0]')
     ctl('command', f'setblock {x} {y+1} {z} minecraft:air')
     ctl('command', f'setblock {x} {y} {z} minecraft:stone')
+    ctl('command', f'setblock {x} {y+2} {z+2} minecraft:water[level=1]')
     ctl('wait', 18)
     ctl('tp', x+0.5, y+1, z+0.5)
     ctl('look', 0, 0)

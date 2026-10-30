@@ -1,0 +1,163 @@
+[mod]
+id = "meteor_client"
+version = "0.1.0-migration.3"
+priority = 100
+
+[compatibility]
+horizon_revision = "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73"
+
+[[crate]]
+id = "core"
+path = "core"
+dependent = "horizon-client"
+
+[[module]]
+id = "runtime"
+file = "crates/horizon-client/src/game.rs"
+name = "meteor_client_migration"
+source = "runtime.rs"
+
+[[injection]]
+id = "frame"
+hook = "frame"
+hook_version = 1
+kind = "HEAD"
+helper = "frame.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "elapsed", ty = "std::time::Duration", value = "elapsed" },
+]
+
+[[injection]]
+id = "tick"
+hook = "tick"
+hook_version = 1
+kind = "HEAD"
+helper = "tick.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+]
+
+[[injection]]
+id = "zoom"
+hook = "zoom"
+hook_version = 1
+kind = "HEAD"
+helper = "zoom.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "self" },
+  { name = "zoom", ty = "&mut Option<crate::game::native_hooks::NativeZoom>", value = "zoom" },
+]
+
+[[injection]]
+id = "wheel"
+hook = "wheel"
+hook_version = 1
+kind = "HEAD"
+helper = "wheel.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "steps", ty = "f32", value = "steps" },
+  { name = "claimed", ty = "&mut bool", value = "claimed" },
+]
+
+[[injection]]
+id = "command"
+hook = "command"
+hook_version = 1
+kind = "HEAD"
+helper = "command.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "command", ty = "&str", value = "command" },
+  { name = "ran", ty = "&mut bool", value = "ran" },
+]
+
+[[injection]]
+id = "mods"
+hook = "mods"
+hook_version = 1
+kind = "HEAD"
+helper = "mods.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "mods", ty = "&mut Vec<crate::game::native_hooks::NativeMod>", value = "mods" },
+]
+
+[[injection]]
+id = "settings"
+hook = "settings"
+hook_version = 1
+kind = "HEAD"
+helper = "settings.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "mod_id", ty = "&str", value = "mod_id" },
+  { name = "buttons", ty = "&mut Vec<String>", value = "buttons" },
+]
+
+[[injection]]
+id = "settings_click"
+hook = "settings_click"
+hook_version = 1
+kind = "HEAD"
+helper = "settings_click.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "mod_id", ty = "&str", value = "mod_id" },
+  { name = "button", ty = "usize", value = "button" },
+]
+
+# Source Tick.Pre: named tick runs after movement and cannot substitute for this boundary.
+[[injection]]
+id = "movement_pre"
+target = "horizon_client::game::Game<'_>::tick"
+kind = "HEAD"
+helper = "movement_pre.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+]
+
+# Keyboard Press/Release names; the stable wrapper discards keyboard Repeat events.
+[[injection]]
+id = "key"
+hook = "key"
+hook_version = 1
+kind = "HEAD"
+helper = "key.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "key", ty = "&str", value = "key" },
+  { name = "pressed", ty = "bool", value = "pressed" },
+]
+
+# HighJump production modules and two concrete cancellable HEAD hooks.
+[[module]]
+id = "highjump_motion"
+file = "crates/horizon-client/src/motion.rs"
+name = "meteor_highjump"
+source = "motion_highjump.rs"
+visibility = "pub"
+
+[[module]]
+id = "highjump_publisher"
+file = "crates/horizon-client/src/game.rs"
+name = "meteor_highjump_publisher"
+source = "game_highjump_publisher.rs"
+
+[[injection]]
+id = "highjump_block"
+target = "horizon_client::motion::<MotionWorld<'_,'_,'_> as LivingMotionWorld>::block_jump_factor"
+kind = "HEAD"
+cancellable = true
+helper = "highjump_block_head.rs"
+bindings = [{name="world",ty="&mut crate::motion::MotionWorld<'_, '_, '_>",value="&mut *self"}]
+
+[[injection]]
+id = "highjump_jump"
+target = "horizon_client::motion::MotionWorld<'_,'_,'_>::jump_from_ground"
+kind = "HEAD"
+cancellable = true
+helper = "highjump_jump_head.rs"
+bindings = [{name="world",ty="&mut crate::motion::MotionWorld<'_, '_, '_>",value="&mut *self"}]
+

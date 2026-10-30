@@ -1,0 +1,149 @@
+{
+  "scope": "Meteor Horizon native foundation adapted from MIT Solstice 0.7.0; 87 upstream-based registered modules excluding friend reservations; not Meteor source parity or runtime validation.",
+  "upstream_commit": "2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1",
+  "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+  "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12",
+  "runtime_sha256": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9",
+  "manifest_sha256": "d029fc7f00dadd318663e8edbc07bb11a7251a55925aced6f326efd309e57224",
+  "files": {
+    "buttons.rs": "bd221b27cc196dd21a1d310f1df9c5967f3784f9fb5a690d03c2a4ded1b8ddaa",
+    "camera.rs": "82d5861ace6956260ea0f1540e9f3c4230b8541c65bd99ad8f64db2fda70697d",
+    "chat.rs": "874d38a45034da049d3ba6ff2c5942720782617d7d1c08b3e3e10f6b6ddc4051",
+    "click.rs": "1567e482222c4d03a169ab3d311a49a8035bc38585b3bcbc6b16a866954c312e",
+    "combat.rs": "41b1c4e4700840fc811c5ea38b36721d90b5fa116851846c63ba14e675bb1457",
+    "fishing_hook.rs": "ed123ea161ec7d4ed3d98a18e02434887f414b0d1f542a12b05fb5fac7cfb1df",
+    "frame.rs": "371fb676b5adcd807adff8aaab341d27544b08f3a7902447996e58114ea71c7e",
+    "gui_layers.rs": "d452b2de8b6bb0ceee008b1ff0e48ae4bc00f20dea5a14d0ade0bce61a030a26",
+    "hud.rs": "b1c29cd5e0247a048fe9a120f3faca0fc2909ef83cc3ce5b845635ecce0c3a08",
+    "input.rs": "1bd16975402e4010093daa095da20b4f057b819aa38db6d6a2fc6360dae3cdae",
+    "input_flags.rs": "6f942f5ec93cd930a26d6396be72eb48d8221ecebf01d6b4e866ebabf5a1b27b",
+    "key.rs": "49d4914a9ea739059376b1ea5f6704d06d30a3862b20bc820d11c57a6d0c7fe0",
+    "list.rs": "cac1431d7411aebed78f76effe5af1b9d283c63dd13a8288632df631caf990bc",
+    "noslow.rs": "c0cf876bb2e8f753cebd6c91742364a908812e1b4e25f177b826c59cf67dcb17",
+    "player.rs": "1e966d5756858bf4573c5c734733a9602c546f3f7c512332f89d6bf184673fa2",
+    "press.rs": "68eb8e6365dfab5065c9f9b989123ddf7cdaf59178879fe71e92d0c1564d1340",
+    "pretick.rs": "b760412175f2ea4e7a0e6d6c38921d29b9e877ccde637a8f702c56d07d3cfd1d",
+    "reach.rs": "c9fe77b33483986134882cb93f4a1d9c4999218aa69908ef3d9f5429817fa953",
+    "render.rs": "7d571bcce47bcdefe0b6ac2bac69d3e459cb5e32a1d1ed54230605b070176d8a",
+    "runtime.rs": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9",
+    "send.rs": "cb8d93bf8f35d3307f3e3dea4686c2cfa05e60454e5576f90fc0886679c0489a",
+    "settings.rs": "5a41a1ad366af8ae9cfd77344f3e1c221bb840b5893dc55c27c2b0da222d301d",
+    "tick.rs": "f8483c46180223f6090ce5c9a0b6b19f7c01c0dec0420cd26d831c1d046ae76e",
+    "timer.rs": "844f196d4ca7d3c9c54e60883aa523b6852afd96441041797056d52cfd7c2c13",
+    "timer_flags.rs": "ac216319c06f54f092991c2728b64ee797abdc23738d1d187480d9cc72172ded",
+    "turn.rs": "4ef8612cd2dfd9af2e26593c1db754d441fd2398d9d275e8e6322c000d07a7fa",
+    "util.rs": "db576c53695e5531cbe881286bd116e0315a882279a67d5572502cc68b48ad9a",
+    "wheel.rs": "38d83d47b5b4bce9fc0a029e20275b017550cfb351e609eed6a25d3edaa30af1",
+    "world.rs": "f3792122259f97998545e3abf683441fc055d3eeb62533785f0482dba1b85e48",
+    "xray.rs": "5be6bf23dd2fb591e9f63d1d0cc02d96de60c919984ccc288fdaae1170c1fc11",
+    "xray_flags.rs": "eba03e7aad7af40a9538a209b86548c6bf3569b951c96e24189f12538eea242b",
+    "xray_get.rs": "d149e5f7330846c6f5cf6a9fb3e75073f13f91ce6e8363a1225a666fbd600508",
+    "xray_unpack.rs": "c24f2530d225688af7612bfc704af1873f8b5e86c116ea0d0bdc0778992d2568",
+    "zoom.rs": "b2aa6bd8527b2c56f3e9a3957bcd090b9ad0ea475aadceb9f342f849ecabc69f"
+  },
+  "changed_or_added": [
+    {
+      "file": "buttons.rs",
+      "upstream_sha256": "17a972ff00b5235630ace9544e6c447af1f0e823b1edb0f7940e1a7eaac0412f",
+      "adapted_sha256": "bd221b27cc196dd21a1d310f1df9c5967f3784f9fb5a690d03c2a4ded1b8ddaa"
+    },
+    {
+      "file": "combat.rs",
+      "upstream_sha256": "e75f98e5a0c4944ddd66d83c26de7fe8d7b9bcb0c253550413968d287b5d37a5",
+      "adapted_sha256": "41b1c4e4700840fc811c5ea38b36721d90b5fa116851846c63ba14e675bb1457"
+    },
+    {
+      "file": "gui_layers.rs",
+      "upstream_sha256": null,
+      "adapted_sha256": "d452b2de8b6bb0ceee008b1ff0e48ae4bc00f20dea5a14d0ade0bce61a030a26"
+    },
+    {
+      "file": "input.rs",
+      "upstream_sha256": "7606c764b7f9c12607c58da5215e243ce56f0804dbd8adc033a40ad6f29cd450",
+      "adapted_sha256": "1bd16975402e4010093daa095da20b4f057b819aa38db6d6a2fc6360dae3cdae"
+    },
+    {
+      "file": "input_flags.rs",
+      "upstream_sha256": "ad0b24e5f78c9c4bc7d4d84c8525bcd39c758c0fe9fb66982cfd3f4560692c10",
+      "adapted_sha256": "6f942f5ec93cd930a26d6396be72eb48d8221ecebf01d6b4e866ebabf5a1b27b"
+    },
+    {
+      "file": "noslow.rs",
+      "upstream_sha256": "6b7e247bc848a7a3de18c6c34eccf29f34bee97d4876401bd342d3d5ae2d9751",
+      "adapted_sha256": "c0cf876bb2e8f753cebd6c91742364a908812e1b4e25f177b826c59cf67dcb17"
+    },
+    {
+      "file": "player.rs",
+      "upstream_sha256": "0c41e5f5668acbcd4e27f1368487b7b0502dc7905df9ce971d74df5aba46e8b2",
+      "adapted_sha256": "1e966d5756858bf4573c5c734733a9602c546f3f7c512332f89d6bf184673fa2"
+    },
+    {
+      "file": "press.rs",
+      "upstream_sha256": "61e339f12043c19970641c443287e285e42ad77c6c4d3a008fa72feda0979f10",
+      "adapted_sha256": "68eb8e6365dfab5065c9f9b989123ddf7cdaf59178879fe71e92d0c1564d1340"
+    },
+    {
+      "file": "reach.rs",
+      "upstream_sha256": "e38b78fd5a32a54e508321e4ccd93c262ea25e5aa0c47e9adeb0aefc89a6f096",
+      "adapted_sha256": "c9fe77b33483986134882cb93f4a1d9c4999218aa69908ef3d9f5429817fa953"
+    },
+    {
+      "file": "render.rs",
+      "upstream_sha256": "3d12309f9fb4b6f0af2a920baaec851dc56f6f092d21656f6157b4c614780747",
+      "adapted_sha256": "7d571bcce47bcdefe0b6ac2bac69d3e459cb5e32a1d1ed54230605b070176d8a"
+    },
+    {
+      "file": "runtime.rs",
+      "upstream_sha256": "6a97b90a144f08614a258279c76d79c2ea0d5522b2810ee39dcd1a6ea2084883",
+      "adapted_sha256": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9"
+    },
+    {
+      "file": "timer.rs",
+      "upstream_sha256": "6988423b1920d980bdd3055e10da550c3ccb74aaebaf7473b4a53c23cf19a16a",
+      "adapted_sha256": "844f196d4ca7d3c9c54e60883aa523b6852afd96441041797056d52cfd7c2c13"
+    },
+    {
+      "file": "timer_flags.rs",
+      "upstream_sha256": "b40fbb76f4b21015a444108b7984ad9bd82aeb2c53b07536b4e2c45c2962055f",
+      "adapted_sha256": "ac216319c06f54f092991c2728b64ee797abdc23738d1d187480d9cc72172ded"
+    },
+    {
+      "file": "wheel.rs",
+      "upstream_sha256": "4768d798536d110a53db90a1c8a8146dade5b1262558b969e1927b1688beb22e",
+      "adapted_sha256": "38d83d47b5b4bce9fc0a029e20275b017550cfb351e609eed6a25d3edaa30af1"
+    },
+    {
+      "file": "world.rs",
+      "upstream_sha256": "79b2a8978a3a493c4b317ba0dea3455cdd5dd26c792d955edea8da9ad244ad12",
+      "adapted_sha256": "f3792122259f97998545e3abf683441fc055d3eeb62533785f0482dba1b85e48"
+    }
+  ],
+  "registered": 87,
+  "injections": 24,
+  "support_modules": 10,
+  "unit_tests": {
+    "game::solstice::meteor_horizon_adoption_tests": 6,
+    "clock::solstice_timer::tests": 2,
+    "input::solstice_flags::tests": 1
+  },
+  "cargo_game_plan_executed_by_this_agent": false,
+  "limitations": [
+    "One active window owns global Solstice module state; switching owner resets transients/config; simultaneous-window matrix unsupported.",
+    "Observed player/title worldleave is reset; same-window replacement with no absent-player interval has no stable session identity.",
+    "Xray worker state remains global but cleared on observed disable/worldleave/owner switch.",
+    "Source-specific Meteor semantics are not supplied by Solstice movement approximations.",
+    "Keyboard search remains upstream ASCII-key based; full Unicode/text editor/controller navigation not claimed."
+  ],
+  "root_r2_change": "Return before maintain/closing-latch mutation for non-window server Games.",
+  "version": "0.1.0-solstice.2",
+  "native_manifest_sha256": "bae5da408c02b93ebbe1f3ba7589db23106e20adc38c4ac004de56fe7b3310d3",
+  "provenance_sha256": "452f9e9a874dd3cd857d1f194c8d00c9b0ab385fa4dfb0b3c643314a15146158",
+  "other_rust_files_byte_identical_to_r2": 33,
+  "source_rust_files": 34,
+  "unit_test_scope": {
+    "runtime_6": "defined in R3 source; actual R3 execution pending root",
+    "timer_2_and_noslow_1": "source byte-identical to R2; root passed2+1 earlier, reusable component scope"
+  },
+  "root_r3_change": "Packet preferences resume after native enable/world rejoin; inactive/absent policy remains gated; exact regression test; version0.1.0-solstice.2.",
+  "status": "R3 source and metadata inventory frozen; no new compile/runtime claim"
+}

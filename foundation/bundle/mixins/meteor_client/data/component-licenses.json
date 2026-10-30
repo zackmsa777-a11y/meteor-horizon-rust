@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "active_foundation": {
+    "name": "Meteor Horizon native client",
+    "license": "MIT",
+    "copyright": "Copyright (c) 2026 PointOfPressure",
+    "notice": "licenses/THIRD_PARTY_NOTICES.txt",
+    "upstream_commit": "2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1",
+    "upstream_declared_license": "MIT",
+    "upstream_repository": "https://github.com/PointOfPressure/solstice-client",
+    "attribution_scope": "Upstream declares MIT; combat/render/world headers describe Meteor source ports and util describes Meteor utility ports. No independent-rewrite or all-code-MIT audit claim."
+  },
+  "project_retained_components": [
+    {
+      "name": "Meteor-derived retained core/prototype",
+      "license": "GPL-3.0-only",
+      "notice": "project-notices/Meteor-GPL-3.0-only.txt",
+      "scope": "preserved separately; no Meteor core source copied into this foundation candidate"
+    },
+    {
+      "name": "Starscript retained project component",
+      "license": "MIT",
+      "notice": "project-notices/Starscript-MIT.txt",
+      "scope": "historical/current project notice; no Starscript source copied into this candidate"
+    },
+    {
+      "name": "Horizon host",
+      "license": "MIT",
+      "notice": "project-notices/Horizon-MIT.txt",
+      "scope": "external pinned host; host source not distributed in this bundle"
+    }
+  ],
+  "rule": "Retain original full MIT copyright/permission notice and complete source provenance. Project GPL-3.0 distribution and Meteor notices remain alongside component MIT notices; no false original authorship or global MIT relicense.",
+  "project_distribution_license": "GPL-3.0-only"
+}

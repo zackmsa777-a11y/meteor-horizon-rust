@@ -1,0 +1,221 @@
+{
+  "status": "R2 root-held source verified and provenance frozen; no R2 compile/runtime claim",
+  "files": 42,
+  "expanded_bytes": 377406,
+  "runtime_sha256": "d8a71c589f2be8f638b508237b6fe7cd20af2311fa9e93787ff67fbd9ba845f5",
+  "manifest_sha256": "0158f509536daa7861ebdeb8ffa0e518ad79729f374e77bc5eb50429f2a4ebe8",
+  "provenance_sha256": "7970019bc7c2314fdd53e436b280885529cab3d6dbf861f710caed76de15705c",
+  "package_tests": "same unchanged tooling: seven tests passed for R1; not repeated after one Runtime-only fix",
+  "payloads": [
+    {
+      "path": "horizon-native.json",
+      "bytes": 207,
+      "sha256": "1ba32cf439c573e9c040e3aad941e1e5e21370e1c6b5dc4e5a4d42e2cada7274"
+    },
+    {
+      "path": "mixins/meteor_client/buttons.rs",
+      "bytes": 368,
+      "sha256": "bd221b27cc196dd21a1d310f1df9c5967f3784f9fb5a690d03c2a4ded1b8ddaa"
+    },
+    {
+      "path": "mixins/meteor_client/camera.rs",
+      "bytes": 380,
+      "sha256": "82d5861ace6956260ea0f1540e9f3c4230b8541c65bd99ad8f64db2fda70697d"
+    },
+    {
+      "path": "mixins/meteor_client/chat.rs",
+      "bytes": 321,
+      "sha256": "874d38a45034da049d3ba6ff2c5942720782617d7d1c08b3e3e10f6b6ddc4051"
+    },
+    {
+      "path": "mixins/meteor_client/click.rs",
+      "bytes": 225,
+      "sha256": "1567e482222c4d03a169ab3d311a49a8035bc38585b3bcbc6b16a866954c312e"
+    },
+    {
+      "path": "mixins/meteor_client/combat.rs",
+      "bytes": 37822,
+      "sha256": "41b1c4e4700840fc811c5ea38b36721d90b5fa116851846c63ba14e675bb1457"
+    },
+    {
+      "path": "mixins/meteor_client/data/component-licenses.json",
+      "bytes": 1218,
+      "sha256": "2221adafd270de1d6f912ecd27a1cfd6e4984b282f086a3c33b035cf9a4472b7"
+    },
+    {
+      "path": "mixins/meteor_client/data/licenses/Solstice-MIT.txt",
+      "bytes": 1093,
+      "sha256": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e"
+    },
+    {
+      "path": "mixins/meteor_client/data/project-notices/Horizon-MIT.txt",
+      "bytes": 1099,
+      "sha256": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
+    },
+    {
+      "path": "mixins/meteor_client/data/project-notices/Meteor-GPL-3.0-only.txt",
+      "bytes": 35154,
+      "sha256": "b1e60bceb8b63b265dfe040691bd5ec7a21da3c31be3db4b2925518e9c0836df"
+    },
+    {
+      "path": "mixins/meteor_client/data/project-notices/Starscript-MIT.txt",
+      "bytes": 1074,
+      "sha256": "0efbee07393749f2e2e96a16466b6b05c8244adba0cf97e6daf453e4fe5e9c3f"
+    },
+    {
+      "path": "mixins/meteor_client/data/solstice-provenance.json",
+      "bytes": 49010,
+      "sha256": "7970019bc7c2314fdd53e436b280885529cab3d6dbf861f710caed76de15705c"
+    },
+    {
+      "path": "mixins/meteor_client/fishing_hook.rs",
+      "bytes": 404,
+      "sha256": "ed123ea161ec7d4ed3d98a18e02434887f414b0d1f542a12b05fb5fac7cfb1df"
+    },
+    {
+      "path": "mixins/meteor_client/frame.rs",
+      "bytes": 153,
+      "sha256": "371fb676b5adcd807adff8aaab341d27544b08f3a7902447996e58114ea71c7e"
+    },
+    {
+      "path": "mixins/meteor_client/gui_layers.rs",
+      "bytes": 501,
+      "sha256": "d452b2de8b6bb0ceee008b1ff0e48ae4bc00f20dea5a14d0ade0bce61a030a26"
+    },
+    {
+      "path": "mixins/meteor_client/horizon-mixin.toml",
+      "bytes": 8937,
+      "sha256": "0158f509536daa7861ebdeb8ffa0e518ad79729f374e77bc5eb50429f2a4ebe8"
+    },
+    {
+      "path": "mixins/meteor_client/hud.rs",
+      "bytes": 332,
+      "sha256": "b1c29cd5e0247a048fe9a120f3faca0fc2909ef83cc3ce5b845635ecce0c3a08"
+    },
+    {
+      "path": "mixins/meteor_client/input.rs",
+      "bytes": 365,
+      "sha256": "1bd16975402e4010093daa095da20b4f057b819aa38db6d6a2fc6360dae3cdae"
+    },
+    {
+      "path": "mixins/meteor_client/input_flags.rs",
+      "bytes": 547,
+      "sha256": "6f942f5ec93cd930a26d6396be72eb48d8221ecebf01d6b4e866ebabf5a1b27b"
+    },
+    {
+      "path": "mixins/meteor_client/key.rs",
+      "bytes": 204,
+      "sha256": "49d4914a9ea739059376b1ea5f6704d06d30a3862b20bc820d11c57a6d0c7fe0"
+    },
+    {
+      "path": "mixins/meteor_client/list.rs",
+      "bytes": 178,
+      "sha256": "cac1431d7411aebed78f76effe5af1b9d283c63dd13a8288632df631caf990bc"
+    },
+    {
+      "path": "mixins/meteor_client/noslow.rs",
+      "bytes": 405,
+      "sha256": "c0cf876bb2e8f753cebd6c91742364a908812e1b4e25f177b826c59cf67dcb17"
+    },
+    {
+      "path": "mixins/meteor_client/player.rs",
+      "bytes": 14506,
+      "sha256": "1e966d5756858bf4573c5c734733a9602c546f3f7c512332f89d6bf184673fa2"
+    },
+    {
+      "path": "mixins/meteor_client/press.rs",
+      "bytes": 535,
+      "sha256": "68eb8e6365dfab5065c9f9b989123ddf7cdaf59178879fe71e92d0c1564d1340"
+    },
+    {
+      "path": "mixins/meteor_client/pretick.rs",
+      "bytes": 173,
+      "sha256": "b760412175f2ea4e7a0e6d6c38921d29b9e877ccde637a8f702c56d07d3cfd1d"
+    },
+    {
+      "path": "mixins/meteor_client/reach.rs",
+      "bytes": 500,
+      "sha256": "c9fe77b33483986134882cb93f4a1d9c4999218aa69908ef3d9f5429817fa953"
+    },
+    {
+      "path": "mixins/meteor_client/render.rs",
+      "bytes": 21398,
+      "sha256": "7d571bcce47bcdefe0b6ac2bac69d3e459cb5e32a1d1ed54230605b070176d8a"
+    },
+    {
+      "path": "mixins/meteor_client/runtime.rs",
+      "bytes": 159480,
+      "sha256": "d8a71c589f2be8f638b508237b6fe7cd20af2311fa9e93787ff67fbd9ba845f5"
+    },
+    {
+      "path": "mixins/meteor_client/send.rs",
+      "bytes": 642,
+      "sha256": "cb8d93bf8f35d3307f3e3dea4686c2cfa05e60454e5576f90fc0886679c0489a"
+    },
+    {
+      "path": "mixins/meteor_client/settings.rs",
+      "bytes": 279,
+      "sha256": "5a41a1ad366af8ae9cfd77344f3e1c221bb840b5893dc55c27c2b0da222d301d"
+    },
+    {
+      "path": "mixins/meteor_client/tick.rs",
+      "bytes": 142,
+      "sha256": "f8483c46180223f6090ce5c9a0b6b19f7c01c0dec0420cd26d831c1d046ae76e"
+    },
+    {
+      "path": "mixins/meteor_client/timer.rs",
+      "bytes": 532,
+      "sha256": "844f196d4ca7d3c9c54e60883aa523b6852afd96441041797056d52cfd7c2c13"
+    },
+    {
+      "path": "mixins/meteor_client/timer_flags.rs",
+      "bytes": 1546,
+      "sha256": "ac216319c06f54f092991c2728b64ee797abdc23738d1d187480d9cc72172ded"
+    },
+    {
+      "path": "mixins/meteor_client/turn.rs",
+      "bytes": 325,
+      "sha256": "4ef8612cd2dfd9af2e26593c1db754d441fd2398d9d275e8e6322c000d07a7fa"
+    },
+    {
+      "path": "mixins/meteor_client/util.rs",
+      "bytes": 14052,
+      "sha256": "db576c53695e5531cbe881286bd116e0315a882279a67d5572502cc68b48ad9a"
+    },
+    {
+      "path": "mixins/meteor_client/wheel.rs",
+      "bytes": 353,
+      "sha256": "38d83d47b5b4bce9fc0a029e20275b017550cfb351e609eed6a25d3edaa30af1"
+    },
+    {
+      "path": "mixins/meteor_client/world.rs",
+      "bytes": 20591,
+      "sha256": "f3792122259f97998545e3abf683441fc055d3eeb62533785f0482dba1b85e48"
+    },
+    {
+      "path": "mixins/meteor_client/xray.rs",
+      "bytes": 544,
+      "sha256": "5be6bf23dd2fb591e9f63d1d0cc02d96de60c919984ccc288fdaae1170c1fc11"
+    },
+    {
+      "path": "mixins/meteor_client/xray_flags.rs",
+      "bytes": 1290,
+      "sha256": "eba03e7aad7af40a9538a209b86548c6bf3569b951c96e24189f12538eea242b"
+    },
+    {
+      "path": "mixins/meteor_client/xray_get.rs",
+      "bytes": 141,
+      "sha256": "d149e5f7330846c6f5cf6a9fb3e75073f13f91ce6e8363a1225a666fbd600508"
+    },
+    {
+      "path": "mixins/meteor_client/xray_unpack.rs",
+      "bytes": 184,
+      "sha256": "c24f2530d225688af7612bfc704af1873f8b5e86c116ea0d0bdc0778992d2568"
+    },
+    {
+      "path": "mixins/meteor_client/zoom.rs",
+      "bytes": 196,
+      "sha256": "b2aa6bd8527b2c56f3e9a3957bcd090b9ad0ea475aadceb9f342f849ecabc69f"
+    }
+  ]
+}

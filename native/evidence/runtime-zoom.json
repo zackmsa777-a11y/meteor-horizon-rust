@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "kind": "standard-hnmod-zoom-only-runtime",
+  "status": "pass",
+  "checks_passed": 32,
+  "checks_failed": 0,
+  "started_utc": "2026-10-30T13:10:11.666202+00:00",
+  "finished_utc": "2026-10-30T13:10:43.688533+00:00",
+  "package": {
+    "filename": "meteor-client-zoom-migration-proof.hnmod",
+    "sha256": "4c8d2f238f8c9c184f96228f6c966d9a3945b07dffe65169fe438cf59fe70de3",
+    "id": "meteor_client",
+    "version": "0.1.0-migration.1"
+  },
+  "client_sha256": "83813315f0fb8ac1fc4f1b5d5dc563aa9f195688feb9c7abaf22cc1f5c71bfab",
+  "control_sha256": "a32f27d371eb24179c0d2f64b076156e46ab85b881f6204272fc3f16a401e7aa",
+  "harness": {
+    "path": "tools/test_standard_zoom.py",
+    "sha256": "d03b8835075cdc3f25b8b655a91ec860851579a68a5061cdacb55ad74a543c8a",
+    "required_scratch_root": true,
+    "gui_pause_wait_fix_included": true
+  },
+  "raw_report_sha256": "a68f5103ed18f40870af02e92d201a5df5759d037521234088cdd114951127fa",
+  "checks": [
+    {
+      "name": "Fresh generated world is creative",
+      "passed": true
+    },
+    {
+      "name": "Zoom defaults disabled with factor6 and smoothingtrue",
+      "passed": true
+    },
+    {
+      "name": "before screenshot captured",
+      "passed": true
+    },
+    {
+      "name": "baseline mouse motion produces finite yaw",
+      "passed": true
+    },
+    {
+      "name": "Native Zoom reaches factor6",
+      "passed": true
+    },
+    {
+      "name": "Default smoothing remains enabled",
+      "passed": true
+    },
+    {
+      "name": "zoom6 mouse motion produces finite yaw",
+      "passed": true
+    },
+    {
+      "name": "Actual mouse yaw sensitivity is divided by3 at factor6",
+      "passed": true
+    },
+    {
+      "name": "zoom screenshot captured",
+      "passed": true
+    },
+    {
+      "name": "Playing wheel changes actual Zoom factor to7.5",
+      "passed": true
+    },
+    {
+      "name": "Zoom claims wheel before hotbar selection",
+      "passed": true
+    },
+    {
+      "name": "Disable completes fade and restores factor1",
+      "passed": true
+    },
+    {
+      "name": "restored mouse motion produces finite yaw",
+      "passed": true
+    },
+    {
+      "name": "Disable restores actual mouse yaw sensitivity",
+      "passed": true
+    },
+    {
+      "name": "restored screenshot captured",
+      "passed": true
+    },
+    {
+      "name": "Native local JSON persists factor smoothing sensitivity and disabled state",
+      "passed": true
+    },
+    {
+      "name": "Invalid setting rejected safely: zoom factor NaN",
+      "passed": true
+    },
+    {
+      "name": "Invalid setting rejected safely: zoom factor inf",
+      "passed": true
+    },
+    {
+      "name": "Invalid setting rejected safely: zoom factor 0",
+      "passed": true
+    },
+    {
+      "name": "Invalid setting rejected safely: zoom factor nope",
+      "passed": true
+    },
+    {
+      "name": "Invalid setting rejected safely: zoom scroll-sensitivity -1",
+      "passed": true
+    },
+    {
+      "name": "Invalid setting rejected safely: zoom scroll-sensitivity NaN",
+      "passed": true
+    },
+    {
+      "name": "Invalid setting rejected safely: zoom smooth nope",
+      "passed": true
+    },
+    {
+      "name": "Invalid inputs preserve valid runtime state",
+      "passed": true
+    },
+    {
+      "name": "Smoothingfalse factor4 reaches native output",
+      "passed": true
+    },
+    {
+      "name": "zoom4_nonsmooth mouse motion produces finite yaw",
+      "passed": true
+    },
+    {
+      "name": "Actual mouse sensitivity follows new factor4",
+      "passed": true
+    },
+    {
+      "name": "Final disable restores nonsmooth factor1",
+      "passed": true
+    },
+    {
+      "name": "Native Meteor row registers in actual Options Mods UI",
+      "passed": true
+    },
+    {
+      "name": "native-mods-row screenshot captured",
+      "passed": true
+    },
+    {
+      "name": "Graceful own-client shutdown exits0",
+      "passed": true
+    },
+    {
+      "name": "Exact frozen binaries remained unchanged",
+      "passed": true
+    }
+  ],
+  "shutdown": {
+    "graceful_quit_requested": true,
+    "forced_shutdown": false,
+    "exit_code": 0,
+    "frozen_binaries_unchanged": true
+  },
+  "isolation": {
+    "fresh_uuid_scratch_home": true,
+    "fresh_generated_singleplayer_world": true,
+    "existing_worlds": false,
+    "real_accounts": false,
+    "multiplayer": false,
+    "isolated_home_variables": [
+      "HORIZON_HOME",
+      "HORIZON_LAUNCHER_HOME",
+      "XDG_DATA_HOME",
+      "XDG_CONFIG_HOME",
+      "HORIZON_LAUNCHER_TRASH",
+      "HORIZON_LAUNCHER_CLIPBOARD",
+      "HORIZON_LAUNCHER_DESKTOP",
+      "TEMP",
+      "TMP"
+    ],
+    "self_update_disabled": true,
+    "audio_disabled": true
+  },
+  "native_mods_row_registered": true,
+  "manual_visual_review": {
+    "reviewer": "migration coordinator",
+    "images_reviewed": 4,
+    "observations": [
+      "Before and restored screenshots show equal wall framing.",
+      "Zoom screenshot shows a visibly narrower field of view.",
+      "The native Meteor migration row is visible in Options Mods."
+    ],
+    "pixel_parity_claim": false
+  },
+  "screenshots": [
+    {
+      "filename": "before.png",
+      "bytes": 366954,
+      "sha256": "ffab8340c885383a1eb0e0a8121f9ed01c9d2b611680fbcdd97f43d4b02af701"
+    },
+    {
+      "filename": "zoom.png",
+      "bytes": 111991,
+      "sha256": "7681101fbb3dc45d881ce44699d4dc1e178a90368735d9ff6b885a1eb8102de7"
+    },
+    {
+      "filename": "restored.png",
+      "bytes": 291510,
+      "sha256": "56d2ab3774b0de68e9477e8ce85d50f54cf3da51c47e7b35bbadfb9d32773d31"
+    },
+    {
+      "filename": "native-mods-row.png",
+      "bytes": 227750,
+      "sha256": "31e6c428e3d7c3af42ba36f1537904516bef643c0b344c439cd697f6c37a9de2"
+    }
+  ],
+  "build_scope": {
+    "method": "Official horizon-mixins stage plus pinned Cargo linked the tested client and control CLI",
+    "stock_launcher_end_to_end_build_install": "not tested"
+  },
+  "harness_history": {
+    "earlier_run": "An earlier attempt stopped in the harness while the GUI was paused.",
+    "correction": "Harness GUI wait now handles paused UI; all 32 checks passed afterward.",
+    "game_or_bundle_changes_for_harness_fix": false
+  },
+  "limitations": [
+    "Zoom-only proof; other retained modules are not integrated.",
+    "Screenshots require manual visible FOV review; no pixel-parity assertion.",
+    "Persistence checks inspect generated local JSON, not a restarted process.",
+    "Cinematic/hide-HUD/show-hands are not integrated by this proof.",
+    "The native Zoom API caps visible factors at 10 and turn scaling at 0.05..1.",
+    "The stock launcher end-to-end build/install path was not exercised by this run.",
+    "Only the Zoom proof adapter is integrated; 30 retained core policies are not 30 integrated modules."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "display_name": "Meteor Horizon",
+  "version": "0.1.0-native.1",
+  "package_sha256": "cb8d5981f60d67e6e5fb592fab53252ef8a7ca22ec19ef4d26062c3d72e8f68a",
+  "elapsed_seconds": 294.3223977000016,
+  "client_sha256": "0585b5a95a3992430f9feffa80e36f46b0c13929115ad78e399efcb1ed6cdcfc",
+  "control_sha256": "c109799b6f9e39a690ce3c82914e7066901c86e08857f70dc7a3a685757ac240",
+  "embedded_brand_labels": [
+    "Meteor Horizon",
+    "[Meteor Horizon]",
+    "Open Meteor Horizon menu",
+    "0.1.0-native.1"
+  ],
+  "retired_brand_strings_present_in_client_binary": false,
+  "source_unchanged": true,
+  "scope": "Linked executable and embedded-label scan; no new interactive runtime/UI claim."
+}

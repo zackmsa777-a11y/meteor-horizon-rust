@@ -80,3 +80,26 @@ fn text_condition_renders_boolean_string_and_edit_forces_refresh() {
     runtime.update(&settings, &env, false);
     assert!(!runtime.visible);
 }
+
+#[test]
+fn source_bottom_anchor_stays_visible_in_inset_editor_without_rewriting_saved_offsets() {
+    use meteor_client::hud_box::{XAnchor, YAnchor};
+    let box_ = HudBox {
+        x_anchor: XAnchor::Right,
+        y_anchor: YAnchor::Bottom,
+        x: -8,
+        y: -6,
+    };
+    let framebuffer = [961, 541];
+    let size = [77, 21];
+    let gui_scale = 2;
+    let header = 29 * gui_scale;
+    let footer = 20 * gui_scale;
+    let layout = [framebuffer[0], framebuffer[1] - header - footer];
+    let game = box_.render(framebuffer, size);
+    let editor = box_.render(layout, size);
+    assert_eq!(game[0], editor[0]);
+    assert_eq!(editor[1] + header + size[1], framebuffer[1] - footer - 6);
+    assert_eq!(game[1] + size[1], framebuffer[1] - 6);
+    assert_eq!(box_.y, -6);
+}

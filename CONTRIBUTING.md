@@ -6,19 +6,46 @@ The port is in development; the feature inventory records implemented behavior a
 
 ## Where to contribute
 
-Current standard native integration PRs target **`hnmod-migration`**. AutoRespawn and
-BreakDelay are reserved for a separate contributor's planned PR; AirJump and HighJump
-are now integrated in the verified four-module proof. See the
-[current native setup and evidence](https://github.com/zackmsa777-a11y/meteor-horizon-rust/tree/hnmod-migration/native).
-The source layout and commands below describe the legacy prototype preserved on `main`.
-
 Use [this repository's issues](https://github.com/zackmsa777-a11y/meteor-horizon-rust/issues)
 for bugs and proposals, and open pull requests here. Check existing work before starting a large
 change. This project does not use Horizon's Discord claim bot or upstream release labels.
 
-`main` contains the verified mod checkpoint. `next-source` contains newer work awaiting its
-complete runtime checks. Base fixes on `main`; coordinate changes to ongoing port work on
-`next-source` with the repository maintainer, [@zackmsa777-a11y](https://github.com/zackmsa777-a11y).
+`main` contains current native development in [`foundation/`](foundation/).
+The earlier verified four-module proof remains in [`native/`](native/);
+`next-source` and `hnmod-migration` preserve earlier work and the planned contributor base.
+Coordinate ongoing port changes with the repository maintainer,
+[@zackmsa777-a11y](https://github.com/zackmsa777-a11y).
+
+## Current native integration coordination
+
+New native foundation PRs target **`main`**. Meteor Horizon is adapting
+the existing native foundation using the project's pinned Horizon/Mixins pair.
+The current allocation (2026-10-30) is:
+
+- **AutoRespawn and BreakDelay:** reserved for a separate contributor's planned PR against
+  `hnmod-migration` until an explicit handoff. The foundation must exclude upstream Auto Respawn
+  and overlapping Fast Break registration/dispatch; do not silently replace the reserved work.
+- **Foundation adaptation, GUI/HUD and validation:** active work by this team.
+- **Previous snapshots:** migration.3 retains verified Zoom/AutoJump/AirJump/HighJump evidence;
+  the separate four-module GUI migration.4 remains held unfinished.
+
+Check assignments and existing PRs before changes. Keep the friend's source, tests and
+attribution intact, and coordinate a foundation port when that work arrives. Update the
+reservation when handed off or merged; do not infer a contributor identity or retarget an
+existing PR without coordination.
+
+Keep module-specific host logic in separate injection helpers or self-contained support payloads
+under `foundation/bundle/mixins/meteor_client/` for the new foundation, using descriptive module
+prefixes. Keep the entire existing `native/` tree and versioned archives unchanged. Prefer small
+registration changes in shared `runtime.rs` and `horizon-mixin.toml`; preserve existing hooks and
+avoid unrelated formatting or whole-file replacement. Rebase focused changes on the latest
+appropriate target-branch head before integration to resolve shared dispatch or manifest edits.
+
+Retain the reusable Meteor core/tests and explicit upstream MIT / Meteor GPL component notices.
+Do not globally relicense the retained Meteor-derived source. Generate pristine stages with the pinned
+upstream Mixins tool; do not introduce a custom loader or manually edit generated host source.
+Preserve versioned verified packages and their evidence while developing the next integration,
+and record only checks actually run against the new source snapshot.
 
 ## Source layout and setup
 
@@ -26,6 +53,9 @@ Integration migration is underway. Preserve reusable module behavior and tests; 
 into a standard Horizon Mixins bundle. Prefer named hooks, and pin raw hooks to a tested Horizon
 revision where needed. Do not expand the legacy custom source-patch loader as the distribution path.
 The existing source layout and build commands below describe the legacy prototype during migration.
+For current standard integration, start with [`foundation/README.md`](foundation/README.md). Keep
+bundle payloads and adapter helpers there, and generate a new source stage from pristine Horizon using
+the pinned upstream Mixins tool. Do not edit generated or pristine host files manually.
 
 - `crates/meteor-client/`: mod behavior, settings, persistence and core tests.
 - `crates/horizon-client/src/game/meteor*.rs`: native host integration and GUI/HUD.
@@ -55,9 +85,11 @@ Update the inventory when a feature's implementation or verification status chan
 ## Validation
 
 Run checks appropriate to the change and include their exact results in the pull request.
-Core behavior changes should run `cargo test -p meteor-client`; host integration should also
-compile with the `meteor` feature enabled and disabled. Add meaningful coverage for changed
-behavior. Documentation-only changes do not require rebuilding the game.
+Core behavior changes should run `cargo test -p meteor-client`. Standard integration changes
+must pass Mixins planning/apply and compile the resulting stage with its locked dependencies;
+the standard proof does not use a custom `meteor` feature. Changes to the preserved legacy
+adapter should compile with that feature enabled and disabled. Add meaningful coverage for
+changed behavior. Documentation-only changes do not require rebuilding the game.
 
 Runtime tests use fresh temporary singleplayer worlds and generated files. Set isolated
 `HORIZON_HOME`, `HORIZON_LAUNCHER_HOME`, `XDG_DATA_HOME` and `XDG_CONFIG_HOME`; disable

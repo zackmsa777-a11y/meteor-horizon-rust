@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+  "files_byte_identical_to_original": 3567,
+  "base_archive_sha256": "1792767d8c5b024e09c24f02ac24b0c4f04ef8f5078471c7c448f6c530363ccb",
+  "scope": "Pristine input source remains unchanged after normal Mixins planning/staging."
+}

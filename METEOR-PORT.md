@@ -4,9 +4,19 @@ This is a native Meteor mod project for Horizon, currently in development.
 The integration target is now a standard `.hnmod` bundle using Horizon Mixins. Existing core
 behavior and tests are retained; the host adapter and packaging are being migrated. Recorded
 28-module runtime evidence belongs to the legacy source-patched prototype and does not certify
-a standard `.hnmod` build. No standard installable Meteor bundle has been released yet.
+a standard `.hnmod` build. The experimental standard proof is scoped separately below.
 The objective remains full native behavior, including modules, GUI/HUD, configuration, commands,
 utilities, integrations and lifecycle. Java JARs are reference artifacts, not executable plugins here.
+
+The [standard native proof](native/README.md) retains 30 module policies and currently connects
+Zoom, AutoJump, AirJump and HighJump through upstream hooks. It passes 101 isolated checks, with exact
+package and client hashes in its evidence. The other 26 policies remain inactive in that proof. Its evidence is separate
+from the legacy inventory below; retaining a policy does not count as migrating its host integration.
+
+Current native development is on `main` in [`foundation/`](foundation/README.md).
+Its 87-entry catalog is separate from the original Meteor policy inventory below;
+catalog size is not a count of fully verified Meteor ports. Current package, build
+and regression evidence is in `foundation/evidence/branding/`.
 
 The authoritative feature inventory is `crates/meteor-client/port-inventory.json`.
 It enumerates registered module classes and every Java source file from the supplied archive.
@@ -230,4 +240,4 @@ The existing Horizon and third-party files retain their license notices. Do not 
 Meteor-enabled distribution as MIT-only. Include corresponding source and applicable notices when
 distributing a combined build. Minecraft-derived resources remain local and outside source bundles.
 
-Flight interaction boundary: its individual movement, lifecycle and packet policies are implemented, but Tick.Post movement callbacks currently run in a fixed host order. Enabling Flight together with Step, ReverseStep, FastClimb, Spider or Parkour can therefore resolve competing velocity/yaw writes differently from Meteor's activation-ordered event subscriptions. This is a remaining dispatcher parity gap, not a claim of full combined-module parity; activation-ordered Post dispatch is the next cleanup after the 28-module checkpoint.
+Post-checkpoint 28 dispatcher change: Step, ReverseStep, FastClimb, Spider, Parkour, Flight, AutoClicker and Fullbright now receive Tick.Post in activation subscription order, including reactivation moving a callback to the end. Step deactivation restoration remains independent of active event dispatch. Core regressions verify competing Flight/Spider velocity writes and event snapshot behavior; the --post-order isolated runtime fixture is prepared but has not yet run against a rebuilt checkpoint. Immutable checkpoint 28 retains the earlier fixed host ordering.

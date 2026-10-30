@@ -1,0 +1,560 @@
+{
+  "schema": 1,
+  "kind": "standard-hnmod-four-module-movement-runtime",
+  "status": "pass",
+  "checks_passed": 101,
+  "checks_failed": 0,
+  "started_utc": "2026-10-30T14:33:41.700493+00:00",
+  "finished_utc": "2026-10-30T14:38:34.588550+00:00",
+  "package": {
+    "filename": "meteor-client-movement-migration-proof.hnmod",
+    "id": "meteor_client",
+    "version": "0.1.0-migration.3",
+    "sha256": "0062fdecefc1f530632cb69c28f8cab40629289bf6e55ace8e6fda0993dea34f"
+  },
+  "client_sha256": "dffe550cd9a9716a906ea6b07230d7c664cf4cc8d63ad373dd65cba898864443",
+  "control_sha256": "66798153f91d40246ced8440fcfe1ad10464874fcdb8d89fe93eed683347e626",
+  "runtime_source_sha256": "b8d89dc8ea0c3b6d71659c87689c5d52a3e88cc0e0ef382d4ad9e6bd05b94613",
+  "harnesses": {
+    "movement": {
+      "path": "tools/test_standard_movement.py",
+      "sha256": "60073db0bf58848b164a3ae96db991177439eac3376b5a3a4b516d5a3db398be"
+    },
+    "autojump": {
+      "path": "tools/test_standard_autojump.py",
+      "sha256": "e88a2cddb9174189836cd56ba232fd6dd153964141b76897e53bee9c57486385"
+    },
+    "zoom": {
+      "path": "tools/test_standard_zoom.py",
+      "sha256": "d03b8835075cdc3f25b8b655a91ec860851579a68a5061cdacb55ad74a543c8a"
+    }
+  },
+  "harnesses_unchanged_during_run": true,
+  "raw_report_sha256": "b9e0fbc4fd2c6f6c49796bcbd9eca9b4c764434817ce562a019999ce5a1ea019",
+  "checks": [
+    {
+      "name": "Combined candidate starts AirJump and HighJump disabled",
+      "passed": true
+    },
+    {
+      "name": "Generated test world is creative",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture fill succeeds: minecraft:stone",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture fill succeeds: minecraft:air",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "AutoJump source defaults are disabled Jump Always height0.25",
+      "passed": true
+    },
+    {
+      "name": "Disabled AutoJump leaves stationary player grounded",
+      "passed": true
+    },
+    {
+      "name": "zoom_regression_baseline mouse motion produces finite yaw",
+      "passed": true
+    },
+    {
+      "name": "Combined candidate preserves factor6 Zoom",
+      "passed": true
+    },
+    {
+      "name": "zoom_regression_enabled mouse motion produces finite yaw",
+      "passed": true
+    },
+    {
+      "name": "Combined candidate preserves actual Zoom yaw ratio1/3",
+      "passed": true
+    },
+    {
+      "name": "Combined candidate disables Zoom back to factor1",
+      "passed": true
+    },
+    {
+      "name": "zoom_regression_restored mouse motion produces finite yaw",
+      "passed": true
+    },
+    {
+      "name": "Combined candidate restores real mouse sensitivity",
+      "passed": true
+    },
+    {
+      "name": "Generated config persists source AutoJump defaults alongside Zoom",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Always Jump causes real airborne elevation above1block",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Walking predicate ignores a stationary player",
+      "passed": true
+    },
+    {
+      "name": "Walking predicate jumps while moving",
+      "passed": true
+    },
+    {
+      "name": "Walking fixture actually travels horizontally",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Sprinting predicate ignores stationary player",
+      "passed": true
+    },
+    {
+      "name": "Sprinting predicate ignores ordinary walking",
+      "passed": true
+    },
+    {
+      "name": "Ordinary-walking control did not sprint",
+      "passed": true
+    },
+    {
+      "name": "Sprinting fixture enters actual native sprint state",
+      "passed": true
+    },
+    {
+      "name": "Sprinting predicate jumps during actual sprint",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Sneak suppresses Always AutoJump after landing",
+      "passed": true
+    },
+    {
+      "name": "Sneak suppression uses actual held sneak input",
+      "passed": true
+    },
+    {
+      "name": "Releasing sneak permits Always jumps again",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "LowHop0.25 produces smaller real airborne rise",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Horizontal control remains on flat ground",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "LowHop0 causes no stationary elevation",
+      "passed": true
+    },
+    {
+      "name": "LowHop0 keeps walking height level",
+      "passed": true
+    },
+    {
+      "name": "LowHop0 permits continuing horizontal walking",
+      "passed": true
+    },
+    {
+      "name": "Invalid AutoJump setting is atomic: auto-jump velocity-height -1",
+      "passed": true
+    },
+    {
+      "name": "Invalid AutoJump setting is atomic: auto-jump velocity-height NaN",
+      "passed": true
+    },
+    {
+      "name": "Invalid AutoJump setting is atomic: auto-jump velocity-height inf",
+      "passed": true
+    },
+    {
+      "name": "Invalid AutoJump setting is atomic: auto-jump mode Nope",
+      "passed": true
+    },
+    {
+      "name": "Invalid AutoJump setting is atomic: auto-jump jump-if Nope",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Normal Jump still works after LowHop changes",
+      "passed": true
+    },
+    {
+      "name": "Disabling AutoJump restores stationary ground rest",
+      "passed": true
+    },
+    {
+      "name": "Final generated config restores disabled source AutoJump defaults",
+      "passed": true
+    },
+    {
+      "name": "Generated movement world has fall damage disabled",
+      "passed": true
+    },
+    {
+      "name": "Generated high-jump air room is cleared or already air",
+      "passed": true
+    },
+    {
+      "name": "AirJump tests use survival without creative flight",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "AirJump captures grounded activation block height",
+      "passed": true
+    },
+    {
+      "name": "Generated airborne fixture is actually off ground",
+      "passed": true
+    },
+    {
+      "name": "Unbound Space does not recapture AirJump height",
+      "passed": true
+    },
+    {
+      "name": "Rebound J triggers an actual airborne native jump",
+      "passed": true
+    },
+    {
+      "name": "J recaptures current actual airborne block height",
+      "passed": true
+    },
+    {
+      "name": "Generated airborne fixture is actually off ground",
+      "passed": true
+    },
+    {
+      "name": "Keyboard repeats do not recapture AirJump",
+      "passed": true
+    },
+    {
+      "name": "Airborne sneak press decrements captured level once",
+      "passed": true
+    },
+    {
+      "name": "Sneak repeats do not decrement AirJump",
+      "passed": true
+    },
+    {
+      "name": "Generated airborne fixture is actually off ground",
+      "passed": true
+    },
+    {
+      "name": "AirJump rejects jump presses while chat screen is open",
+      "passed": true
+    },
+    {
+      "name": "AirJump disable clears captured level",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "AirJump re-enable captures fresh current height",
+      "passed": true
+    },
+    {
+      "name": "Generated airborne fixture is actually off ground",
+      "passed": true
+    },
+    {
+      "name": "Held rebound J maintains captured block level",
+      "passed": true
+    },
+    {
+      "name": "AirJump settings persist in generated local JSON",
+      "passed": true
+    },
+    {
+      "name": "Manual jump tests use survival without creative flight",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Manual rebound J produces normal rise",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "HighJump2 raises manual native jump above ordinary",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "HighJump0 permits zero-height manual native jump",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "manual_highjump0_boost5 boost reaches native player",
+      "passed": true
+    },
+    {
+      "name": "Additive native JumpBoost survives HighJump multiplier0",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Tiny positive HighJump multiplier is not rejected or clamped",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Disabling HighJump restores ordinary measured rise",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Zero-power impulse fixture is genuinely sprinting",
+      "passed": true
+    },
+    {
+      "name": "HighJump0 retains measurable native sprint impulse",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "AutoJump real jump helper composes with HighJump2",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Generated airborne fixture is actually off ground",
+      "passed": true
+    },
+    {
+      "name": "AirJump rebound helper composes with HighJump2",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture reset is grounded",
+      "passed": true
+    },
+    {
+      "name": "Generated airborne fixture is actually off ground",
+      "passed": true
+    },
+    {
+      "name": "Generated fixture fill succeeds: minecraft:stone",
+      "passed": true
+    },
+    {
+      "name": "Lifecycle generated elevated platform is grounded",
+      "passed": true
+    },
+    {
+      "name": "Lifecycle setup has distinct retained activation level",
+      "passed": true
+    },
+    {
+      "name": "Generated world leave/rejoin refreshes AirJump activation height",
+      "passed": true
+    },
+    {
+      "name": "Graceful own-client shutdown exits0",
+      "passed": true
+    },
+    {
+      "name": "Exact frozen binaries remained unchanged",
+      "passed": true
+    },
+    {
+      "name": "Exact runtime harnesses remained unchanged",
+      "passed": true
+    },
+    {
+      "name": "Own movement and both inherited harness files stayed byte-immutable",
+      "passed": true
+    }
+  ],
+  "sampled_measurements": {
+    "manual_normal": {
+      "rise": 1.1767592750642422,
+      "min_y": 75.0,
+      "max_vy": 0.08307781780646721,
+      "max_horizontal_speed": 0.0,
+      "airborne": 4,
+      "count": 25
+    },
+    "manual_highjump2": {
+      "rise": 4.336672136423246,
+      "min_y": 75.0,
+      "max_vy": 0.5600739325650973,
+      "max_horizontal_speed": 0.0,
+      "airborne": 7,
+      "count": 25
+    },
+    "manual_highjump0": {
+      "rise": 0.0,
+      "min_y": 75.0,
+      "max_vy": -0.0784000015258789,
+      "max_horizontal_speed": 0.0,
+      "airborne": 0,
+      "count": 25
+    },
+    "manual_highjump0_boost5": {
+      "rise": 1.7042572585112907,
+      "min_y": 75.0,
+      "max_vy": 0.15686728844608228,
+      "max_horizontal_speed": 0.0,
+      "airborne": 4,
+      "count": 25
+    },
+    "manual_highjump_tiny": {
+      "rise": 4.200003900223237e-09,
+      "min_y": 75.0000000042,
+      "max_vy": -0.0784000015258789,
+      "max_horizontal_speed": 0.0,
+      "airborne": 0,
+      "count": 25
+    },
+    "manual_restored": {
+      "rise": 1.252203340253729,
+      "min_y": 75.0,
+      "max_vy": 0.16477328182606651,
+      "max_horizontal_speed": 0.0,
+      "airborne": 4,
+      "count": 25
+    },
+    "airjump_maintain_rebound_j": {
+      "rise": 20.2075042287737,
+      "min_y": 93.9109206292064,
+      "max_vy": 0.33319999363422365,
+      "max_horizontal_speed": 0.0,
+      "airborne": 36,
+      "count": 36
+    }
+  },
+  "world_lifecycle": {
+    "verified": true,
+    "world": "MeteorStandardZoomTest",
+    "old_level": 92,
+    "new_level": 80
+  },
+  "native_tail_runtime_scope": {
+    "statistics": "generated native saved jump-counter snapshots collected when available; deltas are observational, not client-wrapper attribution",
+    "exhaustion": "not exposed; food/saturation is insufficient for exact per-jump amounts",
+    "needs_sync": "not exposed",
+    "exactly_once": "source-path audit and separate native identity tests; not dynamic count proof"
+  },
+  "shutdown": {
+    "graceful_quit_requested": true,
+    "forced_shutdown": false,
+    "exit_code": 0,
+    "frozen_binaries_unchanged": true
+  },
+  "isolation": {
+    "fresh_generated_singleplayer_world": true,
+    "fresh_uuid_scratch_home": true,
+    "existing_worlds": false,
+    "real_accounts": false,
+    "multiplayer": false,
+    "fall_damage_disabled_only_in_fresh_fixture": true,
+    "isolated_home_variables": [
+      "HORIZON_HOME",
+      "HORIZON_LAUNCHER_HOME",
+      "XDG_DATA_HOME",
+      "XDG_CONFIG_HOME",
+      "HORIZON_LAUNCHER_TRASH",
+      "HORIZON_LAUNCHER_CLIPBOARD",
+      "HORIZON_LAUNCHER_DESKTOP",
+      "TEMP",
+      "TMP"
+    ],
+    "self_update_disabled": true,
+    "audio_disabled": true
+  },
+  "scope": [
+    "Four adapter modules only: Zoom, AutoJump, AirJump and HighJump. Other 26 retained core policies are inactive.",
+    "The run includes inherited AutoJump/Zoom regression checks and new AirJump/HighJump checks.",
+    "Actual leave/rejoin refreshed AirJump activation level from 92 to 80.",
+    "The linked client came from official Mixins R5 staging plus pinned Cargo; stock launcher end-to-end build/install remains unverified."
+  ],
+  "limitations": [
+    "Sampled heights/velocities are observations, not exact mathematical apex values.",
+    "No direct control exposes per-jump needs_sync/exhaustion; saved native jump counters are collected separately when available without client-wrapper attribution.",
+    "Continuing horizontal motion and native identity tests do not prove exact statistic/exhaustion counts.",
+    "Source AutoJump has no independently invented GUI guard.",
+    "Only generated worlds/settings and this process's private control socket are used.",
+    "AirJump exercises rebound keyboard J; mouse jump bindings are not exercised.",
+    "Per-jump exhaustion, needs_sync and exact wrapper-tail counts remain dynamically unverified.",
+    "Mouse jump bindings were not tested; the rebound keyboard J was exercised.",
+    "No exact-apex, complete per-module or full Meteor parity claim is made."
+  ],
+  "verification_history": {
+    "earlier_failed_attempt": "The harness sampled a falling re-enable position too early.",
+    "correction": "Only the harness changed: a grounded reset and exact activation-height check strengthened the fixture, with fall damage disabled only in the fresh fixture.",
+    "source_or_client_changed_for_correction": false,
+    "accepted_result": "This final frozen 101-check successful run."
+  }
+}
