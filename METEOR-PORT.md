@@ -8,6 +8,10 @@ a standard `.hnmod` build. No standard installable Meteor bundle has been releas
 The objective remains full native behavior, including modules, GUI/HUD, configuration, commands,
 utilities, integrations and lifecycle. Java JARs are reference artifacts, not executable plugins here.
 
+The [standard native proof](native/README.md) retains 30 module policies and currently connects
+only Zoom through upstream hooks. Its verification evidence is separate from the legacy inventory
+below. Retaining a policy does not count as migrating its host integration or gameplay tests.
+
 The authoritative feature inventory is `crates/meteor-client/port-inventory.json`.
 It enumerates registered module classes and every Java source file from the supplied archive.
 Missing implementations must remain explicitly missing; empty module registrations do not count as ports.

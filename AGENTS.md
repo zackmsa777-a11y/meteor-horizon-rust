@@ -9,8 +9,11 @@ source tree is included for native integration and builds.
   content mods or extend their custom launcher protocol as the new distribution architecture.
 - Use GPT-6.1 Sol with high reasoning for delegated agents unless the user changes this preference.
   Do not switch agents to Astra.
-- Put mod policies in `crates/meteor-client` and host operations in the corresponding
-  `meteor*.rs` adapters. Do not register empty modules or claim full parity from partial checks.
+- Develop the standard adapter in `native/bundle/mixins/meteor_client/`, with reusable policies
+  in its `core/` crate and host operations in support modules and injection helpers. Generate
+  stages using upstream Mixins; do not edit pristine or generated host source manually.
+  `crates/meteor-client` and the host's `meteor*.rs` files preserve the legacy prototype.
+  Do not register empty modules or claim full parity from partial checks.
 - Preserve applicable Meteor GPL-3.0-only, Horizon MIT, Starscript MIT and third-party notices.
 - Never commit Minecraft JARs/assets, decompiled game sources, prepared resources, credentials,
   accounts or player worlds. Run `python tools/check_public_tree.py --history` before pushing.

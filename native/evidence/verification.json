@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "Zoom-only standard native source proof; plan/apply/core tests/host typecheck passed; game runtime not tested",
+  "status": "Zoom-only standard native proof; source checks, linked build and 32 isolated runtime checks passed; full Meteor/Zoom parity is not claimed",
   "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
   "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12",
   "package_id": "meteor_client",
@@ -132,7 +132,24 @@
       "scope": "Full staged host typecheck; no linked game executable or runtime result claimed"
     },
     "game_runtime": {
-      "status": "not tested"
+      "status": "pass",
+      "evidence": "evidence/runtime-zoom.json",
+      "checks_passed": 32,
+      "checks_failed": 0,
+      "exit_code": 0,
+      "native_mods_row_registered": true,
+      "client_sha256": "83813315f0fb8ac1fc4f1b5d5dc563aa9f195688feb9c7abaf22cc1f5c71bfab",
+      "control_sha256": "a32f27d371eb24179c0d2f64b076156e46ab85b881f6204272fc3f16a401e7aa",
+      "raw_report_sha256": "a68f5103ed18f40870af02e92d201a5df5759d037521234088cdd114951127fa",
+      "scope": "Fresh generated singleplayer world; tested Zoom proof only. No full Zoom or Meteor parity claim."
+    },
+    "linked_build": {
+      "status": "pass",
+      "method": "Official horizon-mixins R2 stage plus pinned Cargo",
+      "client_sha256": "83813315f0fb8ac1fc4f1b5d5dc563aa9f195688feb9c7abaf22cc1f5c71bfab",
+      "control_sha256": "a32f27d371eb24179c0d2f64b076156e46ab85b881f6204272fc3f16a401e7aa",
+      "stock_launcher_end_to_end_build_install": "not tested",
+      "scope": "Linked executables used by the successful isolated runtime run; this is separate from the earlier host typecheck."
     }
   },
   "limits": [
@@ -145,6 +162,11 @@
     "sha256": "4c8d2f238f8c9c184f96228f6c966d9a3945b07dffe65169fe438cf59fe70de3",
     "bytes": 144677,
     "entries": 85,
-    "scope": "Zoom-only migration proof; not a complete or runtime-verified Meteor release"
+    "scope": "Source archive for the Zoom migration proof; linked client passed 32 isolated checks. Full Meteor/Zoom parity and stock launcher end-to-end build/install remain unverified."
+  },
+  "verification_history": {
+    "pre_runtime_evidence": "evidence/pre-runtime-verification.json",
+    "earlier_phase_preserved": true,
+    "runtime_evidence": "evidence/runtime-zoom.json"
   }
 }

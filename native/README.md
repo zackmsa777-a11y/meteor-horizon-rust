@@ -47,11 +47,29 @@ retained core test suite and four exact-source window lifecycle tests passed.
 The corrected R2 stage passed a full `horizon-client` binary `cargo check` in
 22.60 seconds. Seven packaging checks passed, and the final proof archive passed
 the stock native parser. The current runtime, all eight helpers, 70 core payloads
-and four data payloads match that R2 stage exactly. Game runtime is **not tested**.
+and four data payloads match that R2 stage exactly.
+
+A linked client from the official Mixins stage and pinned Cargo then passed
+**32 isolated runtime checks**. These include actual mouse sensitivity, Zoom and
+restoration, wheel handling, generated configuration, invalid input handling and
+registration in the real Options > Mods page. The client exited gracefully with
+code 0. Four screenshots were visually reviewed: normal and restored wall framing
+match, the zoomed view is narrower, and the native mod row is visible.
+See the scoped [runtime evidence](evidence/runtime-zoom.json).
 
 The local source proof archive is `meteor-client-zoom-migration-proof.hnmod`,
 SHA-256 `4c8d2f238f8c9c184f96228f6c966d9a3945b07dffe65169fe438cf59fe70de3`.
-It is not a complete or runtime-verified Meteor release.
+It is a verified Zoom migration proof, not a complete Meteor release or a claim
+of full Zoom parity. The tested client SHA-256 is
+`83813315f0fb8ac1fc4f1b5d5dc563aa9f195688feb9c7abaf22cc1f5c71bfab`;
+the control CLI SHA-256 is
+`a32f27d371eb24179c0d2f64b076156e46ab85b881f6204272fc3f16a401e7aa`.
+
+This run built and tested the official Mixins stage with pinned Cargo. It did not
+exercise the stock launcher's complete build/install flow. An earlier attempt
+stopped in the harness while the GUI was paused; the harness wait was corrected,
+and the successful 32-check run used the same game and bundle. The original
+[pre-runtime evidence](evidence/pre-runtime-verification.json) remains separate.
 
 The stock parser source used for validation was compared byte for byte with the
 original pinned Horizon ZIP. Its ordinary content parser rejects this native
@@ -90,11 +108,19 @@ needed on the first validator build; `--offline` requires an existing Cargo cach
 For a pinned toolchain, set absolute `RUSTC`/`RUSTDOC` and pass its Cargo executable
 with `--cargo`; this avoids dependency-local rustup overrides changing compilers.
 
-When runtime validation is ready, the ordinary launcher accepts `native/bundle`
-as an unpacked native bundle, using its existing native-build trust flow and the
-player's own prepared base version. No ready-to-play `.hnmod` release is claimed
-here. Automated game tests use fresh isolated homes and generated singleplayer
-fixtures; existing worlds, accounts and multiplayer are excluded.
+The tested runtime harness takes explicit client, control CLI, prepared-resource
+and scratch paths. It creates fresh isolated homes and a generated singleplayer
+fixture; existing worlds, accounts and multiplayer are excluded. Run it only
+after reviewing and building the native source:
+
+```sh
+python native/tools/test_standard_zoom.py --client-binary PROOF_CLIENT --control-binary CONTROL_CLI --resources PREPARED_RESOURCES --scratch-root SCRATCH/runtime
+```
+
+The ordinary launcher accepts `native/bundle` as an unpacked native bundle through
+its existing trust flow and the player's own prepared base version. That complete
+launcher flow remains untested here. This repository does not include a ready-to-play
+game executable or prepared Minecraft resources.
 
 ## Licenses
 

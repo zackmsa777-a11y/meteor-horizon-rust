@@ -1,7 +1,7 @@
 > **Integration migration branch:** [`native/`](native/) contains the first standard
 > `.hnmod` / horizon-mixins proof. Its retained core has 30 module policies, with only
-> Zoom connected so far. Package validation, core tests and host compilation pass;
-> game runtime verification is pending. The legacy checkpoint is preserved on `main`.
+> Zoom connected so far. Package validation, core tests, host compilation and 32 isolated
+> Zoom runtime checks pass. The legacy checkpoint is preserved on `main`.
 
 # Meteor mod for Horizon
 
