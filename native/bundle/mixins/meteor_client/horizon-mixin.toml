@@ -1,6 +1,6 @@
 [mod]
 id = "meteor_client"
-version = "0.1.0-migration.3"
+version = "0.1.0-migration.4"
 priority = 100
 
 [compatibility]
@@ -160,4 +160,41 @@ kind = "HEAD"
 cancellable = true
 helper = "highjump_jump_head.rs"
 bindings = [{name="world",ty="&mut crate::motion::MotionWorld<'_, '_, '_>",value="&mut *self"}]
+
+# BreakDelay: mouse presses and the window client's block-breaking boundary.
+[[injection]]
+id = "break_window_mouse"
+target = "horizon_client::game::<Game<'_> as ApplicationHandler>::window_event"
+kind = "HEAD"
+helper = "break_window_mouse.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "event", ty = "&winit::event::WindowEvent", value = "&event" },
+]
+
+[[injection]]
+id = "break_control_mouse"
+target = "horizon_client::game::Game<'_>::play_mouse"
+kind = "HEAD"
+helper = "break_control_mouse.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "pressed", ty = "bool", value = "pressed" },
+]
+
+[[module]]
+id = "break_remote_state"
+file = "crates/horizon-client/src/game/remote.rs"
+name = "meteor_break_remote"
+source = "game_remote_break.rs"
+
+[[injection]]
+id = "break_remote_mining"
+target = "horizon_client::game::remote::Game<'_>::remote_mining"
+kind = "HEAD"
+helper = "break_remote_mining.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "start", ty = "bool", value = "start" },
+]
 

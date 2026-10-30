@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "meteor_client",
-  "version": "0.1.0-migration.3",
+  "version": "0.1.0-migration.4",
   "game": "26.3",
   "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
   "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12"

@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
-// Native Meteor migration proof. Reuses the existing Meteor-derived Zoom, AutoJump, AirJump and HighJump core.
+// Native Meteor migration proof. Reuses the existing Meteor-derived Zoom, AutoJump, AirJump, HighJump, AutoRespawn and BreakDelay core.
 
-// This candidate integrates Zoom, AutoJump, AirJump and HighJump only; other retained core modules are inactive.
+// This candidate integrates Zoom, AutoJump, AirJump, HighJump, AutoRespawn and BreakDelay only; other retained core modules are inactive.
 
 use super::{
-    Game,
+    Game, Screen,
     native_hooks::{NativeMod, NativeZoom},
 };
 
 use meteor_client::modules::{
-    air_jump, auto_jump, high_jump,
+    air_jump, auto_jump, auto_respawn, break_delay, high_jump,
     zoom::{Zoom, ZoomSettings},
 };
 
@@ -27,12 +27,13 @@ use std::{
 };
 
 use winit::window::{Window, WindowId};
+use winit::event::{ElementState, WindowEvent};
 
 const MOD_ID: &str = "meteor_client";
 
 const COMMAND: &str = "meteor-migration";
 
-const HELP: &str = "Zoom+AutoJump+AirJump+HighJump .hnmod migration candidate: /meteor-migration status | zoom toggle | zoom factor NUMBER | zoom smooth true|false | zoom scroll-sensitivity NUMBER | auto-jump toggle | auto-jump mode Jump|LowHop | auto-jump jump-if Always|Walking|Sprinting | auto-jump velocity-height NUMBER | air-jump toggle | air-jump maintain-level true|false | high-jump toggle | high-jump jump-multiplier NUMBER. AirJump keyboard presses use configured jump/sneak bindings. Native API caps visible Zoom at 10. Other retained Meteor modules are not integrated.";
+const HELP: &str = "Zoom+AutoJump+AirJump+HighJump+AutoRespawn+BreakDelay .hnmod migration candidate: /meteor-migration status | zoom toggle | zoom factor NUMBER | zoom smooth true|false | zoom scroll-sensitivity NUMBER | auto-jump toggle | auto-jump mode Jump|LowHop | auto-jump jump-if Always|Walking|Sprinting | auto-jump velocity-height NUMBER | air-jump toggle | air-jump maintain-level true|false | high-jump toggle | high-jump jump-multiplier NUMBER | auto-respawn toggle | break-delay toggle | break-delay cooldown NUMBER | break-delay no-insta-break true|false. AirJump keyboard presses use configured jump/sneak bindings. Native API caps visible Zoom at 10. Other retained Meteor modules are not integrated.";
 
 #[derive(serde::Serialize, serde::Deserialize)]
 #[serde(default)]
@@ -49,6 +50,9 @@ struct Saved {
     air_jump: air_jump::Settings,
     high_jump_enabled: bool,
     high_jump: high_jump::Settings,
+    auto_respawn_enabled: bool,
+    break_delay_enabled: bool,
+    break_delay: break_delay::Settings,
 }
 
 impl Default for Saved {
@@ -63,6 +67,9 @@ impl Default for Saved {
             air_jump: air_jump::Settings::default(),
             high_jump_enabled: false,
             high_jump: high_jump::Settings::default(),
+            auto_respawn_enabled: false,
+            break_delay_enabled: false,
+            break_delay: break_delay::Settings::default(),
         }
     }
 }
@@ -75,8 +82,17 @@ impl Saved {
         self.zoom.validate()?;
         self.auto_jump.validate()?;
         self.high_jump.validate()?;
+        self.break_delay.validate()?;
         Ok(())
     }
+}
+
+/// What the previous `remote_mining` call started from, so its vanilla `5` cooldown
+/// write can be replaced at the next call.
+struct BreakPending {
+    delay: u32,
+    start: bool,
+    creative: bool,
 }
 
 struct Runtime {
@@ -87,6 +103,9 @@ struct Runtime {
     movement_subscriptions: Subscriptions,
     auto_jump_subscribed: bool,
     air_jump_subscribed: bool,
+    break_delay: break_delay::State,
+    break_pending: Option<BreakPending>,
+    auto_respawn_sent: bool,
 
     in_world: bool,
 
@@ -129,6 +148,9 @@ impl Runtime {
             movement_subscriptions: Subscriptions::default(),
             auto_jump_subscribed: false,
             air_jump_subscribed: false,
+            break_delay: break_delay::State::default(),
+            break_pending: None,
+            auto_respawn_sent: false,
             in_world: false,
             path,
             save_allowed,
@@ -146,6 +168,8 @@ impl Runtime {
             self.zoom.activate(&self.saved.zoom);
         } else if !in_world {
             self.zoom.stop();
+            self.break_pending = None;
+            self.auto_respawn_sent = false;
         }
     }
 
@@ -191,7 +215,7 @@ impl Runtime {
 
     fn status(&self) -> String {
         format!(
-            "Zoom+AutoJump+AirJump+HighJump .hnmod migration candidate: Zoom {}; requested {}, current {:.3} (native API clamps visible factor to 10); smoothing {}; AutoJump {} ({:?}, {:?}, LowHop height {}); AirJump {} (maintain-level {}, captured level {:?}); HighJump {} (multiplier {}); Pre order {:?}; other retained modules are not integrated. Zoom cinematic/hide-HUD/show-hands are not wired in this proof.",
+            "Zoom+AutoJump+AirJump+HighJump .hnmod migration candidate: Zoom {}; requested {}, current {:.3} (native API clamps visible factor to 10); smoothing {}; AutoJump {} ({:?}, {:?}, LowHop height {}); AirJump {} (maintain-level {}, captured level {:?}); HighJump {} (multiplier {}); Pre order {:?}; AutoRespawn {}; BreakDelay {} (cooldown {}, no-insta-break {}); other retained modules are not integrated. Zoom cinematic/hide-HUD/show-hands are not wired in this proof.",
             if self.saved.enabled {
                 "enabled"
             } else {
@@ -225,7 +249,11 @@ impl Runtime {
                 .entries()
                 .iter()
                 .map(|entry| entry.id.as_str())
-                .collect::<Vec<_>>()
+                .collect::<Vec<_>>(),
+            if self.saved.auto_respawn_enabled { "enabled" } else { "disabled" },
+            if self.saved.break_delay_enabled { "enabled" } else { "disabled" },
+            self.saved.break_delay.cooldown,
+            self.saved.break_delay.no_insta_break
         )
     }
 }
@@ -523,6 +551,122 @@ pub(super) fn on_tick(game: &mut Game<'_>) {
         runtime.world(in_world);
         runtime.zoom.tick();
     }
+    let dead = in_world && game.screen == Screen::Dead;
+    let request = {
+        let mut runtime = runtime.borrow_mut();
+        if !dead {
+            runtime.auto_respawn_sent = false;
+        }
+        let request = dead && runtime.saved.auto_respawn_enabled && !runtime.auto_respawn_sent;
+        runtime.auto_respawn_sent |= request;
+        request
+    };
+    if request {
+        auto_respawn_if_dead(game);
+    }
+}
+
+/// The named tick sees the death screen the tick after it opens, once per death.
+/// `respawn_player` is the host operation the screen's own button uses, for a
+/// singleplayer window (a server session) as well as a local world.
+fn auto_respawn_if_dead(game: &mut Game<'_>) {
+    for effect in auto_respawn::open_screen(true) {
+        match effect {
+            // The separate Meteor Waypoints module is not migrated; its source
+            // defaults create no waypoint in a fresh client.
+            auto_respawn::Effect::AddDeathWaypoint => {}
+            auto_respawn::Effect::Respawn => {
+                if let Err(error) = game.respawn_player() {
+                    log::error!("Meteor AutoRespawn could not respawn: {error}");
+                    return;
+                }
+            }
+            auto_respawn::Effect::CancelScreen => return,
+        }
+    }
+}
+
+fn break_delay_runtime(game: &Game<'_>) -> Option<Rc<RefCell<Runtime>>> {
+    if !game.native_window() || !game.native_on(MOD_ID) || game.player.is_none() {
+        return None;
+    }
+    runtime(game)
+}
+
+pub(super) fn on_window_mouse(game: &mut Game<'_>, event: &WindowEvent) {
+    if matches!(event, WindowEvent::MouseInput { state: ElementState::Pressed, .. }) {
+        on_mouse_press(game);
+    }
+}
+
+pub(super) fn on_control_mouse(game: &mut Game<'_>, pressed: bool) {
+    if pressed {
+        on_mouse_press(game);
+    }
+}
+
+fn on_mouse_press(game: &mut Game<'_>) {
+    let Some(runtime) = break_delay_runtime(game) else { return };
+    let mut runtime = runtime.borrow_mut();
+    if !runtime.saved.break_delay_enabled {
+        return;
+    }
+    let settings = runtime.saved.break_delay.clone();
+    runtime.break_delay.mouse_click(&settings, true);
+}
+
+/// Source BreakDelay replaces the vanilla `5` that `MultiPlayerGameMode` writes at a
+/// creative start/continue and at a completed survival break, and prevents a
+/// continued survival break from finishing when no-insta-break is set. The window
+/// client's `remote_mining` is that class in a singleplayer session; this runs
+/// at the head of every call.
+pub(super) fn on_remote_mining(game: &mut Game<'_>, start: bool) {
+    let Some(runtime) = break_delay_runtime(game) else { return };
+    let (enabled, settings, pending) = {
+        let mut runtime = runtime.borrow_mut();
+        let pending = runtime.break_pending.take();
+        (runtime.saved.break_delay_enabled, runtime.saved.break_delay.clone(), pending)
+    };
+    if !enabled || game.remote.is_none() {
+        return;
+    }
+    // The previous call's write: a creative start always writes it, a continue only
+    // from an expired delay (otherwise it only decrements), a survival start never.
+    if let Some(pending) = pending {
+        let wrote = if pending.start { pending.creative } else { pending.delay == 0 };
+        if wrote && super::remote::meteor_break_remote::delay(game) == 5 {
+            let delay = runtime.borrow_mut().break_delay.cooldown(&settings);
+            super::remote::meteor_break_remote::set_delay(game, delay as u32);
+        }
+    }
+    if !start && !game.creative && super::remote::meteor_break_remote::delay(game) == 0
+        && let Some((pos, done)) = super::remote::meteor_break_remote::destroying(game)
+        && game.pick().is_some_and(|hit| hit.pos == pos)
+        && super::remote::meteor_break_remote::same_item(game, &game.main_hand_key())
+    {
+        let state = game.world.block(pos[0], pos[1], pos[2]);
+        if !game.res.facts().is_air(state) {
+            let progress = if game.res.facts().get(state).hardness == 0.0 {
+                1.0
+            } else {
+                game.destroy_progress(pos)
+            };
+            let (next, delay) =
+                runtime.borrow_mut().break_delay.continue_progress(&settings, done + progress);
+            if let Some(delay) = delay {
+                // The call decrements a positive delay and returns, so the block
+                // does not finish this tick and the delay is the configured one.
+                super::remote::meteor_break_remote::set_done(game, next);
+                super::remote::meteor_break_remote::set_delay(game, (delay as u32).saturating_add(1));
+                return;
+            }
+        }
+    }
+    runtime.borrow_mut().break_pending = Some(BreakPending {
+        delay: super::remote::meteor_break_remote::delay(game),
+        start,
+        creative: game.creative,
+    });
 }
 
 pub(super) fn on_zoom(game: &Game<'_>, output: &mut Option<NativeZoom>) {
@@ -677,6 +821,22 @@ pub(super) fn on_command(game: &mut Game<'_>, command: &str, ran: &mut bool) {
                     settings.validate()?;
                     runtime.saved.high_jump = settings;
                 }
+                ["auto-respawn", "toggle"] => {
+                    runtime.saved.auto_respawn_enabled = !runtime.saved.auto_respawn_enabled;
+                }
+                ["break-delay", "toggle"] => {
+                    runtime.saved.break_delay_enabled = !runtime.saved.break_delay_enabled;
+                }
+                ["break-delay", "cooldown", value] => {
+                    let mut settings = runtime.saved.break_delay.clone();
+                    settings.cooldown = value.parse().map_err(|_| "Expected a nonnegative BreakDelay cooldown")?;
+                    settings.validate()?;
+                    runtime.saved.break_delay = settings;
+                }
+                ["break-delay", "no-insta-break", value] => {
+                    runtime.saved.break_delay.no_insta_break =
+                        value.parse().map_err(|_| "Expected true or false")?;
+                }
                 _ => return Err(HELP.into()),
             }
         }
@@ -703,7 +863,7 @@ pub(super) fn on_mods(_game: &mut Game<'_>, mods: &mut Vec<NativeMod>) {
         return;
     }
 
-    mods.push(NativeMod {id:MOD_ID.into(),title:"Meteor Rust - Zoom+AutoJump+AirJump+HighJump migration candidate".into(),description:"Normal .hnmod candidate using the existing Meteor Rust core. Zoom, AutoJump, AirJump and HighJump only; other retained modules are inactive. HighJump uses current native actor identity, source block factor and additive boost/zero-power sequencing. Movement integration uses ordered Pre and real native jump paths. Native API caps visible Zoom at 10. Runtime validation pending.".into(),keys:Vec::new()});
+    mods.push(NativeMod {id:MOD_ID.into(),title:"Meteor Rust - Zoom+AutoJump+AirJump+HighJump+AutoRespawn+BreakDelay migration candidate".into(),description:"Normal .hnmod candidate using the existing Meteor Rust core. Zoom, AutoJump, AirJump, HighJump, AutoRespawn and BreakDelay only; other retained modules are inactive. HighJump uses current native actor identity, source block factor and additive boost/zero-power sequencing. Movement integration uses ordered Pre and real native jump paths. AutoRespawn reuses the host respawn operation from the named tick; BreakDelay adjusts the host block-breaking cooldown at the interaction boundaries. Native API caps visible Zoom at 10. Runtime validation pending.".into(),keys:Vec::new()});
 }
 
 pub(super) fn on_settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<String>) {
@@ -774,6 +934,10 @@ pub(super) fn on_settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<S
                 "HighJump multiplier: {}",
                 runtime.saved.high_jump.jump_multiplier
             ),
+            format!("AutoRespawn: {}", if runtime.saved.auto_respawn_enabled { "enabled" } else { "disabled" }),
+            format!("BreakDelay: {}", if runtime.saved.break_delay_enabled { "enabled" } else { "disabled" }),
+            format!("BreakDelay cooldown: {}", runtime.saved.break_delay.cooldown),
+            format!("BreakDelay no-insta-break: {}", runtime.saved.break_delay.no_insta_break),
         ]
     };
 
@@ -834,6 +998,13 @@ pub(super) fn on_settings_click(game: &mut Game<'_>, mod_id: &str, button: usize
                     .find(|value| *value > factor)
                     .unwrap_or(0.0);
             }
+            11 => runtime.saved.auto_respawn_enabled = !runtime.saved.auto_respawn_enabled,
+            12 => runtime.saved.break_delay_enabled = !runtime.saved.break_delay_enabled,
+            13 => {
+                let current = runtime.saved.break_delay.cooldown;
+                runtime.saved.break_delay.cooldown = if current >= 5 { 0 } else { current + 1 };
+            }
+            14 => runtime.saved.break_delay.no_insta_break = !runtime.saved.break_delay.no_insta_break,
             _ => return,
         }
     }
