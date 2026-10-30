@@ -1,7 +1,8 @@
 # Meteor mod for Horizon
 
 > **Installation status:** migration to the standard Horizon `.hnmod` / `horizon-mixins`
-> integration is in progress. A standard installable Meteor `.hnmod` is not released yet.
+> integration is in progress. The [experimental standard proof](https://github.com/zackmsa777-a11y/meteor-horizon-rust/tree/hnmod-migration/native)
+> connects Zoom + AutoJump; the remaining modules and GUI/HUD are still being migrated.
 > The existing `.hmod` is a legacy source-patch prototype for a custom build path. It cannot
 > be loaded through Horizon's ordinary content Mods menu; renaming it will not convert it.
 
@@ -13,8 +14,9 @@ on the Horizon adapter, state handling and packaging. The repository still inclu
 Horizon source snapshot used to reproduce the verified legacy prototype; attribution is retained below.
 
 Follow the [standard `.hnmod` migration branch](https://github.com/zackmsa777-a11y/meteor-horizon-rust/tree/hnmod-migration/native)
-for the current native bundle. Its first proof connects Zoom; the remaining retained modules
-are still being migrated. This branch preserves the verified legacy checkpoint.
+for the current native bundle. It connects Zoom + AutoJump and passed 50 isolated checks;
+all 30 core policies are retained, with the other 28 inactive in that proof.
+This branch preserves the verified legacy checkpoint.
 
 [Legacy prototype package — custom build path only](packages/meteor-client-native-28-module.hmod) ·
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
