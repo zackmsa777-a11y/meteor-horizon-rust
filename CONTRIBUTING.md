@@ -22,6 +22,9 @@ Open standard native integration PRs against **`hnmod-migration`**. The current 
 
 - **AutoRespawn and BreakDelay:** reserved for a separate contributor's planned PR.
 - **AirJump and HighJump:** integrated by this team in verified migration.3.
+- **RightShift GUI and basic FPS/coordinates HUD:** active work by this team for the four
+  integrated modules (Zoom, AutoJump, AirJump and HighJump). AutoRespawn/BreakDelay host
+  integration remains reserved; coordinate shared runtime/manifest edits before rebasing.
 
 Check this allocation and existing PRs before starting a module. Update the reservation
 when work is handed off or merged so that parallel contributions remain clear.
