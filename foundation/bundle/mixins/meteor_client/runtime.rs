@@ -29,6 +29,14 @@ pub(crate) const MENU_KEY: &str = "menu";
 pub(crate) const MENU_DEFAULT: &str = "key.keyboard.right.shift";
 // Accent color.
 pub(super) const ACCENT: u32 = 0xFFB020;
+// The module that opens the click GUI and holds its appearance settings.
+const CLICK_GUI: &str = "ClickGUI";
+const GUI_ACCENT_NAMES: &[&str] = &[
+    "Orange", "Red", "Green", "Blue", "Purple", "Cyan", "Pink", "White",
+];
+const GUI_ACCENTS: [u32; 8] = [
+    ACCENT, 0xFF5555, 0x55DD55, 0x4D9FFF, 0xB77DFF, 0x40D9E0, 0xFF77B7, 0xFFFFFF,
+];
 
 // ---------------------------------------------------------------- modules
 
@@ -39,14 +47,16 @@ pub(super) enum Category {
     Player,
     Render,
     World,
+    Client,
 }
 
-const CATEGORIES: [Category; 5] = [
+const CATEGORIES: [Category; 6] = [
     Category::Combat,
     Category::Movement,
     Category::Player,
     Category::Render,
     Category::World,
+    Category::Client,
 ];
 
 impl Category {
@@ -57,6 +67,7 @@ impl Category {
             Category::Player => "Player",
             Category::Render => "Render",
             Category::World => "World",
+            Category::Client => "Client",
         }
     }
 }
@@ -418,6 +429,14 @@ pub(super) fn defaults() -> Vec<Module> {
     v.extend(super::meteor_horizon_render::defaults());
     v.extend(super::meteor_horizon_player::defaults());
     v.extend(super::meteor_horizon_world::defaults());
+    v.push(
+        Module::new(CLICK_GUI, Client, "Opens the click GUI. Right click for its look.")
+            .pick("Accent Color", GUI_ACCENT_NAMES)
+            .num("Background Opacity", 100.0, 0.0, 100.0, 5.0)
+            .num("Panel Width", f64::from(PANEL_W), f64::from(PANEL_MIN_W), 140.0, 2.0)
+            .num("GUI Scale", 1.0, 0.5, 2.0, 0.25)
+            .bool("Background Dim", true),
+    );
     v
 }
 
@@ -634,7 +653,7 @@ impl State {
                 continue;
             };
             match field {
-                "on" => m.on = v == "true",
+                "on" => m.on = v == "true" && m.name != CLICK_GUI,
                 "key" => m.key = (v != "none" && !v.is_empty()).then(|| v.to_owned()),
                 _ => {
                     if let Some(s) = m.settings.iter_mut().find(|s| norm(s.name) == field) {
@@ -1221,6 +1240,11 @@ pub(super) fn click(game: &mut Game<'_>, button: usize) {
 }
 
 pub(super) fn toggle(game: &mut Game<'_>, i: usize, announce: bool) {
+    // Activating ClickGUI opens the GUI; the module itself never stays on.
+    if with(|s| s.modules[i].name == CLICK_GUI) {
+        open_gui(game);
+        return;
+    }
     let (name, on) = with(|s| {
         let m = &mut s.modules[i];
         m.on = !m.on;
@@ -3882,7 +3906,9 @@ pub(super) struct Panel {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub(super) enum Drag {
     Panel(usize, f32, f32),
-    Slider(usize, usize),
+    // The row and scale at the press: a setting that resizes the GUI must not
+    // move the slider's own mapping under the pointer.
+    Slider(usize, usize, [f32; 4], f32),
 }
 
 #[derive(Clone, Debug)]
@@ -3897,6 +3923,8 @@ pub(super) struct Gui {
     // The height of the GUI the panels last drew in.
     view_h: f32,
     view_w: f32,
+    // The panel width the positions were last laid out for (0 before the first).
+    laid_w: f32,
     selected: usize,
     // Typed letters: only the modules whose names contain them show.
     search: String,
@@ -3919,21 +3947,93 @@ impl Default for Gui {
             drag: None,
             view_h: 240.0,
             view_w: 427.0,
+            laid_w: 0.0,
             selected: 0,
             search: String::new(),
         }
     }
 }
 
-// Five panels fit a 427-pixel-wide GUI (1280 by 720 at scale 3).
 const PANEL_W: f32 = 82.0;
+const PANEL_MIN_W: f32 = 70.0;
+const PANEL_GAP: f32 = 3.0;
 const HEAD_H: f32 = 13.0;
 const ROW_H: f32 = 11.0;
-const NARROW_W: f32 = 430.0;
 const BODY_Y: f32 = 45.0;
 
+// The Panel Width setting, narrowed as far as the minimum so a row of panels fits.
+fn panel_w(s: &State) -> f32 {
+    let fit = (s.gui.view_w - 2.0) / CATEGORIES.len() as f32 - PANEL_GAP;
+    let wanted = s.module(CLICK_GUI).map_or(PANEL_W, |m| m.n("Panel Width") as f32);
+    wanted.min(fit).max(PANEL_MIN_W)
+}
+
+fn gui_scale(s: &State) -> f32 {
+    s.module(CLICK_GUI).map_or(1.0, |m| m.n("GUI Scale") as f32)
+}
+
+fn gui_accent(s: &State) -> u32 {
+    let picked = s.module(CLICK_GUI).map_or("", |m| m.p("Accent Color"));
+    GUI_ACCENT_NAMES
+        .iter()
+        .position(|name| *name == picked)
+        .map_or(ACCENT, |i| GUI_ACCENTS[i])
+}
+
+// A panel background's alpha at the Background Opacity percentage.
+fn fade(argb: u32, opacity: f64) -> u32 {
+    let alpha = (f64::from(argb >> 24) * opacity / 100.0).round() as u32;
+    alpha << 24 | argb & 0x00FF_FFFF
+}
+
+// The pointer in the GUI's own coordinates, which GUI Scale divides.
+fn gui_cursor(game: &Game<'_>) -> (f32, f32) {
+    let scale = with(|s| gui_scale(s));
+    (game.cursor.0 / scale, game.cursor.1 / scale)
+}
+
+// Tabs replace the panels when a row of them no longer fits at the minimum width.
 pub(super) fn narrow_gui(s: &State) -> bool {
-    s.gui.view_w < NARROW_W
+    s.gui.view_w < CATEGORIES.len() as f32 * (PANEL_MIN_W + PANEL_GAP) + 2.0
+}
+
+// Keeps panels from overlapping when their width changes, places the ones a
+// saved layout does not have in their own column, and keeps them on screen.
+// The narrow tab layout never changes the persisted wide-panel positions.
+fn place_panels(s: &mut State, w: f32, h: f32) {
+    let width = panel_w(s);
+    let mut laid = std::mem::replace(&mut s.gui.laid_w, width);
+    // A saved layout from before a panel existed was laid out at the default.
+    if laid == 0.0
+        && s.gui.panels.iter().any(|p| p.x < 0.0)
+        && s.gui.panels.iter().any(|p| p.x >= 0.0)
+    {
+        laid = PANEL_W;
+    }
+    if laid > 0.0 && laid != width {
+        let ratio = (width + PANEL_GAP) / (laid + PANEL_GAP);
+        for p in s.gui.panels.iter_mut().filter(|p| p.x >= 0.0) {
+            p.x = (2.0 + (p.x - 2.0) * ratio).max(0.0);
+        }
+    }
+    if narrow_gui(s) {
+        return;
+    }
+    for (c, p) in s.gui.panels.iter_mut().enumerate() {
+        if p.x < 0.0 {
+            (p.x, p.y) = (2.0 + c as f32 * (width + PANEL_GAP), 32.0);
+        }
+        p.x = if p.x.is_finite() {
+            p.x.clamp(0.0, (w - width).max(0.0))
+        } else {
+            2.0
+        };
+        p.y = if p.y.is_finite() {
+            p.y.clamp(0.0, (h - HEAD_H).max(0.0))
+        } else {
+            32.0
+        };
+    }
 }
 
 pub(super) fn panel_rect(s: &State, c: usize) -> [f32; 4] {
@@ -3941,7 +4041,7 @@ pub(super) fn panel_rect(s: &State, c: usize) -> [f32; 4] {
         [2.0, BODY_Y - HEAD_H, (s.gui.view_w - 4.0).max(1.0), HEAD_H]
     } else {
         let p = s.gui.panels[c];
-        [p.x, p.y, PANEL_W, HEAD_H]
+        [p.x, p.y, panel_w(s), HEAD_H]
     }
 }
 
@@ -4011,7 +4111,7 @@ pub(super) fn gui_rows(s: &State) -> Vec<([f32; 4], Hit)> {
             continue;
         }
         if !narrow {
-            out.push(([p.x, p.y, PANEL_W, HEAD_H], Hit::Header(c)));
+            out.push(([p.x, p.y, panel_w(s), HEAD_H], Hit::Header(c)));
         }
         if !narrow && p.collapsed {
             continue;
@@ -4031,7 +4131,7 @@ pub(super) fn gui_rows(s: &State) -> Vec<([f32; 4], Hit)> {
 
 // The wheel over a panel scrolls it.
 pub(super) fn gui_wheel(game: &Game<'_>, steps: f32) {
-    let at = game.cursor;
+    let at = gui_cursor(game);
     with(|s| {
         for c in (0..CATEGORIES.len()).rev() {
             if narrow_gui(s) && c != s.gui.selected {
@@ -4188,7 +4288,7 @@ pub(super) fn key_char(name: &str) -> Option<char> {
 // the held buttons each frame).
 pub(super) fn gui_press(game: &mut Game<'_>, button: winit::event::MouseButton) {
     use winit::event::MouseButton;
-    let at = game.cursor;
+    let at = gui_cursor(game);
     let right = match button {
         MouseButton::Left => false,
         MouseButton::Right => true,
@@ -4213,8 +4313,9 @@ pub(super) fn gui_press(game: &mut Game<'_>, button: winit::event::MouseButton) 
                 s.gui.panels[c].collapsed = !s.gui.panels[c].collapsed;
                 changed = true;
             }
-            (Hit::Module(i), false) => toggled = Some(i),
-            (Hit::Module(i), true) => {
+            (Hit::Module(i), false) if s.modules[i].name != CLICK_GUI => toggled = Some(i),
+            // The GUI is already open: ClickGUI's left click shows its settings too.
+            (Hit::Module(i), _) => {
                 if let Some(k) = s.gui.expanded.iter().position(|&e| e == i) {
                     s.gui.expanded.remove(k);
                 } else {
@@ -4230,7 +4331,7 @@ pub(super) fn gui_press(game: &mut Game<'_>, button: winit::event::MouseButton) 
             (Hit::Setting(i, j), right) => {
                 let num = matches!(s.modules[i].settings[j].value, Value::Num { .. });
                 if num && !right {
-                    s.gui.drag = Some(Drag::Slider(i, j));
+                    s.gui.drag = Some(Drag::Slider(i, j, r, gui_scale(s)));
                     changed = slide(s, i, j, r, at.0);
                 } else if num {
                     // Right click on a slider: back to its default.
@@ -4253,20 +4354,16 @@ pub(super) fn gui_press(game: &mut Game<'_>, button: winit::event::MouseButton) 
 
 // A drag follows the pointer each frame.
 pub(super) fn follow_drag(game: &Game<'_>, w: f32, h: f32) {
-    let at = game.cursor;
+    let at = gui_cursor(game);
     with(|s| match s.gui.drag {
         Some(Drag::Panel(c, dx, dy)) => {
+            let width = panel_w(s);
             let p = &mut s.gui.panels[c];
-            p.x = (at.0 - dx).clamp(0.0, (w - PANEL_W).max(0.0));
+            p.x = (at.0 - dx).clamp(0.0, (w - width).max(0.0));
             p.y = (at.1 - dy).clamp(0.0, (h - HEAD_H).max(0.0));
         }
-        Some(Drag::Slider(i, j)) => {
-            let row = gui_rows(s)
-                .into_iter()
-                .find(|(_, hit)| *hit == Hit::Setting(i, j));
-            if let Some((r, _)) = row {
-                slide(s, i, j, r, at.0);
-            }
+        Some(Drag::Slider(i, j, r, scale)) => {
+            slide(s, i, j, r, game.cursor.0 / scale);
         }
         None => {}
     });
@@ -4290,26 +4387,7 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
     });
     follow_drag(game, w, h);
     with(|s| {
-        // The narrow tab layout never changes the persisted wide-panel positions.
-        if !narrow_gui(s) {
-            let mut x = 2.0;
-            for p in s.gui.panels.iter_mut().filter(|p| p.x < 0.0) {
-                (p.x, p.y) = (x, 32.0);
-                x += PANEL_W + 3.0;
-            }
-            for p in &mut s.gui.panels {
-                p.x = if p.x.is_finite() {
-                    p.x.clamp(0.0, (w - PANEL_W).max(0.0))
-                } else {
-                    2.0
-                };
-                p.y = if p.y.is_finite() {
-                    p.y.clamp(0.0, (h - HEAD_H).max(0.0))
-                } else {
-                    32.0
-                };
-            }
-        }
+        place_panels(s, w, h);
         // A scroll past the end (a shorter body, a taller window) comes back.
         for c in 0..CATEGORIES.len() {
             let (_, content) = panel_body(s, c);
@@ -4326,7 +4404,19 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
             s.gui.selected = c;
         }
     });
-    let at = game.cursor;
+    let at = gui_cursor(game);
+    let (accent, opacity, dim, width, narrow, scale) = with(|s| {
+        let look = s.module(CLICK_GUI);
+        (
+            gui_accent(s),
+            look.map_or(100.0, |m| m.n("Background Opacity")),
+            look.is_none_or(|m| m.b("Background Dim")),
+            panel_w(s),
+            narrow_gui(s),
+            gui_scale(s),
+        )
+    });
+    let bg = |argb: u32| fade(argb, opacity);
     let (rows, modules, binding, hover) = with(|s| {
         (
             gui_rows(s),
@@ -4346,16 +4436,18 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
         format!("{t}...")
     };
     // The world dims a little behind the panels, as a screen would.
-    out.push(Shape::Fill([0.0, 0.0, w, h], 0x3000_0000));
+    if dim {
+        out.push(Shape::Fill([0.0, 0.0, w, h], 0x3000_0000));
+    }
     let title = format!("{NAME} {VERSION}");
     let title_w = game.native_text_width(&title);
-    out.push(Shape::Text(title, [(w - title_w) / 2.0, 3.0], ACCENT));
+    out.push(Shape::Text(title, [(w - title_w) / 2.0, 3.0], accent));
     for (r, hit) in &rows {
         use horizon_client::widgets::{self, Kind as WidgetKind};
         let (label, kind, enabled) = match *hit {
             Hit::Header(c) => (
                 format!("Meteor Horizon category: {}", CATEGORIES[c].label()),
-                if w < NARROW_W {
+                if narrow {
                     WidgetKind::Tab(with(|s| s.gui.selected == c))
                 } else {
                     WidgetKind::Button
@@ -4381,7 +4473,7 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
                         } else {
                             0.0
                         },
-                        track: [r[0] + 2.0, r[2] - 4.0],
+                        track: [(r[0] + 2.0) * scale, (r[2] - 4.0) * scale],
                     },
                     _ => WidgetKind::Button,
                 };
@@ -4395,9 +4487,11 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
                 )
             }
         };
-        widgets::record_as(&label, *r, enabled, kind);
+        // The window's input coordinates, which GUI Scale multiplies.
+        let window_rect = r.map(|v| v * scale);
+        widgets::record_as(&label, window_rect, enabled, kind);
         if enabled {
-            widgets::target_as(*r, kind);
+            widgets::target_as(window_rect, kind);
         }
         widgets::widget_cursor(inside(*r, at), enabled);
         let [x, y, rw, rh] = *r;
@@ -4407,14 +4501,14 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
                 let selected = with(|s| narrow_gui(s) && s.gui.selected == c);
                 out.push(Shape::Fill(
                     [x, y, rw, rh],
-                    if selected { 0xF02A_2A2A } else { 0xF014_1414 },
+                    bg(if selected { 0xF02A_2A2A } else { 0xF014_1414 }),
                 ));
                 out.push(Shape::Fill(
                     [x, y + rh - 1.0, rw, 1.0],
-                    0xFF00_0000 | ACCENT,
+                    0xFF00_0000 | accent,
                 ));
-                let label = if w < 250.0 {
-                    ["C", "M", "P", "R", "W"][c]
+                let label = if w < 300.0 {
+                    ["C", "M", "P", "R", "W", "Cl"][c]
                 } else {
                     CATEGORIES[c].label()
                 };
@@ -4431,12 +4525,12 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
                 let m = &modules[i];
                 out.push(Shape::Fill(
                     [x, y, rw, rh],
-                    if hovered { 0xD02A_2A2A } else { 0xC010_1010 },
+                    bg(if hovered { 0xD02A_2A2A } else { 0xC010_1010 }),
                 ));
                 if m.on {
-                    out.push(Shape::Fill([x, y, 2.0, rh], 0xFF00_0000 | ACCENT));
+                    out.push(Shape::Fill([x, y, 2.0, rh], 0xFF00_0000 | accent));
                 }
-                let colour = if m.on { ACCENT } else { 0xE0E0E0 };
+                let colour = if m.on { accent } else { 0xE0E0E0 };
                 out.push(Shape::Text(
                     fit(m.name, rw - 16.0),
                     [x + 5.0, y + 1.5],
@@ -4451,7 +4545,7 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
                 }
             }
             Hit::Bind(i) => {
-                out.push(Shape::Fill([x, y, rw, rh], 0xD008_0808));
+                out.push(Shape::Fill([x, y, rw, rh], bg(0xD008_0808)));
                 let text = if binding == Some(i) {
                     "Bind: press a key".to_owned()
                 } else {
@@ -4471,7 +4565,7 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
                 let st = &modules[i].settings[j];
                 out.push(Shape::Fill(
                     [x, y, rw, rh],
-                    if hovered { 0xD01C_1C1C } else { 0xD008_0808 },
+                    bg(if hovered { 0xD01C_1C1C } else { 0xD008_0808 }),
                 ));
                 if let Value::Num { v, min, max, .. } = st.value {
                     let t = if max > min {
@@ -4481,11 +4575,11 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
                     };
                     out.push(Shape::Fill(
                         [x + 2.0, y + rh - 2.0, (rw - 4.0) * t, 1.0],
-                        0xFF00_0000 | ACCENT,
+                        0xFF00_0000 | accent,
                     ));
                 }
                 let colour = match st.value {
-                    Value::Bool(true) => ACCENT,
+                    Value::Bool(true) => accent,
                     _ => 0xD0D0D0,
                 };
                 out.push(Shape::Text(
@@ -4515,24 +4609,25 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
             .collect()
     });
     for (x, y) in more {
-        let width = if w < NARROW_W {
-            (w - 4.0).max(1.0)
-        } else {
-            PANEL_W
-        };
-        out.push(Shape::Fill([x, y, width, 8.0], 0xE014_1414));
+        let width = if narrow { (w - 4.0).max(1.0) } else { width };
+        out.push(Shape::Fill([x, y, width, 8.0], bg(0xE014_1414)));
         out.push(Shape::Text(
             "v".into(),
             [x + width / 2.0 - 2.0, y - 0.5],
             0xB0B0B0,
         ));
     }
-    // The hovered module's description, under the pointer.
-    if let Some(Hit::Module(i)) = hover
-        && with(|s| s.gui.drag.is_none())
-    {
-        let about = modules[i].about;
-        let about = fit(about, (w - 6.0).max(1.0));
+    // The hovered module's description, or the setting a narrow row may cut off.
+    let drag = with(|s| s.gui.drag);
+    let tip = match (drag, hover) {
+        (Some(Drag::Slider(i, j, ..)), _) | (None, Some(Hit::Setting(i, j))) => {
+            Some(modules[i].settings[j].shown())
+        }
+        (None, Some(Hit::Module(i))) => Some(modules[i].about.to_owned()),
+        _ => None,
+    };
+    if let Some(about) = tip {
+        let about = fit(&about, (w - 6.0).max(1.0));
         let tw = game.native_text_width(&about);
         let bx = (at.0 + 8.0).min(w - tw - 6.0).max(0.0);
         let by = (at.1 + 10.0).min(h - 12.0);
@@ -4544,7 +4639,7 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
     let (label, colour) = if search.is_empty() {
         ("Type to search".to_owned(), 0x909090)
     } else {
-        (format!("Search: {search}_"), ACCENT)
+        (format!("Search: {search}_"), accent)
     };
     let lw_ = game.native_text_width(&label);
     out.push(Shape::Fill(
@@ -4552,7 +4647,7 @@ pub(super) fn draw_gui(game: &Game<'_>, w: f32, h: f32, out: &mut Vec<Shape>) {
         0xC010_1010,
     ));
     out.push(Shape::Text(label, [(w - lw_) / 2.0, 16.0], colour));
-    let hint = if w < NARROW_W {
+    let hint = if narrow {
         "Left: toggle  Right: settings  Wheel: scroll  Esc: close"
     } else {
         "Left: toggle  Right: settings  Drag headers  Esc: close"
@@ -4579,7 +4674,8 @@ pub(super) fn on_gui_render(game: &mut Game<'_>, size: [u32; 2]) -> Option<HudBa
     }
     let mut batch = HudBatch::new(size);
     let mut shapes = Vec::new();
-    draw_gui(game, batch.width, batch.height, &mut shapes);
+    let scale = with(|s| gui_scale(s));
+    draw_gui(game, batch.width / scale, batch.height / scale, &mut shapes);
     // draw_gui has released all state guards before these host callbacks.
     for shape in shapes {
         match shape {
@@ -4587,6 +4683,7 @@ pub(super) fn on_gui_render(game: &mut Game<'_>, size: [u32; 2]) -> Option<HudBa
             Shape::Text(text, at, rgb) => game.native_text(&mut batch, &text, at, rgb, true),
         }
     }
+    batch.scale_since(0, 0.0, 0.0, scale, scale);
     Some(batch)
 }
 
@@ -4595,11 +4692,11 @@ mod meteor_horizon_adoption_tests {
     use super::*;
     static SERIAL: Mutex<()> = Mutex::new(());
     #[test]
-    fn catalog_has_87_unique_real_entries_and_omits_friend_reservations() {
+    fn catalog_has_88_unique_real_entries_and_omits_friend_reservations() {
         let modules = defaults();
-        assert_eq!(modules.len(), 87);
+        assert_eq!(modules.len(), 88);
         let names: std::collections::HashSet<_> = modules.iter().map(|m| m.name).collect();
-        assert_eq!(names.len(), 87);
+        assert_eq!(names.len(), 88);
         assert!(!names.contains("Auto Respawn"));
         assert!(!names.contains("Fast Break"));
         for module in modules {
@@ -4705,6 +4802,118 @@ mod meteor_horizon_adoption_tests {
                         || y >= other[1] + other[3]
                 );
             }
+        }
+    }
+    fn set_look(state: &mut State, setting: &str, value: &str) {
+        let i = state.find(CLICK_GUI).unwrap();
+        let j = state.modules[i].settings.iter().position(|s| s.name == setting).unwrap();
+        assert!(state.modules[i].settings[j].parse(value));
+    }
+    fn assert_wide_rows_fit(state: &State, w: f32, h: f32) {
+        assert!(!narrow_gui(state));
+        let rows = gui_rows(state);
+        assert!(rows.iter().any(|(_, hit)| *hit == Hit::Header(CATEGORIES.len() - 1)));
+        for (index, (rect, hit)) in rows.iter().enumerate() {
+            let [x, y, rw, rh] = *rect;
+            assert!(x >= 0. && y >= 0. && x + rw <= w && y + rh <= h, "{hit:?} {rect:?}");
+            assert_eq!(hit_at(state, (x + rw / 2., y + rh / 2.)).map(|(_, found)| found), Some(*hit));
+            for (other, _) in rows.iter().skip(index + 1) {
+                assert!(
+                    x + rw <= other[0]
+                        || x >= other[0] + other[2]
+                        || y + rh <= other[1]
+                        || y >= other[1] + other[3]
+                );
+            }
+        }
+    }
+    #[test]
+    fn click_gui_defaults_keep_the_existing_look_and_it_never_stays_on() {
+        let mut state = State::new();
+        state.gui.view_w = 960.;
+        let i = state.find(CLICK_GUI).unwrap();
+        assert_eq!(state.modules[i].category, Category::Client);
+        assert_eq!(gui_accent(&state), ACCENT);
+        assert_eq!(panel_w(&state), PANEL_W);
+        assert_eq!(gui_scale(&state), 1.0);
+        assert_eq!(fade(0xF014_1414, 100.0), 0xF014_1414);
+        assert_eq!(fade(0xF014_1414, 0.0), 0x0014_1414);
+        assert!(state.modules[i].b("Background Dim"));
+        assert_eq!(GUI_ACCENT_NAMES.len(), GUI_ACCENTS.len());
+        state.load_text("clickgui.on=true\n");
+        assert!(!state.modules[i].on);
+    }
+    #[test]
+    fn click_gui_settings_persist_through_the_config_text() {
+        let mut state = State::new();
+        for (setting, value) in [
+            ("Accent Color", "Cyan"),
+            ("Background Opacity", "55"),
+            ("Panel Width", "100"),
+            ("GUI Scale", "1.5"),
+            ("Background Dim", "false"),
+        ] {
+            set_look(&mut state, setting, value);
+        }
+        let mut loaded = State::new();
+        loaded.gui.view_w = 960.;
+        loaded.load_text(&state.save_text());
+        let i = loaded.find(CLICK_GUI).unwrap();
+        assert_eq!(gui_accent(&loaded), 0x40D9E0);
+        assert_eq!(loaded.modules[i].n("Background Opacity"), 55.);
+        assert_eq!(panel_w(&loaded), 100.);
+        assert_eq!(gui_scale(&loaded), 1.5);
+        assert!(!loaded.modules[i].b("Background Dim"));
+    }
+    #[test]
+    fn panels_stay_on_screen_and_apart_at_every_width_and_scale() {
+        for (width, scale) in [("70", 1.0), ("82", 1.0), ("82", 2.0), ("140", 1.0), ("140", 2.0), ("140", 0.5)] {
+            let mut state = State::new();
+            set_look(&mut state, "Panel Width", width);
+            let (w, h) = (1920. / 2. / scale, 1080. / 2. / scale);
+            state.gui.view_w = w;
+            state.gui.view_h = h;
+            place_panels(&mut state, w, h);
+            assert_wide_rows_fit(&state, w, h);
+        }
+    }
+    #[test]
+    fn a_saved_five_panel_layout_gets_the_client_panel_clear_of_the_others() {
+        // 480 is 1920 by 1080 at automatic scale 4, where five panels already filled the row.
+        for (w, h) in [(640., 360.), (480., 270.)] {
+            let mut state = State::new();
+            let mut text = String::new();
+            for (c, name) in ["combat", "movement", "player", "render", "world"].iter().enumerate() {
+                text.push_str(&format!("panel.{name}={},32,false
+", 2 + c * 85));
+            }
+            state.load_text(&text);
+            state.gui.view_w = w;
+            state.gui.view_h = h;
+            place_panels(&mut state, w, h);
+            assert_wide_rows_fit(&state, w, h);
+        }
+    }
+    #[test]
+    fn widening_panels_spreads_them_instead_of_overlapping() {
+        let mut state = State::new();
+        state.gui.view_w = 960.;
+        state.gui.view_h = 540.;
+        place_panels(&mut state, 960., 540.);
+        set_look(&mut state, "Panel Width", "140");
+        place_panels(&mut state, 960., 540.);
+        assert_wide_rows_fit(&state, 960., 540.);
+    }
+    #[test]
+    fn a_slider_keeps_its_press_mapping_while_its_setting_resizes_the_gui() {
+        let mut state = State::new();
+        let i = state.find(CLICK_GUI).unwrap();
+        let j = state.modules[i].settings.iter().position(|s| s.name == "GUI Scale").unwrap();
+        let row = [10., 50., 104., ROW_H];
+        // The middle of the track is 1.25, whatever scale the GUI has reached.
+        for _ in 0..3 {
+            slide(&mut state, i, j, row, 62.);
+            assert_eq!(gui_scale(&state), 1.25);
         }
     }
     #[test]
