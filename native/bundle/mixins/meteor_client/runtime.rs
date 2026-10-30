@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
-// Native Meteor migration proof. Reuses the existing Meteor-derived Zoom and AutoJump core.
+// Native Meteor migration proof. Reuses the existing Meteor-derived Zoom, AutoJump, AirJump and HighJump core.
 
-// This candidate integrates Zoom and AutoJump only; other retained core modules are inactive.
+// This candidate integrates Zoom, AutoJump, AirJump and HighJump only; other retained core modules are inactive.
 
 use super::{
     Game,
@@ -10,9 +10,11 @@ use super::{
 };
 
 use meteor_client::modules::{
-    auto_jump,
+    air_jump, auto_jump, high_jump,
     zoom::{Zoom, ZoomSettings},
 };
+
+use meteor_client::subscriptions::Subscriptions;
 
 use std::{
     cell::RefCell,
@@ -30,7 +32,7 @@ const MOD_ID: &str = "meteor_client";
 
 const COMMAND: &str = "meteor-migration";
 
-const HELP: &str = "Zoom+AutoJump .hnmod migration candidate: /meteor-migration status | zoom toggle | zoom factor NUMBER | zoom smooth true|false | zoom scroll-sensitivity NUMBER | auto-jump toggle | auto-jump mode Jump|LowHop | auto-jump jump-if Always|Walking|Sprinting | auto-jump velocity-height NUMBER. Native API caps visible Zoom at 10. Other retained Meteor modules are not integrated.";
+const HELP: &str = "Zoom+AutoJump+AirJump+HighJump .hnmod migration candidate: /meteor-migration status | zoom toggle | zoom factor NUMBER | zoom smooth true|false | zoom scroll-sensitivity NUMBER | auto-jump toggle | auto-jump mode Jump|LowHop | auto-jump jump-if Always|Walking|Sprinting | auto-jump velocity-height NUMBER | air-jump toggle | air-jump maintain-level true|false | high-jump toggle | high-jump jump-multiplier NUMBER. AirJump keyboard presses use configured jump/sneak bindings. Native API caps visible Zoom at 10. Other retained Meteor modules are not integrated.";
 
 #[derive(serde::Serialize, serde::Deserialize)]
 #[serde(default)]
@@ -43,6 +45,10 @@ struct Saved {
     zoom: ZoomSettings,
     auto_jump_enabled: bool,
     auto_jump: auto_jump::Settings,
+    air_jump_enabled: bool,
+    air_jump: air_jump::Settings,
+    high_jump_enabled: bool,
+    high_jump: high_jump::Settings,
 }
 
 impl Default for Saved {
@@ -53,6 +59,10 @@ impl Default for Saved {
             zoom: ZoomSettings::default(),
             auto_jump_enabled: false,
             auto_jump: auto_jump::Settings::default(),
+            air_jump_enabled: false,
+            air_jump: air_jump::Settings::default(),
+            high_jump_enabled: false,
+            high_jump: high_jump::Settings::default(),
         }
     }
 }
@@ -64,6 +74,7 @@ impl Saved {
         }
         self.zoom.validate()?;
         self.auto_jump.validate()?;
+        self.high_jump.validate()?;
         Ok(())
     }
 }
@@ -72,6 +83,10 @@ struct Runtime {
     saved: Saved,
 
     zoom: Zoom,
+    air_jump: air_jump::AirJump,
+    movement_subscriptions: Subscriptions,
+    auto_jump_subscribed: bool,
+    air_jump_subscribed: bool,
 
     in_world: bool,
 
@@ -100,7 +115,7 @@ impl Runtime {
 
             Err(error) => {
                 log::error!(
-                    "Meteor Zoom+AutoJump migration candidate could not read {}: {error}; saving disabled",
+                    "Meteor Zoom+AutoJump+AirJump+HighJump migration candidate could not read {}: {error}; saving disabled",
                     path.display()
                 );
                 (Saved::default(), false)
@@ -110,6 +125,10 @@ impl Runtime {
         Self {
             saved,
             zoom: Zoom::default(),
+            air_jump: air_jump::AirJump::default(),
+            movement_subscriptions: Subscriptions::default(),
+            auto_jump_subscribed: false,
+            air_jump_subscribed: false,
             in_world: false,
             path,
             save_allowed,
@@ -138,9 +157,41 @@ impl Runtime {
         }
     }
 
+    fn sync_movement(&mut self, in_world: bool, block_y: Option<i32>) {
+        if !in_world {
+            self.movement_subscriptions.clear();
+            self.auto_jump_subscribed = false;
+            self.air_jump_subscribed = false;
+            self.air_jump.sync(false, None);
+            return;
+        }
+        // Fresh world joins use the retained native catalog fallback. Java joins
+        // traverse Reference2ReferenceOpenHashMap.values(), whose class-identity
+        // hash order is not portable across processes. No exact join-order claim.
+        // Later enable/re-enable events append in their actual activation order.
+        if self.saved.auto_jump_enabled != self.auto_jump_subscribed {
+            if self.saved.auto_jump_enabled {
+                self.movement_subscriptions.activate("auto-jump");
+            } else {
+                self.movement_subscriptions.deactivate("auto-jump");
+            }
+            self.auto_jump_subscribed = self.saved.auto_jump_enabled;
+        }
+        if self.saved.air_jump_enabled != self.air_jump_subscribed {
+            if self.saved.air_jump_enabled {
+                self.movement_subscriptions.activate("air-jump");
+                self.air_jump.sync(false, None);
+            } else {
+                self.movement_subscriptions.deactivate("air-jump");
+            }
+            self.air_jump_subscribed = self.saved.air_jump_enabled;
+        }
+        self.air_jump.sync(self.saved.air_jump_enabled, block_y);
+    }
+
     fn status(&self) -> String {
         format!(
-            "Zoom+AutoJump .hnmod migration candidate: Zoom {}; requested {}, current {:.3} (native API clamps visible factor to 10); smoothing {}; AutoJump {} ({:?}, {:?}, LowHop height {}); other retained modules are not integrated. Zoom cinematic/hide-HUD/show-hands are not wired in this proof.",
+            "Zoom+AutoJump+AirJump+HighJump .hnmod migration candidate: Zoom {}; requested {}, current {:.3} (native API clamps visible factor to 10); smoothing {}; AutoJump {} ({:?}, {:?}, LowHop height {}); AirJump {} (maintain-level {}, captured level {:?}); HighJump {} (multiplier {}); Pre order {:?}; other retained modules are not integrated. Zoom cinematic/hide-HUD/show-hands are not wired in this proof.",
             if self.saved.enabled {
                 "enabled"
             } else {
@@ -156,7 +207,25 @@ impl Runtime {
             },
             self.saved.auto_jump.mode,
             self.saved.auto_jump.jump_if,
-            self.saved.auto_jump.velocity_height
+            self.saved.auto_jump.velocity_height,
+            if self.saved.air_jump_enabled {
+                "enabled"
+            } else {
+                "disabled"
+            },
+            self.saved.air_jump.maintain_level,
+            self.air_jump.level,
+            if self.saved.high_jump_enabled {
+                "enabled"
+            } else {
+                "disabled"
+            },
+            self.saved.high_jump.jump_multiplier,
+            self.movement_subscriptions
+                .entries()
+                .iter()
+                .map(|entry| entry.id.as_str())
+                .collect::<Vec<_>>()
         )
     }
 }
@@ -255,56 +324,158 @@ fn save(runtime: &Rc<RefCell<Runtime>>) -> Result<(), String> {
     fs::write(path, text).map_err(|e| e.to_string())
 }
 
-/// Source Tick.Pre uses previous-tick player facts. Source AutoJump has no
-/// independent GUI-screen filter; the existing host pause/hold rules still apply.
-pub(super) fn on_pre_tick(game: &mut Game<'_>) {
-    if !game.native_window()
-        || !game.native_on(MOD_ID)
-        || game.agent.hold_server
-        || game.title.is_some()
-    {
+fn refresh_high_jump(game: &mut Game<'_>) {
+    if !game.native_window() {
         return;
     }
-    let Some(player) = game.player.as_ref() else {
+    let Some(runtime) = runtime(game) else {
+        horizon_client::motion::meteor_highjump::clear();
         return;
     };
-    let player = auto_jump::Player {
-        on_ground: player.ground.on_ground,
-        // The pristine PlayerMotion exposes the raw source shift state. Its
-        // legacy is_shift_key_down helper was a fork addition and is not used.
-        sneaking: player.shift_key_down,
-        sprinting: player.sprinting,
-        forward: player.move_vector[1],
-        sideways: player.move_vector[0],
+    let (active, settings) = {
+        let runtime = runtime.borrow();
+        (
+            runtime.saved.high_jump_enabled,
+            runtime.saved.high_jump.clone(),
+        )
     };
+    // The sibling publisher clears first and checks current actor identity. No
+    // Runtime borrow is held while it accesses the host's attribute instance.
+    if let Err(error) = super::meteor_highjump_publisher::publish(game, active, &settings) {
+        horizon_client::motion::meteor_highjump::clear();
+        log::error!("Meteor HighJump movement candidate policy refresh failed: {error}");
+    }
+}
+
+fn air_player(game: &Game<'_>) -> Option<air_jump::Player> {
+    game.player
+        .as_ref()
+        .filter(|_| game.title.is_none())
+        .map(|player| air_jump::Player {
+            block_y: player.position.y.floor() as i32,
+            on_ground: player.ground.on_ground,
+            // Freecam is not integrated/registered in this limited standard bundle.
+            freecam: false,
+        })
+}
+fn sync_movement(game: &Game<'_>, runtime: &Rc<RefCell<Runtime>>) {
+    let player = air_player(game);
+    let in_world = game.native_on(MOD_ID) && player.is_some();
+    let y = player.map(|player| player.block_y);
+    runtime.borrow_mut().sync_movement(in_world, y);
+}
+/// One source Tick.Pre dispatcher. Equal-priority subscribers run in their real
+/// activation order, using a snapshot so subscriptions changed by callbacks wait.
+pub(super) fn on_pre_tick(game: &mut Game<'_>) {
+    refresh_high_jump(game);
+    if !game.native_window() {
+        return;
+    }
     let Some(runtime) = runtime(game) else {
         return;
     };
-    let action = {
-        let runtime = runtime.borrow();
-        runtime
-            .saved
-            .auto_jump_enabled
-            .then(|| auto_jump::tick(&player, &runtime.saved.auto_jump))
-            .flatten()
+    sync_movement(game, &runtime);
+    if !game.native_on(MOD_ID)
+        || game.agent.hold_server
+        || game.title.is_some()
+        || game.player.is_none()
+    {
+        return;
+    }
+    let listeners = { runtime.borrow().movement_subscriptions.entries().to_vec() };
+    for listener in listeners {
+        match listener.id.as_str() {
+            "auto-jump" => {
+                let Some(player) = game.player.as_ref() else {
+                    continue;
+                };
+                let player = auto_jump::Player {
+                    on_ground: player.ground.on_ground,
+                    sneaking: player.shift_key_down,
+                    sprinting: player.sprinting,
+                    forward: player.move_vector[1],
+                    sideways: player.move_vector[0],
+                };
+                let action = {
+                    let runtime = runtime.borrow();
+                    auto_jump::tick(&player, &runtime.saved.auto_jump)
+                };
+                match action {
+                    Some(auto_jump::Action::SetVerticalVelocity(y)) => {
+                        if let Some(player) = game.player.as_mut() {
+                            player.velocity.y = y;
+                        }
+                    }
+                    Some(auto_jump::Action::JumpFromGround) => {
+                        if let Err(error) = jump_from_ground(game) {
+                            log::error!(
+                                "Meteor AutoJump migration candidate native jump failed: {error}"
+                            );
+                        }
+                    }
+                    None => {}
+                }
+            }
+            "air-jump" => {
+                let Some(player) = air_player(game) else {
+                    continue;
+                };
+                // Stable native mapping queries the translated action, including
+                // keyboard/mouse rebinding; it is not physical Space detection.
+                let jump_down = game
+                    .native_mapping("key.jump")
+                    .is_some_and(|(down, _)| down);
+                let should_jump = {
+                    let runtime = runtime.borrow();
+                    runtime
+                        .air_jump
+                        .tick(player, &runtime.saved.air_jump, jump_down)
+                };
+                if should_jump && let Err(error) = jump_from_ground(game) {
+                    log::error!("Meteor AirJump maintain-level native jump failed: {error}");
+                }
+            }
+            _ => {}
+        }
+    }
+}
+/// Native key@1's keyboard wrapper drops Repeat. AirJump's Java KeyInputEvent
+/// handler observes keyboard Press only, so mouse names never trigger this arm.
+pub(super) fn on_key(game: &mut Game<'_>, key: &str, pressed: bool) {
+    refresh_high_jump(game);
+    if !game.native_window() {
+        return;
+    }
+    let Some(runtime) = runtime(game) else {
+        return;
     };
-    match action {
-        Some(auto_jump::Action::SetVerticalVelocity(y)) => {
-            if let Some(player) = game.player.as_mut() {
-                player.velocity.y = y;
-            }
+    sync_movement(game, &runtime);
+    if !game.native_on(MOD_ID) || !key.starts_with("key.keyboard.") {
+        return;
+    }
+    let Some(player) = air_player(game) else {
+        return;
+    };
+    let screen_open = !game.native_playing();
+    let jump = key == game.settings.keys.get("key.jump");
+    let sneak = key == game.settings.keys.get("key.sneak");
+    let should_jump = {
+        let mut runtime = runtime.borrow_mut();
+        if !runtime.saved.air_jump_enabled {
+            false
+        } else {
+            runtime
+                .air_jump
+                .key(player, pressed, screen_open, jump, sneak)
         }
-        Some(auto_jump::Action::JumpFromGround) => {
-            // No Runtime or TLS borrow is held when native movement executes.
-            // Native jump emits the engine's ordinary statistics/exhaustion events.
-            if let Err(error) = jump_from_ground(game) {
-                log::error!("Meteor AutoJump migration candidate native jump failed: {error}");
-            }
-        }
-        None => {}
+    };
+    // Every state/table borrow ends before this potentially reentrant host call.
+    if should_jump && let Err(error) = jump_from_ground(game) {
+        log::error!("Meteor AirJump key native jump failed: {error}");
     }
 }
 fn jump_from_ground(game: &mut Game<'_>) -> horizon_client::Result<()> {
+    refresh_high_jump(game);
     let entities = game.player_entity_collisions();
     if let Some(player) = game.player.as_mut() {
         horizon_client::motion::MotionWorld {
@@ -321,10 +492,12 @@ fn jump_from_ground(game: &mut Game<'_>) -> horizon_client::Result<()> {
 }
 
 pub(super) fn on_frame(game: &mut Game<'_>, elapsed: Duration) {
+    refresh_high_jump(game);
     let Some(runtime) = runtime(game) else {
         return;
     };
 
+    sync_movement(game, &runtime);
     let in_world = game.native_on(MOD_ID) && game.player.is_some() && game.title.is_none();
 
     {
@@ -337,10 +510,12 @@ pub(super) fn on_frame(game: &mut Game<'_>, elapsed: Duration) {
 }
 
 pub(super) fn on_tick(game: &mut Game<'_>) {
+    refresh_high_jump(game);
     let Some(runtime) = runtime(game) else {
         return;
     };
 
+    sync_movement(game, &runtime);
     let in_world = game.native_on(MOD_ID) && game.player.is_some() && game.title.is_none();
 
     {
@@ -397,6 +572,7 @@ pub(super) fn on_wheel(game: &mut Game<'_>, steps: f32, claimed: &mut bool) {
 }
 
 pub(super) fn on_command(game: &mut Game<'_>, command: &str, ran: &mut bool) {
+    refresh_high_jump(game);
     if *ran || !game.native_on(MOD_ID) || !game.native_window() {
         return;
     }
@@ -410,10 +586,13 @@ pub(super) fn on_command(game: &mut Game<'_>, command: &str, ran: &mut bool) {
     *ran = true;
 
     let Some(runtime) = runtime(game) else {
-        game.native_chat("Zoom+AutoJump migration candidate: no window runtime is available yet.");
+        game.native_chat(
+            "Zoom+AutoJump+AirJump+HighJump migration candidate: no window runtime is available yet.",
+        );
         return;
     };
 
+    sync_movement(game, &runtime);
     let result = (|| -> Result<String, String> {
         if words.len() == 1 || words.get(1) == Some(&"help") {
             return Ok(HELP.into());
@@ -480,10 +659,30 @@ pub(super) fn on_command(game: &mut Game<'_>, command: &str, ran: &mut bool) {
                     settings.validate()?;
                     runtime.saved.auto_jump = settings;
                 }
+                ["air-jump", "toggle"] => {
+                    runtime.saved.air_jump_enabled = !runtime.saved.air_jump_enabled
+                }
+                ["air-jump", "maintain-level", value] => {
+                    runtime.saved.air_jump.maintain_level =
+                        value.parse().map_err(|_| "Expected true or false")?
+                }
+                ["high-jump", "toggle"] => {
+                    runtime.saved.high_jump_enabled = !runtime.saved.high_jump_enabled
+                }
+                ["high-jump", "jump-multiplier", value] => {
+                    let mut settings = runtime.saved.high_jump.clone();
+                    settings.jump_multiplier = value
+                        .parse()
+                        .map_err(|_| "Expected a finite nonnegative jump multiplier")?;
+                    settings.validate()?;
+                    runtime.saved.high_jump = settings;
+                }
                 _ => return Err(HELP.into()),
             }
         }
 
+        sync_movement(game, &runtime);
+        refresh_high_jump(game);
         save(&runtime)?;
 
         Ok(runtime.borrow().status())
@@ -493,7 +692,9 @@ pub(super) fn on_command(game: &mut Game<'_>, command: &str, ran: &mut bool) {
 
     match result {
         Ok(message) => game.native_chat(&message),
-        Err(error) => game.native_chat(&format!("Zoom+AutoJump migration candidate: {error}")),
+        Err(error) => game.native_chat(&format!(
+            "Zoom+AutoJump+AirJump+HighJump migration candidate: {error}"
+        )),
     }
 }
 
@@ -502,19 +703,23 @@ pub(super) fn on_mods(_game: &mut Game<'_>, mods: &mut Vec<NativeMod>) {
         return;
     }
 
-    mods.push(NativeMod {id:MOD_ID.into(),title:"Meteor Rust - Zoom+AutoJump migration candidate".into(),description:"Normal .hnmod candidate using the existing Meteor Rust core. Zoom and AutoJump only; other retained modules are inactive. AutoJump uses the source Tick.Pre policy and real native jump. Native API caps visible Zoom at 10. Runtime validation pending.".into(),keys:Vec::new()});
+    mods.push(NativeMod {id:MOD_ID.into(),title:"Meteor Rust - Zoom+AutoJump+AirJump+HighJump migration candidate".into(),description:"Normal .hnmod candidate using the existing Meteor Rust core. Zoom, AutoJump, AirJump and HighJump only; other retained modules are inactive. HighJump uses current native actor identity, source block factor and additive boost/zero-power sequencing. Movement integration uses ordered Pre and real native jump paths. Native API caps visible Zoom at 10. Runtime validation pending.".into(),keys:Vec::new()});
 }
 
 pub(super) fn on_settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<String>) {
+    refresh_high_jump(game);
     if mod_id != MOD_ID {
         return;
     }
 
     let Some(runtime) = runtime(game) else {
-        buttons.push("Zoom+AutoJump migration candidate: open the game window first".into());
+        buttons.push(
+            "Zoom+AutoJump+AirJump+HighJump migration candidate: open the game window first".into(),
+        );
         return;
     };
 
+    sync_movement(game, &runtime);
     let labels = {
         let runtime = runtime.borrow();
         vec![
@@ -545,6 +750,30 @@ pub(super) fn on_settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<S
                 "AutoJump LowHop velocity: {}",
                 runtime.saved.auto_jump.velocity_height
             ),
+            format!(
+                "AirJump: {}",
+                if runtime.saved.air_jump_enabled {
+                    "enabled"
+                } else {
+                    "disabled"
+                }
+            ),
+            format!(
+                "AirJump maintain level: {}",
+                runtime.saved.air_jump.maintain_level
+            ),
+            format!(
+                "HighJump: {}",
+                if runtime.saved.high_jump_enabled {
+                    "enabled"
+                } else {
+                    "disabled"
+                }
+            ),
+            format!(
+                "HighJump multiplier: {}",
+                runtime.saved.high_jump.jump_multiplier
+            ),
         ]
     };
 
@@ -552,6 +781,7 @@ pub(super) fn on_settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<S
 }
 
 pub(super) fn on_settings_click(game: &mut Game<'_>, mod_id: &str, button: usize) {
+    refresh_high_jump(game);
     if mod_id != MOD_ID || !game.native_on(MOD_ID) {
         return;
     }
@@ -594,12 +824,26 @@ pub(super) fn on_settings_click(game: &mut Game<'_>, mod_id: &str, button: usize
                     .find(|value| *value > height)
                     .unwrap_or(0.0);
             }
+            7 => runtime.saved.air_jump_enabled = !runtime.saved.air_jump_enabled,
+            8 => runtime.saved.air_jump.maintain_level = !runtime.saved.air_jump.maintain_level,
+            9 => runtime.saved.high_jump_enabled = !runtime.saved.high_jump_enabled,
+            10 => {
+                let factor = runtime.saved.high_jump.jump_multiplier;
+                runtime.saved.high_jump.jump_multiplier = [0.0, 0.5, 1.0, 2.0, 3.0]
+                    .into_iter()
+                    .find(|value| *value > factor)
+                    .unwrap_or(0.0);
+            }
             _ => return,
         }
     }
 
+    sync_movement(game, &runtime);
+    refresh_high_jump(game);
     if let Err(error) = save(&runtime) {
-        game.native_chat(&format!("Zoom+AutoJump migration candidate: {error}"));
+        game.native_chat(&format!(
+            "Zoom+AutoJump+AirJump+HighJump migration candidate: {error}"
+        ));
     }
 }
 
@@ -693,5 +937,136 @@ mod migration_autojump_config_tests {
         let saved:Saved=serde_json::from_str(r#"{"schema":1,"enabled":true,"zoom":{"zoom":4.0},"auto_jump":{"velocity_height":-0.1}}"#).unwrap();
         assert!(saved.validate().is_err());
         assert_eq!(saved.zoom.zoom, 4.0);
+    }
+}
+
+#[cfg(test)]
+mod migration_airjump_state_tests {
+    use super::*;
+    fn state() -> Runtime {
+        Runtime {
+            saved: Saved::default(),
+            zoom: Zoom::default(),
+            air_jump: air_jump::AirJump::default(),
+            movement_subscriptions: Subscriptions::default(),
+            auto_jump_subscribed: false,
+            air_jump_subscribed: false,
+            in_world: false,
+            path: PathBuf::from("unused-airjump-state-test"),
+            save_allowed: false,
+        }
+    }
+    fn order(state: &Runtime) -> Vec<&str> {
+        state
+            .movement_subscriptions
+            .entries()
+            .iter()
+            .map(|entry| entry.id.as_str())
+            .collect()
+    }
+    #[test]
+    fn older_autojump_config_gains_disabled_airjump_and_source_default() {
+        let saved:Saved=serde_json::from_str(r#"{"schema":1,"auto_jump_enabled":true,"auto_jump":{"mode":"LowHop","velocity_height":0.0}}"#).unwrap();
+        saved.validate().unwrap();
+        assert!(saved.auto_jump_enabled);
+        assert!(!saved.air_jump_enabled);
+        assert!(!saved.air_jump.maintain_level);
+    }
+    #[test]
+    fn enabling_airjump_captures_height_before_first_frame_or_pre_callback() {
+        let mut state = state();
+        state.saved.air_jump_enabled = true;
+        state.sync_movement(true, Some(74));
+        assert_eq!(state.air_jump.level, Some(74));
+        assert_eq!(order(&state), ["air-jump"]);
+        assert!(state.air_jump.key(
+            air_jump::Player {
+                block_y: 77,
+                on_ground: false,
+                freecam: false
+            },
+            true,
+            false,
+            true,
+            false
+        ));
+        assert_eq!(state.air_jump.level, Some(77));
+    }
+    #[test]
+    fn active_sync_does_not_recapture_sneak_lowered_level() {
+        let mut state = state();
+        state.saved.air_jump_enabled = true;
+        state.sync_movement(true, Some(74));
+        assert!(!state.air_jump.key(
+            air_jump::Player {
+                block_y: 74,
+                on_ground: false,
+                freecam: false
+            },
+            true,
+            false,
+            false,
+            true
+        ));
+        assert_eq!(state.air_jump.level, Some(73));
+        state.sync_movement(true, Some(74));
+        assert_eq!(state.air_jump.level, Some(73));
+    }
+    #[test]
+    fn every_disable_reenable_restarts_activation_and_moves_pre_listener_to_end() {
+        let mut state = state();
+        state.saved.air_jump_enabled = true;
+        state.sync_movement(true, Some(74));
+        state.saved.auto_jump_enabled = true;
+        state.sync_movement(true, Some(74));
+        assert_eq!(order(&state), ["air-jump", "auto-jump"]);
+        let old = state.movement_subscriptions.generation("air-jump").unwrap();
+        state.saved.air_jump_enabled = false;
+        state.sync_movement(true, Some(74));
+        assert_eq!(state.air_jump.level, None);
+        state.saved.air_jump_enabled = true;
+        state.sync_movement(true, Some(81));
+        assert_eq!(state.air_jump.level, Some(81));
+        assert_eq!(order(&state), ["auto-jump", "air-jump"]);
+        assert!(state.movement_subscriptions.generation("air-jump").unwrap() > old);
+    }
+    #[test]
+    fn world_leave_clears_runtime_and_rejoin_recaptures_without_losing_enabled_settings() {
+        let mut state = state();
+        state.saved.air_jump_enabled = true;
+        state.saved.auto_jump_enabled = true;
+        state.sync_movement(true, Some(74));
+        state.sync_movement(false, None);
+        assert!(order(&state).is_empty());
+        assert_eq!(state.air_jump.level, None);
+        assert!(state.saved.air_jump_enabled);
+        state.sync_movement(true, Some(-12));
+        assert_eq!(state.air_jump.level, Some(-12));
+        assert_eq!(order(&state), ["auto-jump", "air-jump"]);
+    }
+}
+
+#[cfg(test)]
+mod migration_highjump_config_tests {
+    use super::*;
+    #[test]
+    fn old_airjump_config_defaults_highjump_disabled_and_multiplier_one() {
+        let saved:Saved=serde_json::from_str(r#"{"schema":1,"air_jump_enabled":true,"air_jump":{"maintain_level":true},"auto_jump_enabled":true}"#).unwrap();
+        saved.validate().unwrap();
+        assert!(saved.air_jump_enabled);
+        assert!(saved.air_jump.maintain_level);
+        assert!(saved.auto_jump_enabled);
+        assert!(!saved.high_jump_enabled);
+        assert_eq!(saved.high_jump.jump_multiplier, 1.0);
+    }
+    #[test]
+    fn saved_validation_checks_negative_and_nonfinite_highjump_multipliers() {
+        for multiplier in [-0.01, f64::NAN, f64::INFINITY] {
+            let mut saved = Saved::default();
+            saved.zoom.zoom = 4.0;
+            saved.high_jump.jump_multiplier = multiplier;
+            assert!(saved.validate().is_err());
+            assert_eq!(saved.zoom.zoom, 4.0);
+        }
     }
 }

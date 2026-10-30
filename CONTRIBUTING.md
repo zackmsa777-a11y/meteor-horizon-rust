@@ -21,10 +21,9 @@ Open standard native integration PRs against **`hnmod-migration`**. The current 
 (2026-10-30) is:
 
 - **AutoRespawn and BreakDelay:** reserved for a separate contributor's planned PR.
-- **AirJump and HighJump:** active maintainer-team work.
+- **AirJump and HighJump:** integrated by this team in verified migration.3.
 
-The separate contributor's GitHub identity is not recorded here; do not assume it from repository
-activity. Check this allocation and existing PRs before starting a module. Update the reservation
+Check this allocation and existing PRs before starting a module. Update the reservation
 when work is handed off or merged so that parallel contributions remain clear.
 
 Keep module-specific host logic in separate injection helpers or self-contained support payloads
@@ -35,8 +34,8 @@ avoid unrelated formatting or whole-file replacement. Rebase focused changes on 
 
 Retain the reusable core, its tests and license notices. Generate pristine stages with the pinned
 upstream Mixins tool; do not introduce a custom loader or manually edit generated host source.
-Keep verified migration.2 packages/evidence separate from unverified migration.3 work, and record
-only checks actually run against the new source snapshot.
+Preserve versioned verified packages and their evidence while developing the next integration,
+and record only checks actually run against the new source snapshot.
 
 ## Source layout and setup
 

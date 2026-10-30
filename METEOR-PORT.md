@@ -9,8 +9,8 @@ The objective remains full native behavior, including modules, GUI/HUD, configur
 utilities, integrations and lifecycle. Java JARs are reference artifacts, not executable plugins here.
 
 The [standard native proof](native/README.md) retains 30 module policies and currently connects
-Zoom + AutoJump through upstream hooks. It passes 50 isolated checks, with exact package and client
-hashes in its evidence. The other 28 policies remain inactive in that proof. Its evidence is separate
+Zoom, AutoJump, AirJump and HighJump through upstream hooks. It passes 101 isolated checks, with exact
+package and client hashes in its evidence. The other 26 policies remain inactive in that proof. Its evidence is separate
 from the legacy inventory below; retaining a policy does not count as migrating its host integration.
 
 The authoritative feature inventory is `crates/meteor-client/port-inventory.json`.

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "scope": "Source/package audit only; no Cargo, game or additional runtime test was executed by this audit",
+  "package_sha256": "0062fdecefc1f530632cb69c28f8cab40629289bf6e55ace8e6fda0993dea34f",
+  "rows": [
+    {
+      "check": "Portable migration.3 packager contract suite",
+      "status": "pass",
+      "passed": 7,
+      "failed": 0
+    },
+    {
+      "check": "Stock native parser accepts current schema-1 archive",
+      "status": "pass",
+      "content_parser_rejects_native_code": true,
+      "parser_source_sha256": "0f2692a663fbfdd3aa56a8f7ada9fc566bc6dcd184b11e7e71ceadda876837cb"
+    },
+    {
+      "check": "All 70 core and four data files are identical to verified migration.2",
+      "status": "pass",
+      "files_compared": 74
+    },
+    {
+      "check": "Reserved AutoRespawn and BreakDelay policy bytes are unchanged",
+      "status": "pass",
+      "sha256": {
+        "auto_respawn.rs": "a57cd41b6d71b73a435cd4cd51d09509050ad8a15749e229265a7af5a70fc5f9",
+        "break_delay.rs": "2866b58ef29d70f6d43eaf58453884bfde88ae97157dab11805061f35f1ef116"
+      }
+    },
+    {
+      "check": "Production manifest has 12 hooks, three support modules and one core crate",
+      "status": "pass",
+      "post_build_steps": 0
+    },
+    {
+      "check": "All three support payloads and 12 helper sources match official plan R5",
+      "status": "pass"
+    },
+    {
+      "check": "No spike-only shell, game binary or new loader payload in archive",
+      "status": "pass"
+    }
+  ]
+}

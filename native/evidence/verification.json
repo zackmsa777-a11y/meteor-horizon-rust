@@ -1,190 +1,143 @@
 {
   "schema": 1,
-  "status": "Standard native Zoom + AutoJump proof; official source checks, linked build and 50 isolated runtime checks passed. Full module parity is not claimed.",
+  "status": "Standard native migration.3 proof: source/package, official plan/apply, linked build and 101 isolated runtime checks passed. Full parity and stock launcher end-to-end remain unverified.",
   "package": {
-    "filename": "meteor-client-autojump-migration-proof.hnmod",
+    "sha256": "0062fdecefc1f530632cb69c28f8cab40629289bf6e55ace8e6fda0993dea34f",
+    "entries": 91,
+    "bytes": 153682,
     "id": "meteor_client",
-    "version": "0.1.0-migration.2",
-    "sha256": "b9a4fd4ffa3f0e23b6b1d9d44d88ab8788fae7c6c08bb9dff9a2724519799c40",
-    "bytes": 146517,
-    "entries": 86
+    "version": "0.1.0-migration.3",
+    "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+    "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12",
+    "filename": "meteor-client-movement-migration-proof.hnmod"
   },
-  "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
-  "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12",
   "snapshot": {
-    "runtime_path": "bundle/mixins/meteor_client/runtime.rs",
-    "runtime_sha256": "9c456d373e852291553736b068e223a43a334907ffa268402f21af9f8a50a951",
-    "official_stage_generation": "AutoJump R3",
-    "stage_marker_sha256": "d0433f57e17e58cfaf1db20dd0b2d0bff054954bfccf6c514e20ba8059aea768",
-    "exact_runtime_module_matches_stage": true,
-    "exact_helper_sources_matching_stage": 9,
-    "retained_core_files": 70,
-    "retained_data_files": 4,
-    "retained_original_helpers": 8,
-    "retained_source_policy_count": 30,
-    "other_inactive_policies": 28,
-    "core_and_provenance_and_notices_unchanged": true,
-    "integrated_adapters": [
+    "runtime_sha256": "b8d89dc8ea0c3b6d71659c87689c5d52a3e88cc0e0ef382d4ad9e6bd05b94613",
+    "source_stage": "Movement R5",
+    "core_files_unchanged": 70,
+    "data_files_unchanged": 4,
+    "reserved_policy_sha256": {
+      "auto_respawn.rs": "a57cd41b6d71b73a435cd4cd51d09509050ad8a15749e229265a7af5a70fc5f9",
+      "break_delay.rs": "2866b58ef29d70f6d43eaf58453884bfde88ae97157dab11805061f35f1ef116"
+    },
+    "spike_only_shells_excluded": true,
+    "adapter_sources": [
       "zoom",
-      "auto-jump"
+      "auto-jump",
+      "air-jump",
+      "high-jump"
     ],
-    "pristine_source_files_verified_against_original_zip": 3567,
-    "pristine_files_unchanged_after_R3": true,
-    "original_horizon_archive_sha256": "1792767d8c5b024e09c24f02ac24b0c4f04ef8f5078471c7c448f6c530363ccb"
+    "remaining_inactive_policies": 26,
+    "client_sha256": "dffe550cd9a9716a906ea6b07230d7c664cf4cc8d63ad373dd65cba898864443",
+    "control_sha256": "66798153f91d40246ced8440fcfe1ad10464874fcdb8d89fe93eed683347e626"
   },
   "checks": {
-    "official_mixins_plan": {
+    "source_package_smoke": {
       "status": "pass",
-      "seconds": 34.71,
-      "schema": 6,
+      "evidence": "evidence/source-smoke-matrix.json"
+    },
+    "official_plan": {
+      "status": "pass",
       "transformer": "0.6.0",
-      "injections": [
-        {
-          "id": "movement_pre",
-          "hook": null,
-          "version": null,
-          "target": "horizon_client::game::Game<'_>::tick",
-          "kind": "HEAD"
-        },
-        {
-          "id": "frame",
-          "hook": "frame",
-          "version": 1,
-          "target": "horizon_client::game::native_hooks::Game<'_>::native_frame",
-          "kind": "HEAD"
-        },
-        {
-          "id": "tick",
-          "hook": "tick",
-          "version": 1,
-          "target": "horizon_client::game::native_hooks::Game<'_>::native_tick",
-          "kind": "HEAD"
-        },
-        {
-          "id": "wheel",
-          "hook": "wheel",
-          "version": 1,
-          "target": "horizon_client::game::native_hooks::Game<'_>::native_wheel",
-          "kind": "HEAD"
-        },
-        {
-          "id": "command",
-          "hook": "command",
-          "version": 1,
-          "target": "horizon_client::game::native_hooks::Game<'_>::native_command",
-          "kind": "HEAD"
-        },
-        {
-          "id": "zoom",
-          "hook": "zoom",
-          "version": 1,
-          "target": "horizon_client::game::native_hooks::Game<'_>::native_zoom",
-          "kind": "HEAD"
-        },
-        {
-          "id": "mods",
-          "hook": "mods",
-          "version": 1,
-          "target": "horizon_client::game::native_hooks::Game<'_>::native_mods",
-          "kind": "HEAD"
-        },
-        {
-          "id": "settings",
-          "hook": "settings",
-          "version": 1,
-          "target": "horizon_client::game::native_hooks::Game<'_>::native_settings",
-          "kind": "HEAD"
-        },
-        {
-          "id": "settings_click",
-          "hook": "settings_click",
-          "version": 1,
-          "target": "horizon_client::game::native_hooks::Game<'_>::native_settings_click",
-          "kind": "HEAD"
-        }
-      ]
+      "schema": 6,
+      "seconds": 30.15,
+      "plan_sha256": "f2f20a38b72461659391b30ba302f7ec18b4fdb3c7d7569a427c8034baea0ebf",
+      "hooks": 12,
+      "support_modules": 3,
+      "bundle_crates": 1,
+      "post_build_steps": 0
     },
-    "official_mixins_apply": {
+    "official_apply": {
       "status": "pass",
-      "seconds": 45.61,
-      "scope": "Official tool staged one bundle crate, one support module, eight named HEAD hooks and a raw Game tick HEAD hook."
+      "stage_generation": "Movement R5",
+      "seconds": 41.46,
+      "scope": "Official Mixins stage; coordinator synchronized the three changed files byte for byte into the stable build view."
     },
-    "host_typecheck": {
+    "combined_state_units": {
       "status": "pass",
-      "exit_code": 0,
-      "seconds": 6.79
+      "evidence": "evidence/movement-state-units.json",
+      "passed": 13,
+      "failed": 0,
+      "scope": "Exact Runtime state only; excludes Game and motion adapters."
     },
-    "linked_build": {
+    "highjump_native_identity_component": {
       "status": "pass",
-      "seconds": 192,
-      "method": "Official Mixins stage plus pinned Cargo fast build",
-      "client_sha256": "56e9ec8c64f46c06d972d88537e4251a98be7334ebd0fdb078185ee67cc1a42d",
-      "control_sha256": "a32f27d371eb24179c0d2f64b076156e46ab85b881f6204272fc3f16a401e7aa",
-      "stock_launcher_end_to_end_build_install": "not tested"
-    },
-    "saved_configuration_tests": {
-      "status": "pass",
+      "evidence": "evidence/highjump-component-units.json",
       "passed": 2,
       "failed": 0,
-      "runtime_sha256": "9c456d373e852291553736b068e223a43a334907ffa268402f21af9f8a50a951",
-      "exact_saved_source_sha256": "a2ea9f04b89401cc8a75e2d898a6eab144b06998e12c0406144c04ae0c4bc7e3",
-      "exact_tests_source_sha256": "95e65020540ce62b661d6b4d6a166f60e3ffbbaae785d114fe98f7c9330aba60",
-      "scope": "Exact copied Saved schema, defaults and validation tests against unchanged core. This unit check alone does not exercise Game or movement; host and runtime checks are recorded separately."
+      "scope": "Unchanged reusable R4 component only; not combined runtime."
     },
-    "standard_native_parser": {
+    "combined_host_check": {
       "status": "pass",
-      "package_sha256": "b9a4fd4ffa3f0e23b6b1d9d44d88ab8788fae7c6c08bb9dff9a2724519799c40",
-      "parser_source_sha256": "0f2692a663fbfdd3aa56a8f7ada9fc566bc6dcd184b11e7e71ceadda876837cb",
-      "parser_byte_identical_to_original_archive": true,
-      "content_loader_rejected": true
+      "exit_code": 0,
+      "seconds": 6.58,
+      "scope": "Actual staged horizon-client host check on final combined R5 source."
     },
-    "packager_tests": {
-      "passed": 7,
-      "failed": 0,
-      "scope": "Portable migration.2 tool and its candidate-default bundle"
-    },
-    "autojump_game_runtime": {
+    "combined_linked_build": {
       "status": "pass",
-      "evidence": "evidence/runtime-autojump.json",
-      "checks_passed": 50,
+      "exit_code": 0,
+      "profile": "fast",
+      "seconds": 247,
+      "client_sha256": "dffe550cd9a9716a906ea6b07230d7c664cf4cc8d63ad373dd65cba898864443",
+      "control_sha256": "66798153f91d40246ced8440fcfe1ad10464874fcdb8d89fe93eed683347e626",
+      "method": "Official Mixins R5 stage plus pinned Cargo, not a stock-launcher end-to-end build/install test."
+    },
+    "combined_game_runtime": {
+      "status": "pass",
+      "evidence": "evidence/runtime-movement.json",
+      "checks_passed": 101,
       "checks_failed": 0,
       "exit_code": 0,
-      "client_sha256": "56e9ec8c64f46c06d972d88537e4251a98be7334ebd0fdb078185ee67cc1a42d",
-      "control_sha256": "a32f27d371eb24179c0d2f64b076156e46ab85b881f6204272fc3f16a401e7aa",
-      "raw_report_sha256": "2d89a7dbc87d7d77ea817a710604e7e7d0d15b28f9daa8eaed7dd83bad103eb5",
-      "harness_sha256": "e88a2cddb9174189836cd56ba232fd6dd153964141b76897e53bee9c57486385",
-      "zoom_base_harness_sha256": "d03b8835075cdc3f25b8b655a91ec860851579a68a5061cdacb55ad74a543c8a",
+      "client_sha256": "dffe550cd9a9716a906ea6b07230d7c664cf4cc8d63ad373dd65cba898864443",
+      "control_sha256": "66798153f91d40246ced8440fcfe1ad10464874fcdb8d89fe93eed683347e626",
+      "raw_report_sha256": "b9e0fbc4fd2c6f6c49796bcbd9eca9b4c764434817ce562a019999ce5a1ea019",
+      "harnesses": {
+        "movement": {
+          "path": "tools/test_standard_movement.py",
+          "sha256": "60073db0bf58848b164a3ae96db991177439eac3376b5a3a4b516d5a3db398be"
+        },
+        "autojump": {
+          "path": "tools/test_standard_autojump.py",
+          "sha256": "e88a2cddb9174189836cd56ba232fd6dd153964141b76897e53bee9c57486385"
+        },
+        "zoom": {
+          "path": "tools/test_standard_zoom.py",
+          "sha256": "d03b8835075cdc3f25b8b655a91ec860851579a68a5061cdacb55ad74a543c8a"
+        }
+      },
       "harnesses_unchanged_during_run": true,
-      "scope": "Fresh generated singleplayer world: actual Jump/LowHop, movement predicates, sneak, invalid inputs, restoration and a targeted Zoom regression. No complete parity claim."
+      "world_leave_rejoin_verified": true,
+      "airjump_old_level": 92,
+      "airjump_new_level": 80,
+      "scope": "Fresh generated world, inherited Zoom/AutoJump regressions and AirJump/HighJump behavior checks. Exact exhaustion/sync/tail counts and mouse jump bindings remain outside coverage."
     },
-    "pristine_input_verification": {
+    "post_R5_pristine_input_verification": {
       "status": "pass",
-      "files_verified": 3567,
-      "all_bytes_unchanged_after_R3": true,
-      "original_archive_sha256": "1792767d8c5b024e09c24f02ac24b0c4f04ef8f5078471c7c448f6c530363ccb"
+      "files_byte_identical_to_original": 3567,
+      "original_archive_sha256": "1792767d8c5b024e09c24f02ac24b0c4f04ef8f5078471c7c448f6c530363ccb",
+      "scope": "Pristine input source remains unchanged after normal Mixins planning/staging."
     }
   },
-  "previous_verified_zoom": {
-    "verification": "evidence/verification-zoom.json",
-    "runtime": "evidence/runtime-zoom.json",
-    "package_sha256": "4c8d2f238f8c9c184f96228f6c966d9a3945b07dffe65169fe438cf59fe70de3",
-    "runtime_checks": 32,
-    "scope": "Previous migration.1 Zoom-only snapshot; migration.2 has its own targeted Zoom regression in the 50-check run."
+  "historical_evidence": {
+    "migration_2_verification": "evidence/verification-autojump.json",
+    "migration_2_runtime": "evidence/runtime-autojump.json",
+    "migration_1_verification": "evidence/verification-zoom.json",
+    "migration_1_runtime": "evidence/runtime-zoom.json"
   },
-  "harness_fixture_history": {
-    "first_attempt": "Terrain fills returned not-loaded feedback despite successful JSON transport.",
-    "first_correction": "The coordinator added chunk force-loading and verified actual fill feedback.",
-    "second_attempt": "Jump, sprint, sneak and LowHop 0.25 checks passed. Zero-height elevation stayed constant, but the harness incorrectly required every ground flag to be true.",
-    "second_correction": "The harness now checks zero-height elevation and positive Y velocity, records ground flags and reports horizontal speed ratios without assuming baseline equality.",
-    "mod_or_client_changes_for_harness_corrections": false,
-    "current_run_status": "The final fresh frozen run passed all 50 checks and exited gracefully with code 0.",
-    "accepted_report_sha256": "2d89a7dbc87d7d77ea817a710604e7e7d0d15b28f9daa8eaed7dd83bad103eb5"
+  "coordination": {
+    "reserved_for_separate_contributor": [
+      "auto-respawn",
+      "break-delay"
+    ],
+    "github_identity_inferred": false,
+    "reserved_core_sources_unchanged": true
   },
   "limitations": [
-    "Only Zoom and AutoJump are connected; the other 28 retained policies are inactive.",
-    "Zoom native API caps and unwired cinematic, HUD and hand settings remain documented.",
-    "No full module, full Zoom or complete Meteor parity claim is made.",
-    "The stock launcher complete build/install flow is not verified by these official stage, pinned Cargo and runtime checks.",
-    "LowHop changes Y velocity only; it does not force ground flags or guarantee the same horizontal speed as the unmodified baseline. Native collision and friction behavior still applies."
+    "Four adapter modules are connected; the other 26 retained core policies are inactive.",
+    "Sampled heights and velocities are observations, not exact mathematical apex values.",
+    "Per-jump exhaustion, needs_sync and exact wrapper-tail counts are dynamically unverified.",
+    "AirJump keyboard J rebound was tested; mouse jump bindings were not.",
+    "The stock launcher complete build/install flow remains unverified.",
+    "No complete per-module or full Meteor parity claim is made; historical migration.2 and Zoom results retain their own scopes."
   ]
 }

@@ -1,11 +1,11 @@
 > **Integration migration branch:** [`native/`](native/) contains the standard
-> `.hnmod` / horizon-mixins proof. It retains 30 module policies and connects Zoom + AutoJump.
-> Package validation, core/configuration tests, host compilation and 50 isolated checks pass.
+> `.hnmod` / horizon-mixins proof. It retains 30 module policies and connects Zoom, AutoJump,
+> AirJump and HighJump. Package, unit, compilation and 101 isolated runtime checks pass.
 > The legacy checkpoint is preserved on `main`.
 
 # Meteor mod for Horizon
 
-> **Installation status:** an experimental standard `.hnmod` proof connects Zoom + AutoJump.
+> **Installation status:** the experimental standard `.hnmod` connects Zoom, AutoJump, AirJump and HighJump.
 > The remaining modules, GUI and HUD are still being migrated.
 > The existing `.hmod` is a legacy source-patch prototype for a custom build path. It cannot
 > be loaded through Horizon's ordinary content Mods menu; renaming it will not convert it.
@@ -17,7 +17,7 @@ The existing module logic, settings, configuration and tests are being retained.
 on the Horizon adapter, state handling and packaging. The repository still includes the pinned
 Horizon source snapshot used to reproduce the verified legacy prototype; attribution is retained below.
 
-[Experimental standard bundle — Zoom + AutoJump only](packages/meteor-client-autojump-migration-proof.hnmod) ·
+[Experimental standard bundle — four movement/zoom modules](packages/meteor-client-movement-migration-proof.hnmod) ·
 [Native setup and verification](native/README.md) ·
 [Legacy prototype package — custom build path only](packages/meteor-client-native-28-module.hmod) ·
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
@@ -29,7 +29,7 @@ The complete Meteor port is not finished. See [METEOR-PORT.md](METEOR-PORT.md) a
 
 ## Verification
 
-- The standard integration passed 50 isolated Zoom/AutoJump checks with clean shutdown;
+- The standard integration passed 101 isolated Zoom/AutoJump/AirJump/HighJump checks with clean shutdown;
   its [exact source, package and client evidence](native/evidence/verification.json) is separate
   from the legacy checkpoints below. It uses pristine Horizon plus upstream Mixins.
 - 130 core tests passed; seven original module/friends importer fixtures and four macro importer fixtures passed.

@@ -1,6 +1,6 @@
 [mod]
 id = "meteor_client"
-version = "0.1.0-migration.2"
+version = "0.1.0-migration.3"
 priority = 100
 
 [compatibility]
@@ -117,3 +117,47 @@ helper = "movement_pre.rs"
 bindings = [
   { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
 ]
+
+# Keyboard Press/Release names; the stable wrapper discards keyboard Repeat events.
+[[injection]]
+id = "key"
+hook = "key"
+hook_version = 1
+kind = "HEAD"
+helper = "key.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "key", ty = "&str", value = "key" },
+  { name = "pressed", ty = "bool", value = "pressed" },
+]
+
+# HighJump production modules and two concrete cancellable HEAD hooks.
+[[module]]
+id = "highjump_motion"
+file = "crates/horizon-client/src/motion.rs"
+name = "meteor_highjump"
+source = "motion_highjump.rs"
+visibility = "pub"
+
+[[module]]
+id = "highjump_publisher"
+file = "crates/horizon-client/src/game.rs"
+name = "meteor_highjump_publisher"
+source = "game_highjump_publisher.rs"
+
+[[injection]]
+id = "highjump_block"
+target = "horizon_client::motion::<MotionWorld<'_,'_,'_> as LivingMotionWorld>::block_jump_factor"
+kind = "HEAD"
+cancellable = true
+helper = "highjump_block_head.rs"
+bindings = [{name="world",ty="&mut crate::motion::MotionWorld<'_, '_, '_>",value="&mut *self"}]
+
+[[injection]]
+id = "highjump_jump"
+target = "horizon_client::motion::MotionWorld<'_,'_,'_>::jump_from_ground"
+kind = "HEAD"
+cancellable = true
+helper = "highjump_jump_head.rs"
+bindings = [{name="world",ty="&mut crate::motion::MotionWorld<'_, '_, '_>",value="&mut *self"}]
+

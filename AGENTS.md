@@ -15,16 +15,15 @@ source tree is included for native integration and builds.
   `crates/meteor-client` and the host's `meteor*.rs` files preserve the legacy prototype.
   Do not register empty modules or claim full parity from partial checks.
 - Native integration PRs target `hnmod-migration`. Current allocation (2026-10-30):
-  AutoRespawn and BreakDelay are reserved for a separate contributor's planned PR; AirJump and
-  HighJump are active maintainer-team work. The contributor's GitHub identity is not recorded;
-  do not infer it from branch or account activity. Recheck assignments and open PRs before
-  starting another module, and update this note when work is handed off or merged.
+  AutoRespawn and BreakDelay are reserved for a separate contributor's planned PR. AirJump and
+  HighJump were integrated by this team in verified migration.3. Recheck assignments and open
+  PRs before starting another module, and update this note when work is handed off or merged.
 - Prefer separate module-specific injection helpers and self-contained support payload files.
   Keep shared `runtime.rs` dispatch/configuration and `horizon-mixin.toml` registration changes
   small, preserve other modules' wiring, and avoid unrelated formatting or whole-file rewrites.
   Retain the reusable core and tests; use upstream Mixins, not a new custom loader.
-- Keep verified migration.2 source, packages and evidence immutable while migration.3 is being
-  developed. A new adapter or passing plan is not a runtime result for the earlier artifact.
+- Preserve versioned verified packages and their evidence when developing the next integration.
+  A new adapter or passing plan is not a runtime result for an earlier artifact.
 - Preserve applicable Meteor GPL-3.0-only, Horizon MIT, Starscript MIT and third-party notices.
 - Never commit Minecraft JARs/assets, decompiled game sources, prepared resources, credentials,
   accounts or player worlds. Run `python tools/check_public_tree.py --history` before pushing.
