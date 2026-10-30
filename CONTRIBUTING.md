@@ -6,6 +6,12 @@ The port is in development; the feature inventory records implemented behavior a
 
 ## Where to contribute
 
+Current standard native integration PRs target **`hnmod-migration`**. AutoRespawn and
+BreakDelay are reserved for a separate contributor's planned PR; AirJump and HighJump
+are now integrated in the verified four-module proof. See the
+[current native setup and evidence](https://github.com/zackmsa777-a11y/meteor-horizon-rust/tree/hnmod-migration/native).
+The source layout and commands below describe the legacy prototype preserved on `main`.
+
 Use [this repository's issues](https://github.com/zackmsa777-a11y/meteor-horizon-rust/issues)
 for bugs and proposals, and open pull requests here. Check existing work before starting a large
 change. This project does not use Horizon's Discord claim bot or upstream release labels.
