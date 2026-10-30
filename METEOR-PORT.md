@@ -13,6 +13,10 @@ Zoom, AutoJump, AirJump and HighJump through upstream hooks. It passes 101 isola
 package and client hashes in its evidence. The other 26 policies remain inactive in that proof. Its evidence is separate
 from the legacy inventory below; retaining a policy does not count as migrating its host integration.
 
+Migration.4 adds AutoRespawn and BreakDelay to the same standard `.hnmod` (six policies integrated, 24
+inactive). Its 39 player-interaction checks and the 101-check movement regression, with package and
+client hashes, are in `native/evidence/runtime-player-interactions.json`.
+
 The authoritative feature inventory is `crates/meteor-client/port-inventory.json`.
 It enumerates registered module classes and every Java source file from the supplied archive.
 Missing implementations must remain explicitly missing; empty module registrations do not count as ports.

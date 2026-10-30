@@ -1,0 +1,236 @@
+{
+  "schema": 1,
+  "kind": "standard-hnmod-autorespawn-breakdelay-runtime",
+  "status": "pass",
+  "package": {
+    "filename": "meteor-client-autorespawn-breakdelay-migration-proof.hnmod",
+    "id": "meteor_client",
+    "version": "0.1.0-migration.4",
+    "sha256": "136ea781cd8126dd11b50d9d1434ebbb9a543b9bd5883c3ac5289635a65067ae",
+    "entries": 95,
+    "bytes": 158056,
+    "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+    "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12"
+  },
+  "base": "hnmod-migration 59593e8 (AirJump/HighJump migration.3)",
+  "runtime_source_sha256": "cfaa907c5464923f836b2cb1025908164ba7c964cb0f994980534bf1bc594200",
+  "mixins_plan": {
+    "injections": 15,
+    "modules": 4,
+    "status": "ok"
+  },
+  "build": {
+    "cargo_check_locked": "pass",
+    "cargo_build_fast_locked": "pass",
+    "core_tests_meteor_client": "exit 0; 150 passed, 0 failed in the 19 logged suites"
+  },
+  "stock_parser": "pristine horizon_mods native Bundle::read accepted the archive (95 entries); content loader rejected it. Original-archive byte comparison was not run (original ZIP unavailable).",
+  "client_sha256": "f7550159e9f89bd1b07d31c2f25396fcb1c55360720c34200ecd2ddb61c20f1e",
+  "control_sha256": "352dcf23a8cf93b82f4a6a4ed8170455cfc0f80e3e574d19b37ab2cf370388d5",
+  "player_interactions": {
+    "checks_passed": 39,
+    "checks_failed": 0,
+    "started_utc": "2026-10-30T15:55:19.094431+00:00",
+    "finished_utc": "2026-10-30T15:56:16.838318+00:00",
+    "exit_code": 0,
+    "harness": {
+      "path": "tools/test_standard_player_interactions.py",
+      "sha256": "fc0d4a54e0c25a1339ee84fe5ef6f9dad7178b7c552e01cc8b7c935f0a5a7c6c"
+    },
+    "break_ticks_to_clear_four_blocks": {
+      "ordinary": [
+        21,
+        20
+      ],
+      "enabled": [
+        7,
+        7
+      ],
+      "restored": [
+        20,
+        21
+      ]
+    },
+    "checks": [
+      {
+        "name": "Fresh world starts in creative",
+        "passed": true
+      },
+      {
+        "name": "Generated fixture fill succeeds: minecraft:stone",
+        "passed": true
+      },
+      {
+        "name": "Generated fixture fill succeeds: minecraft:air",
+        "passed": true
+      },
+      {
+        "name": "AutoRespawn and BreakDelay default disabled with source settings",
+        "passed": true
+      },
+      {
+        "name": "AutoRespawn can be switched on through real chat",
+        "passed": true
+      },
+      {
+        "name": "AutoRespawn can be switched off through real chat",
+        "passed": true
+      },
+      {
+        "name": "Generated fixture fill succeeds: minecraft:stone",
+        "passed": true
+      },
+      {
+        "name": "Generated fixture fill succeeds: minecraft:stone",
+        "passed": true
+      },
+      {
+        "name": "Ordinary held creative break clears the line at the vanilla cadence",
+        "passed": true
+      },
+      {
+        "name": "BreakDelay can be switched on through real chat",
+        "passed": true
+      },
+      {
+        "name": "Generated fixture fill succeeds: minecraft:stone",
+        "passed": true
+      },
+      {
+        "name": "Generated fixture fill succeeds: minecraft:stone",
+        "passed": true
+      },
+      {
+        "name": "BreakDelay cooldown 0 clears the same line much faster than ordinary",
+        "passed": true
+      },
+      {
+        "name": "BreakDelay can be switched off through real chat",
+        "passed": true
+      },
+      {
+        "name": "Generated fixture fill succeeds: minecraft:stone",
+        "passed": true
+      },
+      {
+        "name": "Generated fixture fill succeeds: minecraft:stone",
+        "passed": true
+      },
+      {
+        "name": "Disabling BreakDelay restores the ordinary cadence",
+        "passed": true
+      },
+      {
+        "name": "Invalid BreakDelay setting rejected without changing saved config: break-delay cooldown -1",
+        "passed": true
+      },
+      {
+        "name": "Invalid BreakDelay setting rejected without changing saved config: break-delay cooldown nope",
+        "passed": true
+      },
+      {
+        "name": "Invalid BreakDelay setting rejected without changing saved config: break-delay no-insta-break maybe",
+        "passed": true
+      },
+      {
+        "name": "BreakDelay cooldown persists in generated local JSON",
+        "passed": true
+      },
+      {
+        "name": "BreakDelay can be switched on through real chat",
+        "passed": true
+      },
+      {
+        "name": "Generated fixture fill succeeds: minecraft:stone",
+        "passed": true
+      },
+      {
+        "name": "No-insta-break prevents a completed held survival break",
+        "passed": true
+      },
+      {
+        "name": "Survival block breaks again when no-insta-break is disabled",
+        "passed": true
+      },
+      {
+        "name": "BreakDelay can be switched off through real chat",
+        "passed": true
+      },
+      {
+        "name": "Disabled AutoRespawn leaves the death screen open",
+        "passed": true
+      },
+      {
+        "name": "Manual respawn still works while AutoRespawn is disabled",
+        "passed": true
+      },
+      {
+        "name": "AutoRespawn can be switched on through real chat",
+        "passed": true
+      },
+      {
+        "name": "AutoRespawn returns an actual death to live singleplayer gameplay",
+        "passed": true
+      },
+      {
+        "name": "AutoRespawn leaves the respawned player alive and in play",
+        "passed": true
+      },
+      {
+        "name": "AutoRespawn persists in generated local JSON",
+        "passed": true
+      },
+      {
+        "name": "AutoRespawn setting survives leaving and rejoining the generated world",
+        "passed": true
+      },
+      {
+        "name": "AutoRespawn acts again after the world lifecycle reset",
+        "passed": true
+      },
+      {
+        "name": "AutoRespawn can be switched off through real chat",
+        "passed": true
+      },
+      {
+        "name": "Disabling AutoRespawn restores the death screen",
+        "passed": true
+      },
+      {
+        "name": "Graceful own-client shutdown exits0",
+        "passed": true
+      },
+      {
+        "name": "Exact frozen binaries remained unchanged",
+        "passed": true
+      },
+      {
+        "name": "Exact runtime harnesses remained unchanged",
+        "passed": true
+      }
+    ]
+  },
+  "movement_regression": {
+    "checks_passed": 101,
+    "checks_failed": 0,
+    "started_utc": "2026-10-30T15:57:07.534484+00:00",
+    "finished_utc": "2026-10-30T16:04:30.534882+00:00",
+    "exit_code": 0,
+    "covers": "Zoom, AutoJump (inherited regression), AirJump, HighJump, world leave/rejoin",
+    "client_sha256_matches_player_interactions_run": true,
+    "harnesses_unchanged": true
+  },
+  "negative_control": "The same harness against the pre-fix Codex build (hook on tick_local_hand) failed 'BreakDelay cooldown 0 clears the same line much faster than ordinary': enabled took 21 and 20 ticks, equal to ordinary 21 and 21.",
+  "root_cause": "A singleplayer window is a client of its integrated server. Its held-button breaks run through remote_mining and its own destroy_delay, not Clicks/tick_local_hand, so the earlier hook never ran on the window and BreakDelay changed nothing; the earlier on/off check passed by timing noise at the reach cap.",
+  "isolation": {
+    "worlds": "fresh generated singleplayer worlds",
+    "data": "scratch HORIZON_HOME, launcher, XDG, TEMP; no accounts, existing worlds or multiplayer"
+  },
+  "limitations": [
+    "BreakDelay speed is measured in game ticks over a four-block creative line at the sampling resolution of the control wait (several ticks); it is not an exact per-tick trace.",
+    "Survival no-insta-break is checked for one stone block with a netherite pickaxe; other tools, blocks and enchantments are not swept.",
+    "Physical mouse input is exercised through the control socket press path; the window mouse hook is compiled and planned but not driven by a physical device.",
+    "AutoRespawn's Waypoints effect is not migrated (that module is absent); the death-waypoint effect is a no-op.",
+    "The stock launcher native-build flow was not run for this snapshot. Full Meteor parity is not claimed; the other 24 retained policies remain inactive."
+  ]
+}

@@ -15,6 +15,30 @@ The 91-entry archive uses ordinary `horizon-native.json` schema 1, ID
 - Mixins `cb1ad23022392d88f006cf94cbf6552a73f5df12` (0.6.0).
 - Meteor reference `e3a2e77967629d216e127b5ceecf71fb15f9d2e5`.
 
+## Migration.4: AutoRespawn and BreakDelay
+
+[Migration.4](../packages/meteor-client-autorespawn-breakdelay-migration-proof.hnmod) adds
+**AutoRespawn** and **BreakDelay** on top of the migration.3 modules (six integrated, 24 inactive).
+The migration.3 package and evidence below are unchanged and remain the record for that snapshot;
+migration.4 evidence is in [runtime-player-interactions.json](evidence/runtime-player-interactions.json).
+
+- AutoRespawn runs from the named `tick` hook, the tick after the death screen opens, once per death,
+  through the host `respawn_player` operation that the screen's own button uses.
+- BreakDelay replaces the three vanilla `5` cooldown writes and the continued survival break
+  (no-insta-break) at the window client's `remote_mining`. A singleplayer window is a client of its
+  integrated server, so its held-button breaks use `remote_mining` and its own `destroy_delay`, not the
+  local `Clicks`/`tick_local_hand` path. A support module in `remote.rs` exposes that private state;
+  mouse presses use two raw HEAD hooks (`window_event`, control `play_mouse`).
+- The Mixins plan has 15 injections and 4 support modules; the core crate is unchanged. Both modules
+  default to disabled; settings are in the generated `zoom-migration.json` and the Mods page.
+
+Runtime checks (fresh singleplayer worlds only): 39 player-interaction checks cover defaults, real
+chat toggles, creative break timing (ordinary about 20 ticks, BreakDelay 0 about 7, restored about 20 to
+clear four blocks), setting validation and persistence, survival no-insta-break, AutoRespawn on/off,
+manual respawn, and settings and respawn after world leave/rejoin. The unchanged movement harness
+then passed 101 of 101 checks on the same client. Run the first with
+`python native/tools/test_standard_player_interactions.py` (same arguments as the movement harness).
+
 ## Implementation and preserved source
 
 Official Mixins stages 12 hooks, three support payloads and one core crate into

@@ -15,10 +15,10 @@ source tree is included for native integration and builds.
   `crates/meteor-client` and the host's `meteor*.rs` files preserve the legacy prototype.
   Do not register empty modules or claim full parity from partial checks.
 - Native integration PRs target `hnmod-migration`. Current allocation (2026-10-30):
-  AutoRespawn and BreakDelay are reserved for a separate contributor's planned PR. AirJump and
-  HighJump were integrated by this team in verified migration.3. This team is actively adding
-  a RightShift GUI for those four modules and a basic FPS/coordinates HUD. Keep the reserved
-  AutoRespawn/BreakDelay integration separate. Recheck assignments and open
+  AutoRespawn and BreakDelay have a separate contributor's PR in review against `hnmod-migration`
+  (migration.4). AirJump and HighJump were integrated by this team in verified migration.3. This
+  team is actively adding a RightShift GUI for those four modules and a basic FPS/coordinates HUD.
+  Keep the AutoRespawn/BreakDelay integration separate. Recheck assignments and open
   PRs before starting another module, and update this note when work is handed off or merged.
 - Prefer separate module-specific injection helpers and self-contained support payload files.
   Keep shared `runtime.rs` dispatch/configuration and `horizon-mixin.toml` registration changes

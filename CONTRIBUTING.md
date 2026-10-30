@@ -20,11 +20,13 @@ Coordinate ongoing port changes with the repository maintainer,
 Open standard native integration PRs against **`hnmod-migration`**. The current allocation
 (2026-10-30) is:
 
-- **AutoRespawn and BreakDelay:** reserved for a separate contributor's planned PR.
+- **AutoRespawn and BreakDelay:** a PR against `hnmod-migration` (migration.4) is in review; update
+  this line when it merges.
 - **AirJump and HighJump:** integrated by this team in verified migration.3.
 - **RightShift GUI and basic FPS/coordinates HUD:** active work by this team for the four
   integrated modules (Zoom, AutoJump, AirJump and HighJump). AutoRespawn/BreakDelay host
-  integration remains reserved; coordinate shared runtime/manifest edits before rebasing.
+  integration is the separate contributor's PR in review; coordinate shared runtime/manifest
+  edits before rebasing.
 
 Check this allocation and existing PRs before starting a module. Update the reservation
 when work is handed off or merged so that parallel contributions remain clear.
