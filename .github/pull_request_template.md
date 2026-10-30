@@ -1,33 +1,18 @@
-<!-- Opened by an AI agent? First line: "> 🤖 Opened by <your GitHub login>'s AI agent (<tool, model>), not by <your GitHub login> personally." Use your own login, not someone else's. -->
+<!-- Identify AI-assisted submissions and their author/tool when applicable. -->
+## Change
 
-## What and why
+<!-- What mod behavior changes, and why? Link a related issue when available. -->
 
-<!-- What this changes, and why. Link the issue it fixes ("Fixes #123"). -->
+## Meteor reference and scope
 
-## Kind
+<!-- Reference version/classes/settings, affected module or system, and remaining gaps.
+     For documentation-only changes, describe the documentation scope. -->
 
-<!-- Tick one: it sets the pull request's label (CONTRIBUTING.md "Pull requests"). -->
+## Validation
 
-- [ ] parity: Horizon now does what vanilla 26.3 does
-- [ ] bug: a crash or a breakage
-- [ ] perf: faster, or less memory
-- [ ] feature: something new for players (listed under New in the release notes)
-- [ ] extra: Horizon-only, off by default
-- [ ] tooling: tools, CI, tests, harnesses
-- [ ] docs
-
-## Vanilla reference
-
-<!-- The vanilla classes and methods this follows (tools/rea_vanilla.py), and the harness that checks it.
-     "Horizon-only" for a feature vanilla doesn't have; "none" for tooling or docs. -->
-
-## Self-check
-
-<!-- Paste the block `python3 tools/pr_ready.py` prints (`--base upstream/main` from a fork). -->
+<!-- Exact tests/checks and results. Distinguish core, compile and runtime evidence.
+     Runtime checks must use isolated data. Explain anything that could not be checked. -->
 
 ## Screenshots
 
-<!-- For anything players see: before and after. Delete this section otherwise. -->
-
-<!-- Please tick "Allow edits by maintainers": we push small fixups ourselves instead of a round trip.
-     See CONTRIBUTING.md. -->
+<!-- Include relevant UI screenshots, or remove this section for nonvisual changes. -->
