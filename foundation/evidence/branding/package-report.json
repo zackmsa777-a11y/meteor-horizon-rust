@@ -1,0 +1,229 @@
+{
+  "format": "standard horizon-native.json schema1 .hnmod",
+  "manifest": {
+    "schema": 1,
+    "id": "meteor_client",
+    "version": "0.1.0-native.1",
+    "game": "26.3",
+    "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+    "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12"
+  },
+  "package": "meteor-horizon-native.hnmod",
+  "package_sha256": "cb8d5981f60d67e6e5fb592fab53252ef8a7ca22ec19ef4d26062c3d72e8f68a",
+  "bytes": 112727,
+  "entries": 42,
+  "expanded_bytes": 425674,
+  "payloads": [
+    {
+      "path": "horizon-native.json",
+      "bytes": 213,
+      "sha256": "0121091ef502f3c629849ac72ef95ffb0e8f6910b4c22a833282a21be7dc74ce"
+    },
+    {
+      "path": "mixins/meteor_client/buttons.rs",
+      "bytes": 406,
+      "sha256": "4613dbd0f523db1877ee809cb74f9ae918052a9f7066beee3f45bd05cf249726"
+    },
+    {
+      "path": "mixins/meteor_client/camera.rs",
+      "bytes": 430,
+      "sha256": "fabaa7688bbd92236b359579c7cb7cd430d824f6a3e0836a365fc6b608b19aae"
+    },
+    {
+      "path": "mixins/meteor_client/chat.rs",
+      "bytes": 366,
+      "sha256": "c2b44d8704821fd9260831be4fbce5958245ec307b5cb77c44c5d7d24384eed2"
+    },
+    {
+      "path": "mixins/meteor_client/click.rs",
+      "bytes": 313,
+      "sha256": "17e651d58899135fe3010107f8a953ad6a1dd6abecb009052c198f03d22c3598"
+    },
+    {
+      "path": "mixins/meteor_client/combat.rs",
+      "bytes": 37778,
+      "sha256": "7adb17eedd45656db3f1e1739fa41b2ca85e4a2406d1a5d8b230b9b76bf27bdb"
+    },
+    {
+      "path": "mixins/meteor_client/data/component-licenses.json",
+      "bytes": 1677,
+      "sha256": "edaa7123e99f8ef46930c054cfa191037c0873cbebdab20aaae552875d17339b"
+    },
+    {
+      "path": "mixins/meteor_client/data/licenses/THIRD_PARTY_NOTICES.txt",
+      "bytes": 1093,
+      "sha256": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e"
+    },
+    {
+      "path": "mixins/meteor_client/data/project-notices/Horizon-MIT.txt",
+      "bytes": 1099,
+      "sha256": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
+    },
+    {
+      "path": "mixins/meteor_client/data/project-notices/Meteor-GPL-3.0-only.txt",
+      "bytes": 35154,
+      "sha256": "b1e60bceb8b63b265dfe040691bd5ec7a21da3c31be3db4b2925518e9c0836df"
+    },
+    {
+      "path": "mixins/meteor_client/data/project-notices/Starscript-MIT.txt",
+      "bytes": 1074,
+      "sha256": "0efbee07393749f2e2e96a16466b6b05c8244adba0cf97e6daf453e4fe5e9c3f"
+    },
+    {
+      "path": "mixins/meteor_client/data/source-provenance.json",
+      "bytes": 88490,
+      "sha256": "b6e50058afc935a3169cbe4108e572ae1da14d31d7220d4e29a2fc1bfa2a3ae8"
+    },
+    {
+      "path": "mixins/meteor_client/fishing_hook.rs",
+      "bytes": 409,
+      "sha256": "763d2a940a43b6ec0dddf8632986e099febded5f333d476d7cc9a6ae178ffdd7"
+    },
+    {
+      "path": "mixins/meteor_client/frame.rs",
+      "bytes": 220,
+      "sha256": "61e2de8b679a69f0d84a381ba5a7340d93f0129fd9e95b1218c99db44360288c"
+    },
+    {
+      "path": "mixins/meteor_client/gui_layers.rs",
+      "bytes": 429,
+      "sha256": "1d3bf03e2656a21d3c51068c688f7c7f5f2bca601cf6a8ee39f368f117bcf177"
+    },
+    {
+      "path": "mixins/meteor_client/horizon-mixin.toml",
+      "bytes": 8995,
+      "sha256": "7668bbe6ace9848b29fff0b42cd3bfa78333d3ebd54c27f1b40b6a64e34ef7bc"
+    },
+    {
+      "path": "mixins/meteor_client/hud.rs",
+      "bytes": 342,
+      "sha256": "1cd8595a5798b778de336e5633787567743d3c5814ca32c30efd2f045ea2a11f"
+    },
+    {
+      "path": "mixins/meteor_client/input.rs",
+      "bytes": 403,
+      "sha256": "09c33f50b0cbdb3fcefd75d75c0c80d6fa738d1bf55339db43c221eb147fe2c0"
+    },
+    {
+      "path": "mixins/meteor_client/input_flags.rs",
+      "bytes": 571,
+      "sha256": "e44525840d0591a24bb99fdf30b4a2b1a5dec64797e3a05686cb1c4a661dc754"
+    },
+    {
+      "path": "mixins/meteor_client/key.rs",
+      "bytes": 249,
+      "sha256": "bda94cb9ac2ee47d0eace1b7bf716ae3f19cfa070958ba1ff94f800b53cf1399"
+    },
+    {
+      "path": "mixins/meteor_client/list.rs",
+      "bytes": 235,
+      "sha256": "e00676fe72158b96f3cb077008e0fb977511e05b6eedf5777f1e9a2ddcd133ce"
+    },
+    {
+      "path": "mixins/meteor_client/noslow.rs",
+      "bytes": 439,
+      "sha256": "b904bb4d80002ac8e63259c48cddb3ee751a6448282a7859d569d92fcb7a88bd"
+    },
+    {
+      "path": "mixins/meteor_client/player.rs",
+      "bytes": 14537,
+      "sha256": "781ff3ebf82ac0a7d325f2c10da4c8b3c6c1be8de3356e2d4e8ee796985cdb1c"
+    },
+    {
+      "path": "mixins/meteor_client/press.rs",
+      "bytes": 584,
+      "sha256": "e3df64a5dffde0f593f932fa985f60e86f217e0f03e5c4ae052cfe3439a7130a"
+    },
+    {
+      "path": "mixins/meteor_client/pretick.rs",
+      "bytes": 218,
+      "sha256": "c9ed1a516f536aed06ef720dc35fd585532fc372f1ab8bb3f9c16a480adf0db7"
+    },
+    {
+      "path": "mixins/meteor_client/reach.rs",
+      "bytes": 572,
+      "sha256": "e77f3a29600838ea56fa7f87d613fc54d4f5b93bb30eecedf0d8709dae1ffd14"
+    },
+    {
+      "path": "mixins/meteor_client/render.rs",
+      "bytes": 21428,
+      "sha256": "7ead65bae284c3ff7de609203387600ceb5e01cafd920e0a643425325b8e857c"
+    },
+    {
+      "path": "mixins/meteor_client/runtime.rs",
+      "bytes": 166758,
+      "sha256": "ea303ba987548716cd3c495c5af1116fc3ba19311006d2349e07c34026665129"
+    },
+    {
+      "path": "mixins/meteor_client/send.rs",
+      "bytes": 684,
+      "sha256": "3e4a5aa6f1ed8556e64dd8bb22c05ab45a29760324f20d220bc0dcf98702d770"
+    },
+    {
+      "path": "mixins/meteor_client/settings.rs",
+      "bytes": 331,
+      "sha256": "fb8d6c2f72c7f6a689d4e1f1943befec42efb624e59b1cda64e672af91bdf9a2"
+    },
+    {
+      "path": "mixins/meteor_client/tick.rs",
+      "bytes": 216,
+      "sha256": "c5aa769cdb152d679ed940194563aff82b07f003128f6991e7d24639486fbc7a"
+    },
+    {
+      "path": "mixins/meteor_client/timer.rs",
+      "bytes": 586,
+      "sha256": "db8cb5f48670e18da34cbee71c1cd42db170939dd1bf652b85fb47951c147e9f"
+    },
+    {
+      "path": "mixins/meteor_client/timer_flags.rs",
+      "bytes": 1494,
+      "sha256": "bf396ce9dbe7080ec9056b7c824b93c2f21329a9deec2dc4dbf196fba4ff2e18"
+    },
+    {
+      "path": "mixins/meteor_client/turn.rs",
+      "bytes": 375,
+      "sha256": "f8d0b6d98f6aa6de499068008849029297373399287ec0371754f8170d780c41"
+    },
+    {
+      "path": "mixins/meteor_client/util.rs",
+      "bytes": 13955,
+      "sha256": "f583dc509e89d1a7caf4f0979cec7f74e95ac75d1bafc676a7e6e77b13040d68"
+    },
+    {
+      "path": "mixins/meteor_client/wheel.rs",
+      "bytes": 395,
+      "sha256": "2c9f907cd581c1270bc17af1f153b78b2d8840ca15128ae3288392a6b1431987"
+    },
+    {
+      "path": "mixins/meteor_client/world.rs",
+      "bytes": 20618,
+      "sha256": "3027bdeb8d55c15350014f1cb5495d8308e4dee2320c032019b1e3acbfc8b9c3"
+    },
+    {
+      "path": "mixins/meteor_client/xray.rs",
+      "bytes": 601,
+      "sha256": "ebff677472a1e97aff1e7658e482b4d8190f2e11a49c8b3d356a9a1f6ea12c9e"
+    },
+    {
+      "path": "mixins/meteor_client/xray_flags.rs",
+      "bytes": 1216,
+      "sha256": "31b49abdcc1c185d088977bfbc1590c8f1043296503cfab763670d080e03524e"
+    },
+    {
+      "path": "mixins/meteor_client/xray_get.rs",
+      "bytes": 209,
+      "sha256": "0f58bdf19381ad7abfeaee0d3161e041c7ebfa62dfa1e0852cb27fd38183cb14"
+    },
+    {
+      "path": "mixins/meteor_client/xray_unpack.rs",
+      "bytes": 241,
+      "sha256": "f372160c9a38bda5c38b66da88bf112b91e4542daad8f26e6636f83c4fd4badc"
+    },
+    {
+      "path": "mixins/meteor_client/zoom.rs",
+      "bytes": 271,
+      "sha256": "e5cb3226e8d835092d47d6e7c436d54b2afa4b330fd124422a65f118505f5916"
+    }
+  ],
+  "scope": "Source-package checks only; no compile/install/gameplay result."
+}

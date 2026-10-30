@@ -1,10 +1,10 @@
-// Camera and engine-level modules, ported from Meteor's source: Freecam, Free
-// Look, Xray, Tunnel ESP, Void ESP, Light Overlay, and the two that sit on
-// engine hooks, Timer and No Slow.
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
+//
+//
 
 use super::perspective::CameraType;
-use super::solstice::{ACCENT, Camera, Category, Module, Shape, line, outline};
-use super::solstice_util::*;
+use super::meteor_horizon::{ACCENT, Camera, Category, Module, Shape, line, outline};
+use super::meteor_horizon_util::*;
 use super::{Game, Screen};
 use std::collections::HashSet;
 use std::sync::Mutex;
@@ -106,7 +106,7 @@ static IN_CAMERA: AtomicBool = AtomicBool::new(false);
 
 // The frame's camera pose when Freecam or Free Look decide it: Some(its answer).
 pub(super) fn camera(game: &mut Game<'_>, partial: f32) -> Option<Option<(glam::DVec3, f32, f32)>> {
-    if !super::solstice::client_on(game) || game.player.is_none() || game.title.is_some() {
+    if !super::meteor_horizon::client_on(game) || game.player.is_none() || game.title.is_some() {
         return None;
     }
     if IN_CAMERA.load(Ordering::Relaxed) {
@@ -140,16 +140,16 @@ pub(super) fn camera(game: &mut Game<'_>, partial: f32) -> Option<Option<(glam::
 
 // Mouse movement goes to the camera instead of the player: true when it did.
 pub(super) fn turn(game: &mut Game<'_>, xo: f64, yo: f64) -> bool {
-    if !super::solstice::client_on(game) || game.player.is_none() || game.title.is_some() {
+    if !super::meteor_horizon::client_on(game) || game.player.is_none() || game.title.is_some() {
         return false;
     }
     let _ = game;
-    super::solstice_combat::aim_note_user(xo, yo);
-    let free_look_player = super::solstice::with(|s| {
+    super::meteor_horizon_combat::aim_note_user(xo, yo);
+    let free_look_player = super::meteor_horizon::with(|s| {
         s.module("Free Look")
             .is_some_and(|m| m.on && m.p("Mode") == "Player")
     });
-    let sens = super::solstice::with(|s| {
+    let sens = super::meteor_horizon::with(|s| {
         s.module("Free Look")
             .map_or(8.0, |m| m.n("Camera sensitivity"))
     }) / 8.0;
@@ -234,7 +234,7 @@ pub(super) fn pre_tick(game: &mut Game<'_>, mods: &[Module]) {
         }
         (None, true) => {
             if let Some(f) = rs(|r| r.fl.take()) {
-                if super::solstice::with(|s| {
+                if super::meteor_horizon::with(|s| {
                     s.module("Free Look")
                         .is_none_or(|m| m.b("Toggle perspective"))
                 }) {
@@ -351,8 +351,8 @@ pub(super) fn tick(game: &mut Game<'_>, mods: &[Module], ticks: u64) {
 // Timer and No Slow: the flags the engine hooks read.
 fn engine_flags(_game: &mut Game<'_>, mods: &[Module]) {
     let mult = on(mods, "Timer").map_or(1.0, |m| m.n("Multiplier") as f32);
-    horizon_client::clock::solstice_timer::set(mult);
-    horizon_client::input::solstice_flags::set(on(mods, "No Slow").is_some());
+    horizon_client::clock::meteor_horizon_timer::set(mult);
+    horizon_client::input::meteor_horizon_flags::set(on(mods, "No Slow").is_some());
 }
 
 // Xray: the mesher draws only the listed blocks; the world is rebuilt when
@@ -376,10 +376,10 @@ fn xray(game: &mut Game<'_>, mods: &[Module]) {
             .collect(),
         None => HashSet::new(),
     };
-    if let Ok(mut set) = horizon_client::mesher::solstice_xray::VISIBLE.write() {
+    if let Ok(mut set) = horizon_client::mesher::meteor_horizon_xray::VISIBLE.write() {
         *set = ids;
     }
-    horizon_client::mesher::solstice_xray::ON.store(want.is_some(), Ordering::Relaxed);
+    horizon_client::mesher::meteor_horizon_xray::ON.store(want.is_some(), Ordering::Relaxed);
     game.all_sections_changed();
     rs(|r| r.xray = Some(key));
 }
@@ -611,11 +611,11 @@ pub(super) fn overlay(
 
 // Once a frame.
 pub(super) fn frame(game: &mut Game<'_>) {
-    if !super::solstice::maintain(game) || game.player.is_none() || game.title.is_some() {
+    if !super::meteor_horizon::maintain(game) || game.player.is_none() || game.title.is_some() {
         return;
     }
-    let mods = super::solstice::snapshot();
-    super::solstice_combat::aim_frame(game, &mods);
+    let mods = super::meteor_horizon::snapshot();
+    super::meteor_horizon_combat::aim_frame(game, &mods);
 }
 
 // Meteor Horizon: drop locks before restoring native camera/renderer operations.
@@ -630,10 +630,10 @@ pub(super) fn reset(game: &mut Game<'_>, same_owner: bool) {
         })
     };
     IN_CAMERA.store(false, Ordering::Relaxed);
-    horizon_client::clock::solstice_timer::set(1.);
-    horizon_client::input::solstice_flags::set(false);
-    let changed = horizon_client::mesher::solstice_xray::ON.swap(false, Ordering::Relaxed);
-    if let Ok(mut visible) = horizon_client::mesher::solstice_xray::VISIBLE.write() {
+    horizon_client::clock::meteor_horizon_timer::set(1.);
+    horizon_client::input::meteor_horizon_flags::set(false);
+    let changed = horizon_client::mesher::meteor_horizon_xray::ON.swap(false, Ordering::Relaxed);
+    if let Ok(mut visible) = horizon_client::mesher::meteor_horizon_xray::VISIBLE.write() {
         visible.clear();
     }
     if same_owner {

@@ -1,4 +1,4 @@
-// Solstice No Slow switch, adapted by Meteor Horizon: client-thread scoped.
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
 use std::cell::Cell;
 thread_local! {static NO_SLOW:Cell<bool> = const {Cell::new(false)};}
 pub fn set(value: bool) {

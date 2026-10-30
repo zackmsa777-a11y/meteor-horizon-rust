@@ -1,8 +1,8 @@
-// Shared helpers for Solstice's modules, ported from Meteor's BlockUtils,
-// InvUtils, PlayerUtils and TargetUtils: placing blocks, finding items in the
-// hotbar, picking targets, seeing a block through the world.
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
+//
+//
 
-use super::solstice::{Camera, Module, Shape, hold, look_at, outline, say, toggle, with};
+use super::meteor_horizon::{Camera, Module, Shape, hold, look_at, outline, say, toggle, with};
 use super::{Game, Screen};
 use horizon_protocol::packets::{
     Empty,
@@ -386,7 +386,7 @@ pub(super) fn report(game: &mut Game<'_>, msg: &str) {
 }
 
 pub(super) fn inventory_idle(game: &Game<'_>) -> bool {
-    super::solstice::inventory_idle(game)
+    super::meteor_horizon::inventory_idle(game)
 }
 
 pub(super) fn in_world(game: &Game<'_>) -> bool {

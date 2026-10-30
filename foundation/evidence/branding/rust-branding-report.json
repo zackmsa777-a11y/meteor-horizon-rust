@@ -1,0 +1,347 @@
+{
+  "version": "0.1.0-native.1",
+  "files": [
+    {
+      "file": "buttons.rs",
+      "before_sha256": "bd221b27cc196dd21a1d310f1df9c5967f3784f9fb5a690d03c2a4ded1b8ddaa",
+      "after_sha256": "4613dbd0f523db1877ee809cb74f9ae918052a9f7066beee3f45bd05cf249726",
+      "before_bytes": 368,
+      "after_bytes": 406,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 7
+    },
+    {
+      "file": "camera.rs",
+      "before_sha256": "82d5861ace6956260ea0f1540e9f3c4230b8541c65bd99ad8f64db2fda70697d",
+      "after_sha256": "fabaa7688bbd92236b359579c7cb7cd430d824f6a3e0836a365fc6b608b19aae",
+      "before_bytes": 380,
+      "after_bytes": 430,
+      "line_terminators_unchanged": true,
+      "crlf": 7,
+      "lf_only": 0
+    },
+    {
+      "file": "chat.rs",
+      "before_sha256": "874d38a45034da049d3ba6ff2c5942720782617d7d1c08b3e3e10f6b6ddc4051",
+      "after_sha256": "c2b44d8704821fd9260831be4fbce5958245ec307b5cb77c44c5d7d24384eed2",
+      "before_bytes": 321,
+      "after_bytes": 366,
+      "line_terminators_unchanged": true,
+      "crlf": 7,
+      "lf_only": 0
+    },
+    {
+      "file": "click.rs",
+      "before_sha256": "1567e482222c4d03a169ab3d311a49a8035bc38585b3bcbc6b16a866954c312e",
+      "after_sha256": "17e651d58899135fe3010107f8a953ad6a1dd6abecb009052c198f03d22c3598",
+      "before_bytes": 225,
+      "after_bytes": 313,
+      "line_terminators_unchanged": true,
+      "crlf": 6,
+      "lf_only": 0
+    },
+    {
+      "file": "combat.rs",
+      "before_sha256": "41b1c4e4700840fc811c5ea38b36721d90b5fa116851846c63ba14e675bb1457",
+      "after_sha256": "7adb17eedd45656db3f1e1739fa41b2ca85e4a2406d1a5d8b230b9b76bf27bdb",
+      "before_bytes": 37822,
+      "after_bytes": 37778,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 1153
+    },
+    {
+      "file": "fishing_hook.rs",
+      "before_sha256": "ed123ea161ec7d4ed3d98a18e02434887f414b0d1f542a12b05fb5fac7cfb1df",
+      "after_sha256": "763d2a940a43b6ec0dddf8632986e099febded5f333d476d7cc9a6ae178ffdd7",
+      "before_bytes": 404,
+      "after_bytes": 409,
+      "line_terminators_unchanged": true,
+      "crlf": 13,
+      "lf_only": 0
+    },
+    {
+      "file": "frame.rs",
+      "before_sha256": "371fb676b5adcd807adff8aaab341d27544b08f3a7902447996e58114ea71c7e",
+      "after_sha256": "61e2de8b679a69f0d84a381ba5a7340d93f0129fd9e95b1218c99db44360288c",
+      "before_bytes": 153,
+      "after_bytes": 220,
+      "line_terminators_unchanged": true,
+      "crlf": 4,
+      "lf_only": 0
+    },
+    {
+      "file": "gui_layers.rs",
+      "before_sha256": "d452b2de8b6bb0ceee008b1ff0e48ae4bc00f20dea5a14d0ade0bce61a030a26",
+      "after_sha256": "1d3bf03e2656a21d3c51068c688f7c7f5f2bca601cf6a8ee39f368f117bcf177",
+      "before_bytes": 501,
+      "after_bytes": 429,
+      "line_terminators_unchanged": true,
+      "crlf": 12,
+      "lf_only": 0
+    },
+    {
+      "file": "hud.rs",
+      "before_sha256": "b1c29cd5e0247a048fe9a120f3faca0fc2909ef83cc3ce5b845635ecce0c3a08",
+      "after_sha256": "1cd8595a5798b778de336e5633787567743d3c5814ca32c30efd2f045ea2a11f",
+      "before_bytes": 332,
+      "after_bytes": 342,
+      "line_terminators_unchanged": true,
+      "crlf": 9,
+      "lf_only": 0
+    },
+    {
+      "file": "input.rs",
+      "before_sha256": "1bd16975402e4010093daa095da20b4f057b819aa38db6d6a2fc6360dae3cdae",
+      "after_sha256": "09c33f50b0cbdb3fcefd75d75c0c80d6fa738d1bf55339db43c221eb147fe2c0",
+      "before_bytes": 365,
+      "after_bytes": 403,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 7
+    },
+    {
+      "file": "input_flags.rs",
+      "before_sha256": "6f942f5ec93cd930a26d6396be72eb48d8221ecebf01d6b4e866ebabf5a1b27b",
+      "after_sha256": "e44525840d0591a24bb99fdf30b4a2b1a5dec64797e3a05686cb1c4a661dc754",
+      "before_bytes": 547,
+      "after_bytes": 571,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 20
+    },
+    {
+      "file": "key.rs",
+      "before_sha256": "49d4914a9ea739059376b1ea5f6704d06d30a3862b20bc820d11c57a6d0c7fe0",
+      "after_sha256": "bda94cb9ac2ee47d0eace1b7bf716ae3f19cfa070958ba1ff94f800b53cf1399",
+      "before_bytes": 204,
+      "after_bytes": 249,
+      "line_terminators_unchanged": true,
+      "crlf": 4,
+      "lf_only": 0
+    },
+    {
+      "file": "list.rs",
+      "before_sha256": "cac1431d7411aebed78f76effe5af1b9d283c63dd13a8288632df631caf990bc",
+      "after_sha256": "e00676fe72158b96f3cb077008e0fb977511e05b6eedf5777f1e9a2ddcd133ce",
+      "before_bytes": 178,
+      "after_bytes": 235,
+      "line_terminators_unchanged": true,
+      "crlf": 4,
+      "lf_only": 0
+    },
+    {
+      "file": "noslow.rs",
+      "before_sha256": "c0cf876bb2e8f753cebd6c91742364a908812e1b4e25f177b826c59cf67dcb17",
+      "after_sha256": "b904bb4d80002ac8e63259c48cddb3ee751a6448282a7859d569d92fcb7a88bd",
+      "before_bytes": 405,
+      "after_bytes": 439,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 11
+    },
+    {
+      "file": "player.rs",
+      "before_sha256": "1e966d5756858bf4573c5c734733a9602c546f3f7c512332f89d6bf184673fa2",
+      "after_sha256": "781ff3ebf82ac0a7d325f2c10da4c8b3c6c1be8de3356e2d4e8ee796985cdb1c",
+      "before_bytes": 14506,
+      "after_bytes": 14537,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 467
+    },
+    {
+      "file": "press.rs",
+      "before_sha256": "68eb8e6365dfab5065c9f9b989123ddf7cdaf59178879fe71e92d0c1564d1340",
+      "after_sha256": "e3df64a5dffde0f593f932fa985f60e86f217e0f03e5c4ae052cfe3439a7130a",
+      "before_bytes": 535,
+      "after_bytes": 584,
+      "line_terminators_unchanged": true,
+      "crlf": 13,
+      "lf_only": 0
+    },
+    {
+      "file": "pretick.rs",
+      "before_sha256": "b760412175f2ea4e7a0e6d6c38921d29b9e877ccde637a8f702c56d07d3cfd1d",
+      "after_sha256": "c9ed1a516f536aed06ef720dc35fd585532fc372f1ab8bb3f9c16a480adf0db7",
+      "before_bytes": 173,
+      "after_bytes": 218,
+      "line_terminators_unchanged": true,
+      "crlf": 4,
+      "lf_only": 0
+    },
+    {
+      "file": "reach.rs",
+      "before_sha256": "c9fe77b33483986134882cb93f4a1d9c4999218aa69908ef3d9f5429817fa953",
+      "after_sha256": "e77f3a29600838ea56fa7f87d613fc54d4f5b93bb30eecedf0d8709dae1ffd14",
+      "before_bytes": 500,
+      "after_bytes": 572,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 10
+    },
+    {
+      "file": "render.rs",
+      "before_sha256": "7d571bcce47bcdefe0b6ac2bac69d3e459cb5e32a1d1ed54230605b070176d8a",
+      "after_sha256": "7ead65bae284c3ff7de609203387600ceb5e01cafd920e0a643425325b8e857c",
+      "before_bytes": 21398,
+      "after_bytes": 21428,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 647
+    },
+    {
+      "file": "runtime.rs",
+      "before_sha256": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9",
+      "after_sha256": "ea303ba987548716cd3c495c5af1116fc3ba19311006d2349e07c34026665129",
+      "before_bytes": 167053,
+      "after_bytes": 166758,
+      "line_terminators_unchanged": true,
+      "crlf": 4763,
+      "lf_only": 0
+    },
+    {
+      "file": "send.rs",
+      "before_sha256": "cb8d93bf8f35d3307f3e3dea4686c2cfa05e60454e5576f90fc0886679c0489a",
+      "after_sha256": "3e4a5aa6f1ed8556e64dd8bb22c05ab45a29760324f20d220bc0dcf98702d770",
+      "before_bytes": 642,
+      "after_bytes": 684,
+      "line_terminators_unchanged": true,
+      "crlf": 17,
+      "lf_only": 0
+    },
+    {
+      "file": "settings.rs",
+      "before_sha256": "5a41a1ad366af8ae9cfd77344f3e1c221bb840b5893dc55c27c2b0da222d301d",
+      "after_sha256": "fb8d6c2f72c7f6a689d4e1f1943befec42efb624e59b1cda64e672af91bdf9a2",
+      "before_bytes": 279,
+      "after_bytes": 331,
+      "line_terminators_unchanged": true,
+      "crlf": 6,
+      "lf_only": 0
+    },
+    {
+      "file": "tick.rs",
+      "before_sha256": "f8483c46180223f6090ce5c9a0b6b19f7c01c0dec0420cd26d831c1d046ae76e",
+      "after_sha256": "c5aa769cdb152d679ed940194563aff82b07f003128f6991e7d24639486fbc7a",
+      "before_bytes": 142,
+      "after_bytes": 216,
+      "line_terminators_unchanged": true,
+      "crlf": 4,
+      "lf_only": 0
+    },
+    {
+      "file": "timer.rs",
+      "before_sha256": "844f196d4ca7d3c9c54e60883aa523b6852afd96441041797056d52cfd7c2c13",
+      "after_sha256": "db8cb5f48670e18da34cbee71c1cd42db170939dd1bf652b85fb47951c147e9f",
+      "before_bytes": 532,
+      "after_bytes": 586,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 15
+    },
+    {
+      "file": "timer_flags.rs",
+      "before_sha256": "ac216319c06f54f092991c2728b64ee797abdc23738d1d187480d9cc72172ded",
+      "after_sha256": "bf396ce9dbe7080ec9056b7c824b93c2f21329a9deec2dc4dbf196fba4ff2e18",
+      "before_bytes": 1546,
+      "after_bytes": 1494,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 64
+    },
+    {
+      "file": "turn.rs",
+      "before_sha256": "4ef8612cd2dfd9af2e26593c1db754d441fd2398d9d275e8e6322c000d07a7fa",
+      "after_sha256": "f8d0b6d98f6aa6de499068008849029297373399287ec0371754f8170d780c41",
+      "before_bytes": 325,
+      "after_bytes": 375,
+      "line_terminators_unchanged": true,
+      "crlf": 7,
+      "lf_only": 0
+    },
+    {
+      "file": "util.rs",
+      "before_sha256": "db576c53695e5531cbe881286bd116e0315a882279a67d5572502cc68b48ad9a",
+      "after_sha256": "f583dc509e89d1a7caf4f0979cec7f74e95ac75d1bafc676a7e6e77b13040d68",
+      "before_bytes": 14052,
+      "after_bytes": 13955,
+      "line_terminators_unchanged": true,
+      "crlf": 399,
+      "lf_only": 0
+    },
+    {
+      "file": "wheel.rs",
+      "before_sha256": "38d83d47b5b4bce9fc0a029e20275b017550cfb351e609eed6a25d3edaa30af1",
+      "after_sha256": "2c9f907cd581c1270bc17af1f153b78b2d8840ca15128ae3288392a6b1431987",
+      "before_bytes": 353,
+      "after_bytes": 395,
+      "line_terminators_unchanged": true,
+      "crlf": 7,
+      "lf_only": 0
+    },
+    {
+      "file": "world.rs",
+      "before_sha256": "f3792122259f97998545e3abf683441fc055d3eeb62533785f0482dba1b85e48",
+      "after_sha256": "3027bdeb8d55c15350014f1cb5495d8308e4dee2320c032019b1e3acbfc8b9c3",
+      "before_bytes": 20591,
+      "after_bytes": 20618,
+      "line_terminators_unchanged": true,
+      "crlf": 0,
+      "lf_only": 649
+    },
+    {
+      "file": "xray.rs",
+      "before_sha256": "5be6bf23dd2fb591e9f63d1d0cc02d96de60c919984ccc288fdaae1170c1fc11",
+      "after_sha256": "ebff677472a1e97aff1e7658e482b4d8190f2e11a49c8b3d356a9a1f6ea12c9e",
+      "before_bytes": 544,
+      "after_bytes": 601,
+      "line_terminators_unchanged": true,
+      "crlf": 11,
+      "lf_only": 0
+    },
+    {
+      "file": "xray_flags.rs",
+      "before_sha256": "eba03e7aad7af40a9538a209b86548c6bf3569b951c96e24189f12538eea242b",
+      "after_sha256": "31b49abdcc1c185d088977bfbc1590c8f1043296503cfab763670d080e03524e",
+      "before_bytes": 1290,
+      "after_bytes": 1216,
+      "line_terminators_unchanged": true,
+      "crlf": 42,
+      "lf_only": 0
+    },
+    {
+      "file": "xray_get.rs",
+      "before_sha256": "d149e5f7330846c6f5cf6a9fb3e75073f13f91ce6e8363a1225a666fbd600508",
+      "after_sha256": "0f58bdf19381ad7abfeaee0d3161e041c7ebfa62dfa1e0852cb27fd38183cb14",
+      "before_bytes": 141,
+      "after_bytes": 209,
+      "line_terminators_unchanged": true,
+      "crlf": 4,
+      "lf_only": 0
+    },
+    {
+      "file": "xray_unpack.rs",
+      "before_sha256": "c24f2530d225688af7612bfc704af1873f8b5e86c116ea0d0bdc0778992d2568",
+      "after_sha256": "f372160c9a38bda5c38b66da88bf112b91e4542daad8f26e6636f83c4fd4badc",
+      "before_bytes": 184,
+      "after_bytes": 241,
+      "line_terminators_unchanged": true,
+      "crlf": 5,
+      "lf_only": 0
+    },
+    {
+      "file": "zoom.rs",
+      "before_sha256": "b2aa6bd8527b2c56f3e9a3957bcd090b9ad0ea475aadceb9f342f849ecabc69f",
+      "after_sha256": "e5cb3226e8d835092d47d6e7c436d54b2afa4b330fd124422a65f118505f5916",
+      "before_bytes": 196,
+      "after_bytes": 271,
+      "line_terminators_unchanged": true,
+      "crlf": 4,
+      "lf_only": 0
+    }
+  ],
+  "scope": "Only34 Rust payloads, names/version/comments. Original full notices retained by packaging agent in legal data.",
+  "cargo_game_or_rustfmt_executed": false
+}

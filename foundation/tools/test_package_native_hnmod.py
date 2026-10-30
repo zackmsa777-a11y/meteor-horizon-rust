@@ -5,8 +5,8 @@ import tempfile
 import unittest
 import zipfile
 
-import audit_solstice_bundle as audit
-import package_solstice_hnmod as package
+import audit_native_bundle as audit
+import package_native_hnmod as package
 
 
 class FoundationPackageTests(unittest.TestCase):
@@ -28,9 +28,9 @@ class FoundationPackageTests(unittest.TestCase):
         self.assertEqual(one.read_bytes(), two.read_bytes())
         with zipfile.ZipFile(one) as archive:
             self.assertEqual(json.loads(archive.read('horizon-native.json')), package.EXPECTED_MANIFEST)
-            self.assertEqual(package.VERSION, '0.1.0-solstice.2')
+            self.assertEqual(package.VERSION, '0.1.0-native.1')
             self.assertNotIn('horizon-native-source.json', archive.namelist())
-            self.assertIn(package.PREFIX + 'data/licenses/Solstice-MIT.txt', archive.namelist())
+            self.assertIn(package.PREFIX + 'data/licenses/THIRD_PARTY_NOTICES.txt', archive.namelist())
 
     def test_requires_explicit_freeze_and_rejects_changed_source(self):
         provenance = self.root / package.PROVENANCE
@@ -65,7 +65,7 @@ class FoundationPackageTests(unittest.TestCase):
                 package.collect(self.root)
 
     def test_preserves_exact_notices_and_original_provenance(self):
-        path = self.root / package.PREFIX / 'data/licenses/Solstice-MIT.txt'
+        path = self.root / package.PREFIX / 'data/licenses/THIRD_PARTY_NOTICES.txt'
         raw = path.read_bytes()
         path.write_bytes(raw + b'\nchanged')
         with self.assertRaisesRegex(ValueError, 'preserved component notice'):

@@ -1,4 +1,4 @@
-// The player's own fishing hook, for Auto Fish: (bobbing, a fish is biting, hooked something).
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
 use super::State;
 use crate::game::Game;
 

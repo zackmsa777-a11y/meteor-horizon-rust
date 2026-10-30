@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "kind": "solstice-foundation-initial-candidate",
+  "kind": "meteor-horizon-native-branding-candidate",
   "upstream": {
     "repository": "https://github.com/PointOfPressure/solstice-client",
     "commit": "2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1",
@@ -21,7 +21,7 @@
   "candidate_native_manifest": {
     "schema": 1,
     "id": "meteor_client",
-    "version": "0.1.0-solstice.2",
+    "version": "0.1.0-native.1",
     "game": "26.3",
     "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
     "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12"
@@ -643,14 +643,330 @@
     }
   ],
   "planned_adaptations": [
-    "Display brand Meteor Horizon; internal solstice support names may remain.",
-    "Adapt raw-hook source and support calls to our pinned Horizon b76 + Mixins0.6; pin change alone is not compatibility proof.",
-    "Reserve AutoRespawn/BreakDelay: exclude Solstice Auto Respawn and overlapping Fast Break from active catalog/dispatch.",
-    "Use a separate Solstice-foundation native setting key; preserve old zoom-migration.json.",
-    "Do not copy/execute install.sh or tools/pack.py."
+    "Visible Meteor Horizon branding and version0.1.0-native.1.",
+    "Internal solstice module/function/namespace prefixes become meteor_horizon; production Rust owned by module agent.",
+    "Legal notice renamed generically with exact original MIT bytes preserved; original40file IDs/URLs/hashes remain verbatim.",
+    "Public tooling filenames/imports renamed to generic native names; no loader, crate, hook-count or behavior additions."
   ],
   "status": "frozen-source-awaiting-validation",
-  "adaptation_notes": [
+  "adaptation_chain": [
+    {
+      "snapshot": "R3 /0.1.0-solstice.2",
+      "package_sha256": "215c62cbcc28bb7344467590873057e7dc7f2f53b916eaa7fdabd05059dc4558",
+      "provenance_path": "mixins/meteor_client/data/solstice-provenance.json",
+      "provenance_sha256": "452f9e9a874dd3cd857d1f194c8d00c9b0ab385fa4dfb0b3c643314a15146158",
+      "runtime_sha256": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9",
+      "payloads": [
+        {
+          "path": "horizon-native.json",
+          "bytes": 215,
+          "sha256": "bae5da408c02b93ebbe1f3ba7589db23106e20adc38c4ac004de56fe7b3310d3"
+        },
+        {
+          "path": "mixins/meteor_client/buttons.rs",
+          "bytes": 368,
+          "sha256": "bd221b27cc196dd21a1d310f1df9c5967f3784f9fb5a690d03c2a4ded1b8ddaa"
+        },
+        {
+          "path": "mixins/meteor_client/camera.rs",
+          "bytes": 380,
+          "sha256": "82d5861ace6956260ea0f1540e9f3c4230b8541c65bd99ad8f64db2fda70697d"
+        },
+        {
+          "path": "mixins/meteor_client/chat.rs",
+          "bytes": 321,
+          "sha256": "874d38a45034da049d3ba6ff2c5942720782617d7d1c08b3e3e10f6b6ddc4051"
+        },
+        {
+          "path": "mixins/meteor_client/click.rs",
+          "bytes": 225,
+          "sha256": "1567e482222c4d03a169ab3d311a49a8035bc38585b3bcbc6b16a866954c312e"
+        },
+        {
+          "path": "mixins/meteor_client/combat.rs",
+          "bytes": 37822,
+          "sha256": "41b1c4e4700840fc811c5ea38b36721d90b5fa116851846c63ba14e675bb1457"
+        },
+        {
+          "path": "mixins/meteor_client/data/component-licenses.json",
+          "bytes": 1218,
+          "sha256": "2221adafd270de1d6f912ecd27a1cfd6e4984b282f086a3c33b035cf9a4472b7"
+        },
+        {
+          "path": "mixins/meteor_client/data/licenses/Solstice-MIT.txt",
+          "bytes": 1093,
+          "sha256": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e"
+        },
+        {
+          "path": "mixins/meteor_client/data/project-notices/Horizon-MIT.txt",
+          "bytes": 1099,
+          "sha256": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
+        },
+        {
+          "path": "mixins/meteor_client/data/project-notices/Meteor-GPL-3.0-only.txt",
+          "bytes": 35154,
+          "sha256": "b1e60bceb8b63b265dfe040691bd5ec7a21da3c31be3db4b2925518e9c0836df"
+        },
+        {
+          "path": "mixins/meteor_client/data/project-notices/Starscript-MIT.txt",
+          "bytes": 1074,
+          "sha256": "0efbee07393749f2e2e96a16466b6b05c8244adba0cf97e6daf453e4fe5e9c3f"
+        },
+        {
+          "path": "mixins/meteor_client/data/solstice-provenance.json",
+          "bytes": 49437,
+          "sha256": "452f9e9a874dd3cd857d1f194c8d00c9b0ab385fa4dfb0b3c643314a15146158"
+        },
+        {
+          "path": "mixins/meteor_client/fishing_hook.rs",
+          "bytes": 404,
+          "sha256": "ed123ea161ec7d4ed3d98a18e02434887f414b0d1f542a12b05fb5fac7cfb1df"
+        },
+        {
+          "path": "mixins/meteor_client/frame.rs",
+          "bytes": 153,
+          "sha256": "371fb676b5adcd807adff8aaab341d27544b08f3a7902447996e58114ea71c7e"
+        },
+        {
+          "path": "mixins/meteor_client/gui_layers.rs",
+          "bytes": 501,
+          "sha256": "d452b2de8b6bb0ceee008b1ff0e48ae4bc00f20dea5a14d0ade0bce61a030a26"
+        },
+        {
+          "path": "mixins/meteor_client/horizon-mixin.toml",
+          "bytes": 8937,
+          "sha256": "d029fc7f00dadd318663e8edbc07bb11a7251a55925aced6f326efd309e57224"
+        },
+        {
+          "path": "mixins/meteor_client/hud.rs",
+          "bytes": 332,
+          "sha256": "b1c29cd5e0247a048fe9a120f3faca0fc2909ef83cc3ce5b845635ecce0c3a08"
+        },
+        {
+          "path": "mixins/meteor_client/input.rs",
+          "bytes": 365,
+          "sha256": "1bd16975402e4010093daa095da20b4f057b819aa38db6d6a2fc6360dae3cdae"
+        },
+        {
+          "path": "mixins/meteor_client/input_flags.rs",
+          "bytes": 547,
+          "sha256": "6f942f5ec93cd930a26d6396be72eb48d8221ecebf01d6b4e866ebabf5a1b27b"
+        },
+        {
+          "path": "mixins/meteor_client/key.rs",
+          "bytes": 204,
+          "sha256": "49d4914a9ea739059376b1ea5f6704d06d30a3862b20bc820d11c57a6d0c7fe0"
+        },
+        {
+          "path": "mixins/meteor_client/list.rs",
+          "bytes": 178,
+          "sha256": "cac1431d7411aebed78f76effe5af1b9d283c63dd13a8288632df631caf990bc"
+        },
+        {
+          "path": "mixins/meteor_client/noslow.rs",
+          "bytes": 405,
+          "sha256": "c0cf876bb2e8f753cebd6c91742364a908812e1b4e25f177b826c59cf67dcb17"
+        },
+        {
+          "path": "mixins/meteor_client/player.rs",
+          "bytes": 14506,
+          "sha256": "1e966d5756858bf4573c5c734733a9602c546f3f7c512332f89d6bf184673fa2"
+        },
+        {
+          "path": "mixins/meteor_client/press.rs",
+          "bytes": 535,
+          "sha256": "68eb8e6365dfab5065c9f9b989123ddf7cdaf59178879fe71e92d0c1564d1340"
+        },
+        {
+          "path": "mixins/meteor_client/pretick.rs",
+          "bytes": 173,
+          "sha256": "b760412175f2ea4e7a0e6d6c38921d29b9e877ccde637a8f702c56d07d3cfd1d"
+        },
+        {
+          "path": "mixins/meteor_client/reach.rs",
+          "bytes": 500,
+          "sha256": "c9fe77b33483986134882cb93f4a1d9c4999218aa69908ef3d9f5429817fa953"
+        },
+        {
+          "path": "mixins/meteor_client/render.rs",
+          "bytes": 21398,
+          "sha256": "7d571bcce47bcdefe0b6ac2bac69d3e459cb5e32a1d1ed54230605b070176d8a"
+        },
+        {
+          "path": "mixins/meteor_client/runtime.rs",
+          "bytes": 167053,
+          "sha256": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9"
+        },
+        {
+          "path": "mixins/meteor_client/send.rs",
+          "bytes": 642,
+          "sha256": "cb8d93bf8f35d3307f3e3dea4686c2cfa05e60454e5576f90fc0886679c0489a"
+        },
+        {
+          "path": "mixins/meteor_client/settings.rs",
+          "bytes": 279,
+          "sha256": "5a41a1ad366af8ae9cfd77344f3e1c221bb840b5893dc55c27c2b0da222d301d"
+        },
+        {
+          "path": "mixins/meteor_client/tick.rs",
+          "bytes": 142,
+          "sha256": "f8483c46180223f6090ce5c9a0b6b19f7c01c0dec0420cd26d831c1d046ae76e"
+        },
+        {
+          "path": "mixins/meteor_client/timer.rs",
+          "bytes": 532,
+          "sha256": "844f196d4ca7d3c9c54e60883aa523b6852afd96441041797056d52cfd7c2c13"
+        },
+        {
+          "path": "mixins/meteor_client/timer_flags.rs",
+          "bytes": 1546,
+          "sha256": "ac216319c06f54f092991c2728b64ee797abdc23738d1d187480d9cc72172ded"
+        },
+        {
+          "path": "mixins/meteor_client/turn.rs",
+          "bytes": 325,
+          "sha256": "4ef8612cd2dfd9af2e26593c1db754d441fd2398d9d275e8e6322c000d07a7fa"
+        },
+        {
+          "path": "mixins/meteor_client/util.rs",
+          "bytes": 14052,
+          "sha256": "db576c53695e5531cbe881286bd116e0315a882279a67d5572502cc68b48ad9a"
+        },
+        {
+          "path": "mixins/meteor_client/wheel.rs",
+          "bytes": 353,
+          "sha256": "38d83d47b5b4bce9fc0a029e20275b017550cfb351e609eed6a25d3edaa30af1"
+        },
+        {
+          "path": "mixins/meteor_client/world.rs",
+          "bytes": 20591,
+          "sha256": "f3792122259f97998545e3abf683441fc055d3eeb62533785f0482dba1b85e48"
+        },
+        {
+          "path": "mixins/meteor_client/xray.rs",
+          "bytes": 544,
+          "sha256": "5be6bf23dd2fb591e9f63d1d0cc02d96de60c919984ccc288fdaae1170c1fc11"
+        },
+        {
+          "path": "mixins/meteor_client/xray_flags.rs",
+          "bytes": 1290,
+          "sha256": "eba03e7aad7af40a9538a209b86548c6bf3569b951c96e24189f12538eea242b"
+        },
+        {
+          "path": "mixins/meteor_client/xray_get.rs",
+          "bytes": 141,
+          "sha256": "d149e5f7330846c6f5cf6a9fb3e75073f13f91ce6e8363a1225a666fbd600508"
+        },
+        {
+          "path": "mixins/meteor_client/xray_unpack.rs",
+          "bytes": 184,
+          "sha256": "c24f2530d225688af7612bfc704af1873f8b5e86c116ea0d0bdc0778992d2568"
+        },
+        {
+          "path": "mixins/meteor_client/zoom.rs",
+          "bytes": 196,
+          "sha256": "b2aa6bd8527b2c56f3e9a3957bcd090b9ad0ea475aadceb9f342f849ecabc69f"
+        }
+      ],
+      "adaptation_notes": [
+        {
+          "path": "horizon-native.json",
+          "description": "Normal schema1 identity meteor_client/version0.1.0-solstice.1 with exact b76 Horizon and cb1ad Mixins0.6; no custom loader/hooks metadata. R3 identity version bumped to0.1.0-solstice.2 to distinguish the published R2 snapshot.",
+          "sha256": "bae5da408c02b93ebbe1f3ba7589db23106e20adc38c4ac004de56fe7b3310d3"
+        },
+        {
+          "path": "mixins/meteor_client/buttons.rs",
+          "description": "Use actual mutable Game binding to apply native role/enabled/window-owner GUI blocking with closing latch.",
+          "sha256": "bd221b27cc196dd21a1d310f1df9c5967f3784f9fb5a690d03c2a4ded1b8ddaa"
+        },
+        {
+          "path": "mixins/meteor_client/combat.rs",
+          "description": "Add transient combat reset API for owner/world lifecycle.",
+          "sha256": "41b1c4e4700840fc811c5ea38b36721d90b5fa116851846c63ba14e675bb1457"
+        },
+        {
+          "path": "mixins/meteor_client/gui_layers.rs",
+          "description": "New attributed MIT raw Game.hud_layers compositor helper, separate from F1-sensitive ordinary HUD; distributed notice path corrected.",
+          "sha256": "d452b2de8b6bb0ceee008b1ff0e48ae4bc00f20dea5a14d0ade0bce61a030a26"
+        },
+        {
+          "path": "mixins/meteor_client/horizon-mixin.toml",
+          "description": "Normal meteor_client identity/version and b76 pin; mutable Game bindings for input/buttons; add raw cancellable HUD-layer compositor injection; retain ten support modules and23 prior injections. R3 mod version bumped to0.1.0-solstice.2; pins and24 injection declarations unchanged.",
+          "sha256": "d029fc7f00dadd318663e8edbc07bb11a7251a55925aced6f326efd309e57224"
+        },
+        {
+          "path": "mixins/meteor_client/input.rs",
+          "description": "Use actual mutable Game binding to apply native role/enabled/window-owner GUI blocking with closing latch.",
+          "sha256": "1bd16975402e4010093daa095da20b4f057b819aa38db6d6a2fc6360dae3cdae"
+        },
+        {
+          "path": "mixins/meteor_client/input_flags.rs",
+          "description": "Replace cross-thread NoSlow switch with client-thread local switch.",
+          "sha256": "6f942f5ec93cd930a26d6396be72eb48d8221ecebf01d6b4e866ebabf5a1b27b"
+        },
+        {
+          "path": "mixins/meteor_client/noslow.rs",
+          "description": "Read client-thread local NoSlow switch; add one source unit test.",
+          "sha256": "c0cf876bb2e8f753cebd6c91742364a908812e1b4e25f177b826c59cf67dcb17"
+        },
+        {
+          "path": "mixins/meteor_client/player.rs",
+          "description": "Brand default Spam message as Meteor Horizon; reset Reach/AutoGap transient state.",
+          "sha256": "1e966d5756858bf4573c5c734733a9602c546f3f7c512332f89d6bf184673fa2"
+        },
+        {
+          "path": "mixins/meteor_client/press.rs",
+          "description": "Apply native role/enabled/window-owner GUI mouse gate.",
+          "sha256": "68eb8e6365dfab5065c9f9b989123ddf7cdaf59178879fe71e92d0c1564d1340"
+        },
+        {
+          "path": "mixins/meteor_client/reach.rs",
+          "description": "Gate native Reach by role, enabled state and current window owner.",
+          "sha256": "c9fe77b33483986134882cb93f4a1d9c4999218aa69908ef3d9f5429817fa953"
+        },
+        {
+          "path": "mixins/meteor_client/render.rs",
+          "description": "Add native role/owner guards and reset camera/global worker state; use engine TLS switches.",
+          "sha256": "7d571bcce47bcdefe0b6ac2bac69d3e459cb5e32a1d1ed54230605b070176d8a"
+        },
+        {
+          "path": "mixins/meteor_client/runtime.rs",
+          "description": "Meteor Horizon identity/branding and87-entry catalog excluding reserved Auto Respawn/Fast Break; weak-window owner and observed-world lifecycle/reset; reentrant lock-free owner/GUI gates; native GUI compositor merge; five exact lifecycle/UI tests. R2 diagnostic fix: return on non-native-window Game before owner maintenance/closing-latch reset, so server pre_tick cannot clear client GUI closing input ownership. R3 packet-policy fix: refresh saved packet preferences on native re-enable and observed world rejoin, retain active/in-world gates while disabled/absent, add exact packet-preference regression test, and bump visible Runtime version to0.1.0-solstice.2.",
+          "sha256": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9"
+        },
+        {
+          "path": "mixins/meteor_client/timer.rs",
+          "description": "Read client-thread local multiplier and RAII recursion guard; two source unit tests across timer helper/flags.",
+          "sha256": "844f196d4ca7d3c9c54e60883aa523b6852afd96441041797056d52cfd7c2c13"
+        },
+        {
+          "path": "mixins/meteor_client/timer_flags.rs",
+          "description": "Use client-thread local multiplier and RAII recursion guard; source unit test support.",
+          "sha256": "ac216319c06f54f092991c2728b64ee797abdc23738d1d187480d9cc72172ded"
+        },
+        {
+          "path": "mixins/meteor_client/wheel.rs",
+          "description": "Apply native role/enabled/window-owner GUI wheel gate.",
+          "sha256": "38d83d47b5b4bce9fc0a029e20275b017550cfb351e609eed6a25d3edaa30af1"
+        },
+        {
+          "path": "mixins/meteor_client/world.rs",
+          "description": "Add transient world-module reset API for owner/world lifecycle.",
+          "sha256": "f3792122259f97998545e3abf683441fc055d3eeb62533785f0482dba1b85e48"
+        }
+      ]
+    },
+    {
+      "snapshot": "0.1.0-native.1 branding candidate",
+      "planned_changes": [
+        "Visible Meteor Horizon branding and version0.1.0-native.1.",
+        "Internal solstice module/function/namespace prefixes become meteor_horizon; production Rust owned by module agent.",
+        "Legal notice renamed generically with exact original MIT bytes preserved; original40file IDs/URLs/hashes remain verbatim.",
+        "Public tooling filenames/imports renamed to generic native names; no loader, crate, hook-count or behavior additions."
+      ]
+    }
+  ],
+  "prior_adaptation_notes": [
     {
       "path": "horizon-native.json",
       "description": "Normal schema1 identity meteor_client/version0.1.0-solstice.1 with exact b76 Horizon and cb1ad Mixins0.6; no custom loader/hooks metadata. R3 identity version bumped to0.1.0-solstice.2 to distinguish the published R2 snapshot.",
@@ -737,44 +1053,288 @@
       "sha256": "f3792122259f97998545e3abf683441fc055d3eeb62533785f0482dba1b85e48"
     }
   ],
-  "frozen_payloads": [
+  "branding_validation": {
+    "rust_files": 34,
+    "runtime_sha256": "ea303ba987548716cd3c495c5af1116fc3ba19311006d2349e07c34026665129",
+    "rust_payload_hashes": {
+      "buttons.rs": "4613dbd0f523db1877ee809cb74f9ae918052a9f7066beee3f45bd05cf249726",
+      "camera.rs": "fabaa7688bbd92236b359579c7cb7cd430d824f6a3e0836a365fc6b608b19aae",
+      "chat.rs": "c2b44d8704821fd9260831be4fbce5958245ec307b5cb77c44c5d7d24384eed2",
+      "click.rs": "17e651d58899135fe3010107f8a953ad6a1dd6abecb009052c198f03d22c3598",
+      "combat.rs": "7adb17eedd45656db3f1e1739fa41b2ca85e4a2406d1a5d8b230b9b76bf27bdb",
+      "fishing_hook.rs": "763d2a940a43b6ec0dddf8632986e099febded5f333d476d7cc9a6ae178ffdd7",
+      "frame.rs": "61e2de8b679a69f0d84a381ba5a7340d93f0129fd9e95b1218c99db44360288c",
+      "gui_layers.rs": "1d3bf03e2656a21d3c51068c688f7c7f5f2bca601cf6a8ee39f368f117bcf177",
+      "hud.rs": "1cd8595a5798b778de336e5633787567743d3c5814ca32c30efd2f045ea2a11f",
+      "input.rs": "09c33f50b0cbdb3fcefd75d75c0c80d6fa738d1bf55339db43c221eb147fe2c0",
+      "input_flags.rs": "e44525840d0591a24bb99fdf30b4a2b1a5dec64797e3a05686cb1c4a661dc754",
+      "key.rs": "bda94cb9ac2ee47d0eace1b7bf716ae3f19cfa070958ba1ff94f800b53cf1399",
+      "list.rs": "e00676fe72158b96f3cb077008e0fb977511e05b6eedf5777f1e9a2ddcd133ce",
+      "noslow.rs": "b904bb4d80002ac8e63259c48cddb3ee751a6448282a7859d569d92fcb7a88bd",
+      "player.rs": "781ff3ebf82ac0a7d325f2c10da4c8b3c6c1be8de3356e2d4e8ee796985cdb1c",
+      "press.rs": "e3df64a5dffde0f593f932fa985f60e86f217e0f03e5c4ae052cfe3439a7130a",
+      "pretick.rs": "c9ed1a516f536aed06ef720dc35fd585532fc372f1ab8bb3f9c16a480adf0db7",
+      "reach.rs": "e77f3a29600838ea56fa7f87d613fc54d4f5b93bb30eecedf0d8709dae1ffd14",
+      "render.rs": "7ead65bae284c3ff7de609203387600ceb5e01cafd920e0a643425325b8e857c",
+      "runtime.rs": "ea303ba987548716cd3c495c5af1116fc3ba19311006d2349e07c34026665129",
+      "send.rs": "3e4a5aa6f1ed8556e64dd8bb22c05ab45a29760324f20d220bc0dcf98702d770",
+      "settings.rs": "fb8d6c2f72c7f6a689d4e1f1943befec42efb624e59b1cda64e672af91bdf9a2",
+      "tick.rs": "c5aa769cdb152d679ed940194563aff82b07f003128f6991e7d24639486fbc7a",
+      "timer.rs": "db8cb5f48670e18da34cbee71c1cd42db170939dd1bf652b85fb47951c147e9f",
+      "timer_flags.rs": "bf396ce9dbe7080ec9056b7c824b93c2f21329a9deec2dc4dbf196fba4ff2e18",
+      "turn.rs": "f8d0b6d98f6aa6de499068008849029297373399287ec0371754f8170d780c41",
+      "util.rs": "f583dc509e89d1a7caf4f0979cec7f74e95ac75d1bafc676a7e6e77b13040d68",
+      "wheel.rs": "2c9f907cd581c1270bc17af1f153b78b2d8840ca15128ae3288392a6b1431987",
+      "world.rs": "3027bdeb8d55c15350014f1cb5495d8308e4dee2320c032019b1e3acbfc8b9c3",
+      "xray.rs": "ebff677472a1e97aff1e7658e482b4d8190f2e11a49c8b3d356a9a1f6ea12c9e",
+      "xray_flags.rs": "31b49abdcc1c185d088977bfbc1590c8f1043296503cfab763670d080e03524e",
+      "xray_get.rs": "0f58bdf19381ad7abfeaee0d3161e041c7ebfa62dfa1e0852cb27fd38183cb14",
+      "xray_unpack.rs": "f372160c9a38bda5c38b66da88bf112b91e4542daad8f26e6636f83c4fd4badc",
+      "zoom.rs": "e5cb3226e8d835092d47d6e7c436d54b2afa4b330fd124422a65f118505f5916"
+    },
+    "source_branding_report_sha256": "ff3fada71148ef9dbce65a9ff5b1a96eda99e2857076305e5297f5ccc21fe9ee",
+    "token_comparison_report_sha256": "a1badc415e7028e5c2f9386366c9579dd09af8d9a19a975f290ad9e68a4a1ca2",
+    "normalized_tokens": 67870,
+    "all_normalized_streams_equal": true,
+    "allowed_literal_mappings": {
+      "\"0.1.0-solstice.2\"": "\"0.1.0-native.1\"",
+      "\"[Solstice] \"": "\"[Meteor Horizon] \"",
+      "\"Open Solstice menu\"": "\"Open Meteor Horizon menu\"",
+      "\"solstice:step\"": "\"meteor_horizon:step\""
+    },
+    "method": "Custom Rust lexical token comparison ignoring whitespace/comments, preserving literal spelling; before identifiers normalized solstice->meteor_horizon and only four explicit brand/version/namespace literal mappings. Not compiler AST/type equivalence; root owns compilation.",
+    "scope": "Static token comparison after explicit identifier/literal mappings, not compiler AST/type/behavior equivalence or a new runtime result."
+  },
+  "adaptation_notes": [
     {
       "path": "horizon-native.json",
-      "bytes": 215,
-      "sha256": "bae5da408c02b93ebbe1f3ba7589db23106e20adc38c4ac004de56fe7b3310d3"
+      "description": "Change native version to0.1.0-native.1; identity meteor_client, standard schema1 and exact Horizon/Mixins pins unchanged.",
+      "sha256": "0121091ef502f3c629849ac72ef95ffb0e8f6910b4c22a833282a21be7dc74ce"
     },
     {
       "path": "mixins/meteor_client/buttons.rs",
-      "bytes": 368,
-      "sha256": "bd221b27cc196dd21a1d310f1df9c5967f3784f9fb5a690d03c2a4ded1b8ddaa"
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "4613dbd0f523db1877ee809cb74f9ae918052a9f7066beee3f45bd05cf249726"
     },
     {
       "path": "mixins/meteor_client/camera.rs",
-      "bytes": 380,
-      "sha256": "82d5861ace6956260ea0f1540e9f3c4230b8541c65bd99ad8f64db2fda70697d"
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "fabaa7688bbd92236b359579c7cb7cd430d824f6a3e0836a365fc6b608b19aae"
     },
     {
       "path": "mixins/meteor_client/chat.rs",
-      "bytes": 321,
-      "sha256": "874d38a45034da049d3ba6ff2c5942720782617d7d1c08b3e3e10f6b6ddc4051"
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "c2b44d8704821fd9260831be4fbce5958245ec307b5cb77c44c5d7d24384eed2"
     },
     {
       "path": "mixins/meteor_client/click.rs",
-      "bytes": 225,
-      "sha256": "1567e482222c4d03a169ab3d311a49a8035bc38585b3bcbc6b16a866954c312e"
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "17e651d58899135fe3010107f8a953ad6a1dd6abecb009052c198f03d22c3598"
     },
     {
       "path": "mixins/meteor_client/combat.rs",
-      "bytes": 37822,
-      "sha256": "41b1c4e4700840fc811c5ea38b36721d90b5fa116851846c63ba14e675bb1457"
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "7adb17eedd45656db3f1e1739fa41b2ca85e4a2406d1a5d8b230b9b76bf27bdb"
     },
     {
       "path": "mixins/meteor_client/data/component-licenses.json",
-      "bytes": 1218,
-      "sha256": "2221adafd270de1d6f912ecd27a1cfd6e4984b282f086a3c33b035cf9a4472b7"
+      "description": "Generic product name/notice path with original copyright/upstream source/declared MIT preserved; clarify project GPL3 distribution and upstream Meteor-port attribution facts.",
+      "sha256": "edaa7123e99f8ef46930c054cfa191037c0873cbebdab20aaae552875d17339b"
     },
     {
-      "path": "mixins/meteor_client/data/licenses/Solstice-MIT.txt",
+      "path": "mixins/meteor_client/data/licenses/THIRD_PARTY_NOTICES.txt",
+      "description": "Generic filename only; exact original1093-byte MIT notice SHA d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e unchanged.",
+      "sha256": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e"
+    },
+    {
+      "path": "mixins/meteor_client/fishing_hook.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "763d2a940a43b6ec0dddf8632986e099febded5f333d476d7cc9a6ae178ffdd7"
+    },
+    {
+      "path": "mixins/meteor_client/frame.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "61e2de8b679a69f0d84a381ba5a7340d93f0129fd9e95b1218c99db44360288c"
+    },
+    {
+      "path": "mixins/meteor_client/gui_layers.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "1d3bf03e2656a21d3c51068c688f7c7f5f2bca601cf6a8ee39f368f117bcf177"
+    },
+    {
+      "path": "mixins/meteor_client/horizon-mixin.toml",
+      "description": "Change version to0.1.0-native.1 and all ten support module names to meteor_horizon prefixes, matching held Rust;24 injections/pins unchanged.",
+      "sha256": "7668bbe6ace9848b29fff0b42cd3bfa78333d3ebd54c27f1b40b6a64e34ef7bc"
+    },
+    {
+      "path": "mixins/meteor_client/hud.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "1cd8595a5798b778de336e5633787567743d3c5814ca32c30efd2f045ea2a11f"
+    },
+    {
+      "path": "mixins/meteor_client/input.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "09c33f50b0cbdb3fcefd75d75c0c80d6fa738d1bf55339db43c221eb147fe2c0"
+    },
+    {
+      "path": "mixins/meteor_client/input_flags.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "e44525840d0591a24bb99fdf30b4a2b1a5dec64797e3a05686cb1c4a661dc754"
+    },
+    {
+      "path": "mixins/meteor_client/key.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "bda94cb9ac2ee47d0eace1b7bf716ae3f19cfa070958ba1ff94f800b53cf1399"
+    },
+    {
+      "path": "mixins/meteor_client/list.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "e00676fe72158b96f3cb077008e0fb977511e05b6eedf5777f1e9a2ddcd133ce"
+    },
+    {
+      "path": "mixins/meteor_client/noslow.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "b904bb4d80002ac8e63259c48cddb3ee751a6448282a7859d569d92fcb7a88bd"
+    },
+    {
+      "path": "mixins/meteor_client/player.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "781ff3ebf82ac0a7d325f2c10da4c8b3c6c1be8de3356e2d4e8ee796985cdb1c"
+    },
+    {
+      "path": "mixins/meteor_client/press.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "e3df64a5dffde0f593f932fa985f60e86f217e0f03e5c4ae052cfe3439a7130a"
+    },
+    {
+      "path": "mixins/meteor_client/pretick.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "c9ed1a516f536aed06ef720dc35fd585532fc372f1ab8bb3f9c16a480adf0db7"
+    },
+    {
+      "path": "mixins/meteor_client/reach.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "e77f3a29600838ea56fa7f87d613fc54d4f5b93bb30eecedf0d8709dae1ffd14"
+    },
+    {
+      "path": "mixins/meteor_client/render.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "7ead65bae284c3ff7de609203387600ceb5e01cafd920e0a643425325b8e857c"
+    },
+    {
+      "path": "mixins/meteor_client/runtime.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "ea303ba987548716cd3c495c5af1116fc3ba19311006d2349e07c34026665129"
+    },
+    {
+      "path": "mixins/meteor_client/send.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "3e4a5aa6f1ed8556e64dd8bb22c05ab45a29760324f20d220bc0dcf98702d770"
+    },
+    {
+      "path": "mixins/meteor_client/settings.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "fb8d6c2f72c7f6a689d4e1f1943befec42efb624e59b1cda64e672af91bdf9a2"
+    },
+    {
+      "path": "mixins/meteor_client/tick.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "c5aa769cdb152d679ed940194563aff82b07f003128f6991e7d24639486fbc7a"
+    },
+    {
+      "path": "mixins/meteor_client/timer.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "db8cb5f48670e18da34cbee71c1cd42db170939dd1bf652b85fb47951c147e9f"
+    },
+    {
+      "path": "mixins/meteor_client/timer_flags.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "bf396ce9dbe7080ec9056b7c824b93c2f21329a9deec2dc4dbf196fba4ff2e18"
+    },
+    {
+      "path": "mixins/meteor_client/turn.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "f8d0b6d98f6aa6de499068008849029297373399287ec0371754f8170d780c41"
+    },
+    {
+      "path": "mixins/meteor_client/util.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "f583dc509e89d1a7caf4f0979cec7f74e95ac75d1bafc676a7e6e77b13040d68"
+    },
+    {
+      "path": "mixins/meteor_client/wheel.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "2c9f907cd581c1270bc17af1f153b78b2d8840ca15128ae3288392a6b1431987"
+    },
+    {
+      "path": "mixins/meteor_client/world.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "3027bdeb8d55c15350014f1cb5495d8308e4dee2320c032019b1e3acbfc8b9c3"
+    },
+    {
+      "path": "mixins/meteor_client/xray.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "ebff677472a1e97aff1e7658e482b4d8190f2e11a49c8b3d356a9a1f6ea12c9e"
+    },
+    {
+      "path": "mixins/meteor_client/xray_flags.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "31b49abdcc1c185d088977bfbc1590c8f1043296503cfab763670d080e03524e"
+    },
+    {
+      "path": "mixins/meteor_client/xray_get.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "0f58bdf19381ad7abfeaee0d3161e041c7ebfa62dfa1e0852cb27fd38183cb14"
+    },
+    {
+      "path": "mixins/meteor_client/xray_unpack.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "f372160c9a38bda5c38b66da88bf112b91e4542daad8f26e6636f83c4fd4badc"
+    },
+    {
+      "path": "mixins/meteor_client/zoom.rs",
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
+      "sha256": "e5cb3226e8d835092d47d6e7c436d54b2afa4b330fd124422a65f118505f5916"
+    }
+  ],
+  "frozen_payloads": [
+    {
+      "path": "horizon-native.json",
+      "bytes": 213,
+      "sha256": "0121091ef502f3c629849ac72ef95ffb0e8f6910b4c22a833282a21be7dc74ce"
+    },
+    {
+      "path": "mixins/meteor_client/buttons.rs",
+      "bytes": 406,
+      "sha256": "4613dbd0f523db1877ee809cb74f9ae918052a9f7066beee3f45bd05cf249726"
+    },
+    {
+      "path": "mixins/meteor_client/camera.rs",
+      "bytes": 430,
+      "sha256": "fabaa7688bbd92236b359579c7cb7cd430d824f6a3e0836a365fc6b608b19aae"
+    },
+    {
+      "path": "mixins/meteor_client/chat.rs",
+      "bytes": 366,
+      "sha256": "c2b44d8704821fd9260831be4fbce5958245ec307b5cb77c44c5d7d24384eed2"
+    },
+    {
+      "path": "mixins/meteor_client/click.rs",
+      "bytes": 313,
+      "sha256": "17e651d58899135fe3010107f8a953ad6a1dd6abecb009052c198f03d22c3598"
+    },
+    {
+      "path": "mixins/meteor_client/combat.rs",
+      "bytes": 37778,
+      "sha256": "7adb17eedd45656db3f1e1739fa41b2ca85e4a2406d1a5d8b230b9b76bf27bdb"
+    },
+    {
+      "path": "mixins/meteor_client/data/component-licenses.json",
+      "bytes": 1677,
+      "sha256": "edaa7123e99f8ef46930c054cfa191037c0873cbebdab20aaae552875d17339b"
+    },
+    {
+      "path": "mixins/meteor_client/data/licenses/THIRD_PARTY_NOTICES.txt",
       "bytes": 1093,
       "sha256": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e"
     },
@@ -795,153 +1355,153 @@
     },
     {
       "path": "mixins/meteor_client/fishing_hook.rs",
-      "bytes": 404,
-      "sha256": "ed123ea161ec7d4ed3d98a18e02434887f414b0d1f542a12b05fb5fac7cfb1df"
+      "bytes": 409,
+      "sha256": "763d2a940a43b6ec0dddf8632986e099febded5f333d476d7cc9a6ae178ffdd7"
     },
     {
       "path": "mixins/meteor_client/frame.rs",
-      "bytes": 153,
-      "sha256": "371fb676b5adcd807adff8aaab341d27544b08f3a7902447996e58114ea71c7e"
+      "bytes": 220,
+      "sha256": "61e2de8b679a69f0d84a381ba5a7340d93f0129fd9e95b1218c99db44360288c"
     },
     {
       "path": "mixins/meteor_client/gui_layers.rs",
-      "bytes": 501,
-      "sha256": "d452b2de8b6bb0ceee008b1ff0e48ae4bc00f20dea5a14d0ade0bce61a030a26"
+      "bytes": 429,
+      "sha256": "1d3bf03e2656a21d3c51068c688f7c7f5f2bca601cf6a8ee39f368f117bcf177"
     },
     {
       "path": "mixins/meteor_client/horizon-mixin.toml",
-      "bytes": 8937,
-      "sha256": "d029fc7f00dadd318663e8edbc07bb11a7251a55925aced6f326efd309e57224"
+      "bytes": 8995,
+      "sha256": "7668bbe6ace9848b29fff0b42cd3bfa78333d3ebd54c27f1b40b6a64e34ef7bc"
     },
     {
       "path": "mixins/meteor_client/hud.rs",
-      "bytes": 332,
-      "sha256": "b1c29cd5e0247a048fe9a120f3faca0fc2909ef83cc3ce5b845635ecce0c3a08"
+      "bytes": 342,
+      "sha256": "1cd8595a5798b778de336e5633787567743d3c5814ca32c30efd2f045ea2a11f"
     },
     {
       "path": "mixins/meteor_client/input.rs",
-      "bytes": 365,
-      "sha256": "1bd16975402e4010093daa095da20b4f057b819aa38db6d6a2fc6360dae3cdae"
+      "bytes": 403,
+      "sha256": "09c33f50b0cbdb3fcefd75d75c0c80d6fa738d1bf55339db43c221eb147fe2c0"
     },
     {
       "path": "mixins/meteor_client/input_flags.rs",
-      "bytes": 547,
-      "sha256": "6f942f5ec93cd930a26d6396be72eb48d8221ecebf01d6b4e866ebabf5a1b27b"
+      "bytes": 571,
+      "sha256": "e44525840d0591a24bb99fdf30b4a2b1a5dec64797e3a05686cb1c4a661dc754"
     },
     {
       "path": "mixins/meteor_client/key.rs",
-      "bytes": 204,
-      "sha256": "49d4914a9ea739059376b1ea5f6704d06d30a3862b20bc820d11c57a6d0c7fe0"
+      "bytes": 249,
+      "sha256": "bda94cb9ac2ee47d0eace1b7bf716ae3f19cfa070958ba1ff94f800b53cf1399"
     },
     {
       "path": "mixins/meteor_client/list.rs",
-      "bytes": 178,
-      "sha256": "cac1431d7411aebed78f76effe5af1b9d283c63dd13a8288632df631caf990bc"
+      "bytes": 235,
+      "sha256": "e00676fe72158b96f3cb077008e0fb977511e05b6eedf5777f1e9a2ddcd133ce"
     },
     {
       "path": "mixins/meteor_client/noslow.rs",
-      "bytes": 405,
-      "sha256": "c0cf876bb2e8f753cebd6c91742364a908812e1b4e25f177b826c59cf67dcb17"
+      "bytes": 439,
+      "sha256": "b904bb4d80002ac8e63259c48cddb3ee751a6448282a7859d569d92fcb7a88bd"
     },
     {
       "path": "mixins/meteor_client/player.rs",
-      "bytes": 14506,
-      "sha256": "1e966d5756858bf4573c5c734733a9602c546f3f7c512332f89d6bf184673fa2"
+      "bytes": 14537,
+      "sha256": "781ff3ebf82ac0a7d325f2c10da4c8b3c6c1be8de3356e2d4e8ee796985cdb1c"
     },
     {
       "path": "mixins/meteor_client/press.rs",
-      "bytes": 535,
-      "sha256": "68eb8e6365dfab5065c9f9b989123ddf7cdaf59178879fe71e92d0c1564d1340"
+      "bytes": 584,
+      "sha256": "e3df64a5dffde0f593f932fa985f60e86f217e0f03e5c4ae052cfe3439a7130a"
     },
     {
       "path": "mixins/meteor_client/pretick.rs",
-      "bytes": 173,
-      "sha256": "b760412175f2ea4e7a0e6d6c38921d29b9e877ccde637a8f702c56d07d3cfd1d"
+      "bytes": 218,
+      "sha256": "c9ed1a516f536aed06ef720dc35fd585532fc372f1ab8bb3f9c16a480adf0db7"
     },
     {
       "path": "mixins/meteor_client/reach.rs",
-      "bytes": 500,
-      "sha256": "c9fe77b33483986134882cb93f4a1d9c4999218aa69908ef3d9f5429817fa953"
+      "bytes": 572,
+      "sha256": "e77f3a29600838ea56fa7f87d613fc54d4f5b93bb30eecedf0d8709dae1ffd14"
     },
     {
       "path": "mixins/meteor_client/render.rs",
-      "bytes": 21398,
-      "sha256": "7d571bcce47bcdefe0b6ac2bac69d3e459cb5e32a1d1ed54230605b070176d8a"
+      "bytes": 21428,
+      "sha256": "7ead65bae284c3ff7de609203387600ceb5e01cafd920e0a643425325b8e857c"
     },
     {
       "path": "mixins/meteor_client/runtime.rs",
-      "bytes": 167053,
-      "sha256": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9"
+      "bytes": 166758,
+      "sha256": "ea303ba987548716cd3c495c5af1116fc3ba19311006d2349e07c34026665129"
     },
     {
       "path": "mixins/meteor_client/send.rs",
-      "bytes": 642,
-      "sha256": "cb8d93bf8f35d3307f3e3dea4686c2cfa05e60454e5576f90fc0886679c0489a"
+      "bytes": 684,
+      "sha256": "3e4a5aa6f1ed8556e64dd8bb22c05ab45a29760324f20d220bc0dcf98702d770"
     },
     {
       "path": "mixins/meteor_client/settings.rs",
-      "bytes": 279,
-      "sha256": "5a41a1ad366af8ae9cfd77344f3e1c221bb840b5893dc55c27c2b0da222d301d"
+      "bytes": 331,
+      "sha256": "fb8d6c2f72c7f6a689d4e1f1943befec42efb624e59b1cda64e672af91bdf9a2"
     },
     {
       "path": "mixins/meteor_client/tick.rs",
-      "bytes": 142,
-      "sha256": "f8483c46180223f6090ce5c9a0b6b19f7c01c0dec0420cd26d831c1d046ae76e"
+      "bytes": 216,
+      "sha256": "c5aa769cdb152d679ed940194563aff82b07f003128f6991e7d24639486fbc7a"
     },
     {
       "path": "mixins/meteor_client/timer.rs",
-      "bytes": 532,
-      "sha256": "844f196d4ca7d3c9c54e60883aa523b6852afd96441041797056d52cfd7c2c13"
+      "bytes": 586,
+      "sha256": "db8cb5f48670e18da34cbee71c1cd42db170939dd1bf652b85fb47951c147e9f"
     },
     {
       "path": "mixins/meteor_client/timer_flags.rs",
-      "bytes": 1546,
-      "sha256": "ac216319c06f54f092991c2728b64ee797abdc23738d1d187480d9cc72172ded"
+      "bytes": 1494,
+      "sha256": "bf396ce9dbe7080ec9056b7c824b93c2f21329a9deec2dc4dbf196fba4ff2e18"
     },
     {
       "path": "mixins/meteor_client/turn.rs",
-      "bytes": 325,
-      "sha256": "4ef8612cd2dfd9af2e26593c1db754d441fd2398d9d275e8e6322c000d07a7fa"
+      "bytes": 375,
+      "sha256": "f8d0b6d98f6aa6de499068008849029297373399287ec0371754f8170d780c41"
     },
     {
       "path": "mixins/meteor_client/util.rs",
-      "bytes": 14052,
-      "sha256": "db576c53695e5531cbe881286bd116e0315a882279a67d5572502cc68b48ad9a"
+      "bytes": 13955,
+      "sha256": "f583dc509e89d1a7caf4f0979cec7f74e95ac75d1bafc676a7e6e77b13040d68"
     },
     {
       "path": "mixins/meteor_client/wheel.rs",
-      "bytes": 353,
-      "sha256": "38d83d47b5b4bce9fc0a029e20275b017550cfb351e609eed6a25d3edaa30af1"
+      "bytes": 395,
+      "sha256": "2c9f907cd581c1270bc17af1f153b78b2d8840ca15128ae3288392a6b1431987"
     },
     {
       "path": "mixins/meteor_client/world.rs",
-      "bytes": 20591,
-      "sha256": "f3792122259f97998545e3abf683441fc055d3eeb62533785f0482dba1b85e48"
+      "bytes": 20618,
+      "sha256": "3027bdeb8d55c15350014f1cb5495d8308e4dee2320c032019b1e3acbfc8b9c3"
     },
     {
       "path": "mixins/meteor_client/xray.rs",
-      "bytes": 544,
-      "sha256": "5be6bf23dd2fb591e9f63d1d0cc02d96de60c919984ccc288fdaae1170c1fc11"
+      "bytes": 601,
+      "sha256": "ebff677472a1e97aff1e7658e482b4d8190f2e11a49c8b3d356a9a1f6ea12c9e"
     },
     {
       "path": "mixins/meteor_client/xray_flags.rs",
-      "bytes": 1290,
-      "sha256": "eba03e7aad7af40a9538a209b86548c6bf3569b951c96e24189f12538eea242b"
+      "bytes": 1216,
+      "sha256": "31b49abdcc1c185d088977bfbc1590c8f1043296503cfab763670d080e03524e"
     },
     {
       "path": "mixins/meteor_client/xray_get.rs",
-      "bytes": 141,
-      "sha256": "d149e5f7330846c6f5cf6a9fb3e75073f13f91ce6e8363a1225a666fbd600508"
+      "bytes": 209,
+      "sha256": "0f58bdf19381ad7abfeaee0d3161e041c7ebfa62dfa1e0852cb27fd38183cb14"
     },
     {
       "path": "mixins/meteor_client/xray_unpack.rs",
-      "bytes": 184,
-      "sha256": "c24f2530d225688af7612bfc704af1873f8b5e86c116ea0d0bdc0778992d2568"
+      "bytes": 241,
+      "sha256": "f372160c9a38bda5c38b66da88bf112b91e4542daad8f26e6636f83c4fd4badc"
     },
     {
       "path": "mixins/meteor_client/zoom.rs",
-      "bytes": 196,
-      "sha256": "b2aa6bd8527b2c56f3e9a3957bcd090b9ad0ea475aadceb9f342f849ecabc69f"
+      "bytes": 271,
+      "sha256": "e5cb3226e8d835092d47d6e7c436d54b2afa4b330fd124422a65f118505f5916"
     }
   ],
   "freeze_scope": "Payload bytes frozen; not a parser/plan/apply/compile/runtime result. Provenance self-hash is covered by the external package report."

@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
-import package_solstice_hnmod as package
+import package_native_hnmod as package
 
 
 def freeze(bundle, notes):

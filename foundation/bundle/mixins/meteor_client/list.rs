@@ -1,4 +1,4 @@
-// Solstice's row in Options > Mods, with its menu key.
-fn solstice_listed(mods: &mut Vec<crate::game::native_hooks::NativeMod>) {
-    crate::game::solstice::listed(mods);
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
+fn meteor_horizon_listed(mods: &mut Vec<crate::game::native_hooks::NativeMod>) {
+    crate::game::meteor_horizon::listed(mods);
 }

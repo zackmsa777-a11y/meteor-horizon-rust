@@ -17,8 +17,8 @@ Coordinate ongoing port changes with the repository maintainer,
 
 ## Current native integration coordination
 
-New Solstice foundation PRs target **`solstice-integration`**. Meteor Horizon is adapting
-Solstice's existing MIT native foundation using the project's pinned Horizon/Mixins pair.
+New native foundation PRs target **`native-development`**. Meteor Horizon is adapting
+the existing native foundation using the project's pinned Horizon/Mixins pair.
 The current allocation (2026-10-30) is:
 
 - **AutoRespawn and BreakDelay:** reserved for a separate contributor's planned PR against
@@ -40,7 +40,7 @@ registration changes in shared `runtime.rs` and `horizon-mixin.toml`; preserve e
 avoid unrelated formatting or whole-file replacement. Rebase focused changes on the latest
 appropriate target-branch head before integration to resolve shared dispatch or manifest edits.
 
-Retain the reusable Meteor core/tests and explicit Solstice MIT / Meteor GPL component notices.
+Retain the reusable Meteor core/tests and explicit upstream MIT / Meteor GPL component notices.
 Do not globally relicense the retained Meteor-derived source. Generate pristine stages with the pinned
 upstream Mixins tool; do not introduce a custom loader or manually edit generated host source.
 Preserve versioned verified packages and their evidence while developing the next integration,

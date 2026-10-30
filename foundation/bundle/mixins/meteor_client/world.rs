@@ -1,8 +1,8 @@
-// World modules ported from Meteor's source: Auto Shearer, Auto Nametag,
-// Auto Mount, Flamethrower; and Bow Aimbot.
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
+//
 
-use super::solstice::{Category, Module, hold};
-use super::solstice_util::*;
+use super::meteor_horizon::{Category, Module, hold};
+use super::meteor_horizon_util::*;
 use super::{Game, Screen};
 use horizon_protocol::packets::play::{self, Serverbound as S};
 use std::sync::Mutex;
@@ -332,7 +332,7 @@ fn eye_dist(game: &Game<'_>, t: &Target) -> f64 {
 fn use_on(game: &mut Game<'_>, slot: usize, id: u32, centre: [f64; 3], rotate: bool) {
     if rotate {
         if let Some(eye) = game.eye_position() {
-            let (yaw, pitch) = super::solstice::look_at(eye, centre);
+            let (yaw, pitch) = super::meteor_horizon::look_at(eye, centre);
             game.send(S::MovePlayerRot(play::MovePlayerRot {
                 yaw,
                 pitch,
@@ -468,7 +468,7 @@ fn auto_mount(game: &mut Game<'_>, m: &Module) {
     if let Some(t) = pick {
         if m.b("Rotate") {
             if let Some(e) = game.eye_position() {
-                let (yaw, pitch) = super::solstice::look_at(e, centre(&t));
+                let (yaw, pitch) = super::meteor_horizon::look_at(e, centre(&t));
                 game.send(S::MovePlayerRot(play::MovePlayerRot {
                     yaw,
                     pitch,
@@ -533,7 +533,7 @@ fn flamethrower(game: &mut Game<'_>, m: &Module) {
         t.pos[2].floor() as i32,
     ];
     if m.b("Rotate") {
-        let (yaw, pitch) = super::solstice::look_at(eye, centre(&t));
+        let (yaw, pitch) = super::meteor_horizon::look_at(eye, centre(&t));
         game.send(S::MovePlayerRot(play::MovePlayerRot {
             yaw,
             pitch,
@@ -580,7 +580,7 @@ fn bow_aimbot(game: &mut Game<'_>, m: &Module) {
     let range = m.n("Range");
     let list = m.t("Entities").to_owned();
     let own = game.remote.as_ref().map(|r| r.entity_id as u32);
-    let friends = super::solstice::with(|s| s.friends.clone());
+    let friends = super::meteor_horizon::with(|s| s.friends.clone());
     let names = game.remote_player_names();
     let mut cands: Vec<Target> = every_living(game)
         .into_iter()
@@ -628,7 +628,7 @@ fn bow_aimbot(game: &mut Game<'_>, m: &Module) {
     let pitch = -((v2 - (v2 * v2 - g * (g * h * h + 2.0 * ry * v2)).sqrt()) / (g * h))
         .atan()
         .to_degrees();
-    let (yaw, flat_pitch) = super::solstice::look_at(
+    let (yaw, flat_pitch) = super::meteor_horizon::look_at(
         eye,
         [t.pos[0], t.pos[1] + (t.hi[1] - t.lo[1]) / 2.0, t.pos[2]],
     );

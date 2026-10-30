@@ -1,14 +1,18 @@
 # Meteor Horizon
 
-This branch adopts [Solstice's existing native client](https://github.com/PointOfPressure/solstice-client)
-under the **Meteor Horizon** name. The experimental [foundation source and status](foundation/README.md)
-uses normal `.hnmod` / upstream Mixins integration and exposes 87 catalog entries after contributor
-reservations. This is not 87 verified Meteor ports or a full-parity claim.
+A native Rust utility mod for Horizon / Minecraft Java 26.3, using standard
+`.hnmod` packages and upstream Horizon Mixins. The full Meteor port is in development.
 
-The frozen foundation passes the stock native parser, official 24-hook plan/apply and host compile
-check. Six state tests and three Timer/NoSlow component checks pass; linked build and isolated runtime validation are in progress.
-The complete existing `native/` tree and its verified four-module migration.3 package are preserved.
-AutoRespawn and BreakDelay remain reserved for the planned contributor PR.
+[Current native source and setup](foundation/README.md) ·
+[Native package](packages/meteor-horizon-native.hnmod) ·
+[Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+Active development uses `native-development`. The current catalog has 87 entries;
+this is not a claim of 87 fully verified Meteor ports. AutoRespawn and BreakDelay
+remain reserved for the contributor's planned work.
+
+The branding update passes package, transformation, compile and nine Rust checks; its linked build is in progress. The complete earlier `native/`
+source and its verified four-module package remain preserved below.
 
 ## Preserved Meteor migration checkpoint
 

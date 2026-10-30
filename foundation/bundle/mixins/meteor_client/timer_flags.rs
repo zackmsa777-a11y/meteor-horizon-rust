@@ -1,5 +1,5 @@
-// Solstice Timer switch, adapted by Meteor Horizon: client-thread scoped.
-// Server clocks on other threads must not inherit a native client's multiplier.
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
+//
 use std::cell::Cell;
 thread_local! {
     static MULT:Cell<f32> = const {Cell::new(1.)};

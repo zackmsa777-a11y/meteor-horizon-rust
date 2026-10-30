@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 32.68932710000081,
+  "source_unchanged": true,
+  "result": {
+    "bridges": 0,
+    "crates": 0,
+    "data": 1,
+    "injections": 24,
+    "modules": 10,
+    "post_build": 0,
+    "seconds": 32.5140679,
+    "states": 0,
+    "status": "ok"
+  }
+}

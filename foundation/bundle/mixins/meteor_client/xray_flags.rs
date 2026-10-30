@@ -1,6 +1,6 @@
-// Xray's switches, read by the mesher's hooks (on its worker threads) and set
-// by the game. While a thread builds a section mesh, blocks that are not on
-// the list read as air.
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
+//
+//
 use std::cell::Cell;
 use std::collections::HashSet;
 use std::sync::atomic::{AtomicBool, Ordering};

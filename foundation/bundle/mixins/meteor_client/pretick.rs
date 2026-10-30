@@ -1,4 +1,4 @@
-// Before each tick: keys held for the player, flight, step height.
-fn solstice_pretick(game: &mut crate::game::Game<'_>) {
-    crate::game::solstice::pre_tick(game);
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
+fn meteor_horizon_pretick(game: &mut crate::game::Game<'_>) {
+    crate::game::meteor_horizon::pre_tick(game);
 }

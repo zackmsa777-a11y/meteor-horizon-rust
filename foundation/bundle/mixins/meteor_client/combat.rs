@@ -1,9 +1,9 @@
-// Solstice's combat modules beyond the core ones, ported from Meteor's source:
-// Surround, Self Trap, Auto Trap, Self Web, Auto Web, Hole Filler, Burrow,
-// Offhand and Auto EXP.
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
+//
+//
 
-use super::solstice::{Category, Module, hold};
-use super::solstice_util::*;
+use super::meteor_horizon::{Category, Module, hold};
+use super::meteor_horizon_util::*;
 use super::{Game, Screen};
 use horizon_protocol::packets::play::{self, Serverbound as S};
 use std::collections::HashSet;
@@ -760,7 +760,7 @@ fn burrow(game: &mut Game<'_>, m: &Module, just: bool) {
         let hit = center_of(start);
         if m.b("Rotate") {
             if let Some(eye) = game.eye_position() {
-                let (yaw, pitch) = super::solstice::look_at(eye, hit);
+                let (yaw, pitch) = super::meteor_horizon::look_at(eye, hit);
                 game.send(S::MovePlayerRot(play::MovePlayerRot {
                     yaw,
                     pitch,
@@ -848,7 +848,7 @@ fn offhand(game: &mut Game<'_>, m: &Module) {
     });
     if let Some(i) = found {
         // Pick it up, put it in the offhand slot, put back what was there.
-        super::solstice::menu_click(game, &[(i, Pickup), (504, Pickup), (i, Pickup)]);
+        super::meteor_horizon::menu_click(game, &[(i, Pickup), (504, Pickup), (i, Pickup)]);
         cs(|c| c.offhand_ticks = 0);
     }
 }
@@ -913,7 +913,7 @@ fn auto_exp(game: &mut Game<'_>, m: &Module) {
             };
             // Into the chosen hotbar slot.
             let to = m.n("EXP slot") as usize - 1;
-            super::solstice::menu_click(
+            super::meteor_horizon::menu_click(
                 game,
                 &[
                     (src, horizon_client::menu::Input::Pickup),

@@ -1,8 +1,8 @@
-// More of Meteor's player and misc modules: Auto Fish, Auto Gap, Fast Use,
-// Spam, and Anchor.
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
+//
 
-use super::solstice::{Category, Module, hold};
-use super::solstice_util::*;
+use super::meteor_horizon::{Category, Module, hold};
+use super::meteor_horizon_util::*;
 use super::{Game, Screen};
 use std::sync::Mutex;
 use winit::event::MouseButton;
@@ -86,7 +86,7 @@ pub(super) fn reach_extra() -> Option<f64> {
 
 // Right mouse button down while playing: Air Place.
 pub(super) fn right_click(game: &mut Game<'_>) {
-    let Some(m) = super::solstice::with(|s| s.module("Air Place").filter(|m| m.on).cloned()) else {
+    let Some(m) = super::meteor_horizon::with(|s| s.module("Air Place").filter(|m| m.on).cloned()) else {
         return;
     };
     if !in_world(game) || game.pick().is_some() || game.entity_targeted() {
@@ -205,7 +205,7 @@ fn use_rod(game: &mut Game<'_>, m: &Module) -> bool {
 }
 
 fn auto_fish(game: &mut Game<'_>, m: &Module) {
-    match super::fishing::solstice_fishing::state(game) {
+    match super::fishing::meteor_horizon_fishing::state(game) {
         None => {
             // Idle: cast again after the delay.
             ps(|p| p.fish_state = 0);

@@ -1,6 +1,6 @@
 [mod]
 id = "meteor_client"
-version = "0.1.0-solstice.2"
+version = "0.1.0-native.1"
 priority = 100
 
 # It hooks the game's own functions as well as the native hook points, so it
@@ -11,63 +11,63 @@ horizon_revision = "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73"
 [[module]]
 id = "runtime"
 file = "crates/horizon-client/src/game.rs"
-name = "solstice"
+name = "meteor_horizon"
 source = "runtime.rs"
 
 [[module]]
 id = "util"
 file = "crates/horizon-client/src/game.rs"
-name = "solstice_util"
+name = "meteor_horizon_util"
 source = "util.rs"
 
 [[module]]
 id = "combat"
 file = "crates/horizon-client/src/game.rs"
-name = "solstice_combat"
+name = "meteor_horizon_combat"
 source = "combat.rs"
 
 [[module]]
 id = "player"
 file = "crates/horizon-client/src/game.rs"
-name = "solstice_player"
+name = "meteor_horizon_player"
 source = "player.rs"
 
 [[module]]
 id = "world"
 file = "crates/horizon-client/src/game.rs"
-name = "solstice_world"
+name = "meteor_horizon_world"
 source = "world.rs"
 
 [[module]]
 id = "fishing_hook"
 file = "crates/horizon-client/src/game/fishing.rs"
-name = "solstice_fishing"
+name = "meteor_horizon_fishing"
 source = "fishing_hook.rs"
 
 [[module]]
 id = "render"
 file = "crates/horizon-client/src/game.rs"
-name = "solstice_render"
+name = "meteor_horizon_render"
 source = "render.rs"
 
 [[module]]
 id = "xray_flags"
 file = "crates/horizon-client-render/src/mesher.rs"
-name = "solstice_xray"
+name = "meteor_horizon_xray"
 source = "xray_flags.rs"
 visibility = "pub"
 
 [[module]]
 id = "timer_flags"
 file = "crates/horizon-client/src/clock.rs"
-name = "solstice_timer"
+name = "meteor_horizon_timer"
 source = "timer_flags.rs"
 visibility = "pub"
 
 [[module]]
 id = "input_flags"
 file = "crates/horizon-client-input/src/input.rs"
-name = "solstice_flags"
+name = "meteor_horizon_flags"
 source = "input_flags.rs"
 visibility = "pub"
 

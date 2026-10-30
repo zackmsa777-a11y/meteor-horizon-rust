@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded normal schema-1 Meteor Horizon/Solstice source packager.
+"""Bounded normal schema-1 Meteor Horizon native source packager.
 
 Independent from the held Meteor migration.4 contract. Packaging requires an
 explicit provenance freeze; it never compiles, installs or executes mod source.
@@ -14,15 +14,15 @@ import tomllib
 import zipfile
 
 ID = "meteor_client"
-VERSION = "0.1.0-solstice.2"
+VERSION = "0.1.0-native.1"
 HORIZON = "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73"
 MIXINS = "cb1ad23022392d88f006cf94cbf6552a73f5df12"
 PREFIX = "mixins/meteor_client/"
-PROVENANCE = PREFIX + "data/solstice-provenance.json"
+PROVENANCE = PREFIX + "data/source-provenance.json"
 MAX_BYTES = 64 * 1024 * 1024
 EXPECTED_MANIFEST = {"schema": 1, "id": ID, "version": VERSION, "game": "26.3", "horizon": HORIZON, "mixins": MIXINS}
 NOTICES = {
-    "licenses/Solstice-MIT.txt": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e",
+    "licenses/THIRD_PARTY_NOTICES.txt": "d83a80f6c77f9b699da7d8cffab3da3c80015f622c97514380b1a609b2e3890e",
     "project-notices/Horizon-MIT.txt": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df",
     "project-notices/Meteor-GPL-3.0-only.txt": "b1e60bceb8b63b265dfe040691bd5ec7a21da3c31be3db4b2925518e9c0836df",
     "project-notices/Starscript-MIT.txt": "0efbee07393749f2e2e96a16466b6b05c8244adba0cf97e6daf453e4fe5e9c3f",
@@ -106,7 +106,9 @@ def collect(root, *, require_frozen=True):
         if sha(entries[PREFIX + 'data/' + name]) != digest:
             raise ValueError('Changed preserved component notice: ' + name)
     components = json.loads(entries[PREFIX + 'data/component-licenses.json'])
-    if components['active_foundation']['license'] != 'MIT' or components['active_foundation']['copyright'] != 'Copyright (c) 2026 PointOfPressure':
+    notice = entries[PREFIX + 'data/licenses/THIRD_PARTY_NOTICES.txt'].decode('utf-8')
+    copyright_line = next(line for line in notice.splitlines() if line.startswith('Copyright '))
+    if components['active_foundation']['license'] != 'MIT' or components['active_foundation']['copyright'] != copyright_line:
         raise ValueError('Active foundation component attribution changed')
     provenance = json.loads(entries[PROVENANCE])
     if provenance['upstream']['commit'] != '2b11af4dfae7b08f9faa65d6fd3f4ab7b32030d1' or len(provenance['original_files']) != 40:

@@ -1,10 +1,10 @@
-// Solstice: Horizon's first cheat client, a Meteor Client style utility mod, rebuilt in Rust as a
-// Horizon native mod. Modules in categories, each with settings and a key
-// bind, a menu on vanilla's own Options > Mods page, `.` chat commands, and a
-// HUD with the active modules. The bundle adds this file to the game as
-// `crate::game::solstice`, so it reads and changes the game's own state.
+// Meteor Horizon native support; license/source attribution: data/licenses/THIRD_PARTY_NOTICES.txt.
 //
-// Ordinary comments only: module payloads cannot hold inner attributes.
+//
+//
+//
+//
+//
 
 use super::{Game, Screen};
 use horizon_client::extras::Corner;
@@ -21,13 +21,13 @@ use winit::keyboard::KeyCode;
 
 pub(crate) const ID: &str = "meteor_client";
 pub(crate) const NAME: &str = "Meteor Horizon";
-pub(crate) const VERSION: &str = "0.1.0-solstice.2";
+pub(crate) const VERSION: &str = "0.1.0-native.1";
 pub(crate) const DESCRIPTION: &str =
     "Utility client: combat, movement and render modules, a menu, key binds and . commands.";
 // The menu key's name on the mod's page and its default (Right Shift).
 pub(crate) const MENU_KEY: &str = "menu";
 pub(crate) const MENU_DEFAULT: &str = "key.keyboard.right.shift";
-// Solstice's sun gold.
+// Accent color.
 pub(super) const ACCENT: u32 = 0xFFB020;
 
 // ---------------------------------------------------------------- modules
@@ -414,10 +414,10 @@ pub(super) fn defaults() -> Vec<Module> {
         Module::new("Time Changer", World, "Sets the time of day you see.")
             .num("Time", 6000.0, 0.0, 24000.0, 1000.0),
     ];
-    v.extend(super::solstice_combat::defaults());
-    v.extend(super::solstice_render::defaults());
-    v.extend(super::solstice_player::defaults());
-    v.extend(super::solstice_world::defaults());
+    v.extend(super::meteor_horizon_combat::defaults());
+    v.extend(super::meteor_horizon_render::defaults());
+    v.extend(super::meteor_horizon_player::defaults());
+    v.extend(super::meteor_horizon_world::defaults());
     v
 }
 
@@ -722,7 +722,7 @@ pub(super) fn save(game: &Game<'_>) {
     game.native_set_setting(ID, "config", &text);
 }
 
-// Meteor Horizon's lifecycle bridge for the retained MIT Solstice runtime.
+// Meteor Horizon's lifecycle bridge for the retained MIT Meteor Horizon runtime.
 // One active window owns this legacy global state; overlapping active windows
 // are not a per-window policy matrix. Window/observed-world changes reset it.
 pub(super) fn client_on(game: &Game<'_>) -> bool {
@@ -793,11 +793,11 @@ fn cleanup(game: &mut Game<'_>, same_owner: bool) {
         old
     });
     reset_packet_flags();
-    super::solstice_combat::reset();
-    super::solstice_world::reset();
-    super::solstice_util::show_clear();
-    let gap_back = super::solstice_player::reset();
-    super::solstice_render::reset(game, same_owner);
+    super::meteor_horizon_combat::reset();
+    super::meteor_horizon_world::reset();
+    super::meteor_horizon_util::show_clear();
+    let gap_back = super::meteor_horizon_player::reset();
+    super::meteor_horizon_render::reset(game, same_owner);
     // No state Mutex is held while calling host operations below.
     if same_owner {
         for key in injected {
@@ -815,7 +815,7 @@ fn cleanup(game: &mut Game<'_>, same_owner: bool) {
             if stepping {
                 let _ = player.set_modifier(
                     "minecraft:step_height",
-                    "solstice:step",
+                    "meteor_horizon:step",
                     0.,
                     "add_value",
                     false,
@@ -976,9 +976,9 @@ pub(super) fn key_label(key: Option<&str>) -> String {
     }
 }
 
-// A line in chat: Solstice's tag, then the message.
+// A line in chat: Meteor Horizon's tag, then the message.
 pub(super) fn say(game: &mut Game<'_>, msg: &str) {
-    let line = Text::literal("[Solstice] ")
+    let line = Text::literal("[Meteor Horizon] ")
         .with_color(ACCENT)
         .append(Text::literal(msg).with_color(horizon_client::text::WHITE));
     let focused = game.screen == Screen::Chat;
@@ -1082,7 +1082,7 @@ pub(super) fn listed(mods: &mut Vec<super::native_hooks::NativeMod>) {
         description: DESCRIPTION.into(),
         keys: vec![[
             MENU_KEY.into(),
-            "Open Solstice menu".into(),
+            "Open Meteor Horizon menu".into(),
             MENU_DEFAULT.into(),
         ]],
     });
@@ -1275,7 +1275,7 @@ pub(super) fn key(game: &mut Game<'_>, key: &str, pressed: bool) {
         middle_click(game);
     }
     if key == "key.mouse.right" {
-        super::solstice_player::right_click(game);
+        super::meteor_horizon_player::right_click(game);
     }
     let bound: Vec<usize> = with(|s| {
         (0..s.modules.len())
@@ -1316,7 +1316,7 @@ pub(super) fn pre_tick(game: &mut Game<'_>) {
     ensure_loaded(game);
     POS_THIS_TICK.store(false, Ordering::Relaxed);
     let mods = snapshot();
-    super::solstice_render::pre_tick(game, &mods);
+    super::meteor_horizon_render::pre_tick(game, &mods);
     let on = |n: &str| mods.iter().any(|m| m.name == n && m.on);
     let get = |n: &str| mods.iter().find(|m| m.name == n).cloned();
     let playing = game.native_playing() && !gui_open();
@@ -1379,7 +1379,7 @@ pub(super) fn pre_tick(game: &mut Game<'_>) {
         if let Some(st) = &step {
             let _ = p.set_modifier(
                 "minecraft:step_height",
-                "solstice:step",
+                "meteor_horizon:step",
                 st.n("Height") - 0.6,
                 "add_value",
                 true,
@@ -1387,7 +1387,7 @@ pub(super) fn pre_tick(game: &mut Game<'_>) {
         } else if was_stepping {
             let _ = p.set_modifier(
                 "minecraft:step_height",
-                "solstice:step",
+                "meteor_horizon:step",
                 0.0,
                 "add_value",
                 false,
@@ -1721,10 +1721,10 @@ pub(super) fn post_tick(game: &mut Game<'_>) {
             s.found_at = 0;
         });
     }
-    super::solstice_combat::tick(game, &mods);
-    super::solstice_render::tick(game, &mods, ticks);
-    super::solstice_player::tick(game, &mods);
-    super::solstice_world::tick(game, &mods);
+    super::meteor_horizon_combat::tick(game, &mods);
+    super::meteor_horizon_render::tick(game, &mods, ticks);
+    super::meteor_horizon_player::tick(game, &mods);
+    super::meteor_horizon_world::tick(game, &mods);
     if let Some(m) = get("Auto Totem") {
         auto_totem(game, m.b("Swap back"));
     }
@@ -3482,8 +3482,8 @@ pub(super) fn world_overlays(
     lw: f32,
     out: &mut Vec<Shape>,
 ) {
-    super::solstice_util::draw_shown(cam, out, lw);
-    super::solstice_render::overlay(game, cam, mods, out, lw);
+    super::meteor_horizon_util::draw_shown(cam, out, lw);
+    super::meteor_horizon_render::overlay(game, cam, mods, out, lw);
     let get = |n: &str| mods.iter().find(|m| m.name == n && m.on);
     let (esp, tracers, tags, storage) = (
         get("ESP"),
@@ -3859,9 +3859,9 @@ pub(super) fn line(out: &mut Vec<Shape>, from: [f32; 2], to: [f32; 2], argb: u32
     }
 }
 
-// SPDX-License-Identifier: MIT
-// Copyright (c) 2026 PointOfPressure. Modified for Meteor Horizon.
-// Full MIT notice: LICENSE-SOLSTICE.
+// Native GUI implementation; see file-level legal notice.
+//
+//
 // ---------------------------------------------------------------- click GUI
 //
 // Meteor's style: every category as a panel at once, over the world. Left
