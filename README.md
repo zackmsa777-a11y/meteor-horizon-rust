@@ -11,7 +11,7 @@ Active development uses `native-development`. The current catalog has 87 entries
 this is not a claim of 87 fully verified Meteor ports. AutoRespawn and BreakDelay
 remain reserved for the contributor's planned work.
 
-The branding update passes package, transformation, compile and nine Rust checks; its linked build is in progress. The complete earlier `native/`
+The branding update passes package, transformation, compile and nine Rust checks; its linked build and embedded-label checks passed. The complete earlier `native/`
 source and its verified four-module package remain preserved below.
 
 ## Preserved Meteor migration checkpoint

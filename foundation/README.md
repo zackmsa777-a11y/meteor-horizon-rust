@@ -38,7 +38,7 @@ and architecture limits remain recorded in the historical evidence.
 This update changes branding and internal names while retaining module behavior,
 defaults and layout. Seven package checks passed and the pristine native parser
 accepted the archive. Official plan/apply, compilation and all nine existing Rust regression tests
-passed. The linked build is in progress. Interactive checks remain scoped separately.
+passed. The linked build and embedded-label checks also passed. Interactive checks remain scoped separately.
 
 The earlier complete `native/` tree and its 101-check four-module proof are
 preserved. Historical archives and evidence keep their original bytes and scope.
