@@ -1223,8 +1223,8 @@
     },
     {
       "path": "mixins/meteor_client/runtime.rs",
-      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation.",
-      "sha256": "ea303ba987548716cd3c495c5af1116fc3ba19311006d2349e07c34026665129"
+      "description": "Branding-only adaptation from held R3: consistent solstice->meteor_horizon internal identifiers/namespaces and consolidated comment attribution to exact legal-data pointer; newline terminator sequence preserved. Runtime additionally changes only the four declared brand/version/namespace literals. Static normalized tokens match; root owns compilation/units/runtime validation. ClickGUI module: Client category, opener module and appearance settings for the existing click GUI, with regression tests.",
+      "sha256": "cf2883f2b3accec9460aa0de8a58eedcd5833ee34658a68597ab4ee6703c24ea"
     },
     {
       "path": "mixins/meteor_client/send.rs",
@@ -1430,8 +1430,8 @@
     },
     {
       "path": "mixins/meteor_client/runtime.rs",
-      "bytes": 166758,
-      "sha256": "ea303ba987548716cd3c495c5af1116fc3ba19311006d2349e07c34026665129"
+      "bytes": 175885,
+      "sha256": "cf2883f2b3accec9460aa0de8a58eedcd5833ee34658a68597ab4ee6703c24ea"
     },
     {
       "path": "mixins/meteor_client/send.rs",
