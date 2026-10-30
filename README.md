@@ -1,6 +1,7 @@
-> **Working branch:** this branch includes newer HUD NBT imports, HUD cache/editor fixes,
-> and activation-ordered module Post callbacks. It has focused checks but has not yet passed
-> a full rebuilt-client runtime suite. Use `main` for the verified 28-module checkpoint.
+> **Integration migration branch:** [`native/`](native/) contains the first standard
+> `.hnmod` / horizon-mixins proof. Its retained core has 30 module policies, with only
+> Zoom connected so far. Package validation, core tests and host compilation pass;
+> game runtime verification is pending. The legacy checkpoint is preserved on `main`.
 
 # Meteor mod for Horizon
 

@@ -1,0 +1,522 @@
+{
+  "schema": 1,
+  "purpose": "Normal horizon-native.json schema-1 .hnmod migration proof; existing Rust core reused, only Zoom adapters initially connected. No complete-port claim.",
+  "horizon_revision": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+  "mixins_revision": "cb1ad23022392d88f006cf94cbf6552a73f5df12",
+  "meteor_reference_revision": "e3a2e77967629d216e127b5ceecf71fb15f9d2e5",
+  "package_id": "meteor_client",
+  "legacy_runtime_storage_id": "meteor-client",
+  "files": [
+    {
+      "source": "crates/meteor-client/Cargo.toml",
+      "destination": "core/Cargo.toml",
+      "source_sha256": "67539d78e2117c37e4cd92cfafe78cae8a2e68a5d3fa2a00297feb2f364c3848",
+      "package_sha256": "637b037df6d5a4b7f82b3097a459bfcf3282e4202c7911b279968f951a932089",
+      "transformation": "explicit edition 2024 for standalone bundle crate"
+    },
+    {
+      "source": "crates/meteor-client/src/colors.rs",
+      "destination": "core/src/colors.rs",
+      "source_sha256": "3df8a65bbd5311fedad949dfd2d01303e07014594c6cb591e63f10df04b82b52",
+      "package_sha256": "3df8a65bbd5311fedad949dfd2d01303e07014594c6cb591e63f10df04b82b52",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/damage.rs",
+      "destination": "core/src/damage.rs",
+      "source_sha256": "23b884cf92df4d3f4cc8b6fca84a0d78c4b03368e9c726ea75650d9a2382ed62",
+      "package_sha256": "23b884cf92df4d3f4cc8b6fca84a0d78c4b03368e9c726ea75650d9a2382ed62",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/friends.rs",
+      "destination": "core/src/friends.rs",
+      "source_sha256": "80f8b32e7cc80d12e1634781dfb0f09ef1d1fa48c703cd503e96a93e7870a570",
+      "package_sha256": "80f8b32e7cc80d12e1634781dfb0f09ef1d1fa48c703cd503e96a93e7870a570",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/hud.rs",
+      "destination": "core/src/hud.rs",
+      "source_sha256": "b651e26faa057b88effe482b1f403006873b1914cefd1a27bf460cfdff1697ed",
+      "package_sha256": "b651e26faa057b88effe482b1f403006873b1914cefd1a27bf460cfdff1697ed",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/hud_box.rs",
+      "destination": "core/src/hud_box.rs",
+      "source_sha256": "c4c753b3c3be34a9db570f04fd8e2b73cda4e33184b83cf7b781a9bfcb14792a",
+      "package_sha256": "c4c753b3c3be34a9db570f04fd8e2b73cda4e33184b83cf7b781a9bfcb14792a",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/hud_metrics.rs",
+      "destination": "core/src/hud_metrics.rs",
+      "source_sha256": "9c416c2bd8e400b2ecf6c998fce9726533b9986887330b150afab49bc832edc7",
+      "package_sha256": "9c416c2bd8e400b2ecf6c998fce9726533b9986887330b150afab49bc832edc7",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/hud_snapper.rs",
+      "destination": "core/src/hud_snapper.rs",
+      "source_sha256": "faceb3be36c61bcf48e9cb8f90eafc8d939ac7d3d3d532becfccdb52e634e4e5",
+      "package_sha256": "faceb3be36c61bcf48e9cb8f90eafc8d939ac7d3d3d532becfccdb52e634e4e5",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/hud_text.rs",
+      "destination": "core/src/hud_text.rs",
+      "source_sha256": "94a49f10b2b6694ed1645f63b400c7f8a338214aebf4abef9188f329eabed492",
+      "package_sha256": "94a49f10b2b6694ed1645f63b400c7f8a338214aebf4abef9188f329eabed492",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/lib.rs",
+      "destination": "core/src/lib.rs",
+      "source_sha256": "cd74e4f24bc130265f8e80290dd9842927c6d2cc8f0442f82d91f4a74d93c880",
+      "package_sha256": "cd74e4f24bc130265f8e80290dd9842927c6d2cc8f0442f82d91f4a74d93c880",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/macros.rs",
+      "destination": "core/src/macros.rs",
+      "source_sha256": "ced8f10bb7ae78915d9b10b5b182de22765d1dfd7bf24478fc3d96d71cfd702e",
+      "package_sha256": "ced8f10bb7ae78915d9b10b5b182de22765d1dfd7bf24478fc3d96d71cfd702e",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/air_jump.rs",
+      "destination": "core/src/modules/air_jump.rs",
+      "source_sha256": "9b3f2fb795c06d5596b72e9abfe538dc9920d2f38b20c1d032f57d7358a51cba",
+      "package_sha256": "9b3f2fb795c06d5596b72e9abfe538dc9920d2f38b20c1d032f57d7358a51cba",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/air_place.rs",
+      "destination": "core/src/modules/air_place.rs",
+      "source_sha256": "55559b278371af7e44497846fb0d54b95e7107b45a7e54eaf274a604d279dfd8",
+      "package_sha256": "55559b278371af7e44497846fb0d54b95e7107b45a7e54eaf274a604d279dfd8",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/auto_clicker.rs",
+      "destination": "core/src/modules/auto_clicker.rs",
+      "source_sha256": "99d236e94bc6add98882148df8ce7c301d5571ece6f42b4fe059e5fe9042085e",
+      "package_sha256": "99d236e94bc6add98882148df8ce7c301d5571ece6f42b4fe059e5fe9042085e",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/auto_eat.rs",
+      "destination": "core/src/modules/auto_eat.rs",
+      "source_sha256": "a8812aaa39c6e237fdda0c6ded714b2cd9db8d41903768e2356515223560c593",
+      "package_sha256": "a8812aaa39c6e237fdda0c6ded714b2cd9db8d41903768e2356515223560c593",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/auto_jump.rs",
+      "destination": "core/src/modules/auto_jump.rs",
+      "source_sha256": "bfd911cf6ffafa19b3d973968e267ed29a4cb18c0d717b645bb6590177334493",
+      "package_sha256": "bfd911cf6ffafa19b3d973968e267ed29a4cb18c0d717b645bb6590177334493",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/auto_respawn.rs",
+      "destination": "core/src/modules/auto_respawn.rs",
+      "source_sha256": "a57cd41b6d71b73a435cd4cd51d09509050ad8a15749e229265a7af5a70fc5f9",
+      "package_sha256": "a57cd41b6d71b73a435cd4cd51d09509050ad8a15749e229265a7af5a70fc5f9",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/auto_tool.rs",
+      "destination": "core/src/modules/auto_tool.rs",
+      "source_sha256": "ed2e9a01d652cb5b369a05a4406abfdc830be02001b5f5db19a539cc5b8dc482",
+      "package_sha256": "ed2e9a01d652cb5b369a05a4406abfdc830be02001b5f5db19a539cc5b8dc482",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/auto_walk.rs",
+      "destination": "core/src/modules/auto_walk.rs",
+      "source_sha256": "65559c37746422992c57b0d268e988b7fa60f610b4667bda3fc8275a415c6f81",
+      "package_sha256": "65559c37746422992c57b0d268e988b7fa60f610b4667bda3fc8275a415c6f81",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/break_delay.rs",
+      "destination": "core/src/modules/break_delay.rs",
+      "source_sha256": "2866b58ef29d70f6d43eaf58453884bfde88ae97157dab11805061f35f1ef116",
+      "package_sha256": "2866b58ef29d70f6d43eaf58453884bfde88ae97157dab11805061f35f1ef116",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/fast_climb.rs",
+      "destination": "core/src/modules/fast_climb.rs",
+      "source_sha256": "265c9a5e695dcd3f3223261357c96628935edfb78935c73c083fb03df457e5ab",
+      "package_sha256": "265c9a5e695dcd3f3223261357c96628935edfb78935c73c083fb03df457e5ab",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/fast_use.rs",
+      "destination": "core/src/modules/fast_use.rs",
+      "source_sha256": "fd199ef6e8a57f1c0dcc5bcf3d265ca882d8bfcfab353122b2af8fd7a9494775",
+      "package_sha256": "fd199ef6e8a57f1c0dcc5bcf3d265ca882d8bfcfab353122b2af8fd7a9494775",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/flight.rs",
+      "destination": "core/src/modules/flight.rs",
+      "source_sha256": "b5badddf9f9337671b0413c9cc1b5f98d86d3e6e13559ad5baca443d2986cdd2",
+      "package_sha256": "b5badddf9f9337671b0413c9cc1b5f98d86d3e6e13559ad5baca443d2986cdd2",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/fullbright.rs",
+      "destination": "core/src/modules/fullbright.rs",
+      "source_sha256": "b980c8f6b612f7bd4da4e40ffc8688824f322ab62e76aaf50288ac9f14a52cbf",
+      "package_sha256": "b980c8f6b612f7bd4da4e40ffc8688824f322ab62e76aaf50288ac9f14a52cbf",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/gui_move.rs",
+      "destination": "core/src/modules/gui_move.rs",
+      "source_sha256": "de9bfe63da6f69fb5c493ba76a402c9a6341e2f98bec6b2d31c896950f3c53f8",
+      "package_sha256": "de9bfe63da6f69fb5c493ba76a402c9a6341e2f98bec6b2d31c896950f3c53f8",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/high_jump.rs",
+      "destination": "core/src/modules/high_jump.rs",
+      "source_sha256": "2ab938f7ceecd6e4fdd5ad2609cd69561529a2573022447861aad5e8ae442cd8",
+      "package_sha256": "2ab938f7ceecd6e4fdd5ad2609cd69561529a2573022447861aad5e8ae442cd8",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/liquid_interact.rs",
+      "destination": "core/src/modules/liquid_interact.rs",
+      "source_sha256": "51b6dc46ab2385968f20fe1865e59ccc6f96113d6c53d41875e3769e3eea924b",
+      "package_sha256": "51b6dc46ab2385968f20fe1865e59ccc6f96113d6c53d41875e3769e3eea924b",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/mod.rs",
+      "destination": "core/src/modules/mod.rs",
+      "source_sha256": "f0e009bfb6b28eb2f3dbd3e6e02c4816b572859f40302242291dc31b2ae3d233",
+      "package_sha256": "f0e009bfb6b28eb2f3dbd3e6e02c4816b572859f40302242291dc31b2ae3d233",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/multitask.rs",
+      "destination": "core/src/modules/multitask.rs",
+      "source_sha256": "140b659ab070fd3c9acb4a88dca6268ee88179cdc97673501c49130114ade025",
+      "package_sha256": "140b659ab070fd3c9acb4a88dca6268ee88179cdc97673501c49130114ade025",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/no_mining_trace.rs",
+      "destination": "core/src/modules/no_mining_trace.rs",
+      "source_sha256": "733fb39d2dcd6d597870f5050df7c9e09746d41278413020e8702e9c1a69580c",
+      "package_sha256": "733fb39d2dcd6d597870f5050df7c9e09746d41278413020e8702e9c1a69580c",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/no_slow.rs",
+      "destination": "core/src/modules/no_slow.rs",
+      "source_sha256": "f443f3116ef5f0910d22237ba88fd81be97e3db8014b4e5bbeccb6a3d84f2f75",
+      "package_sha256": "f443f3116ef5f0910d22237ba88fd81be97e3db8014b4e5bbeccb6a3d84f2f75",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/parkour.rs",
+      "destination": "core/src/modules/parkour.rs",
+      "source_sha256": "6cea69b36955ad81a5fc35f9606465779098d27a3cd22e5767aadaf976195e90",
+      "package_sha256": "6cea69b36955ad81a5fc35f9606465779098d27a3cd22e5767aadaf976195e90",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/reach.rs",
+      "destination": "core/src/modules/reach.rs",
+      "source_sha256": "10332c280ee87a31bb4c066cdbe7913234732abba5bbac84872ae6561b87ab4c",
+      "package_sha256": "10332c280ee87a31bb4c066cdbe7913234732abba5bbac84872ae6561b87ab4c",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/reverse_step.rs",
+      "destination": "core/src/modules/reverse_step.rs",
+      "source_sha256": "8faff9f485270f2a6411e555acdd2ef736f05ac9bf696ab02849699db8888499",
+      "package_sha256": "8faff9f485270f2a6411e555acdd2ef736f05ac9bf696ab02849699db8888499",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/safe_walk.rs",
+      "destination": "core/src/modules/safe_walk.rs",
+      "source_sha256": "b3f2d5a54aa8c8d876c7adeec8eadc8d8fbb6a8d00c548f2dfb614c7bc49665e",
+      "package_sha256": "b3f2d5a54aa8c8d876c7adeec8eadc8d8fbb6a8d00c548f2dfb614c7bc49665e",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/slippy.rs",
+      "destination": "core/src/modules/slippy.rs",
+      "source_sha256": "1be3f6dfc6525300408c447e95226b0a3d10c5506dd7d4eca9f45b19bb000519",
+      "package_sha256": "1be3f6dfc6525300408c447e95226b0a3d10c5506dd7d4eca9f45b19bb000519",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/sneak.rs",
+      "destination": "core/src/modules/sneak.rs",
+      "source_sha256": "552bacc8a382344f7c55f69cc03a51ea336c73b64f46bb4871d77436dc18c29a",
+      "package_sha256": "552bacc8a382344f7c55f69cc03a51ea336c73b64f46bb4871d77436dc18c29a",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/spider.rs",
+      "destination": "core/src/modules/spider.rs",
+      "source_sha256": "fd15a2386091b0924a14c46f1c6e608dd59f9deb81e6bb659571ab83ff4a60ea",
+      "package_sha256": "fd15a2386091b0924a14c46f1c6e608dd59f9deb81e6bb659571ab83ff4a60ea",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/sprint.rs",
+      "destination": "core/src/modules/sprint.rs",
+      "source_sha256": "3ded959507c00cefbca6ef47200e3532134e351b7fbd7e783284847c07147e0f",
+      "package_sha256": "3ded959507c00cefbca6ef47200e3532134e351b7fbd7e783284847c07147e0f",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/step.rs",
+      "destination": "core/src/modules/step.rs",
+      "source_sha256": "9d0e5d56475fa53066ec6b925f6a442c1cb58a95f484162251e39e147546188c",
+      "package_sha256": "9d0e5d56475fa53066ec6b925f6a442c1cb58a95f484162251e39e147546188c",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/timer.rs",
+      "destination": "core/src/modules/timer.rs",
+      "source_sha256": "1b70287e2b4695710f5e83dedc751f2f20ac9f16701a06c5c62f925f61eb1bc3",
+      "package_sha256": "1b70287e2b4695710f5e83dedc751f2f20ac9f16701a06c5c62f925f61eb1bc3",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/modules/zoom.rs",
+      "destination": "core/src/modules/zoom.rs",
+      "source_sha256": "6ca76ac44ba9488f131db1adc8d37d2b92ce586824a3ece670166eaebab72798",
+      "package_sha256": "6ca76ac44ba9488f131db1adc8d37d2b92ce586824a3ece670166eaebab72798",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/profiles.rs",
+      "destination": "core/src/profiles.rs",
+      "source_sha256": "a0ef2afd18f34d081c9aefb3a6f4fedb62ea1d3e36892afda1e3c826aedac959",
+      "package_sha256": "a0ef2afd18f34d081c9aefb3a6f4fedb62ea1d3e36892afda1e3c826aedac959",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/registry.rs",
+      "destination": "core/src/registry.rs",
+      "source_sha256": "386ef51bcd35774dc0897d68b56da9325b462a1d813d8830b12a3d2cbdcbcc8b",
+      "package_sha256": "386ef51bcd35774dc0897d68b56da9325b462a1d813d8830b12a3d2cbdcbcc8b",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/starscript/meteor.rs",
+      "destination": "core/src/starscript/meteor.rs",
+      "source_sha256": "46c6a3b295db03467bcde510abfa857c2a79e8d6bf53e35818e42c8f25633c13",
+      "package_sha256": "46c6a3b295db03467bcde510abfa857c2a79e8d6bf53e35818e42c8f25633c13",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/starscript/mod.rs",
+      "destination": "core/src/starscript/mod.rs",
+      "source_sha256": "076383a5ef3ce5fcc1d054e3ebfb447c0e511b553565a0f656b59beaf310e637",
+      "package_sha256": "076383a5ef3ce5fcc1d054e3ebfb447c0e511b553565a0f656b59beaf310e637",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/starscript/parser.rs",
+      "destination": "core/src/starscript/parser.rs",
+      "source_sha256": "811d3a2edea182ccd526e943755db7125aeecbb2387ba69c124f7bfc74c0c344",
+      "package_sha256": "811d3a2edea182ccd526e943755db7125aeecbb2387ba69c124f7bfc74c0c344",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/starscript/standard.rs",
+      "destination": "core/src/starscript/standard.rs",
+      "source_sha256": "d34dd2acd62149e209c6f479926fcbdcd50d963464b6e417564abe2ffba0860c",
+      "package_sha256": "d34dd2acd62149e209c6f479926fcbdcd50d963464b6e417564abe2ffba0860c",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/starscript/value.rs",
+      "destination": "core/src/starscript/value.rs",
+      "source_sha256": "21c7c33a3650c461fd34e3c1f8876ad1082fa73d7380efc56ca587472b0b69a2",
+      "package_sha256": "21c7c33a3650c461fd34e3c1f8876ad1082fa73d7380efc56ca587472b0b69a2",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/src/subscriptions.rs",
+      "destination": "core/src/subscriptions.rs",
+      "source_sha256": "8995d697f14e025ef06975bc58686be72d985646b997761acf2584e6d93059ce",
+      "package_sha256": "8995d697f14e025ef06975bc58686be72d985646b997761acf2584e6d93059ce",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/auto_clicker.rs",
+      "destination": "core/tests/auto_clicker.rs",
+      "source_sha256": "0348884433086b7b020369976ad7f84889da85c1c5e2c1b90771726a3bfdbf04",
+      "package_sha256": "0348884433086b7b020369976ad7f84889da85c1c5e2c1b90771726a3bfdbf04",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/auto_eat_policies.rs",
+      "destination": "core/tests/auto_eat_policies.rs",
+      "source_sha256": "2ba1dc17c74c13ee1513c6b4ca4c5adaaf01b0a0354302062665310549f355dc",
+      "package_sha256": "2ba1dc17c74c13ee1513c6b4ca4c5adaaf01b0a0354302062665310549f355dc",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/auto_tool.rs",
+      "destination": "core/tests/auto_tool.rs",
+      "source_sha256": "c0a7bde6bf289a5e8db7137dc1a9c2d055dca7cc2da05f28d4d81eac8dc14148",
+      "package_sha256": "c0a7bde6bf289a5e8db7137dc1a9c2d055dca7cc2da05f28d4d81eac8dc14148",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/behavior.rs",
+      "destination": "core/tests/behavior.rs",
+      "source_sha256": "be84215e1efb04402231a9f6f2284086e7d823b5bafe798cb64440cf90839a81",
+      "package_sha256": "be84215e1efb04402231a9f6f2284086e7d823b5bafe798cb64440cf90839a81",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/climb_parkour.rs",
+      "destination": "core/tests/climb_parkour.rs",
+      "source_sha256": "4cf4ae7dceac827db34d93c31f142dfe138af0752931fa32b654016f192f9a3e",
+      "package_sha256": "4cf4ae7dceac827db34d93c31f142dfe138af0752931fa32b654016f192f9a3e",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/crystal_damage.rs",
+      "destination": "core/tests/crystal_damage.rs",
+      "source_sha256": "dce738ba388837d33a130a20ccaaad28796ceb83d8e0ced89fdaa5f684972edb",
+      "package_sha256": "dce738ba388837d33a130a20ccaaad28796ceb83d8e0ced89fdaa5f684972edb",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/fixtures/starscript-0.2.5.rs",
+      "destination": "core/tests/fixtures/starscript-0.2.5.rs",
+      "source_sha256": "545c7d4eccba9c57078998294a441d3e4785d42c50578dcc8f86a9a74164be34",
+      "package_sha256": "545c7d4eccba9c57078998294a441d3e4785d42c50578dcc8f86a9a74164be34",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/fullbright_policy.rs",
+      "destination": "core/tests/fullbright_policy.rs",
+      "source_sha256": "221f0aa17e64d077185ef5a6044385e0e4f4d802e647529a827629e0f5c021ff",
+      "package_sha256": "221f0aa17e64d077185ef5a6044385e0e4f4d802e647529a827629e0f5c021ff",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/hud_instances.rs",
+      "destination": "core/tests/hud_instances.rs",
+      "source_sha256": "66dcc49e23ee78c99c66322be2f22eb71dd07f574f4bbd94e4bfa43a869e6b3a",
+      "package_sha256": "66dcc49e23ee78c99c66322be2f22eb71dd07f574f4bbd94e4bfa43a869e6b3a",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/macro_policies.rs",
+      "destination": "core/tests/macro_policies.rs",
+      "source_sha256": "d56a0d0cb13a5e6f42b2c504cc05524be0f19da381dbd22db3d138343461f9ad",
+      "package_sha256": "d56a0d0cb13a5e6f42b2c504cc05524be0f19da381dbd22db3d138343461f9ad",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/picking_policies.rs",
+      "destination": "core/tests/picking_policies.rs",
+      "source_sha256": "95de33c5c0029c6fe25534aa017e66df9d23d54aebdf36638280bf5711602d2c",
+      "package_sha256": "95de33c5c0029c6fe25534aa017e66df9d23d54aebdf36638280bf5711602d2c",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/player_interaction_policies.rs",
+      "destination": "core/tests/player_interaction_policies.rs",
+      "source_sha256": "9373c5ff610d53e85257832c500cd0fd831eaa1079ac66a7b9451c846abb8e25",
+      "package_sha256": "9373c5ff610d53e85257832c500cd0fd831eaa1079ac66a7b9451c846abb8e25",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/profiles_policy.rs",
+      "destination": "core/tests/profiles_policy.rs",
+      "source_sha256": "ebb6c6c07d8d9fac8967b5d83768240306bd25d71eab4ad3e5e1586a486749d1",
+      "package_sha256": "ebb6c6c07d8d9fac8967b5d83768240306bd25d71eab4ad3e5e1586a486749d1",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/reach_multitask.rs",
+      "destination": "core/tests/reach_multitask.rs",
+      "source_sha256": "b9a0c61a9ab21467d76287bd15adc463b3a4c4fc9044e91ef6f01222dbfd49cf",
+      "package_sha256": "b9a0c61a9ab21467d76287bd15adc463b3a4c4fc9044e91ef6f01222dbfd49cf",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/slow_policies.rs",
+      "destination": "core/tests/slow_policies.rs",
+      "source_sha256": "318058b849b8d14f5e0b179069d3df2f324a7463cf1fc14e0123e2879460c9a3",
+      "package_sha256": "318058b849b8d14f5e0b179069d3df2f324a7463cf1fc14e0123e2879460c9a3",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/starscript.rs",
+      "destination": "core/tests/starscript.rs",
+      "source_sha256": "0a71dcc7898705779b510923595f25172bc3fa2abdfe3d379c30a1f35b2f1f34",
+      "package_sha256": "0a71dcc7898705779b510923595f25172bc3fa2abdfe3d379c30a1f35b2f1f34",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/step_policies.rs",
+      "destination": "core/tests/step_policies.rs",
+      "source_sha256": "1ce7e6c518846c3d17e010d8014f81c3a3fa79ac1440f29c99d89f0dbfcd4d57",
+      "package_sha256": "1ce7e6c518846c3d17e010d8014f81c3a3fa79ac1440f29c99d89f0dbfcd4d57",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/subscription_order.rs",
+      "destination": "core/tests/subscription_order.rs",
+      "source_sha256": "c1c9fc577586c018d39fc232f6e09085ecfe708b0ed47bf732b0d39f9525a464",
+      "package_sha256": "c1c9fc577586c018d39fc232f6e09085ecfe708b0ed47bf732b0d39f9525a464",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/timer_policy.rs",
+      "destination": "core/tests/timer_policy.rs",
+      "source_sha256": "e7cbb00f9b46a0519ddff56013a4bdfd8b1f0d3d0cae0fa4dcb559a107f691e6",
+      "package_sha256": "e7cbb00f9b46a0519ddff56013a4bdfd8b1f0d3d0cae0fa4dcb559a107f691e6",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/tests/walk_policies.rs",
+      "destination": "core/tests/walk_policies.rs",
+      "source_sha256": "55f4ff50ba6bc039043d6645e107d6a179f7e7fa0cded056a0ba2751f1bfdc65",
+      "package_sha256": "55f4ff50ba6bc039043d6645e107d6a179f7e7fa0cded056a0ba2751f1bfdc65",
+      "transformation": "byte-for-byte reuse"
+    },
+    {
+      "source": "crates/meteor-client/COPYING",
+      "destination": "data/licenses/Meteor-GPL-3.0-only.txt",
+      "source_sha256": "b1e60bceb8b63b265dfe040691bd5ec7a21da3c31be3db4b2925518e9c0836df",
+      "package_sha256": "b1e60bceb8b63b265dfe040691bd5ec7a21da3c31be3db4b2925518e9c0836df",
+      "transformation": "byte-for-byte notice preservation"
+    },
+    {
+      "source": "crates/meteor-client/STARSCRIPT-LICENSE.txt",
+      "destination": "data/licenses/Starscript-MIT.txt",
+      "source_sha256": "0efbee07393749f2e2e96a16466b6b05c8244adba0cf97e6daf453e4fe5e9c3f",
+      "package_sha256": "0efbee07393749f2e2e96a16466b6b05c8244adba0cf97e6daf453e4fe5e9c3f",
+      "transformation": "byte-for-byte notice preservation"
+    },
+    {
+      "source": "LICENSE",
+      "destination": "data/licenses/Horizon-MIT.txt",
+      "source_sha256": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df",
+      "package_sha256": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df",
+      "transformation": "byte-for-byte notice preservation"
+    }
+  ]
+}

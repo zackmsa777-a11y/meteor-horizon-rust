@@ -1,0 +1,519 @@
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Native Meteor migration proof. Reuses the existing Meteor-derived Zoom core.
+
+// This adapter currently integrates Zoom only; other retained core modules are inactive.
+
+use super::{
+    Game,
+    native_hooks::{NativeMod, NativeZoom},
+};
+
+use meteor_client::modules::zoom::{Zoom, ZoomSettings};
+
+use std::{
+    cell::RefCell,
+    collections::HashMap,
+    fs,
+    path::PathBuf,
+    rc::Rc,
+    sync::{Arc, Weak},
+    time::Duration,
+};
+
+use winit::window::{Window, WindowId};
+
+const MOD_ID: &str = "meteor_client";
+
+const COMMAND: &str = "meteor-migration";
+
+const HELP: &str = "Zoom-only .hnmod migration proof: /meteor-migration status | zoom toggle | zoom factor NUMBER | zoom smooth true|false | zoom scroll-sensitivity NUMBER. Native API clamps visible zoom to 10. Other retained Meteor modules are not integrated.";
+
+#[derive(serde::Serialize, serde::Deserialize)]
+#[serde(default)]
+
+struct Saved {
+    schema: u32,
+
+    enabled: bool,
+
+    zoom: ZoomSettings,
+}
+
+impl Default for Saved {
+    fn default() -> Self {
+        Self {
+            schema: 1,
+            enabled: false,
+            zoom: ZoomSettings::default(),
+        }
+    }
+}
+
+struct Runtime {
+    saved: Saved,
+
+    zoom: Zoom,
+
+    in_world: bool,
+
+    path: PathBuf,
+
+    save_allowed: bool,
+}
+
+impl Runtime {
+    fn load(path: PathBuf) -> Self {
+        let loaded = match fs::read_to_string(&path) {
+            Ok(text) => serde_json::from_str::<Saved>(&text)
+                .map_err(|e| e.to_string())
+                .and_then(|value| {
+                    if value.schema != 1 {
+                        return Err("Unsupported Zoom migration proof schema".into());
+                    }
+
+                    value.zoom.validate()?;
+                    Ok(value)
+                }),
+
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => Ok(Saved::default()),
+
+            Err(error) => Err(error.to_string()),
+        };
+
+        let (saved, save_allowed) = match loaded {
+            Ok(value) => (value, true),
+
+            Err(error) => {
+                log::error!(
+                    "Meteor Zoom migration proof could not read {}: {error}; saving disabled",
+                    path.display()
+                );
+                (Saved::default(), false)
+            }
+        };
+
+        Self {
+            saved,
+            zoom: Zoom::default(),
+            in_world: false,
+            path,
+            save_allowed,
+        }
+    }
+
+    fn world(&mut self, in_world: bool) {
+        if in_world == self.in_world {
+            return;
+        }
+
+        self.in_world = in_world;
+
+        if in_world && self.saved.enabled {
+            self.zoom.activate(&self.saved.zoom);
+        } else if !in_world {
+            self.zoom.stop();
+        }
+    }
+
+    fn toggle(&mut self) {
+        self.saved.enabled = !self.saved.enabled;
+
+        if self.saved.enabled && self.in_world {
+            self.zoom.activate(&self.saved.zoom);
+        }
+    }
+
+    fn status(&self) -> String {
+        format!(
+            "Zoom-only .hnmod migration proof: Zoom {}; requested {}, current {:.3} (native API clamps visible factor to 10); smoothing {}; other retained modules are not integrated. Cinematic/hide-HUD/show-hands are not wired in this proof.",
+            if self.saved.enabled {
+                "enabled"
+            } else {
+                "disabled"
+            },
+            self.saved.zoom.zoom,
+            self.zoom.scaling(),
+            self.saved.zoom.smooth
+        )
+    }
+}
+
+struct Entry<W, S> {
+    window: Weak<W>,
+    runtime: Rc<RefCell<S>>,
+}
+struct WindowTable<K, W, S> {
+    entries: HashMap<K, Entry<W, S>>,
+}
+impl<K: std::hash::Hash + Eq, W, S> WindowTable<K, W, S> {
+    fn new() -> Self {
+        Self {
+            entries: HashMap::new(),
+        }
+    }
+    fn find(&mut self, key: &K, window: &Arc<W>) -> Option<Rc<RefCell<S>>> {
+        self.entries
+            .retain(|_, entry| entry.window.strong_count() > 0);
+        self.entries.get(key).and_then(|entry| {
+            entry
+                .window
+                .upgrade()
+                .filter(|old| Arc::ptr_eq(old, window))
+                .map(|_| Rc::clone(&entry.runtime))
+        })
+    }
+    fn insert(&mut self, key: K, window: &Arc<W>, runtime: Rc<RefCell<S>>) {
+        self.entries.insert(
+            key,
+            Entry {
+                window: Arc::downgrade(window),
+                runtime,
+            },
+        );
+    }
+}
+thread_local! {
+    static WINDOWS: RefCell<WindowTable<WindowId,Window,Runtime>> = RefCell::new(WindowTable::new());
+}
+/// Window's Arc allocation is stable if Game moves. Weak ownership avoids keeping
+
+/// windows alive; pruning plus ptr_eq handles a recycled WindowId safely.
+
+fn runtime(game: &Game<'_>) -> Option<Rc<RefCell<Runtime>>> {
+    if !game.native_window() {
+        return None;
+    }
+
+    let window = game.window.as_ref()?;
+
+    let key = window.id();
+
+    let existing = WINDOWS.with(|windows| windows.borrow_mut().find(&key, window));
+
+    if existing.is_some() {
+        return existing;
+    }
+
+    // No TLS table borrow exists while invoking even the stable host data helper.
+
+    let path = game.native_data_dir(MOD_ID).join("zoom-migration.json");
+
+    let runtime = Rc::new(RefCell::new(Runtime::load(path)));
+
+    WINDOWS.with(|windows| {
+        windows
+            .borrow_mut()
+            .insert(key, window, Rc::clone(&runtime));
+    });
+
+    Some(runtime)
+}
+
+/// Serialize while borrowed, then release the state before filesystem work or chat.
+
+fn save(runtime: &Rc<RefCell<Runtime>>) -> Result<(), String> {
+    let (path, text) = {
+        let runtime = runtime.borrow();
+
+        if !runtime.save_allowed {
+            return Err("Saving disabled to preserve an unreadable migration-proof config".into());
+        }
+
+        (
+            runtime.path.clone(),
+            serde_json::to_string_pretty(&runtime.saved).map_err(|e| e.to_string())?,
+        )
+    };
+
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent).map_err(|e| e.to_string())?;
+    }
+
+    fs::write(path, text).map_err(|e| e.to_string())
+}
+
+pub(super) fn on_frame(game: &mut Game<'_>, elapsed: Duration) {
+    let Some(runtime) = runtime(game) else {
+        return;
+    };
+
+    let in_world = game.native_on(MOD_ID) && game.player.is_some() && game.title.is_none();
+
+    {
+        let mut runtime = runtime.borrow_mut();
+        runtime.world(in_world);
+        let active = runtime.saved.enabled;
+        let settings = runtime.saved.zoom.clone();
+        runtime.zoom.frame(elapsed.as_secs_f64(), active, &settings);
+    }
+}
+
+pub(super) fn on_tick(game: &mut Game<'_>) {
+    let Some(runtime) = runtime(game) else {
+        return;
+    };
+
+    let in_world = game.native_on(MOD_ID) && game.player.is_some() && game.title.is_none();
+
+    {
+        let mut runtime = runtime.borrow_mut();
+        runtime.world(in_world);
+        runtime.zoom.tick();
+    }
+}
+
+pub(super) fn on_zoom(game: &Game<'_>, output: &mut Option<NativeZoom>) {
+    if output.is_some() || !game.native_on(MOD_ID) {
+        return;
+    }
+
+    let Some(runtime) = runtime(game) else {
+        return;
+    };
+
+    let value = {
+        let runtime = runtime.borrow();
+        runtime.zoom.subscribed.then(|| NativeZoom {
+            factor: runtime.zoom.scaling() as f32,
+            smooth: false,
+            turn: runtime.zoom.sensitivity_multiplier() as f32,
+        })
+    };
+
+    *output = value;
+}
+
+pub(super) fn on_wheel(game: &mut Game<'_>, steps: f32, claimed: &mut bool) {
+    if *claimed || !game.native_on(MOD_ID) {
+        return;
+    }
+
+    let Some(runtime) = runtime(game) else {
+        return;
+    };
+
+    let screen_open = !game.native_playing();
+
+    let handled = {
+        let mut runtime = runtime.borrow_mut();
+        let settings = runtime.saved.zoom.clone();
+        let active = runtime.saved.enabled;
+        runtime
+            .zoom
+            .scroll(f64::from(steps), active, screen_open, &settings)
+    };
+
+    if handled {
+        *claimed = true;
+    }
+}
+
+pub(super) fn on_command(game: &mut Game<'_>, command: &str, ran: &mut bool) {
+    if *ran || !game.native_on(MOD_ID) || !game.native_window() {
+        return;
+    }
+
+    let words = command.split_whitespace().collect::<Vec<_>>();
+
+    if words.first().copied() != Some(COMMAND) {
+        return;
+    }
+
+    *ran = true;
+
+    let Some(runtime) = runtime(game) else {
+        game.native_chat("Zoom-only migration proof: no window runtime is available yet.");
+        return;
+    };
+
+    let result = (|| -> Result<String, String> {
+        if words.len() == 1 || words.get(1) == Some(&"help") {
+            return Ok(HELP.into());
+        }
+
+        if words.as_slice() == [COMMAND, "status"] {
+            return Ok(runtime.borrow().status());
+        }
+
+        {
+            let mut runtime = runtime.borrow_mut();
+
+            match &words[1..] {
+                ["zoom", "toggle"] => runtime.toggle(),
+
+                ["zoom", "factor", value] => {
+                    let mut settings = runtime.saved.zoom.clone();
+                    settings.zoom = value.parse().map_err(|_| "Expected a finite zoom number")?;
+                    settings.validate()?;
+                    runtime.saved.zoom = settings;
+                }
+
+                ["zoom", "smooth", value] => {
+                    runtime.saved.zoom.smooth =
+                        value.parse().map_err(|_| "Expected true or false")?;
+                }
+
+                ["zoom", "scroll-sensitivity", value] => {
+                    let mut settings = runtime.saved.zoom.clone();
+                    settings.scroll_sensitivity = value
+                        .parse()
+                        .map_err(|_| "Expected a nonnegative scroll sensitivity")?;
+                    settings.validate()?;
+                    runtime.saved.zoom = settings;
+                }
+
+                _ => return Err(HELP.into()),
+            }
+        }
+
+        save(&runtime)?;
+
+        Ok(runtime.borrow().status())
+    })();
+
+    // Host chat may trigger another injected helper; no Runtime/TLS borrow is held.
+
+    match result {
+        Ok(message) => game.native_chat(&message),
+        Err(error) => game.native_chat(&format!("Zoom-only migration proof: {error}")),
+    }
+}
+
+pub(super) fn on_mods(_game: &mut Game<'_>, mods: &mut Vec<NativeMod>) {
+    if mods.iter().any(|module| module.id == MOD_ID) {
+        return;
+    }
+
+    mods.push(NativeMod {id:MOD_ID.into(),title:"Meteor Rust — Zoom migration proof".into(),description:"Normal .hnmod proof using the existing Meteor Rust core. Only Zoom is integrated; other retained modules are inactive. Native API caps visible Zoom at 10. No custom launcher or source-patch package.".into(),keys:Vec::new()});
+}
+
+pub(super) fn on_settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<String>) {
+    if mod_id != MOD_ID {
+        return;
+    }
+
+    let Some(runtime) = runtime(game) else {
+        buttons.push("Zoom-only migration proof: open the game window first".into());
+        return;
+    };
+
+    let labels = {
+        let runtime = runtime.borrow();
+        vec![
+            format!(
+                "Zoom-only proof: {}",
+                if runtime.saved.enabled {
+                    "enabled"
+                } else {
+                    "disabled"
+                }
+            ),
+            format!(
+                "Zoom factor: {} (visible API cap 10)",
+                runtime.saved.zoom.zoom
+            ),
+            format!("Meteor smoothing: {}", runtime.saved.zoom.smooth),
+        ]
+    };
+
+    buttons.extend(labels);
+}
+
+pub(super) fn on_settings_click(game: &mut Game<'_>, mod_id: &str, button: usize) {
+    if mod_id != MOD_ID || !game.native_on(MOD_ID) {
+        return;
+    }
+
+    let Some(runtime) = runtime(game) else {
+        return;
+    };
+
+    {
+        let mut runtime = runtime.borrow_mut();
+
+        match button {
+            0 => runtime.toggle(),
+            1 => {
+                let current = runtime.saved.zoom.zoom;
+                runtime.saved.zoom.zoom = [2.0, 4.0, 6.0, 8.0, 10.0]
+                    .into_iter()
+                    .find(|factor| *factor > current)
+                    .unwrap_or(2.0);
+            }
+            2 => runtime.saved.zoom.smooth = !runtime.saved.zoom.smooth,
+            _ => return,
+        }
+    }
+
+    if let Err(error) = save(&runtime) {
+        game.native_chat(&format!("Zoom-only migration proof: {error}"));
+    }
+}
+
+#[cfg(test)]
+mod migration_lifecycle_tests {
+    use super::*;
+    #[test]
+    fn state_follows_stable_window_anchor_when_game_owner_moves() {
+        struct Owner {
+            window: Arc<()>,
+        }
+        let owner = Owner {
+            window: Arc::new(()),
+        };
+        let state = Rc::new(RefCell::new(7_u32));
+        let mut table = WindowTable::new();
+        table.insert(1_u8, &owner.window, Rc::clone(&state));
+        let relocated = Box::new(owner);
+        let found = table.find(&1, &relocated.window).unwrap();
+        assert!(Rc::ptr_eq(&found, &state));
+        *found.borrow_mut() = 12;
+        assert_eq!(*state.borrow(), 12);
+    }
+    #[test]
+    fn recycled_window_id_cannot_inherit_another_live_window_state() {
+        let old = Arc::new(());
+        let replacement = Arc::new(());
+        let mut table = WindowTable::new();
+        table.insert(2_u8, &old, Rc::new(RefCell::new(9_u32)));
+        assert!(table.find(&2, &replacement).is_none());
+        table.insert(2, &replacement, Rc::new(RefCell::new(0)));
+        assert_eq!(*table.find(&2, &replacement).unwrap().borrow(), 0);
+    }
+    #[test]
+    fn dropped_window_is_pruned_without_retaining_window_or_runtime() {
+        let window = Arc::new(());
+        let weak = Arc::downgrade(&window);
+        let state = Rc::new(RefCell::new(1_u32));
+        let state_weak = Rc::downgrade(&state);
+        let mut table = WindowTable::new();
+        table.insert(3_u8, &window, state);
+        drop(window);
+        assert!(weak.upgrade().is_none());
+        assert!(table.find(&4, &Arc::new(())).is_none());
+        assert!(table.entries.is_empty());
+        assert!(state_weak.upgrade().is_none());
+    }
+    #[test]
+    fn host_callback_can_reenter_after_table_and_runtime_guards_end() {
+        let window = Arc::new(());
+        let table = RefCell::new(WindowTable::new());
+        table
+            .borrow_mut()
+            .insert(4_u8, &window, Rc::new(RefCell::new(2_u32)));
+        let state = { table.borrow_mut().find(&4, &window).unwrap() };
+        let effect = {
+            let mut state = state.borrow_mut();
+            *state += 1;
+            *state
+        };
+        let callback = || {
+            let nested = { table.borrow_mut().find(&4, &window).unwrap() };
+            let value = *nested.borrow();
+            value
+        };
+        assert_eq!(effect, 3);
+        assert_eq!(callback(), 3);
+    }
+}

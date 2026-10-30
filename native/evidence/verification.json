@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "status": "Zoom-only standard native source proof; plan/apply/core tests/host typecheck passed; game runtime not tested",
+  "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+  "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12",
+  "package_id": "meteor_client",
+  "package_version": "0.1.0-migration.1",
+  "snapshot": {
+    "bundle_files": 85,
+    "bundle_content_sha256": "c7ca4662b395703f24a2b22d8ef9f13b7cd081b2f2c6f793d2d93fb9d5c2d09e",
+    "runtime_path": "bundle/mixins/meteor_client/runtime.rs",
+    "runtime_sha256": "9403de1c8911c9003969fa7f7c6f460d7fee14289c652d7eb73d52abacba185c",
+    "core_source_files": 70,
+    "core_provenance_path": "bundle/mixins/meteor_client/data/core-provenance.json",
+    "core_provenance_sha256": "c808f7a5193d73ac90c541f62643f3f87792d3cfab48ab24ac78bce42de12413",
+    "copied_source_policy_count": 30,
+    "core_transformation": "Cargo edition.workspace=true replaced with explicit edition2024; all69Rust files copied byte for byte",
+    "pristine_source_files_verified_against_original_zip": 3567,
+    "tested_stage_generation": "R2",
+    "exact_R2_alignment": {
+      "runtime_module_bytes_match": true,
+      "helper_sources_match": 8,
+      "core_payloads_match": 70,
+      "data_payloads_match": 4
+    }
+  },
+  "checks": {
+    "mixins_plan": {
+      "status": "pass",
+      "stage_generation": "R2",
+      "schema": 6,
+      "transformer": "0.6.0",
+      "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+      "stage_marker_sha256": "410c8ea9af552c75398609fc5a29fe4d2dfded3a4af7d9d39c7730e73b6e256f",
+      "planned_runtime_sha256": "9403de1c8911c9003969fa7f7c6f460d7fee14289c652d7eb73d52abacba185c",
+      "injections": [
+        {
+          "id": "frame",
+          "hook": "frame",
+          "version": 1,
+          "target": "horizon_client::game::native_hooks::Game<'_>::native_frame"
+        },
+        {
+          "id": "tick",
+          "hook": "tick",
+          "version": 1,
+          "target": "horizon_client::game::native_hooks::Game<'_>::native_tick"
+        },
+        {
+          "id": "wheel",
+          "hook": "wheel",
+          "version": 1,
+          "target": "horizon_client::game::native_hooks::Game<'_>::native_wheel"
+        },
+        {
+          "id": "command",
+          "hook": "command",
+          "version": 1,
+          "target": "horizon_client::game::native_hooks::Game<'_>::native_command"
+        },
+        {
+          "id": "zoom",
+          "hook": "zoom",
+          "version": 1,
+          "target": "horizon_client::game::native_hooks::Game<'_>::native_zoom"
+        },
+        {
+          "id": "mods",
+          "hook": "mods",
+          "version": 1,
+          "target": "horizon_client::game::native_hooks::Game<'_>::native_mods"
+        },
+        {
+          "id": "settings",
+          "hook": "settings",
+          "version": 1,
+          "target": "horizon_client::game::native_hooks::Game<'_>::native_settings"
+        },
+        {
+          "id": "settings_click",
+          "hook": "settings_click",
+          "version": 1,
+          "target": "horizon_client::game::native_hooks::Game<'_>::native_settings_click"
+        }
+      ],
+      "support_modules": 1,
+      "bundle_crates": 1,
+      "bundle_data_folders": 1
+    },
+    "mixins_apply": {
+      "status": "pass",
+      "stage_generation": "R2",
+      "scope": "Official horizon-mixins generated the tested stage from pristine source and this exact bundle"
+    },
+    "retained_core_tests": {
+      "status": "pass",
+      "exit_code": 0,
+      "scope": "Full retained core suite executed by migration coordinator; no game runtime test"
+    },
+    "window_table_lifecycle": {
+      "status": "pass",
+      "runtime_sha256": "9403de1c8911c9003969fa7f7c6f460d7fee14289c652d7eb73d52abacba185c",
+      "passed": 4,
+      "failed": 0,
+      "exact_table_sha256": "917c8e36009427f4b2268fb5e5f769054118539ada6f58c5476048083271d417",
+      "exact_tests_sha256": "b726dc19a965567034bc0235e8097f9dbca8d3896daad1e9ee9389f005a7a57f",
+      "compiler": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+      "scope": "Exact WindowTable implementation and four existing lifecycle tests, extracted unchanged from runtime.rs. This does not compile or validate Game/Winit adapters, Mixins staging, Zoom game behavior or whole binary."
+    },
+    "packager_tests": {
+      "passed": 7,
+      "scope": "Seven tests passed for the same packager implementation; portable bundle default was used to produce the current proof archive"
+    },
+    "stock_native_parser": {
+      "status": "pass",
+      "package_sha256": "4c8d2f238f8c9c184f96228f6c966d9a3945b07dffe65169fe438cf59fe70de3",
+      "parser_source_sha256": "0f2692a663fbfdd3aa56a8f7ada9fc566bc6dcd184b11e7e71ceadda876837cb",
+      "parser_byte_identical_to_original_archive": true,
+      "content_loader_rejected": true,
+      "scope": "Current final proof archive, actual pristine stock native parser"
+    },
+    "host_compile": {
+      "status": "pass",
+      "operation": "cargo check",
+      "package": "horizon-client",
+      "binary": "horizon-client",
+      "stage_generation": "R2",
+      "rustc": "1.99.1 (58cf8f9c3 2026-10-13)",
+      "exit_code": 0,
+      "elapsed_seconds": 22.6,
+      "features": "No custom Meteor or mods feature",
+      "scope": "Full staged host typecheck; no linked game executable or runtime result claimed"
+    },
+    "game_runtime": {
+      "status": "not tested"
+    }
+  },
+  "limits": [
+    "Only the Zoom proof adapter is integrated. Thirty retained core module policies are not thirty native integrations.",
+    "Existing native Zoom API caps zoomfactor10 and turn0.05..1; cinematic/HUD/hands remain incomplete.",
+    "This source subtree includes no compiled game, native package archive, prepared resource, world, account or local build path."
+  ],
+  "artifact": {
+    "filename": "meteor-client-zoom-migration-proof.hnmod",
+    "sha256": "4c8d2f238f8c9c184f96228f6c966d9a3945b07dffe65169fe438cf59fe70de3",
+    "bytes": 144677,
+    "entries": 85,
+    "scope": "Zoom-only migration proof; not a complete or runtime-verified Meteor release"
+  }
+}

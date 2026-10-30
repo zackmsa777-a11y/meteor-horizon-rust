@@ -10,9 +10,10 @@ Use [this repository's issues](https://github.com/zackmsa777-a11y/meteor-horizon
 for bugs and proposals, and open pull requests here. Check existing work before starting a large
 change. This project does not use Horizon's Discord claim bot or upstream release labels.
 
-`main` contains the verified mod checkpoint. `next-source` contains newer work awaiting its
-complete runtime checks. Base fixes on `main`; coordinate changes to ongoing port work on
-`next-source` with the repository maintainer, [@zackmsa777-a11y](https://github.com/zackmsa777-a11y).
+`main` preserves the verified legacy checkpoint. `next-source` preserves newer legacy work;
+`hnmod-migration` develops the standard native integration in [`native/`](native/).
+Coordinate ongoing port changes with the repository maintainer,
+[@zackmsa777-a11y](https://github.com/zackmsa777-a11y).
 
 ## Source layout and setup
 
@@ -20,6 +21,9 @@ Integration migration is underway. Preserve reusable module behavior and tests; 
 into a standard Horizon Mixins bundle. Prefer named hooks, and pin raw hooks to a tested Horizon
 revision where needed. Do not expand the legacy custom source-patch loader as the distribution path.
 The existing source layout and build commands below describe the legacy prototype during migration.
+For the standard integration, start with [`native/README.md`](native/README.md). Keep bundle
+crates and adapter helpers there, and generate a new source stage from pristine Horizon using
+the pinned upstream Mixins tool. Do not edit generated or pristine host files manually.
 
 - `crates/meteor-client/`: mod behavior, settings, persistence and core tests.
 - `crates/horizon-client/src/game/meteor*.rs`: native host integration and GUI/HUD.
@@ -49,9 +53,11 @@ Update the inventory when a feature's implementation or verification status chan
 ## Validation
 
 Run checks appropriate to the change and include their exact results in the pull request.
-Core behavior changes should run `cargo test -p meteor-client`; host integration should also
-compile with the `meteor` feature enabled and disabled. Add meaningful coverage for changed
-behavior. Documentation-only changes do not require rebuilding the game.
+Core behavior changes should run `cargo test -p meteor-client`. Standard integration changes
+must pass Mixins planning/apply and compile the resulting stage with its locked dependencies;
+the standard proof does not use a custom `meteor` feature. Changes to the preserved legacy
+adapter should compile with that feature enabled and disabled. Add meaningful coverage for
+changed behavior. Documentation-only changes do not require rebuilding the game.
 
 Runtime tests use fresh temporary singleplayer worlds and generated files. Set isolated
 `HORIZON_HOME`, `HORIZON_LAUNCHER_HOME`, `XDG_DATA_HOME` and `XDG_CONFIG_HOME`; disable
