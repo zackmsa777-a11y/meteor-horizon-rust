@@ -105,7 +105,8 @@ Keep changes focused. Explain the resulting behavior, the Meteor reference follo
 validation performed and remaining limitations. Include screenshots for visible UI changes.
 Identify AI-assisted contributions and retain the applicable commit co-author attribution.
 
-Meteor-derived contributions retain GPL-3.0-only attribution. Original Horizon files retain
+Meteor Horizon contributions use [GPL-3.0-only](LICENSE), unless a file explicitly states otherwise.
+Original Horizon files retain
 their MIT notices; Starscript and other dependencies retain their own notices. See the
 [source and license overview](README.md#source-and-licenses). Development artifacts and
 checks in this repository do not imply an upstream Horizon release or review.

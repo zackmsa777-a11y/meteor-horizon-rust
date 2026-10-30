@@ -36,6 +36,8 @@ resolver = "2"
 
 [workspace.package]
 edition = "2024"
+# Imported host component; Meteor Horizon distribution is GPL-3.0-only.
+# See docs/licensing.md for component scope.
 license = "MIT"
 rust-version = "1.85"
 

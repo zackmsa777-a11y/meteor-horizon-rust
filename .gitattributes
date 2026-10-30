@@ -7,3 +7,6 @@ docs/api/*-reference.md text eol=lf
 
 # Native mod archives have recorded byte-level validation hashes.
 packages/*.hnmod -text
+
+# Preserve the imported host notice exactly, including its original line endings.
+docs/upstream/HORIZON-LICENSE.txt -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

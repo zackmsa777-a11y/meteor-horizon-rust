@@ -170,7 +170,7 @@ Skins served over https show the default skin unless already cached; pack icons 
 
 ## Licence
 
-[MIT](LICENSE), for the project's original work only. Dependencies keep their own licences. Minecraft is a trademark of Mojang Synergies AB; Minecraft code and assets belong to Mojang and Microsoft and are covered by the [Minecraft EULA](https://www.minecraft.net/en-us/eula). Decompiled game source and prepared resources stay on your machine and are never published.
+[MIT](docs/upstream/HORIZON-LICENSE.txt), for the project's original work only. Dependencies keep their own licences. Minecraft is a trademark of Mojang Synergies AB; Minecraft code and assets belong to Mojang and Microsoft and are covered by the [Minecraft EULA](https://www.minecraft.net/en-us/eula). Decompiled game source and prepared resources stay on your machine and are never published.
 
 Third-party credits and licenses: [Third-party notices](THIRD_PARTY_NOTICES.md).
 

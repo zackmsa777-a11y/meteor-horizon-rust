@@ -139,8 +139,9 @@ Current development uses the standard `.hnmod` package linked above.
 
 ## Licenses and notices
 
-Meteor-derived code retains [GPL-3.0-only](crates/meteor-client/COPYING).
-Original host files and other dependencies retain their applicable licenses.
+Meteor Horizon is licensed under [GPL-3.0-only](LICENSE).
+Original host files and dependencies retain their applicable notices; see the
+[license scope](docs/licensing.md).
 Required [third-party notices](foundation/bundle/mixins/meteor_client/data/licenses/THIRD_PARTY_NOTICES.txt),
 [component records](foundation/bundle/mixins/meteor_client/data/component-licenses.json)
 and [source provenance](foundation/bundle/mixins/meteor_client/data/source-provenance.json)
