@@ -34,3 +34,10 @@
 
 # Release-only compiled original exporter bundle.
 /exporters/
+
+# Local port development outputs and generated test worlds.
+/work/
+/outputs/
+**/target/
+*.exe
+*.dll

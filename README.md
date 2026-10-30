@@ -32,6 +32,7 @@ to open the Meteor GUI. Modules start disabled. The HUD toolbar opens the HUD ed
 
 The source-based `.hmod` needs this fork's modified native-source-aware launcher; stock
 content-only `.hmod` loaders cannot load it. See [native package documentation](docs/native-source-hmod.md).
+The verified [28-module source package](packages/meteor-client-native-28-module.hmod) is included.
 The original Java Meteor JAR cannot execute as a native Rust plugin.
 
 ## Source and licenses
