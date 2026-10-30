@@ -1,93 +1,152 @@
-# Meteor Horizon
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/meteor-horizon/logo-dark.svg">
+    <img src="docs/meteor-horizon/logo.svg" alt="Meteor Horizon meteor and horizon emblem" width="112" height="112">
+  </picture>
+</p>
 
-A native Rust utility mod for Horizon / Minecraft Java 26.3, using standard
-`.hnmod` packages and upstream Horizon Mixins. The full Meteor port is in development.
+<h1 align="center">Meteor Horizon</h1>
 
-[Current native source and setup](foundation/README.md) ·
-[Native package](packages/meteor-horizon-native.hnmod) ·
-[Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+<p align="center">
+  A native Rust utility mod for Horizon / Minecraft Java 26.3.
+</p>
 
-Active development uses `main`. The current catalog has 87 entries;
-this is not a claim of 87 fully verified Meteor ports. AutoRespawn and BreakDelay
-remain reserved for the contributor's planned work.
+<p align="center">
+  <img src="docs/meteor-horizon/badges/rust.svg" alt="Written in Rust" height="26">
+  <img src="docs/meteor-horizon/badges/minecraft.svg" alt="Minecraft Java 26.3" height="26">
+  <img src="docs/meteor-horizon/badges/native.svg" alt="Native .hnmod package" height="26">
+</p>
 
-The branding update passes package, transformation, compile and nine Rust checks; its linked build and embedded-label checks passed. The complete earlier `native/`
-source and its verified four-module package remain preserved below.
+<p align="center">
+  <a href="https://github.com/zackmsa777-a11y/meteor-horizon-rust/raw/refs/heads/main/packages/meteor-horizon-native.hnmod"><strong>Download .hnmod</strong></a>
+  &nbsp;·&nbsp; <a href="foundation/README.md">Setup</a>
+  &nbsp;·&nbsp; <a href="CONTRIBUTING.md">Contribute</a>
+</p>
 
-## Earlier checkpoints
+## Built for Horizon
 
-> **Earlier native proof:** the preserved `native/` snapshot connects Zoom, AutoJump, AirJump and HighJump.
-> Its 101-check result applies to that snapshot; the current mod is documented in `foundation/`.
-> The existing `.hmod` is a legacy source-patch prototype for a custom build path. It cannot
-> be loaded through Horizon's ordinary content Mods menu; renaming it will not convert it.
+Meteor Horizon brings a category-based module menu, persistent settings and
+keyboard binds, chat commands and a native-font HUD to Horizon. It uses the
+standard Horizon Mixins build flow and `.hnmod` source-package format.
 
-A native Rust Meteor Client mod for Horizon / Minecraft Java 26.3, targeting the standard `.hnmod` format through Horizon Mixins.
-The port is unofficial and still in development.
+- **Modules across five categories** — Combat, Movement, Player, Render and World.
+- **Click GUI** — search modules, toggle features, adjust sliders and set binds.
+- **HUD** — frame rate, coordinates, active modules and other configurable readouts.
+- **Persistent configuration** — keep settings, binds and panel positions between sessions.
+- **Client commands** — inspect and configure modules directly from chat.
 
-The existing module logic, settings, configuration and tests are being retained. Migration focuses
-on the Horizon adapter, state handling and packaging. The repository still includes the pinned
-Horizon source snapshot used to reproduce the verified legacy prototype; attribution is retained below.
+> [!NOTE]
+> **In development.** The current catalog has 87 entries. This is not a claim of
+> 87 fully verified Meteor ports; the complete port and behavior parity remain unfinished.
 
-[Experimental standard bundle — four movement/zoom modules](packages/meteor-client-movement-migration-proof.hnmod) ·
-[Native setup and verification](native/README.md) ·
-[Legacy prototype package — custom build path only](packages/meteor-client-native-28-module.hmod) ·
-[Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+## Get started
 
-The preserved legacy checkpoint implements 28 of the reference client's 169 registered modules.
-The complete Meteor port is not finished. See [METEOR-PORT.md](METEOR-PORT.md) and
-[the feature inventory](crates/meteor-client/port-inventory.json) for partial behavior and remaining work.
-`next-source` is an archival work branch; its evidence remains scoped to the recorded checkpoints.
+1. **[Download the native package](https://github.com/zackmsa777-a11y/meteor-horizon-rust/raw/refs/heads/main/packages/meteor-horizon-native.hnmod)** — current version: `0.1.0-native.1`.
+2. **Build it through Horizon's experimental native-mod flow.** Follow the
+   [native setup guide](foundation/README.md) and [host build documentation](docs/native-mods.md#what-the-launcher-does).
+3. **Enable Meteor Horizon in Options > Mods**, then press <kbd>Right Shift</kbd>
+   in a world to open the menu.
 
-## Verification
+The `.hnmod` contains source that is compiled into the game. The current build
+pins Horizon `b76ae35` and Mixins `cb1ad23`; use the
+[full revisions and reproduction steps](foundation/README.md#reproduce).
+The complete stock-launcher build/install flow remains unverified for this snapshot.
 
-- The standard integration passed 101 isolated Zoom/AutoJump/AirJump/HighJump checks with clean shutdown;
-  its [exact source, package and client evidence](native/evidence/verification.json) is separate
-  from the legacy checkpoints below. It uses pristine Horizon plus upstream Mixins.
-- 130 core tests passed; seven original module/friends importer fixtures and four macro importer fixtures passed.
-- The exact 28-module development client passed 71 isolated runtime checks for Flight, AutoClicker,
-  macro NBT imports, repeated HUD instances and Starscript text. Earlier checkpoints have separate evidence.
-- The 26-module source `.hmod` also passed the modified launcher's actual native build/install pipeline
-  and 128 isolated runtime checks on its installed GNU client.
+<details>
+<summary>Verify the package checksum</summary>
 
-These are scoped checks, not complete parity certification. Runtime tests use fresh temporary
-singleplayer worlds and generated data. Game resources and player data are not included.
+SHA-256 for `packages/meteor-horizon-native.hnmod`:
 
-## Build and use
-
-For the standard `.hnmod` proof, use [native setup](native/README.md) and Horizon's normal
-native build flow. It compiles a modded game from the pinned upstream source and Mixins bundle.
-The full stock launcher build/install flow remains untested; the proof was built with official
-Mixins and pinned Cargo, then tested in isolated singleplayer.
-
-The instructions below reproduce the **legacy prototype**.
-
-Follow [Horizon build prerequisites and resource preparation](UPSTREAM-HORIZON-README.md).
-Build the optional native port with:
-
-```sh
-cargo build --profile fast -p horizon-client --features meteor
+```text
+cb8d5981f60d67e6e5fb592fab53252ef8a7ca22ec19ef4d26062c3d72e8f68a
 ```
 
-Launch using your own prepared Minecraft 26.3 resources. In a world, press **Right Shift**
-to open the Meteor GUI. Modules start disabled. The HUD toolbar opens the HUD editor.
+</details>
 
-The legacy source-patch `.hmod` needs the prototype's modified launcher; stock
-content-only `.hmod` loaders cannot load it. See [native package documentation](docs/native-source-hmod.md).
-The legacy, prototype-tested [28-module source package](packages/meteor-client-native-28-module.hmod) is included.
-The original Java Meteor JAR cannot execute as a native Rust plugin.
+## Controls and commands
 
-## Source and licenses
+- <kbd>Right Shift</kbd> opens the menu.
+- **Left click** toggles a module; **right click** opens its settings.
+- **Type** to search. <kbd>Esc</kbd> clears the search, then closes the menu.
+- **Scroll** through long panels. Use the bind row to assign a keyboard key.
+- **Right click a numeric slider** to restore its default.
 
-Horizon base snapshot: `b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73`.
-Meteor reference source/JAR commit: `e3a2e77967629d216e127b5ceecf71fb15f9d2e5`.
+```text
+.help                 List client commands
+.modules              List modules and their state
+.t zoom               Toggle Zoom
+.set zoom factor 4    Change a setting
+.bind zoom r          Bind Zoom to R
+```
 
-- Meteor-derived code: GPL-3.0-only; [full license](crates/meteor-client/COPYING).
-- Original Horizon files: retain their [MIT license](LICENSE).
-- Starscript-derived code: [MIT notice](crates/meteor-client/STARSCRIPT-LICENSE.txt).
-- Other third-party notices remain with their source files.
+Text-list settings use `.set`. Search currently uses ASCII key names and binds
+use simple keyboard keys; full Unicode editing and keyboard/controller menu
+navigation remain unfinished.
 
-Upstream projects: [Horizon](https://github.com/horizon-rust/horizon),
-[Meteor Client](https://github.com/MeteorDevelopment/meteor-client),
-[Starscript](https://github.com/MeteorDevelopment/starscript).
+## Validation
 
-Changes were implemented with AI assistance. This is an independent, unofficial Meteor mod project.
+The `0.1.0-native.1` checkpoint passed:
+
+- **9 Rust regression checks** for catalog boundaries, state cleanup, input
+  ownership, narrow-layout hit boxes and thread isolation.
+- **7 package checks**, plus the pristine Horizon native parser.
+- **Official Mixins plan/apply, compile and linked-build checks** for the pinned host.
+- **Branding checks** against the source and compiled executable.
+
+[Recorded verification](foundation/evidence/branding/verification.json) includes
+the exact package and binary hashes. These results cover that checkpoint;
+interactive runtime verification and full per-module parity are separate work.
+
+## Development
+
+Pull requests target **`main`**. Start with [Contributing](CONTRIBUTING.md),
+[native build instructions](foundation/README.md#reproduce) and the
+[port status and known gaps](METEOR-PORT.md).
+
+```text
+foundation/              Current native mod, tooling and verification
+native/                  Preserved four-module migration proof
+crates/meteor-client/    Retained Meteor policies and reference tests
+packages/                Source packages
+docs/meteor-horizon/     Editable SVG logo and README assets
+```
+
+AutoRespawn and BreakDelay remain reserved for a contributor's planned work.
+Check the [current allocation](CONTRIBUTING.md#current-native-integration-coordination)
+before starting a module. Report vulnerabilities through [Security](SECURITY.md).
+Game resources, accounts and player worlds are not included in this repository.
+
+<details>
+<summary>Earlier checkpoints and legacy packages</summary>
+
+These records are preserved with their original scope; they do not certify the
+current 87-entry catalog.
+
+- The [four-module native proof](native/README.md) connects Zoom, AutoJump,
+  AirJump and HighJump and passed **101 isolated runtime checks**.
+- The legacy 28-module prototype recorded **71 isolated runtime checks**,
+  **130 core tests** and separate importer fixtures. See its
+  [validation records](crates/meteor-client/validation.json) and
+  [checkpoint metadata](PORT-CHECKPOINT.json).
+- The 26-module legacy source-patch package passed its modified launcher's
+  build/install pipeline and **128 isolated runtime checks**. This is a
+  different integration path; see [legacy package documentation](docs/native-source-hmod.md).
+
+The old `.hmod` packages and their evidence remain available for reproduction.
+Current development uses the standard `.hnmod` package linked above.
+
+</details>
+
+## Licenses and notices
+
+Meteor-derived code retains [GPL-3.0-only](crates/meteor-client/COPYING).
+Original host files and other dependencies retain their applicable licenses.
+Required [third-party notices](foundation/bundle/mixins/meteor_client/data/licenses/THIRD_PARTY_NOTICES.txt),
+[component records](foundation/bundle/mixins/meteor_client/data/component-licenses.json)
+and [source provenance](foundation/bundle/mixins/meteor_client/data/source-provenance.json)
+are preserved.
+
+This is an independent, unofficial project with AI-assisted code contributions.
+The [logo assets](docs/meteor-horizon/README.md) are editable SVG geometry;
+no image-generation model was used. This project is not affiliated with Horizon
+or MeteorDevelopment.

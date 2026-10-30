@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192"
+  viewBox="0 0 192 192" role="img" aria-labelledby="title desc">
+  <!-- SPDX-License-Identifier: GPL-3.0-only -->
+  <title id="title">Meteor Horizon</title>
+  <desc id="desc">A faceted meteor with three trails above a stepped horizon.</desc>
+  <g fill="#e7aa4c">
+    <path d="M87 63 136 14h12L99 63Z"/>
+    <path d="m113 66 47-47h10l-47 47Z"/>
+    <path d="m133 83 36-36h10l-36 36Z"/>
+  </g>
+  <path fill="#eef4fa" d="m55 89 23-21 28 4 22 22-12 28-28 13-29-18-8-16Z"/>
+  <path fill="#e7aa4c" d="m64 92 17-16 21 3 17 17-10 20-21 10-21-14-7-12Z"/>
+  <path fill="#eef4fa" d="m60 94 21-18 7 22-21 14-7-12Z"/>
+  <path fill="none" stroke="#8cbcd2" stroke-width="5" stroke-linecap="square"
+    stroke-linejoin="miter" d="M23 141h45l9 9h34l9-9h49"/>
+  <path fill="#8cbcd2" d="M43 163h106v3H43Z"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="66" height="26"
+  viewBox="0 0 66 26" role="img" aria-labelledby="title desc">
+  <!-- SPDX-License-Identifier: GPL-3.0-only -->
+  <title id="title">Rust</title>
+  <desc id="desc">Rust</desc>
+  <rect width="66" height="26" rx="5" fill="#203449"/>
+  <rect x="9" y="10" width="6" height="6" rx="1" fill="#e7aa4c"/>
+  <text x="23" y="17" fill="#eef4fa" font-family="Segoe UI, Arial, sans-serif"
+    font-size="11.5" font-weight="600">Rust</text>
+</svg>
