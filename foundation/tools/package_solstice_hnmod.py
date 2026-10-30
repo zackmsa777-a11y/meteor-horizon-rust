@@ -14,7 +14,7 @@ import tomllib
 import zipfile
 
 ID = "meteor_client"
-VERSION = "0.1.0-solstice.1"
+VERSION = "0.1.0-solstice.2"
 HORIZON = "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73"
 MIXINS = "cb1ad23022392d88f006cf94cbf6552a73f5df12"
 PREFIX = "mixins/meteor_client/"

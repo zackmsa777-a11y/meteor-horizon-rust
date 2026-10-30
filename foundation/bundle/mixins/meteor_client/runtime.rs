@@ -21,7 +21,7 @@ use winit::keyboard::KeyCode;
 
 pub(crate) const ID: &str = "meteor_client";
 pub(crate) const NAME: &str = "Meteor Horizon";
-pub(crate) const VERSION: &str = "0.1.0-solstice.1";
+pub(crate) const VERSION: &str = "0.1.0-solstice.2";
 pub(crate) const DESCRIPTION: &str =
     "Utility client: combat, movement and render modules, a menu, key binds and . commands.";
 // The menu key's name on the mod's page and its default (Right Shift).
@@ -692,9 +692,12 @@ pub(super) fn snapshot() -> Vec<Module> {
 }
 
 pub(super) fn sync_flags(s: &State) {
-    NO_FALL.store(s.is_on("No Fall"), Ordering::Relaxed);
-    BLINK.store(s.is_on("Blink"), Ordering::Relaxed);
-    let hunger = s.module("Anti Hunger").filter(|m| m.on);
+    // Persisted preferences survive disable/worldleave; only an active native
+    // world may publish packet policy, including saves from the Options page.
+    let active_world = s.active && s.in_world;
+    NO_FALL.store(active_world && s.is_on("No Fall"), Ordering::Relaxed);
+    BLINK.store(active_world && s.is_on("Blink"), Ordering::Relaxed);
+    let hunger = s.module("Anti Hunger").filter(|m| active_world && m.on);
     ANTI_SPRINT.store(hunger.is_some_and(|m| m.b("Sprint")), Ordering::Relaxed);
     ANTI_GROUND.store(hunger.is_some_and(|m| m.b("Ground")), Ordering::Relaxed);
 }
@@ -765,6 +768,17 @@ fn reset_packet_flags() {
     }
     CRIT_STAGE.store(0, Ordering::Relaxed);
 }
+// Called at mutable lifecycle entry after loading, never by reentrant readers.
+fn refresh_packet_policy() {
+    let active_world = with(|state| {
+        sync_flags(state);
+        state.active && state.in_world
+    });
+    if !active_world {
+        reset_packet_flags();
+    }
+}
+
 fn cleanup(game: &mut Game<'_>, same_owner: bool) {
     let (injected, flying, stepping, gui, eating, back) = with(|s| {
         let old = (
@@ -871,6 +885,9 @@ pub(super) fn maintain(game: &mut Game<'_>) -> bool {
     if active {
         ensure_loaded(game);
     }
+    // A loaded config is intentionally retained across these transitions;
+    // re-publish policy even when ensure_loaded took its early return.
+    refresh_packet_policy();
     if active && !game.focused && gui_open() {
         close_gui(game);
     }
@@ -4689,5 +4706,58 @@ mod meteor_horizon_adoption_tests {
                 );
             }
         }
+    }
+    #[test]
+    fn packet_preferences_resume_after_native_enable_and_world_rejoin() {
+        let _serial = SERIAL.lock().unwrap();
+        let previous = STATE.lock().unwrap_or_else(|e| e.into_inner()).take();
+        with(|state| {
+            state.loaded = true;
+            state.active = true;
+            state.in_world = true;
+            for name in ["No Fall", "Blink", "Anti Hunger"] {
+                let index = state.find(name).unwrap();
+                state.modules[index].on = true;
+            }
+        });
+        let policy = || {
+            [
+                NO_FALL.load(Ordering::Relaxed),
+                BLINK.load(Ordering::Relaxed),
+                ANTI_SPRINT.load(Ordering::Relaxed),
+                ANTI_GROUND.load(Ordering::Relaxed),
+            ]
+        };
+        reset_packet_flags();
+        assert_eq!(policy(), [false; 4]);
+        refresh_packet_policy();
+        assert_eq!(policy(), [true; 4]);
+        for (active, in_world) in [(false, true), (true, false)] {
+            with(|state| {
+                state.active = active;
+                state.in_world = in_world;
+            });
+            CRIT_STAGE.store(2, Ordering::Relaxed);
+            BLINK_HELD.store(true, Ordering::Relaxed);
+            refresh_packet_policy();
+            assert_eq!(policy(), [false; 4]);
+            assert_eq!(CRIT_STAGE.load(Ordering::Relaxed), 0);
+            assert!(!BLINK_HELD.load(Ordering::Relaxed));
+            // Saving inactive Options must not re-enable the packet effects.
+            with(|state| sync_flags(state));
+            assert_eq!(policy(), [false; 4]);
+            with(|state| {
+                assert!(state.loaded);
+                for name in ["No Fall", "Blink", "Anti Hunger"] {
+                    assert!(state.is_on(name));
+                }
+                state.active = true;
+                state.in_world = true;
+            });
+            refresh_packet_policy();
+            assert_eq!(policy(), [true; 4]);
+        }
+        *STATE.lock().unwrap_or_else(|e| e.into_inner()) = previous;
+        reset_packet_flags();
     }
 }

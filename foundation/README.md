@@ -5,7 +5,7 @@ The `solstice-integration` branch is adapting the existing MIT-licensed
 as **Meteor Horizon**. This uses ordinary Horizon `.hnmod` schema 1 and upstream
 Mixins, retaining internal Solstice support names where useful. It introduces no
 custom loader. The candidate identifies as `meteor_client`, version
-`0.1.0-solstice.1`, pinned to Horizon
+`0.1.0-solstice.2`, pinned to Horizon
 `b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73` and Mixins 0.6
 `cb1ad23022392d88f006cf94cbf6552a73f5df12`.
 
@@ -26,7 +26,7 @@ A separate Solstice compatibility probe on these Horizon/Mixins pins passed
 official planning (23 hooks, 31.02s), apply (44.84s) and host Cargo check (47.28s).
 Seven upstream unused-code warnings remained. Those results concern the probe;
 they do not validate the later branded/reservation/GUI production changes.
-The production R2 source is frozen and separately passed the stock native parser, official 24-hook plan (34.77s), apply (46.57s) and host check (13.72s). Regression tests, linked build and isolated runtime checks are pending.
+The production R3 source is frozen and separately passed stock parsing, the official 24-hook plan/apply and host check. Six R3 binary tests pass, including re-enable/rejoin packet-policy restoration. Three Timer/NoSlow checks apply to byte-identical library code. Linked build and isolated runtime checks are pending.
 
 Root-owned fresh-home runtime validation will record source/package/client/control
 and harness hashes, observed physical Sky actions, real widget feedback and
@@ -73,10 +73,10 @@ binary, prepared Minecraft assets, account, world or private home is included.
 
 ## Publication preparation
 
-The bundle contains the exact held R2 source package payload (42 files), SHA256
-`85d184a012ec82649fb561130fe8465874e29b3ebe6c48888676a3c78532b98c`.
-Seven packaging tests passed on the unchanged tools; final R2 hashes passed the
-frozen payload contract. Official R2 transformation/check results are recorded separately; linked build/runtime checks are pending. R1 evidence is preserved as its own source-only snapshot.
+The bundle contains the exact held R3 source package payload (42 files), SHA256
+`215c62cbcc28bb7344467590873057e7dc7f2f53b916eaa7fdabd05059dc4558`.
+Seven packaging tests passed on the unchanged tools; final R3 hashes passed the
+frozen payload contract. Official R3 transformation/check results are recorded separately; linked build/runtime checks are pending. R1 evidence is preserved as its own source-only snapshot.
 
 No previous Meteor package contract is broadened. This template contains no game
 binary, resources, world, account, installer or compiled validator. The existing

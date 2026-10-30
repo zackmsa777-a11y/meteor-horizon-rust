@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "passed": 9,
+  "failed": 0,
+  "results": [
+    {
+      "label": "solstice-units-r3",
+      "tests": [
+        "test game::solstice::meteor_horizon_adoption_tests::engine_gui_readers_are_lock_free_and_close_latch_survives_same_event ... ok",
+        "test game::solstice::meteor_horizon_adoption_tests::catalog_has_87_unique_real_entries_and_omits_friend_reservations ... ok",
+        "test game::solstice::meteor_horizon_adoption_tests::packet_cleanup_removes_every_retained_global_effect ... ok",
+        "test game::solstice::meteor_horizon_adoption_tests::narrow_gui_rows_are_inside_viewport_without_overlapping_hits ... ok",
+        "test game::solstice::meteor_horizon_adoption_tests::packet_preferences_resume_after_native_enable_and_world_rejoin ... ok",
+        "test game::solstice::meteor_horizon_adoption_tests::observed_session_reset_preserves_settings_and_panels_but_clears_actions ... ok"
+      ],
+      "passed": 6,
+      "failed": 0,
+      "seconds": 35.21393360000366
+    },
+    {
+      "label": "solstice-clock-units-r2",
+      "tests": [
+        "test clock::solstice_timer::tests::invalid_values_cannot_panic_duration_scaling ... ok",
+        "test clock::solstice_timer::tests::multiplier_and_recursion_guard_are_thread_local ... ok"
+      ],
+      "passed": 2,
+      "failed": 0,
+      "seconds": 133.34560020000208
+    },
+    {
+      "label": "solstice-input-units-r2",
+      "tests": [
+        "test input::solstice_flags::tests::another_threads_movement_keeps_native_slowdown ... ok"
+      ],
+      "passed": 1,
+      "failed": 0,
+      "seconds": 89.58717729999626
+    }
+  ],
+  "library_reuse": "Timer/NoSlow executed against R2; their actual generated R3 library sources and lockfile are byte-identical. Six binary tests executed on R3.",
+  "identical_generated_library_files": {
+    "crates/horizon-client/src/clock.rs": "c2c784f082f90a227dece6fe8e81da909a23b26096472eb28fb1a77d15008e2c",
+    "crates/horizon-client-input/src/input.rs": "29843d08083fe5294fcd71ef7ef4eb1cdbc3d5e5f028c25f4f0b87c7d8191172",
+    "crates/horizon-client-render/src/mesher.rs": "12d2907f5db36cc9826ae7e08629971d986edda2eb8d425697ac4e6938435bec",
+    "crates/horizon-client/src/lib.rs": "af4e333473f118fc00ad22866cc8de7464bde4e6651aa81e1c1ca990f42012c0",
+    "Cargo.lock": "bace10a54e2a0395bc0ae9dadf31b116202699e7556879af277f8f7c57b75ed1"
+  },
+  "scope": "State/input policy checks, not87 verified modules or complete Meteor parity."
+}

@@ -28,6 +28,7 @@ class FoundationPackageTests(unittest.TestCase):
         self.assertEqual(one.read_bytes(), two.read_bytes())
         with zipfile.ZipFile(one) as archive:
             self.assertEqual(json.loads(archive.read('horizon-native.json')), package.EXPECTED_MANIFEST)
+            self.assertEqual(package.VERSION, '0.1.0-solstice.2')
             self.assertNotIn('horizon-native-source.json', archive.namelist())
             self.assertIn(package.PREFIX + 'data/licenses/Solstice-MIT.txt', archive.namelist())
 

@@ -21,7 +21,7 @@
   "candidate_native_manifest": {
     "schema": 1,
     "id": "meteor_client",
-    "version": "0.1.0-solstice.1",
+    "version": "0.1.0-solstice.2",
     "game": "26.3",
     "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
     "mixins": "cb1ad23022392d88f006cf94cbf6552a73f5df12"
@@ -653,8 +653,8 @@
   "adaptation_notes": [
     {
       "path": "horizon-native.json",
-      "description": "Normal schema1 identity meteor_client/version0.1.0-solstice.1 with exact b76 Horizon and cb1ad Mixins0.6; no custom loader/hooks metadata.",
-      "sha256": "1ba32cf439c573e9c040e3aad941e1e5e21370e1c6b5dc4e5a4d42e2cada7274"
+      "description": "Normal schema1 identity meteor_client/version0.1.0-solstice.1 with exact b76 Horizon and cb1ad Mixins0.6; no custom loader/hooks metadata. R3 identity version bumped to0.1.0-solstice.2 to distinguish the published R2 snapshot.",
+      "sha256": "bae5da408c02b93ebbe1f3ba7589db23106e20adc38c4ac004de56fe7b3310d3"
     },
     {
       "path": "mixins/meteor_client/buttons.rs",
@@ -673,8 +673,8 @@
     },
     {
       "path": "mixins/meteor_client/horizon-mixin.toml",
-      "description": "Normal meteor_client identity/version and b76 pin; mutable Game bindings for input/buttons; add raw cancellable HUD-layer compositor injection; retain ten support modules and23 prior injections.",
-      "sha256": "0158f509536daa7861ebdeb8ffa0e518ad79729f374e77bc5eb50429f2a4ebe8"
+      "description": "Normal meteor_client identity/version and b76 pin; mutable Game bindings for input/buttons; add raw cancellable HUD-layer compositor injection; retain ten support modules and23 prior injections. R3 mod version bumped to0.1.0-solstice.2; pins and24 injection declarations unchanged.",
+      "sha256": "d029fc7f00dadd318663e8edbc07bb11a7251a55925aced6f326efd309e57224"
     },
     {
       "path": "mixins/meteor_client/input.rs",
@@ -713,8 +713,8 @@
     },
     {
       "path": "mixins/meteor_client/runtime.rs",
-      "description": "Meteor Horizon identity/branding and87-entry catalog excluding reserved Auto Respawn/Fast Break; weak-window owner and observed-world lifecycle/reset; reentrant lock-free owner/GUI gates; native GUI compositor merge; five exact lifecycle/UI tests. R2 diagnostic fix: return on non-native-window Game before owner maintenance/closing-latch reset, so server pre_tick cannot clear client GUI closing input ownership.",
-      "sha256": "d8a71c589f2be8f638b508237b6fe7cd20af2311fa9e93787ff67fbd9ba845f5"
+      "description": "Meteor Horizon identity/branding and87-entry catalog excluding reserved Auto Respawn/Fast Break; weak-window owner and observed-world lifecycle/reset; reentrant lock-free owner/GUI gates; native GUI compositor merge; five exact lifecycle/UI tests. R2 diagnostic fix: return on non-native-window Game before owner maintenance/closing-latch reset, so server pre_tick cannot clear client GUI closing input ownership. R3 packet-policy fix: refresh saved packet preferences on native re-enable and observed world rejoin, retain active/in-world gates while disabled/absent, add exact packet-preference regression test, and bump visible Runtime version to0.1.0-solstice.2.",
+      "sha256": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9"
     },
     {
       "path": "mixins/meteor_client/timer.rs",
@@ -740,8 +740,8 @@
   "frozen_payloads": [
     {
       "path": "horizon-native.json",
-      "bytes": 207,
-      "sha256": "1ba32cf439c573e9c040e3aad941e1e5e21370e1c6b5dc4e5a4d42e2cada7274"
+      "bytes": 215,
+      "sha256": "bae5da408c02b93ebbe1f3ba7589db23106e20adc38c4ac004de56fe7b3310d3"
     },
     {
       "path": "mixins/meteor_client/buttons.rs",
@@ -811,7 +811,7 @@
     {
       "path": "mixins/meteor_client/horizon-mixin.toml",
       "bytes": 8937,
-      "sha256": "0158f509536daa7861ebdeb8ffa0e518ad79729f374e77bc5eb50429f2a4ebe8"
+      "sha256": "d029fc7f00dadd318663e8edbc07bb11a7251a55925aced6f326efd309e57224"
     },
     {
       "path": "mixins/meteor_client/hud.rs",
@@ -870,8 +870,8 @@
     },
     {
       "path": "mixins/meteor_client/runtime.rs",
-      "bytes": 159480,
-      "sha256": "d8a71c589f2be8f638b508237b6fe7cd20af2311fa9e93787ff67fbd9ba845f5"
+      "bytes": 167053,
+      "sha256": "1c6ec56cc51e53403a0c6e2b13e45cad3a8e8f6702ddacc0965e2ba560648fc9"
     },
     {
       "path": "mixins/meteor_client/send.rs",

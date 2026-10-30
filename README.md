@@ -6,7 +6,7 @@ uses normal `.hnmod` / upstream Mixins integration and exposes 87 catalog entrie
 reservations. This is not 87 verified Meteor ports or a full-parity claim.
 
 The frozen foundation passes the stock native parser, official 24-hook plan/apply and host compile
-check. Regression tests, linked build and isolated runtime validation are in progress.
+check. Six state tests and three Timer/NoSlow component checks pass; linked build and isolated runtime validation are in progress.
 The complete existing `native/` tree and its verified four-module migration.3 package are preserved.
 AutoRespawn and BreakDelay remain reserved for the planned contributor PR.
 

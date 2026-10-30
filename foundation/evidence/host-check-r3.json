@@ -1,0 +1,14 @@
+{
+  "command": [
+    "cargo",
+    "check",
+    "--locked",
+    "-p",
+    "horizon-client",
+    "--bin",
+    "horizon-client"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 5.11506350000127,
+  "log": "solstice-final-r3.log"
+}

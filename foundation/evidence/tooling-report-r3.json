@@ -1,0 +1,42 @@
+{
+  "status": "PASS: R3 source package complete; official transform/build/runtime owned by root",
+  "version": "0.1.0-solstice.2",
+  "tests": {
+    "passed": 7,
+    "failures": 0,
+    "seconds": 1.917,
+    "exit_code": 0,
+    "initial_failure_record": "package-tests-r3-initial-failure.json",
+    "correction": "Tool/test-only UTF-8 reserved-name guard restored; production unchanged."
+  },
+  "production_files_held": 42,
+  "archive_payloads_byte_identical_to_bundle": true,
+  "package_sha256": "215c62cbcc28bb7344467590873057e7dc7f2f53b916eaa7fdabd05059dc4558",
+  "tools": [
+    {
+      "path": "tools/audit_solstice_bundle.py",
+      "sha256": "433bbe61b0443ad45c2e6b5d7c81f555c9f0a36af95f1109f47d89b102da471d"
+    },
+    {
+      "path": "tools/build_standard_validator.py",
+      "sha256": "d183e71ba9026b8252bcc741645908020c9195c2f016c0ce90ec3195a25fef55"
+    },
+    {
+      "path": "tools/package_solstice_hnmod.py",
+      "sha256": "dbc1ae11685290134f6b1ff66a3f55246e352f14624353c9f0fee54b0df0953d"
+    },
+    {
+      "path": "tools/standard-validator/src/main.rs",
+      "sha256": "957b0e4b66e916169b2af53c4165bd1a270f98cbda2c4d5b82627f111de86f13"
+    },
+    {
+      "path": "tools/test_package_solstice_hnmod.py",
+      "sha256": "51b2f3c7d53572522e84546be80375b8cd7d0e2a7759ba2528284efd2121eb1c"
+    },
+    {
+      "path": "tools/validate_standard_hnmod.py",
+      "sha256": "2af2e6bce15ba289ba26377aa3629ff64a39a5645925055148d4640ad3c930b8"
+    }
+  ],
+  "cargo_game_git_actions": false
+}
