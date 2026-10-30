@@ -1,6 +1,6 @@
 # Meteor Client native Rust port
 
-This is a development fork of Horizon, not a working replacement for the complete Meteor Client.
+This is a native Meteor mod project for Horizon, currently in development.
 The objective remains full native behavior, including modules, GUI/HUD, configuration, commands,
 utilities, integrations and lifecycle. Java JARs are reference artifacts, not executable plugins here.
 

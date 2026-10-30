@@ -1,6 +1,13 @@
-# Meteor Client for Horizon (native Rust port)
+# Meteor mod for Horizon
 
-Unofficial work in progress: a native Rust port of Meteor Client for Horizon / Minecraft Java 26.3.
+A native Rust Meteor Client mod for Horizon / Minecraft Java 26.3, packaged as a source-based `.hmod`.
+The port is unofficial and still in development.
+
+This repository contains the mod and the host integration needed to build and run it. A pinned
+Horizon source snapshot is included for that integration; its provenance and license are retained below.
+
+[Download the mod package](packages/meteor-client-native-28-module.hmod) ·
+[Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
 The verified checkpoint on `main` implements 28 of the reference client's 169 registered modules.
 The complete Meteor port is not finished. See [METEOR-PORT.md](METEOR-PORT.md) and
@@ -49,4 +56,4 @@ Upstream projects: [Horizon](https://github.com/horizon-rust/horizon),
 [Meteor Client](https://github.com/MeteorDevelopment/meteor-client),
 [Starscript](https://github.com/MeteorDevelopment/starscript).
 
-Changes were implemented with AI assistance. This repository is an independent development fork.
+Changes were implemented with AI assistance. This is an independent, unofficial Meteor mod project.
