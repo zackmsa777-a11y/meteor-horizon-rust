@@ -1,0 +1,55 @@
+{
+  "root": "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2",
+  "package": "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\reviewed-package.hmod",
+  "sha256": "30daa6e44678255dbcd3d7e90535d803121a5e92d03b028df466e41e38e9dcb5",
+  "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+  "files": 155,
+  "started": 1793357186.2410276,
+  "launcher_sha256": "929575502c244b5ebda4d991cc44c40cb06c7a5aff56e14320f26016a0b4233b",
+  "package_content_fingerprint": "d883b914f3b8816dc1d2da595252a4985c4f2c97a1d3ad19efa9b209f9a6ac85",
+  "private_fixture": true,
+  "phase": "PASS: isolated native build and installation; no game launched",
+  "env": {
+    "HORIZON_HOME": "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\game",
+    "HORIZON_LAUNCHER_HOME": "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\launcher",
+    "HORIZON_NATIVE_BUILD_HOME": "D:\\Codex-Meteor-Build\\native-e2e-c67f7c8d6f3545a2851d37d4079ad630\\build-cache",
+    "XDG_DATA_HOME": "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\xdg-data",
+    "XDG_CONFIG_HOME": "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\xdg-config",
+    "HORIZON_LAUNCHER_TRASH": "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\trash",
+    "HORIZON_LAUNCHER_CLIPBOARD": "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\clipboard",
+    "HORIZON_LAUNCHER_DESKTOP": "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\desktop",
+    "HORIZON_LAUNCHER_NO_SELF_UPDATE": "1",
+    "HORIZON_NO_AUDIO": "1"
+  },
+  "command": [
+    "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\reviewed-launcher.exe",
+    "native-build",
+    "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\reviewed-package.hmod",
+    "--version",
+    "v0.2.97",
+    "--trust-native-code"
+  ],
+  "pid": 22544,
+  "exit_code": 0,
+  "elapsed_seconds": 1252.3143155574799,
+  "stdout": "native-b76ae35-d27c464b1cd8 built and selected for its instance (1198 s).\n",
+  "stderr_tail": "Downloading Horizon's source at b76ae35\nApplying the native mods\nCompiling the game: 1 crates, now horizon-client-input\nCompiling the game: 2 crates, now meteor-client\nCompiling the game: 3 crates, now horizon-client-render\nCompiling the game: 4 crates, now horizon-client\nInstalling the build\n",
+  "installed_version": "D:\\Codex-Meteor-Build\\native-e2e-b516d20bdaa548fc88af7d7a795aead2\\launcher\\versions\\native-b76ae35-d27c464b1cd8",
+  "metadata": {
+    "base": "v0.2.97",
+    "horizon": "b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+    "package_format": "native-source-hmod/1",
+    "package_sha256": "d883b914f3b8816dc1d2da595252a4985c4f2c97a1d3ad19efa9b209f9a6ac85",
+    "rust": "1.99.1",
+    "features": [
+      "horizon-client/meteor"
+    ],
+    "mods": [
+      {
+        "id": "meteor-client",
+        "version": "0.1.0-dev"
+      }
+    ]
+  },
+  "client_sha256": "ebab33279ff7a8bde1d78463543be1fabcbf3accdebd5994048a3cd76661dd58"
+}

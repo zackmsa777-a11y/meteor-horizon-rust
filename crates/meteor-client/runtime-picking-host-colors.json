@@ -1,0 +1,866 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "modules": [
+    "Zoom",
+    "AutoJump",
+    "AirPlace",
+    "LiquidInteract",
+    "NoMiningTrace",
+    "StarscriptHost",
+    "ColorGUI"
+  ],
+  "checks": [
+    {
+      "name": "Meteor adapter is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline zoom factor is one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom reaches factor six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity reduced before mouse curve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default Zoom hides hands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom HUD option reaches adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cinematic camera reaches mouse options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom fade-out restores factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD and hands restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Player settled on ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump produces upward motion without jump input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump raises player above the platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump leaves ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoJump returns to rest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary block use cannot place into the empty ray endpoint",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirPlace caches the real custom-range miss position",
+      "passed": true,
+      "detail": {
+        "cached_hit": [
+          8,
+          73,
+          -4
+        ],
+        "preview_line_vertices": 24,
+        "preview_triangle_vertices": 36
+      }
+    },
+    {
+      "name": "AirPlace Both submits edges and translucent faces",
+      "passed": true,
+      "detail": {
+        "cached_hit": [
+          8,
+          73,
+          -4
+        ],
+        "preview_line_vertices": 24,
+        "preview_triangle_vertices": 36
+      }
+    },
+    {
+      "name": "AirPlace Sides submits only actual face geometry",
+      "passed": true,
+      "detail": {
+        "cached_hit": [
+          8,
+          73,
+          -4
+        ],
+        "preview_line_vertices": 0,
+        "preview_triangle_vertices": 36
+      }
+    },
+    {
+      "name": "AirPlace Lines submits only actual edge geometry",
+      "passed": true,
+      "detail": {
+        "cached_hit": [
+          8,
+          73,
+          -4
+        ],
+        "preview_line_vertices": 24,
+        "preview_triangle_vertices": 0
+      }
+    },
+    {
+      "name": "AirPlace render toggle removes submitted overlay geometry",
+      "passed": true,
+      "detail": {
+        "cached_hit": [
+          8,
+          73,
+          -4
+        ],
+        "preview_line_vertices": 0,
+        "preview_triangle_vertices": 0
+      }
+    },
+    {
+      "name": "AirPlace translucent sides produce real colored GPU pixels",
+      "passed": true,
+      "detail": {
+        "sides": 29564,
+        "lines": 1092,
+        "off": 0
+      }
+    },
+    {
+      "name": "AirPlace lines produce real colored GPU pixels",
+      "passed": true,
+      "detail": {
+        "sides": 29564,
+        "lines": 1092,
+        "off": 0
+      }
+    },
+    {
+      "name": "AirPlace places a real unsupported block through the server",
+      "passed": true,
+      "detail": "minecraft:stone"
+    },
+    {
+      "name": "Occupied AirPlace target stops rendering the preview",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AirPlace restores empty-space block use",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirPlace changed range updates the actual cached target",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirPlace default range reads actual block interaction attribute",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirPlace actual entity collision prevents block inside player",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirPlace excludes nonplaceable hand items from preview",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirPlace recognizes a placeable offhand",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirPlace actually places with offhand after main-hand pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirPlace spawn egg enters actual preview path",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirPlace spawn egg produces a real server entity",
+      "passed": true,
+      "detail": [
+        {
+          "baby": false,
+          "distance": 2.0,
+          "health": 10.0,
+          "hurt_time": 0,
+          "id": 9,
+          "kind": "mob",
+          "pos": [
+            8.5,
+            72.0,
+            -4.5
+          ],
+          "type": "minecraft:cow"
+        }
+      ]
+    },
+    {
+      "name": "AirPlace armor stand produces a real server entity",
+      "passed": true,
+      "detail": "minecraft:gold_block"
+    },
+    {
+      "name": "Grounded firework enters AirPlace preview path",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirPlace grounded firework use consumes a real server item",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary crosshair ignores floating source water",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary block use does not replace unpicked source water",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "LiquidInteract picks actual source-fluid shape",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:water",
+          "distance": 1.699999988079071,
+          "face": "north",
+          "inside": false,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.62000000476837,
+            -5.0
+          ],
+          "pos": [
+            8,
+            73,
+            -5
+          ],
+          "state": "minecraft:water[level=0]"
+        },
+        "entity": null,
+        "kind": "block"
+      }
+    },
+    {
+      "name": "LiquidInteract enables actual block placement into source water",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Existing ordinary solid hit wins over nearer source fluid",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:stone",
+          "distance": 3.699400323889275,
+          "face": "north",
+          "inside": false,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.62000000476837,
+            -3.0
+          ],
+          "pos": [
+            8,
+            73,
+            -3
+          ],
+          "state": "minecraft:stone"
+        },
+        "entity": null,
+        "kind": "block"
+      }
+    },
+    {
+      "name": "Flowing-water fixture remains a real non-source state",
+      "passed": true,
+      "detail": "minecraft:water[level=1]"
+    },
+    {
+      "name": "LiquidInteract excludes flowing fluid from source-only pick",
+      "passed": true,
+      "detail": {
+        "block": null,
+        "entity": null,
+        "kind": "none"
+      }
+    },
+    {
+      "name": "Fluid ray preserves actual inside-hit flag and direction",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:water",
+          "distance": 0.004999999999999893,
+          "face": "north",
+          "inside": true,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.62000000476837,
+            -6.694999988079071
+          ],
+          "pos": [
+            8,
+            73,
+            -7
+          ],
+          "state": "minecraft:water[level=0]"
+        },
+        "entity": null,
+        "kind": "block"
+      }
+    },
+    {
+      "name": "Disabling LiquidInteract restores fluid miss",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "trace_baseline chooses the actual expected hit",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:stone",
+          "distance": 2.5385665297143634,
+          "face": "north",
+          "inside": false,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.1791825529972,
+            -4.0
+          ],
+          "pos": [
+            8,
+            73,
+            -4
+          ],
+          "state": "minecraft:stone"
+        },
+        "entity": {
+          "distance": 1.5739112605277332,
+          "health": 10.0,
+          "id": 15,
+          "pos": [
+            8.5,
+            72.0,
+            -4.5
+          ],
+          "type": "minecraft:cow"
+        },
+        "kind": "entity"
+      }
+    },
+    {
+      "name": "Ordinary entity trace prevents mining behind generated cow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "trace_main_pickaxe chooses the actual expected hit",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:stone",
+          "distance": 2.5385665297143634,
+          "face": "north",
+          "inside": false,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.1791825529972,
+            -4.0
+          ],
+          "pos": [
+            8,
+            73,
+            -4
+          ],
+          "state": "minecraft:stone"
+        },
+        "entity": null,
+        "kind": "block"
+      }
+    },
+    {
+      "name": "NoMiningTrace actually mines behind selected entity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "trace_offhand_pickaxe chooses the actual expected hit",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:dirt",
+          "distance": 2.5385665297143634,
+          "face": "north",
+          "inside": false,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.1791825529972,
+            -4.0
+          ],
+          "pos": [
+            8,
+            73,
+            -4
+          ],
+          "state": "minecraft:dirt"
+        },
+        "entity": null,
+        "kind": "block"
+      }
+    },
+    {
+      "name": "NoMiningTrace honors an offhand pickaxe tag",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "trace_requires_pickaxe chooses the actual expected hit",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:dirt",
+          "distance": 2.5385665297143634,
+          "face": "north",
+          "inside": false,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.1791825529972,
+            -4.0
+          ],
+          "pos": [
+            8,
+            73,
+            -4
+          ],
+          "state": "minecraft:dirt"
+        },
+        "entity": {
+          "distance": 1.5739112605277332,
+          "health": 10.0,
+          "id": 26,
+          "pos": [
+            8.5,
+            72.0,
+            -4.5
+          ],
+          "type": "minecraft:cow"
+        },
+        "kind": "entity"
+      }
+    },
+    {
+      "name": "Default NoMiningTrace requires a pickaxe in either hand",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "trace_any_tool chooses the actual expected hit",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:dirt",
+          "distance": 2.5385665297143634,
+          "face": "north",
+          "inside": false,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.1791825529972,
+            -4.0
+          ],
+          "pos": [
+            8,
+            73,
+            -4
+          ],
+          "state": "minecraft:dirt"
+        },
+        "entity": null,
+        "kind": "block"
+      }
+    },
+    {
+      "name": "NoMiningTrace optional pickaxe restriction supports actual other tool",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "trace_blacklisted_cow chooses the actual expected hit",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:stone",
+          "distance": 2.5385665297143634,
+          "face": "north",
+          "inside": false,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.1791825529972,
+            -4.0
+          ],
+          "pos": [
+            8,
+            73,
+            -4
+          ],
+          "state": "minecraft:stone"
+        },
+        "entity": {
+          "distance": 1.5739112605277332,
+          "health": 10.0,
+          "id": 33,
+          "pos": [
+            8.5,
+            72.0,
+            -4.5
+          ],
+          "type": "minecraft:cow"
+        },
+        "kind": "entity"
+      }
+    },
+    {
+      "name": "NoMiningTrace blacklist preserves actual entity interaction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "trace_raw_max_range chooses the actual expected hit",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:stone",
+          "distance": 2.5385665297143634,
+          "face": "north",
+          "inside": false,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.1791825529972,
+            -4.0
+          ],
+          "pos": [
+            8,
+            73,
+            -4
+          ],
+          "state": "minecraft:stone"
+        },
+        "entity": null,
+        "kind": "block"
+      }
+    },
+    {
+      "name": "NoMiningTrace preserves source raw-block return past shorter block reach",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NoMiningTrace keeps entity hit when there is no real block to substitute",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "trace_disabled chooses the actual expected hit",
+      "passed": true,
+      "detail": {
+        "block": {
+          "block": "minecraft:stone",
+          "distance": 2.5385665297143634,
+          "face": "north",
+          "inside": false,
+          "loaded": true,
+          "point": [
+            8.5,
+            73.1791825529972,
+            -4.0
+          ],
+          "pos": [
+            8,
+            73,
+            -4
+          ],
+          "state": "minecraft:stone"
+        },
+        "entity": {
+          "distance": 1.5739112605277332,
+          "health": 10.0,
+          "id": 39,
+          "pos": [
+            8.5,
+            72.0,
+            -4.5
+          ],
+          "type": "minecraft:cow"
+        },
+        "kind": "entity"
+      }
+    },
+    {
+      "name": "Disabling NoMiningTrace restores actual entity obstruction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Starscript fixture has actual held stack",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Starscript hand registry id is live",
+      "passed": true,
+      "detail": {
+        "dispatched": 1,
+        "executions": 1,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript hand count is live",
+      "passed": true,
+      "detail": {
+        "dispatched": 2,
+        "executions": 2,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript inventory slot maps actual hotbar",
+      "passed": true,
+      "detail": {
+        "dispatched": 3,
+        "executions": 3,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript item counter resolves unqualified registry id",
+      "passed": true,
+      "detail": {
+        "dispatched": 4,
+        "executions": 4,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript offhand uses actual item durability",
+      "passed": true,
+      "detail": {
+        "dispatched": 5,
+        "executions": 5,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript inventory slot40 is offhand",
+      "passed": true,
+      "detail": {
+        "dispatched": 6,
+        "executions": 6,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript potion presence uses actual effects",
+      "passed": true,
+      "detail": {
+        "dispatched": 7,
+        "executions": 7,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript potion amplifier maps source level",
+      "passed": true,
+      "detail": {
+        "dispatched": 8,
+        "executions": 8,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript effect duration is measured ticks",
+      "passed": true,
+      "detail": {
+        "dispatched": 9,
+        "executions": 9,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript unknown effects return null",
+      "passed": true,
+      "detail": {
+        "dispatched": 10,
+        "executions": 10,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript refreshes changed item count",
+      "passed": true,
+      "detail": {
+        "dispatched": 11,
+        "executions": 11,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript refreshes cleared effects",
+      "passed": true,
+      "detail": {
+        "dispatched": 12,
+        "executions": 12,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript world clock formats actual noon",
+      "passed": true,
+      "detail": {
+        "dispatched": 13,
+        "executions": 13,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript actual clear weather",
+      "passed": true,
+      "detail": {
+        "dispatched": 14,
+        "executions": 14,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript camera reads actual position",
+      "passed": true,
+      "detail": {
+        "dispatched": 15,
+        "executions": 15,
+        "last_error": null
+      }
+    },
+    {
+      "name": "Starscript opposite dimension converts actual coordinate",
+      "passed": true,
+      "detail": {
+        "dispatched": 16,
+        "executions": 16,
+        "last_error": null
+      }
+    },
+    {
+      "name": "AirPlace actual settings page opens",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Color GUI atomically changes actual red channel",
+      "passed": true,
+      "detail": {
+        "a": 128,
+        "b": 0,
+        "g": 0,
+        "r": 23,
+        "rainbow": false
+      }
+    },
+    {
+      "name": "Color GUI changes actual opacity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Color GUI rejects out-of-range channel without mutation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Color GUI toggles actual rainbow flag",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Color GUI global rainbow speed persists",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "date": "2026-10-30",
+  "full_meteor_parity": false,
+  "binary_sha256": "fe3cf9a0e1391fed63c0dc369d861e1523d1ec1bb0aa4454d86cf1a9fb209567",
+  "scope": "Isolated singleplayer smoke checks; no differential parity proof",
+  "visual_review": "Inspected default-alpha outline/faces, translucent Sides and color controls screenshots; actual pixel comparison and geometry checks passed. No GPU occlusion or full visual parity claim.",
+  "matching_source_archive": {
+    "file": "meteor-horizon-source-26-module-checkpoint.zip",
+    "sha256": "c34b13c2253e1a1a28eb8aa6321e4be000d86249303aaf00a28e9f668b5e7c7a"
+  },
+  "matching_source_package": {
+    "file": "meteor-client-native-26-module-checkpoint.hmod",
+    "sha256": "30daa6e44678255dbcd3d7e90535d803121a5e92d03b028df466e41e38e9dcb5"
+  }
+}

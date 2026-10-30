@@ -1,0 +1,316 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "modules": [
+    "Zoom",
+    "AutoJump",
+    "ClickGUI",
+    "HUD",
+    "AutoWalk",
+    "SafeWalk",
+    "Step",
+    "ReverseStep",
+    "FastClimb",
+    "Spider",
+    "Parkour",
+    "Timer",
+    "Friends"
+  ],
+  "checks": [
+    {
+      "name": "Meteor adapter is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline zoom factor is one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom reaches factor six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity reduced before mouse curve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default Zoom hides hands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom HUD option reaches adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cinematic camera reaches mouse options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom fade-out restores factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD and hands restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Player settled on ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump produces upward motion without jump input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump raises player above the platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump leaves ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoJump returns to rest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Right Shift opens native GUI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI search accepts text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI left click toggles selected module",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI right click opens module settings",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Settings enabled row toggles module off",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI captures keyboard binding",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD button opens editor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD defaults disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD editor enables overlay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD watermark drag persists its offset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Escape returns from HUD to modules",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Right Shift closes native GUI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoWalk Simple moves without held keys",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Manual movement disables AutoWalk",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoWalk releases forced movement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Missing path manager disables Smart mode explicitly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "SafeWalk keeps player on platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling SafeWalk permits leaving edge",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "step_disabled fixture reset reaches start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary walking cannot climb full block",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "step_enabled fixture reset reaches start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Step climbs full block without jumping",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "step_safe_no_crystals fixture reset reaches start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "SafeStep permits safe ascent with no crystals",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "step_restored fixture reset reaches start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Step restores ordinary height",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ReverseStep writes configured downward speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling ReverseStep restores normal vertical velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary wall collision does not climb",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Spider climbs solid wall",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Spider restores wall collision",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FastClimb applies configured ladder speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FastClimb timer changes client tick pacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Leaving ladder clears FastClimb timer override",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Timer doubles observed client pacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Timer restores client pacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary ledge walk does not jump",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Parkour jumps automatically at ledge",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Friends button opens native page",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Friends GUI adds offline name",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Friends rejects case-insensitive duplicate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Friends Remove button updates real list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Friends Escape returns to modules",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "date": "2026-10-30",
+  "full_meteor_parity": false,
+  "binary_sha256": "94f1d8b06e26e9703be78b9733226b46e043969d1e636168f547f2ed134fbe2f",
+  "scope": "Isolated singleplayer smoke checks; no differential parity proof",
+  "visual_review": "All gameplay and GUI assertions passed. Third-person SafeWalk sneak-mode outline and Friends screenshots retained for visual review. No differential parity proof."
+}

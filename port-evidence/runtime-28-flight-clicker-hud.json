@@ -1,0 +1,420 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "modules": [
+    "Zoom",
+    "AutoJump",
+    "AutoClicker",
+    "MacrosNBTImport",
+    "Flight",
+    "TextHUD",
+    "HUDInstances",
+    "HudBox"
+  ],
+  "checks": [
+    {
+      "name": "Meteor adapter is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline zoom factor is one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom reaches factor six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity reduced before mouse curve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default Zoom hides hands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom HUD option reaches adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cinematic camera reaches mouse options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom fade-out restores factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD and hands restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Player settled on ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump produces upward motion without jump input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump raises player above the platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump leaves ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoJump returns to rest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT macro import preserves definitions and duplicate order",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT macro import maps modern modifier chord",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT unsupported macro bind becomes unset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT unsupported bind is reported",
+      "passed": true,
+      "detail": "[{\"text\": \"[meteor] imported 0 modules, 12 settings, 0 friends, 4 macros; 1 unsupported entries skipped.\"}, {\"text\": \"[meteor import] imported macro definitions in source order, including duplicate names. unsupported keybinds are left unset; review skips. no imported message was executed.\"}, {\"text\": \"[meteor import] skipped: macro[3].keybind: modifier caps_lock is not supported by the native input bridge\"}, {\"text\": \"[meteor] zoom: true\"}, {\"text\": \"[meteor] zoom.zoom: 2\"}, {\"text\": \"[meteor] zoom.smooth: false\"}, {\"text\": \"[meteor] no macros are currently scheduled\"}, {\"text\": \"[meteor] auto-jump: false\"}, {\"text\": \"[meteor] auto-jump: true\"}, {\"translate\": \"commands.teleport.success.location.single\", \"with\": [{\"click_event\": {\"action\": \"suggest_command\", \"command\": \"/tell player89655 \"}, \"insertion\": \"player89655\", \"text\": \"player89655\"}, {\"text\": \"-0.500000\"}, {\"text\": \"68.000000\"}, {\"text\": \"0.500000\"}]}, {\"translate\": \"commands.fill.success\", \"with\": [25]}, {\"text\": \"[meteor] zoom: false\"}, {\"text\": \"[meteor] zoom.cinematic: true\"}, {\"text\": \"[meteor] zoom.hide-hud: true\"}, {\"text\": \"[meteor] zoom: true\"}, {\"translate\": \"commands.difficulty.success\", \"with\": [{\"translate\": \"options.difficulty.peaceful\"}]}]"
+    },
+    {
+      "name": "NBT macro import preserves all other settings",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT import executes no messages",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT macro import preserves active Zoom lifecycle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Explicit imported macro executes local command",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Duplicate macro lookup retains first source entry",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Malformed NBT macro import is atomic",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Rejected import preserves live handles",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Gzip replacement is loaded without executing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT replacement preserves queued old macro handle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT replacement uses new live macro handle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Empty NBT clears live definitions without dispatch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabled AutoClicker does not use actual items",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoClicker Press consumes real server items",
+      "passed": true,
+      "detail": 7
+    },
+    {
+      "name": "Disabling AutoClicker stops after queued source click",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zero-delay Press exceeds source delay-two cadence",
+      "passed": true,
+      "detail": {
+        "delay2": 7,
+        "delay0": 20
+      }
+    },
+    {
+      "name": "AutoClicker Hold follows actual vanilla use cooldown",
+      "passed": true,
+      "detail": {
+        "hold": 5,
+        "press0": 20
+      }
+    },
+    {
+      "name": "Changing Hold to Disabled preserves source held-key state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoClicker screen fixture opens real inventory",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoClicker screen filter prevents actual item use",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoClicker enabled screen mode uses actual server item",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoClicker left Hold mines actual survival stone",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Disabling AutoClicker releases held attack",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Flight Abilities grants local survival flight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Flight Abilities actually holds airborne altitude",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Flight Abilities jump actually ascends",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Flight Abilities sneak actually descends",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Flight Abilities actually moves horizontally",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Flight preserves fly speed while accepting actual server creative abilities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Flight accepts actual survival vulnerability while preserving local flight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Flight restores survival abilities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabled Flight resumes actual falling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Velocity mode does not grant ability flight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Velocity physical jump key actually ascends",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Velocity vertical-speed-match increases actual ascent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Velocity no-sneak suppresses local posture without losing descent input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Live mode change reaches actual Abilities behavior",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Flight Packet upgrades actual rotation sends into position-bearing packets",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Flight Packet sends actual downward anti-kick offset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Flight Normal actually alternates flying and off intervals",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD GUI creates real source Text instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "TextHud evaluates live Starscript through renderer",
+      "passed": true,
+      "detail": {
+        "text": "Live count 7",
+        "visible": true
+      }
+    },
+    {
+      "name": "TextHud invalid scale is rejected atomically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "TextHud condition hides false text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "TextHud changed condition reevaluates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "TextHud centered source box uses physical integer geometry",
+      "passed": true,
+      "detail": {
+        "rect": [
+          268.5,
+          69.0,
+          63.0,
+          10.0
+        ],
+        "scale": 2.0,
+        "expected_x": 537
+      }
+    },
+    {
+      "name": "HUD permits repeated Text kinds with independent identities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Repeated Text settings remain independent",
+      "passed": true,
+      "detail": {
+        "text-1": {
+          "text": "Live count 7",
+          "visible": true
+        },
+        "text-1-copy1": {
+          "text": "Second 8",
+          "visible": true
+        }
+      }
+    },
+    {
+      "name": "TextHud refreshes actual engine state after update delay",
+      "passed": true,
+      "detail": {
+        "text-1": {
+          "text": "Live count 3",
+          "visible": true
+        },
+        "text-1-copy1": {
+          "text": "Second 4",
+          "visible": true
+        }
+      }
+    },
+    {
+      "name": "HUD GUI deletes only the selected duplicate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD profile restores repeated Text instances and their settings",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "New HUD instance work preserves legacy preset layout",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD instance schema persists to generated config on disk",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "date": "2026-10-30",
+  "full_meteor_parity": false,
+  "binary_sha256": "d522e1d46456843b59c86f8f1e12e5371fdfa9723e8bfa54953d59ba7cbc8c78",
+  "scope": "Isolated singleplayer smoke checks; no differential parity proof",
+  "visual_review": "Reviewed hud-text-live.png and hud-text-settings.png: independent centered live text is readable; settings controls are readable. Initial added Text can overlap legacy presets before positioning. No full original-font or layout parity claim.",
+  "matching_source_archive": {
+    "file": "meteor-horizon-source-28-module-checkpoint.zip",
+    "sha256": "a0a714476c9c3d04b2bab4af29a761a05908e46efa4d15548ee698b8584c2d20"
+  },
+  "matching_source_package": {
+    "file": "meteor-client-native-28-module-checkpoint.hmod",
+    "sha256": "deee7cc3a9f056baa1b4657d0e5d6dcdff7abfe21b2487fd36bb522b22e7d07d"
+  }
+}

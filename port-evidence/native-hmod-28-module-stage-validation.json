@@ -1,0 +1,32 @@
+{
+  "package": "C:\\Users\\zacki\\Documents\\Codex\\2026-10-30\\x20-c-users-zacki-appdata-roaming\\outputs\\meteor-client-native-28-module-checkpoint.hmod",
+  "accepted": {
+    "ok": true,
+    "report": {
+      "api": "native-source-1/b76ae35f5b9b2d82c0e6818fc0ef93bb5277ec73",
+      "api_level": null,
+      "capabilities": [],
+      "game": "26.3",
+      "id": "meteor-client",
+      "kind": "native-mod",
+      "requires": [],
+      "sha256": "deee7cc3a9f056baa1b4657d0e5d6dcdff7abfe21b2487fd36bb522b22e7d07d",
+      "side": null,
+      "signed": false,
+      "size": 1216223,
+      "version": "0.1.0-dev"
+    }
+  },
+  "content_parser_rejection": "error: horizon-mod.toml: missing\n",
+  "stage": "D:\\Codex-Meteor-Build\\verification\\staged-28-module-5c3138cf7594457fa8f64491f29b51e0",
+  "verification": {
+    "ok": true,
+    "id": "meteor-client",
+    "features": [
+      "horizon-client/meteor"
+    ],
+    "changed_files": 168,
+    "unchanged_staged_files": 3500,
+    "sha256": "deee7cc3a9f056baa1b4657d0e5d6dcdff7abfe21b2487fd36bb522b22e7d07d"
+  }
+}

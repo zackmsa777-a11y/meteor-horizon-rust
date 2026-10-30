@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "modules": [
+    "Zoom",
+    "AutoJump",
+    "Step",
+    "ReverseStep"
+  ],
+  "checks": [
+    {
+      "name": "Meteor adapter is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline zoom factor is one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom reaches factor six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity reduced before mouse curve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default Zoom hides hands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom HUD option reaches adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cinematic camera reaches mouse options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom fade-out restores factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD and hands restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Player settled on ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump produces upward motion without jump input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump raises player above the platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump leaves ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoJump returns to rest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "step_disabled fixture reset reaches start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary walking cannot climb full block",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "step_enabled fixture reset reaches start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Step climbs full block without jumping",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "step_safe_no_crystals fixture reset reaches start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "SafeStep permits safe ascent with no crystals",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "step_restored fixture reset reaches start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Step restores ordinary height",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ReverseStep writes configured downward speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling ReverseStep restores normal vertical velocity",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "date": "2026-10-30",
+  "full_meteor_parity": false,
+  "binary_sha256": "ebab33279ff7a8bde1d78463543be1fabcbf3accdebd5994048a3cd76661dd58",
+  "scope": "Isolated singleplayer smoke checks; no differential parity proof",
+  "visual_review": "Screenshots retained for review; not full visual parity proof.",
+  "matching_source_archive": {
+    "file": "meteor-horizon-source-26-module-tested-fixtures.zip",
+    "sha256": "561609561bd146982c14dff42754f24dc5bc4a9b9e90923e06e4833fcf30e8ba"
+  },
+  "matching_source_package": {
+    "file": "meteor-client-native-26-module-checkpoint.hmod",
+    "sha256": "30daa6e44678255dbcd3d7e90535d803121a5e92d03b028df466e41e38e9dcb5"
+  }
+}

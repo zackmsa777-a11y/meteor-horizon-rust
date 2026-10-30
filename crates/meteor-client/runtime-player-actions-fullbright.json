@@ -1,0 +1,256 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "modules": [
+    "Zoom",
+    "AutoJump",
+    "ClickGUI",
+    "HUD",
+    "AutoRespawn",
+    "BreakDelay",
+    "FastUse",
+    "Fullbright"
+  ],
+  "checks": [
+    {
+      "name": "Meteor adapter is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline zoom factor is one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom reaches factor six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity reduced before mouse curve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default Zoom hides hands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom HUD option reaches adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cinematic camera reaches mouse options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom fade-out restores factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD and hands restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Player settled on ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump produces upward motion without jump input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump raises player above the platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump leaves ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoJump returns to rest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Right Shift opens native GUI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI search accepts text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI left click toggles selected module",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI right click opens module settings",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Settings enabled row toggles module off",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI captures keyboard binding",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI captures keyboard modifier chord",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD button opens editor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD defaults disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD editor enables overlay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD watermark drag persists its offset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Escape returns from HUD to modules",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Right Shift closes native GUI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "BreakDelay accelerates real held-button block breaking",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling BreakDelay restores ordinary breaking cadence",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FastUse increases actual bottle uses",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FastUse item filter retains normal unlisted-item delay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unknown FastUse item edit leaves settings unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary death opens death screen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoRespawn returns to live gameplay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoRespawn restores death screen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Fullbright Gamma visibly lights sealed chamber",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Gamma restores darkness",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Luminance selects block-only floor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Luminance visibly lights remeshed chamber",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Luminance preserves actual world light data",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Luminance switches independent sky channel",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sky luminance changes visible lighting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Luminance clears render floors",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Potion mode refreshes actual Night Vision duration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Potion mode visibly lights chamber",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Potion removes client Night Vision",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "date": "2026-10-30",
+  "full_meteor_parity": false,
+  "binary_sha256": "638bc94a47b11120083eb2c61873dfc2b8e8a389146204ac1ae517bd206d45fa",
+  "scope": "Isolated singleplayer smoke checks; no differential parity proof",
+  "visual_review": "Brightness comparisons passed; screenshots saved for review."
+}

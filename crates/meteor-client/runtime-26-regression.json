@@ -1,0 +1,549 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "modules": [
+    "Zoom",
+    "AutoJump",
+    "ClickGUI",
+    "HUD",
+    "NBTImport",
+    "AutoRespawn",
+    "BreakDelay",
+    "FastUse",
+    "Sneak",
+    "NoSlow",
+    "Slippy",
+    "Profiles",
+    "Macros",
+    "Starscript",
+    "MacrosGUI",
+    "ProfilesGUI",
+    "Reach",
+    "Multitask"
+  ],
+  "checks": [
+    {
+      "name": "Meteor adapter is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline zoom factor is one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom reaches factor six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity reduced before mouse curve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default Zoom hides hands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom HUD option reaches adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cinematic camera reaches mouse options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom fade-out restores factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD and hands restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Player settled on ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump produces upward motion without jump input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump raises player above the platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump leaves ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoJump returns to rest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Right Shift opens native GUI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI search accepts text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI left click toggles selected module",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI right click opens module settings",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Settings enabled row toggles module off",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI captures keyboard binding",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI captures keyboard modifier chord",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD button opens editor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD defaults disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD editor enables overlay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD watermark drag persists its offset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Escape returns from HUD to modules",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Right Shift closes native GUI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT module import reaches live Zoom behavior",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT keybind imports modifier and key",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unported NBT module is not registered",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT friends import deduplicates offline names",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Friends NBT import preserves active module lifecycle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Malformed NBT leaves live config untouched",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "BreakDelay accelerates real held-button block breaking",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling BreakDelay restores ordinary breaking cadence",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FastUse increases actual bottle uses",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FastUse item filter retains normal unlisted-item delay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unknown FastUse item edit leaves settings unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary death opens death screen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoRespawn returns to live gameplay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoRespawn restores death screen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Vanilla Sneak crouches without a held key",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Vanilla Sneak slows actual movement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Packet Sneak preserves local walking speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Packet Sneak sends actual sneak input to integrated server",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Sneak restores ordinary posture",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Sneak clears outgoing sneak input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NoSlow removes actual shield-use movement slowdown",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NoSlow items setting restores shield slowdown",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NoSlow removes soul_sand walking slowdown",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NoSlow removes honey_block walking slowdown",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Slippy increases real distance after releasing input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Empty Slippy whitelist restores ordinary friction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Water fixture reaches actual fluid sensing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NoSlow changes local water getter while retaining raw fluid state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling NoSlow restores water getter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Profile command creates isolated persistent store",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Module profile restores active Zoom behavior and settings",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Module profile preserves Friends outside its scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Profile fixture changes actual HUD enabled state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD profile restores saved overlay visibility",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD profile preserves active module settings and behavior",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "New profile defaults to no saved sections",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unsupported profile section leaves store untouched",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Malformed profiles preserve live config and source file",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Profile delete persists removal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "First profile test client exits cleanly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Matching profiles autoload in insertion order on generated-world reopen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Macro chord requires its modifier",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Bound macro evaluates Starscript and dispatches local command",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Delayed macro observes edits to the scheduled object",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Clearing scheduled macro prevents later dispatch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Removing macro preserves already scheduled object like source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Macro skips invalid expression and reads actual player context",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Macro dispatches evaluated command to actual isolated server",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Macro profile restores saved definitions and preserves module lifecycle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Macro profile replacement preserves previously queued object identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Macros tab opens its actual editor page",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Macro GUI persists message and modifier binding",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI-created macro executes through its real keybind",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Profiles tab opens its actual page",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Profiles GUI creates and lists its profile",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Profiles GUI requests confirmation before replacing snapshot",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Confirmed profile save completes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Confirmed profile deletion updates visible list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Distant chest is outside ordinary client reach",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reach opens actual distant chest through integrated server",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Reach restores ordinary targeting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reach extends actual entity targeting independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabled Reach respects actual reduced entity attribute",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Extended entity targeting dispatches an actual visible attack",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Wall beyond shorter block reach prevents actual entity attack",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "multitask_mining_baseline retains ongoing item use",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary item use blocks continued mining",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "multitask_mining_enabled retains ongoing item use",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Multitask permits actual mining while using shield",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "multitask_mining_entities_off retains ongoing item use",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Entity attack setting does not disable simultaneous mining",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabled entity-attack setting preserves use-item attack gate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Multitask attacks actual entity while using item",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Multitask restores use-item attack gate",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "date": "2026-10-30",
+  "full_meteor_parity": false,
+  "binary_sha256": "fe3cf9a0e1391fed63c0dc369d861e1523d1ec1bb0aa4454d86cf1a9fb209567",
+  "scope": "Isolated singleplayer smoke checks; no differential parity proof",
+  "visual_review": "Screenshots retained for review; not full visual parity proof.",
+  "matching_source_archive": {
+    "file": "meteor-horizon-source-26-module-checkpoint.zip",
+    "sha256": "c34b13c2253e1a1a28eb8aa6321e4be000d86249303aaf00a28e9f668b5e7c7a"
+  },
+  "matching_source_package": {
+    "file": "meteor-client-native-26-module-checkpoint.hmod",
+    "sha256": "30daa6e44678255dbcd3d7e90535d803121a5e92d03b028df466e41e38e9dcb5"
+  }
+}

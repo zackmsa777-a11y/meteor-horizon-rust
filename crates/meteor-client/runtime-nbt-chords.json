@@ -1,0 +1,188 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "modules": [
+    "Zoom",
+    "AutoJump",
+    "ClickGUI",
+    "HUD",
+    "NBTImport"
+  ],
+  "checks": [
+    {
+      "name": "Meteor adapter is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline zoom factor is one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom reaches factor six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity reduced before mouse curve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default Zoom hides hands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom HUD option reaches adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cinematic camera reaches mouse options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom fade-out restores factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD and hands restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Player settled on ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump produces upward motion without jump input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump raises player above the platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump leaves ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoJump returns to rest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Right Shift opens native GUI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI search accepts text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI left click toggles selected module",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI right click opens module settings",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Settings enabled row toggles module off",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI captures keyboard binding",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI captures keyboard modifier chord",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD button opens editor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD defaults disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD editor enables overlay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD watermark drag persists its offset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Escape returns from HUD to modules",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Right Shift closes native GUI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT module import reaches live Zoom behavior",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT keybind imports modifier and key",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unported NBT module is not registered",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "NBT friends import deduplicates offline names",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Friends NBT import preserves active module lifecycle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Malformed NBT leaves live config untouched",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "date": "2026-10-30",
+  "full_meteor_parity": false,
+  "binary_sha256": "162ca1d3039fc4bbc43ae203a714a1ef877b23dfafd1678bbb95cbdf082c9a0c",
+  "scope": "Isolated singleplayer smoke checks; no differential parity proof",
+  "visual_review": "GUI modifier chord and original-format NBT live import assertions passed. Fixtures were generated in the isolated test directory; no user configurations read. Malformed import preserved full live config."
+}

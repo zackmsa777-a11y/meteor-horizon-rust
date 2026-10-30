@@ -1,0 +1,271 @@
+{
+  "date": "2026-10-30",
+  "passed": true,
+  "exit_code": 0,
+  "scope": "Isolated singleplayer Zoom/AutoJump/AirJump/Sprint/GUIMove/HighJump smoke test; not complete parity",
+  "checks": [
+    {
+      "name": "Meteor adapter is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline zoom factor is one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom reaches factor six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity reduced before mouse curve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default Zoom hides hands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom HUD option reaches adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cinematic camera reaches mouse options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom fade-out restores factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD and hands restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Player settled on ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump produces upward motion without jump input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump raises player above the platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump leaves ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoJump returns to rest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirJump fixture is airborne",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Rebound jump key creates upward motion in air",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirJump captures press height",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Held rebound jump maintains captured level",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AirJump clears activation height",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AirJump fixture returns to ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline forward movement does not sprint",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Strict Sprint starts without sprint-key input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Strict Sprint increases actual movement speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Strict Sprint rejects sideways-only movement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Rage Sprint supports sideways movement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Rage Sprint increases sideways speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Rage stationary option keeps sprinting without movement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Sprint restores vanilla stationary behavior",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUIMove fixture opens inventory",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Inventory normally blocks movement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUIMove allows inventory movement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Global input release clears GUIMove movement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUIMove accepts a fresh press after global release",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUIMove releases movement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Inventory arrow key rotates view",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI-only setting excludes vanilla inventory",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUIMove fixture closes inventory",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_jump_disabled starts grounded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline jump rises normally",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_jump_double starts grounded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HighJump multiplier increases measured jump height",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_jump_zero starts grounded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zero multiplier removes normal vertical jump",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high_jump_restored starts grounded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling HighJump restores normal jump",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "first_attempt": "Velocity threshold 0.1 missed the early impulse between control samples. Recorded positive velocity 0.083 and height gain 1.166 showed real jumps. Corrected test requires positive velocity and height gain >1.0; fresh full run passed.",
+  "air_jump_first_attempt": "Harness options.txt lacked version:5023, causing the legacy keycode fixer to reject the rebound J binding. Added the version marker; fresh run passed.",
+  "auto_jump_sampling_correction": "Fixed periodic-sampling alias: samples can all occur after the apex. The current check proves upward displacement from consecutive measured heights and separately requires >1 block gain and airborne state.",
+  "modules": [
+    "Zoom",
+    "AutoJump",
+    "AirJump",
+    "Sprint",
+    "GUIMove",
+    "HighJump"
+  ],
+  "air_jump_observation": "Recorded maintain-level samples show repeated falling-to-rising transitions while J remains held; no repeated key presses supplied.",
+  "visual_review": "Baseline and zoom screenshots inspected: magnification and hand hiding visible.",
+  "source_sha256": {
+    "crates/horizon-client/src/game.rs": "3a6e00cdead4981ddafa1da3c6fd5f55ea8f02355bba642e7e07d5b27c82497e",
+    "crates/horizon-client/src/motion.rs": "b3ffcb70cbd3ba8c6c849c6fb6c40a95b853ead503ca73a7f534588425281f46",
+    "crates/horizon-client/src/sprint.rs": "632b9d7961716883d253f26de5a41df86be8a7de20e46cbc12504f64410df6da",
+    "crates/horizon-client/src/game/meteor.rs": "e187e94e8f7a63adb6feda4bb9aa90307e8a2069e4066597105e62a5d909431f",
+    "crates/horizon-client/src/game/agent.rs": "8bdc4613835773e1efeb32997778a9dac674cdd4260c75e89c78b5a0f876290c",
+    "crates/horizon-client/src/game/control.rs": "7789e88831aa99acd7fbae217230035a7cb315c8d794c7b6a54cd59b55b5e5e8",
+    "crates/horizon-client/src/game/remote.rs": "0d1439a537a761308873a57c0409f1440b79557b56183c6b07825391ca938230",
+    "crates/horizon-client/src/game/enchant_effects.rs": "c1e23294026c505a52ed4c44ecd915449248d9ef829e60d0ce5c4300a05eb9d3",
+    "crates/horizon-world/src/living_motion.rs": "173ff9ef6a3ae5eb4021678dfc2fe33a3d1ff91225eeb7596b02852a147360b0",
+    "crates/meteor-client/src/lib.rs": "fc308d93ff849ada95c8c7f70c1f34c755862fbe1351ee88abfdfca4bd115683",
+    "crates/meteor-client/src/registry.rs": "386ef51bcd35774dc0897d68b56da9325b462a1d813d8830b12a3d2cbdcbcc8b",
+    "crates/meteor-client/src/modules/air_jump.rs": "9b3f2fb795c06d5596b72e9abfe538dc9920d2f38b20c1d032f57d7358a51cba",
+    "crates/meteor-client/src/modules/auto_jump.rs": "bfd911cf6ffafa19b3d973968e267ed29a4cb18c0d717b645bb6590177334493",
+    "crates/meteor-client/src/modules/gui_move.rs": "de9bfe63da6f69fb5c493ba76a402c9a6341e2f98bec6b2d31c896950f3c53f8",
+    "crates/meteor-client/src/modules/high_jump.rs": "2ab938f7ceecd6e4fdd5ad2609cd69561529a2573022447861aad5e8ae442cd8",
+    "crates/meteor-client/src/modules/mod.rs": "7f809efb16c464a45735de226d15b6bb7ce8e9ae37b1ccf2f6af8ff033609d00",
+    "crates/meteor-client/src/modules/sprint.rs": "3ded959507c00cefbca6ef47200e3532134e351b7fbd7e783284847c07147e0f",
+    "crates/meteor-client/src/modules/zoom.rs": "6ca76ac44ba9488f131db1adc8d37d2b92ce586824a3ece670166eaebab72798"
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "modules": [
+    "Zoom",
+    "AutoJump",
+    "Reach",
+    "Multitask"
+  ],
+  "checks": [
+    {
+      "name": "Meteor adapter is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline zoom factor is one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom reaches factor six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity reduced before mouse curve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default Zoom hides hands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom HUD option reaches adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cinematic camera reaches mouse options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom fade-out restores factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD and hands restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Player settled on ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump produces upward motion without jump input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump raises player above the platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump leaves ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoJump returns to rest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Distant chest is outside ordinary client reach",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reach opens actual distant chest through integrated server",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Reach restores ordinary targeting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reach extends actual entity targeting independently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabled Reach respects actual reduced entity attribute",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Extended entity targeting dispatches an actual visible attack",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Wall beyond shorter block reach prevents actual entity attack",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "multitask_mining_baseline retains ongoing item use",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordinary item use blocks continued mining",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "multitask_mining_enabled retains ongoing item use",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Multitask permits actual mining while using shield",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "multitask_mining_entities_off retains ongoing item use",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Entity attack setting does not disable simultaneous mining",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabled entity-attack setting preserves use-item attack gate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Multitask attacks actual entity while using item",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling Multitask restores use-item attack gate",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "date": "2026-10-30",
+  "full_meteor_parity": false,
+  "binary_sha256": "5cab6b39eb2692cf7a3edcd026815ae5853ca2a884de532a18b85b6cb39da3de",
+  "scope": "Isolated singleplayer smoke checks; no differential parity proof",
+  "visual_review": "Screenshots retained for review; not full visual parity proof.",
+  "matching_source_archive": {
+    "file": "meteor-horizon-source-23-module-checkpoint.zip",
+    "sha256": "ae1661d8da0000544adcba2394c7e6b875fedc007d0756651a3399f200140f9f"
+  },
+  "matching_source_package": {
+    "file": "meteor-client-native-23-module-checkpoint.hmod",
+    "sha256": "b43ec50bd60740f2daa36be5917d4382ca5b9b371f843cab8800cd3b12692333"
+  }
+}

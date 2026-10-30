@@ -1,0 +1,397 @@
+{
+  "date": "2026-10-30",
+  "authorization": "User approved Rust tests, compile/dependency checks, and all future full-port runtime tests restricted to fresh temporary singleplayer worlds/generated files. Existing worlds, real accounts and multiplayer servers are excluded.",
+  "commands": [
+    {
+      "command": "cargo test --profile fast -p meteor-client",
+      "exit_code": 0,
+      "behavior_tests_passed": 21,
+      "behavior_tests_failed": 0
+    },
+    {
+      "command": "cargo check -p horizon-client --bin horizon-client --features meteor",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo check -p horizon-client --bin horizon-client",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo test -p horizon-client --lib sprint::tests --features meteor",
+      "exit_code": 0,
+      "tests_passed": 2
+    },
+    {
+      "command": "cargo build --profile fast -p horizon-client --bin horizon-client --bin horizon-ctl --features meteor",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo test --profile fast -p horizon-world --lib living_motion::tests",
+      "exit_code": 0,
+      "tests_passed": 2
+    },
+    {
+      "command": "python work/runtime_meteor.py --air-jump --sprint --gui-move --high-jump --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 46
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --native-gui --walk --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 28,
+      "evidence": "runtime-gui-walk.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --native-gui --walk --step --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 43,
+      "evidence": "runtime-step-gui.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --native-gui --walk --step --climb --friends --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 58,
+      "evidence": "runtime-climb-friends.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --native-gui --nbt-import --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 34,
+      "evidence": "runtime-nbt-chords.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --native-gui --player-actions --fullbright --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 47,
+      "evidence": "runtime-player-actions-fullbright.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --native-gui --nbt-import --slow-movement --profiles --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 61,
+      "evidence": "runtime-slow-profiles.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --native-gui --nbt-import --slow-movement --profiles --client-binary ISOLATED_HMOD_BUILT_CLIENT --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 61,
+      "evidence": "runtime-native-hmod-21.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --reach-multitask --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 31,
+      "evidence": "runtime-reach-multitask.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --native-gui --nbt-import --player-actions --slow-movement --profiles --macros --system-guis --reach-multitask --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 102,
+      "evidence": "runtime-macros-gui-reach.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --picking --host-gui --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 86,
+      "evidence": "runtime-picking-host-colors.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --native-gui --nbt-import --player-actions --slow-movement --profiles --macros --system-guis --reach-multitask --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 102,
+      "evidence": "runtime-26-regression.json"
+    },
+    {
+      "command": "python tools/test_meteor_runtime.py --step --resources LOCAL_RESOURCES",
+      "exit_code": 0,
+      "checks_passed": 25,
+      "evidence": "runtime-native-hmod-26-step.json"
+    }
+  ],
+  "game_launched": true,
+  "java_differential_tests_run": false,
+  "full_meteor_parity": false,
+  "scope": "Isolated singleplayer Zoom/AutoJump/AirJump/Sprint/GUIMove/HighJump smoke test; not complete parity",
+  "runtime_evidence": "runtime-smoke.json",
+  "current_changes": {
+    "registered_module_count": 28,
+    "core_tests_passed": 130,
+    "multitask_input_tests_passed": 1,
+    "reach_ray_interval_tests_passed": 2,
+    "slow_movement_resource_tests_passed": 1,
+    "clock_tests_passed": 10,
+    "nbt_import_fixture_tests_passed": 7,
+    "macro_nbt_import_fixture_tests_passed": 4,
+    "air_place_overlay_tests_passed": 4,
+    "fullbright_render_tests_passed": 4,
+    "runtime_smoke_coverage": [
+      "AirJump",
+      "AirPlace",
+      "AutoJump",
+      "AutoRespawn",
+      "AutoWalk",
+      "BreakDelay",
+      "ClickGUI",
+      "ColorGUI",
+      "FastClimb",
+      "FastUse",
+      "Friends",
+      "Fullbright",
+      "GUIMove",
+      "HUD",
+      "HighJump",
+      "LiquidInteract",
+      "Macros",
+      "MacrosGUI",
+      "Multitask",
+      "NBTImport",
+      "NoMiningTrace",
+      "NoSlow",
+      "Parkour",
+      "Profiles",
+      "ProfilesGUI",
+      "Reach",
+      "ReverseStep",
+      "SafeWalk",
+      "Slippy",
+      "Sneak",
+      "Spider",
+      "Sprint",
+      "Starscript",
+      "StarscriptHost",
+      "Step",
+      "Timer",
+      "Zoom"
+    ],
+    "runtime_runs": [
+      {
+        "file": "runtime-26-regression.json",
+        "checks": 102,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "ClickGUI",
+          "HUD",
+          "NBTImport",
+          "AutoRespawn",
+          "BreakDelay",
+          "FastUse",
+          "Sneak",
+          "NoSlow",
+          "Slippy",
+          "Profiles",
+          "Macros",
+          "Starscript",
+          "MacrosGUI",
+          "ProfilesGUI",
+          "Reach",
+          "Multitask"
+        ],
+        "binary_sha256": "fe3cf9a0e1391fed63c0dc369d861e1523d1ec1bb0aa4454d86cf1a9fb209567"
+      },
+      {
+        "file": "runtime-climb-friends.json",
+        "checks": 58,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "ClickGUI",
+          "HUD",
+          "AutoWalk",
+          "SafeWalk",
+          "Step",
+          "ReverseStep",
+          "FastClimb",
+          "Spider",
+          "Parkour",
+          "Timer",
+          "Friends"
+        ],
+        "binary_sha256": "94f1d8b06e26e9703be78b9733226b46e043969d1e636168f547f2ed134fbe2f"
+      },
+      {
+        "file": "runtime-gui-walk.json",
+        "checks": 28,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "ClickGUI",
+          "HUD",
+          "AutoWalk",
+          "SafeWalk"
+        ],
+        "binary_sha256": "e8a8cf99f7f7f2cf7fb3b6c26d336b2f2793fafd94d3ee7457e0c598c2062b7f"
+      },
+      {
+        "file": "runtime-macros-gui-reach.json",
+        "checks": 102,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "ClickGUI",
+          "HUD",
+          "NBTImport",
+          "AutoRespawn",
+          "BreakDelay",
+          "FastUse",
+          "Sneak",
+          "NoSlow",
+          "Slippy",
+          "Profiles",
+          "Macros",
+          "Starscript",
+          "MacrosGUI",
+          "ProfilesGUI",
+          "Reach",
+          "Multitask"
+        ],
+        "binary_sha256": "5cab6b39eb2692cf7a3edcd026815ae5853ca2a884de532a18b85b6cb39da3de"
+      },
+      {
+        "file": "runtime-native-hmod-21.json",
+        "checks": 61,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "ClickGUI",
+          "HUD",
+          "NBTImport",
+          "Sneak",
+          "NoSlow",
+          "Slippy",
+          "Profiles"
+        ],
+        "binary_sha256": "a3feb2a7be28e63cc75d6947653fa885db1e9515362bd8f709d2552a6d9e58c4"
+      },
+      {
+        "file": "runtime-native-hmod-26-step.json",
+        "checks": 25,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "Step",
+          "ReverseStep"
+        ],
+        "binary_sha256": "ebab33279ff7a8bde1d78463543be1fabcbf3accdebd5994048a3cd76661dd58"
+      },
+      {
+        "file": "runtime-nbt-chords.json",
+        "checks": 34,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "ClickGUI",
+          "HUD",
+          "NBTImport"
+        ],
+        "binary_sha256": "162ca1d3039fc4bbc43ae203a714a1ef877b23dfafd1678bbb95cbdf082c9a0c"
+      },
+      {
+        "file": "runtime-picking-host-colors.json",
+        "checks": 86,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "AirPlace",
+          "LiquidInteract",
+          "NoMiningTrace",
+          "StarscriptHost",
+          "ColorGUI"
+        ],
+        "binary_sha256": "fe3cf9a0e1391fed63c0dc369d861e1523d1ec1bb0aa4454d86cf1a9fb209567"
+      },
+      {
+        "file": "runtime-player-actions-fullbright.json",
+        "checks": 47,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "ClickGUI",
+          "HUD",
+          "AutoRespawn",
+          "BreakDelay",
+          "FastUse",
+          "Fullbright"
+        ],
+        "binary_sha256": "638bc94a47b11120083eb2c61873dfc2b8e8a389146204ac1ae517bd206d45fa"
+      },
+      {
+        "file": "runtime-reach-multitask.json",
+        "checks": 31,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "Reach",
+          "Multitask"
+        ],
+        "binary_sha256": "5cab6b39eb2692cf7a3edcd026815ae5853ca2a884de532a18b85b6cb39da3de"
+      },
+      {
+        "file": "runtime-slow-profiles.json",
+        "checks": 61,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "ClickGUI",
+          "HUD",
+          "NBTImport",
+          "Sneak",
+          "NoSlow",
+          "Slippy",
+          "Profiles"
+        ],
+        "binary_sha256": "140a3f91f3f427120b2a4390d23326149201ca470313e6429ae5b51edc61792e"
+      },
+      {
+        "file": "runtime-smoke.json",
+        "checks": 46,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "AirJump",
+          "Sprint",
+          "GUIMove",
+          "HighJump"
+        ],
+        "binary_sha256": null
+      },
+      {
+        "file": "runtime-step-gui.json",
+        "checks": 43,
+        "modules": [
+          "Zoom",
+          "AutoJump",
+          "ClickGUI",
+          "HUD",
+          "AutoWalk",
+          "SafeWalk",
+          "Step",
+          "ReverseStep"
+        ],
+        "binary_sha256": "d4024d88a9bf1d9c6b3cbf5f4cc1155118dd27d87a28b38cc0ec9f0da1f736a0"
+      }
+    ],
+    "full_meteor_parity": false,
+    "latest_source_checks": [
+      "feature-enabled client compile passed",
+      "feature-disabled client compile passed"
+    ],
+    "unverified_latest_changes": [
+      "Flight, AutoClicker, source Text HUD instances and original macro NBT import still need runtime checks after the tested 26-module checkpoint"
+    ]
+  },
+  "additional_runtime_evidence": [
+    "runtime-gui-walk.json",
+    "runtime-step-gui.json",
+    "runtime-climb-friends.json",
+    "runtime-nbt-chords.json",
+    "runtime-player-actions-fullbright.json",
+    "runtime-slow-profiles.json",
+    "runtime-native-hmod-21.json",
+    "runtime-reach-multitask.json",
+    "runtime-macros-gui-reach.json",
+    "runtime-picking-host-colors.json",
+    "runtime-26-regression.json",
+    "runtime-native-hmod-26-step.json"
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "modules": [
+    "Zoom",
+    "AutoJump",
+    "ClickGUI",
+    "HUD",
+    "AutoWalk",
+    "SafeWalk"
+  ],
+  "checks": [
+    {
+      "name": "Meteor adapter is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Baseline zoom factor is one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom reaches factor six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity reduced before mouse curve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default Zoom hides hands",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom HUD option reaches adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cinematic camera reaches mouse options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Zoom fade-out restores factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sensitivity restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD and hands restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Player settled on ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump produces upward motion without jump input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump raises player above the platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoJump leaves ground",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling AutoJump returns to rest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Right Shift opens native GUI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GUI search accepts text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD button opens editor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD defaults disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HUD editor enables overlay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Escape returns from HUD to modules",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Right Shift closes native GUI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoWalk Simple moves without held keys",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Manual movement disables AutoWalk",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "AutoWalk releases forced movement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Missing path manager disables Smart mode explicitly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "SafeWalk keeps player on platform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disabling SafeWalk permits leaving edge",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "date": "2026-10-30",
+  "full_meteor_parity": false,
+  "binary_sha256": "e8a8cf99f7f7f2cf7fb3b6c26d336b2f2793fafd94d3ee7457e0c598c2062b7f",
+  "scope": "Isolated singleplayer smoke checks; no differential parity proof",
+  "visual_review": "GUI search, HUD editor, normal HUD and SafeWalk screenshot inspected. HUD editor top elements overlap in this build; fixed in later source, rerun pending. First-person outline screenshot is not sufficient evidence of complete outline fidelity."
+}
